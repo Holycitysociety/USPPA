@@ -1,75 +1,59 @@
-body {
-  margin: 0;
-  font-family: 'Georgia', serif;
-  background-color: #f9f9fb;
-  color: #111;
-  text-align: center;
-  line-height: 1.6;
+/* Regal British sporting announcement — crisp parchment with cool tone */
+:root{
+  --paper: #f2f5f9;         /* crisp white w/ cool-blue tint */
+  --ink:   #0f1216;         /* near-black */
+  --navy:  #0e223d;         /* club navy */
+  --gold:  #b49a5a;         /* restrained metallic gold */
+  --muted: #657084;
+
+  --container: 760px;
+  --leading: 1.6;
 }
 
-.masthead {
-  padding: 2rem 1rem 1rem;
+*{ box-sizing: border-box }
+html, body{ margin:0; padding:0 }
+body{
+  background:
+    radial-gradient(1800px 700px at 50% -8%, rgba(14,34,61,.06), transparent 40%),
+    radial-gradient(1200px 500px at 50% 108%, rgba(14,34,61,.05), transparent 55%),
+    var(--paper);
+  color: var(--ink);
+  font-family: "EB Garamond", Georgia, serif;
+  line-height: var(--leading);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.masthead-title {
-  font-size: 1.8rem;
+/* Layout */
+.container{ max-width: var(--container); margin: 0 auto; padding: 0 24px }
+
+/* Masthead */
+.site-header{ padding-top: clamp(28px, 6vh, 64px) }
+.masthead{ text-align:center }
+
+/* (crest removed) */
+.crest{
+  width: clamp(52px, 7vw, 76px);
+  height: auto;
+  margin-inline: auto;
+  margin-bottom: 10px;
+  display: none; /* ensure hidden if any leftover markup appears */
+}
+.crest-ring{ fill:none; stroke: var(--gold); stroke-width:8 }
+.crest-lines path{
+  stroke: var(--navy);
+  stroke-width:8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.masthead-title{
+  font-family: "Cinzel", Georgia, serif;
   font-weight: 700;
-  letter-spacing: 0.08em; /* tightened */
-  line-height: 1.2; /* less space between lines */
-  text-transform: uppercase;
+  letter-spacing: .12em;
+  text-align: center;
+  font-size: clamp(22px, 4.2vw, 34px);
+  line-height: 1.25;
   margin: 0;
 }
-
-.masthead-subtitle {
-  font-size: 0.9rem;
-  letter-spacing: 0.35em;
-  margin-top: 0.4rem;
-  text-transform: uppercase;
-}
-
-main {
-  padding: 2rem 1rem;
-}
-
-h2 {
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  margin: 2rem 0 1rem;
-  letter-spacing: 0.1em;
-}
-
-p {
-  max-width: 700px;
-  margin: 0.75rem auto;
-  text-align: justify; /* square justify */
-}
-
-.blockchain-line {
-  font-style: italic;
-  margin-top: 1.25rem;
-}
-
-.smallcaps {
-  font-variant: small-caps;
-}
-
-.buttons {
-  margin: 1.5rem 0;
-}
-
-.pill-button {
-  display: inline-block;
-  background: #111;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 50px;
-  margin: 0.3rem;
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-  transition: background 0.3s ease;
-}
-
-.pill-button:hover {
-  background: #444;
-}
+.est
