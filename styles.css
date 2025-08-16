@@ -25,26 +25,16 @@ body{
 }
 
 /* Layout */
-.container{ max-width: var(--container); margin: 0 auto; padding: 0 24px }
+.container{
+  max-width: var(--container);
+  margin: 0 auto;
+  /* INCREASED gutters for mobile + responsive */
+  padding: 0 clamp(24px, 7vw, 44px);
+}
 
 /* Masthead */
 .site-header{ padding-top: clamp(28px, 6vh, 64px) }
 .masthead{ text-align:center }
-
-.crest{
-  width: clamp(52px, 7vw, 76px);
-  height: auto;
-  margin-inline: auto;
-  margin-bottom: 10px;
-  display: block;
-}
-.crest-ring{ fill:none; stroke: var(--gold); stroke-width:8 }
-.crest-lines path{
-  stroke: var(--navy);
-  stroke-width:8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
 
 .masthead-title{
   font-family: "Cinzel", Georgia, serif;
@@ -79,8 +69,12 @@ body{
   letter-spacing: .28em;
 }
 
+/* Justified running text + hyphenation to prevent edge hugging */
 .lede{
-  text-align: center;
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
   max-width: 58ch;
   margin: 0 auto 18px;
   font-size: clamp(17px, 2.2vw, 19px);
@@ -111,7 +105,13 @@ body{
   font-size: clamp(16px, 2.4vw, 20px);
   margin: 0 0 6px;
 }
-.notice-text{ margin: 0 }
+.notice-text{
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
 
 /* Small caps helper */
 .sc{ font-variant: small-caps; letter-spacing: .08em }
@@ -183,4 +183,15 @@ body{
 /* Small polish for medium screens */
 @media (min-width: 980px){
   .masthead-title{ letter-spacing: .14em }
+}
+
+/* Extra-safe gutters on tiny phones & with notches */
+@media (max-width: 480px){
+  .container{
+    padding-left: max(28px, env(safe-area-inset-left));
+    padding-right: max(28px, env(safe-area-inset-right));
+  }
+}
+@media (max-width: 360px){
+  .container{ padding-left: 32px; padding-right: 32px; }
 }
