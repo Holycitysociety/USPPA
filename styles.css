@@ -28,7 +28,7 @@ body{
 .container{
   max-width: var(--container);
   margin: 0 auto;
-  /* INCREASED gutters for mobile + responsive */
+  /* mobile-safe, generous gutters */
   padding: 0 clamp(24px, 7vw, 44px);
 }
 
@@ -44,12 +44,20 @@ body{
   font-size: clamp(22px, 4.2vw, 34px);
   line-height: 1.25;
   margin: 0;
+  /* Force ~3 lines: constrain measure and center */
+  max-width: 20ch;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+/* CHANGED: ensure the est line fits on one line on mobile */
 .est{
-  letter-spacing: .32em;
+  letter-spacing: .28em;           /* slightly tighter than .32em */
   font-variant: small-caps;
   color: var(--muted);
   margin: 8px 0 0;
+  font-size: clamp(0.78rem, 2.4vw, 0.95rem);
+  white-space: nowrap;             /* keep on one line */
 }
 .est .dot{ opacity:.65 }
 
@@ -62,6 +70,16 @@ body{
   margin: 12px 0;
 }
 
+/* Heavier page-like section breaks with lots of space */
+.section-break{
+  border: none;
+  height: 2px; /* thicker */
+  background: linear-gradient(90deg, transparent, var(--navy), transparent);
+  max-width: 620px;
+  margin: 64px auto; /* lots of open space */
+}
+
+/* Kicker */
 .kicker{
   text-align: center;
   margin: 10px 0 14px;
