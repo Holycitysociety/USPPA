@@ -1,0 +1,186 @@
+/* Regal British sporting announcement — crisp parchment with cool tone */
+:root{
+  --paper: #f2f5f9;         /* crisp white w/ cool-blue tint */
+  --ink:   #0f1216;         /* near-black */
+  --navy:  #0e223d;         /* club navy */
+  --gold:  #b49a5a;         /* restrained metallic gold */
+  --muted: #657084;
+
+  --container: 760px;
+  --leading: 1.6;
+}
+
+*{ box-sizing: border-box }
+html, body{ margin:0; padding:0 }
+body{
+  background:
+    radial-gradient(1800px 700px at 50% -8%, rgba(14,34,61,.06), transparent 40%),
+    radial-gradient(1200px 500px at 50% 108%, rgba(14,34,61,.05), transparent 55%),
+    var(--paper);
+  color: var(--ink);
+  font-family: "EB Garamond", Georgia, serif;
+  line-height: var(--leading);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Layout */
+.container{ max-width: var(--container); margin: 0 auto; padding: 0 24px }
+
+/* Masthead */
+.site-header{ padding-top: clamp(28px, 6vh, 64px) }
+.masthead{ text-align:center }
+
+.crest{
+  width: clamp(52px, 7vw, 76px);
+  height: auto;
+  margin-inline: auto;
+  margin-bottom: 10px;
+  display: block;
+}
+.crest-ring{ fill:none; stroke: var(--gold); stroke-width:8 }
+.crest-lines path{
+  stroke: var(--navy);
+  stroke-width:8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.masthead-title{
+  font-family: "Cinzel", Georgia, serif;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-align: center;
+  font-size: clamp(22px, 4.2vw, 34px);
+  line-height: 1.25;
+  margin: 0;
+}
+.est{
+  letter-spacing: .32em;
+  font-variant: small-caps;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+.est .dot{ opacity:.65 }
+
+/* Announcement */
+.announcement{ padding: clamp(24px, 4vh, 36px) 0 clamp(40px, 8vh, 80px) }
+
+.rule{
+  border: none; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 12px 0;
+}
+
+.kicker{
+  text-align: center;
+  margin: 10px 0 14px;
+  color: var(--navy);
+  letter-spacing: .28em;
+}
+
+.lede{
+  text-align: center;
+  max-width: 58ch;
+  margin: 0 auto 18px;
+  font-size: clamp(17px, 2.2vw, 19px);
+}
+
+/* Drop cap on the lede for print flair */
+.dropcap::first-letter{
+  float: left;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: 3.1em;
+  line-height: .9;
+  padding-right: .15em;
+  padding-top: .08em;
+  color: var(--navy);
+}
+
+/* Notices */
+.notices{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin: 18px 0 8px;
+}
+.notice{ text-align: center; padding: 6px 4px }
+.notice-title{
+  font-family: "Cinzel", Georgia, serif;
+  letter-spacing: .18em;
+  font-size: clamp(16px, 2.4vw, 20px);
+  margin: 0 0 6px;
+}
+.notice-text{ margin: 0 }
+
+/* Small caps helper */
+.sc{ font-variant: small-caps; letter-spacing: .08em }
+
+/* Calls to action */
+.cta{
+  display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+  margin: 14px 0 6px;
+}
+.btn{
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(14,34,61,.28);
+  color: var(--ink);
+  text-decoration: none;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(2px);
+  transition: transform .06s ease, box-shadow .12s ease, background .12s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(14,34,61,.08);
+}
+.btn-primary{
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+/* Details */
+.details{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  max-width: 520px;
+  margin: 10px auto 0;
+  color: var(--muted);
+}
+.details dt{
+  color: var(--ink);
+  font-variant: small-caps;
+  letter-spacing: .12em;
+}
+.details dd{ margin: 0 }
+
+/* Motto */
+.motto{
+  text-align: center;
+  font-style: italic;
+  color: var(--muted);
+  margin: 16px 0 0;
+}
+
+/* Footer */
+.site-footer{ padding: 28px 0 56px }
+.fineprint{
+  text-align: center;
+  color: var(--muted);
+  font-size: .92rem;
+  margin: 0;
+}
+
+/* Wider view: three-column notices like a printed bill */
+@media (min-width: 760px){
+  .notices{ grid-template-columns: repeat(3, 1fr) }
+}
+
+/* Small polish for medium screens */
+@media (min-width: 980px){
+  .masthead-title{ letter-spacing: .14em }
+}
