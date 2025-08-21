@@ -18,10 +18,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .dropdown {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+    .dropbtn {
+      background: none;
+      border: none;
+      font-size: 26px;
+      cursor: pointer;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      min-width: 160px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 10;
+      margin-top: 6px;
+    }
+    .dropdown-content a {
+      color: #000;
+      padding: 10px 14px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+    }
+    .dropdown.show .dropdown-content {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <!-- Masthead (crest removed per request) -->
   <header class="site-header" role="banner" aria-label="Association masthead">
+    <div class="dropdown">
+      <button class="dropbtn">⋮</button>
+      <div class="dropdown-content">
+        <a href="https://charlestonpoloclub.com" target="_blank">Charleston Polo</a>
+        <a href="https://uspolopatrons.org" target="_blank">USPPA</a>
+        <a href="#content">About</a>
+      </div>
+    </div>
+
     <div class="container masthead">
       <h1 class="masthead-title">UNITED STATES<br class="br-md">POLO PATRONS<br>ASSOCIATION
       </h1>
@@ -31,61 +79,7 @@
   </header>
 
   <main id="content" role="main">
-    <div class="container announcement">
-      <hr class="rule rule-top" aria-hidden="true" />
-      <br>
-      <p class="kicker sc">A Call to Take the Field</p>
-
-      <p class="lede dropcap">
-        With great honor we announce the founding of the United States Polo Patrons Association.
-        This new fellowship of patrons and players begins with the launch of Polo Patronium, a living token
-        of support and tradition. Together we set forth to celebrate the sport of polo, foster its growth,
-        and open a new chapter in the storied life of the game.
-      </p>
-<br>
-      <section class="notices">
-        <article class="notice">
-          <h2 class="notice-title sc">Polo Patronium</h2>
-          <p class="notice-text">
-            The Patronium token and <span class="sc">membership NFTs</span> — uniting patrons, players,
-            and clubs in a shared economy of sport.
-          </p>
-        </article>
-        
-        <article class="notice">
-          <h2 class="notice-title sc">The Polo Life</h2>
-          <p class="notice-text">
-            A dedicated streaming and media platform, bringing polo’s elegance and tradition to the digital age.
-          </p>
-        </article>
-        
-        <article class="notice">
-          <h2 class="notice-title sc">Charleston Polo Club</h2>
-          <p class="notice-text">
-            The founding of our flagship club in Charleston, South Carolina — restoring the city’s polo tradition
-            with renewed vigour.
-          </p>
-        </article>
-
-        <article class="notice">
-          <h2 class="notice-title sc">Cowboy Polo Circuit</h2>
-          <p class="notice-text">
-            A bold initiative to lower the barrier of entry, expose new talent across America’s heartland,
-            and grow the next generation of U.S. ten-goal players.
-          </p>
-        </article>
-      </section>
-<br>
-      <div class="cta">
-        <a class="btn btn-primary" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
-        <a class="btn" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
-      </div>
-
-      <br>
-      <blockquote class="motto">“In Honour, in Sport, in Fellowship.”</blockquote>
-
-      <hr class="rule rule-bottom" aria-hidden="true" />
-    </div>
+    ...
   </main>
       
   <footer class="site-footer" role="contentinfo">
@@ -94,6 +88,14 @@
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script>
+    document.querySelector('.dropbtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.querySelector('.dropdown').classList.toggle('show');
+    });
+    window.addEventListener('click', function() {
+      document.querySelector('.dropdown').classList.remove('show');
+    });
+  </script>
 </body>
 </html>
