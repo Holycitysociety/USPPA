@@ -28,7 +28,35 @@
       <br>
       <p class="est">FOUNDING<span class="dot"> · </span>AD MMXXV · 2025</p>
     </div>
+
+    <!-- Three-dot menu toggle -->
+    <button class="menu-toggle" aria-label="Open menu" aria-controls="menu" aria-expanded="false">
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="5" cy="12" r="2"></circle>
+        <circle cx="12" cy="12" r="2"></circle>
+        <circle cx="19" cy="12" r="2"></circle>
+      </svg>
+    </button>
   </header>
+
+  <!-- Popup Menu -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <div class="menu-backdrop" data-close></div>
+    <div class="menu-panel" role="dialog" aria-modal="true" aria-label="Site menu">
+      <button class="menu-close" aria-label="Close menu" data-close>×</button>
+
+      <h2 class="menu-heading">PATRONS</h2>
+      <ul class="menu-list">
+        <li><a href="https://uspolopatrons.org" target="_blank" rel="noopener">USPPA — uspolopatrons.org</a></li>
+        <li><a href="https://militestempli.org" target="_blank" rel="noopener">Milites Templi — militestempli.org</a></li>
+      </ul>
+
+      <h2 class="menu-heading">CLUBS</h2>
+      <ul class="menu-list">
+        <li><a href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo Club — charlestonpoloclub.com</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <main id="content" role="main">
     <div class="container announcement">
