@@ -12,7 +12,7 @@
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#e9edf3" />
 
-  <!-- Fonts -->
+  <!-- Fonts (classical feel) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
@@ -34,7 +34,8 @@
       background: transparent;
       border: none;
       font: inherit;
-      font-size: 22px;   /* ☰ */
+      font-size: 20px;   /* thin ☰ */
+      line-height: 1;
       cursor: pointer;
       padding: 6px 10px;
     }
@@ -45,23 +46,13 @@
       transform: translateX(-50%);
       margin-top: 6px;
       background: #fff;
-      min-width: 220px;
+      min-width: 200px;
       box-shadow: 0 2px 8px rgba(0,0,0,.15);
       border-radius: 4px;
       overflow: hidden;
       z-index: 1001;
-      text-align: left;
-      font-family: 'EB Garamond', serif;
     }
     .usp-menu.is-open .usp-menu__panel { display: block; }
-    .usp-menu__header {
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 13px;
-      padding: 8px 12px;
-      background: #f7f7f7;
-      border-bottom: 1px solid #ddd;
-    }
     .usp-menu__link {
       display: block;
       padding: 10px 14px;
@@ -80,65 +71,7 @@
     <nav class="usp-menu" role="navigation" aria-label="Site menu">
       <button class="usp-menu__btn" aria-haspopup="true" aria-expanded="false" aria-controls="usp-menu-list">☰</button>
       <div id="usp-menu-list" class="usp-menu__panel" role="menu">
-        
-        <div class="usp-menu__header">PATRONS</div>
-        <a class="usp-menu__link" role="menuitem" href="https://uspolopatrons.org" target="_blank">USPPA — uspolopatrons.org</a>
-        <a class="usp-menu__link" role="menuitem" href="https://militestempli.org" target="_blank">MILITES TEMPLI — militestempli.org</a>
-        
-        <div class="usp-menu__header">CLUBS</div>
-        <a class="usp-menu__link" role="menuitem" href="https://charlestonpoloclub.com" target="_blank">CHARLESTON POLO CLUB — charlestonpoloclub.com</a>
-      
-      </div>
-    </nav>
-
-    <div class="container masthead">
-      <h1 class="masthead-title">UNITED STATES<br class="br-md">POLO PATRONS<br>ASSOCIATION
-      </h1>
-      <br>
-      <p class="est">FOUNDING<span class="dot"> · </span>AD MMXXV · 2025</p>
-    </div>
-  </header>
-
-  <!-- existing main content unchanged -->
-  <main id="content" role="main">
-    <div class="container announcement">
-      ...
-    </div>
-  </main>
-      
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <p class="fineprint">© 2025 USPoloPatrons.Org</p>
-    </div>
-  </footer>
-
-  <!-- Dropdown script -->
-  <script>
-    (function() {
-      var menu = document.querySelector('.usp-menu');
-      var btn = document.querySelector('.usp-menu__btn');
-      var panel = document.getElementById('usp-menu-list');
-
-      function closeMenu() {
-        menu.classList.remove('is-open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
-      function toggleMenu(e) {
-        e.stopPropagation();
-        var open = menu.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      }
-
-      btn.addEventListener('click', toggleMenu);
-      window.addEventListener('click', function(e){
-        if (!menu.contains(e.target)) closeMenu();
-      });
-      window.addEventListener('keydown', function(e){
-        if (e.key === 'Escape') closeMenu();
-      });
-    })();
-  </script>
-
-  <script src="script.js" defer></script>
-</body>
-</html>
+        <a class="usp-menu__link" role="menuitem" href="https://uspolopatrons.org" target="_blank">USPPA</a>
+        <a class="usp-menu__link" role="menuitem" href="#content">PATRONS</a>
+        <a class="usp-menu__link" role="menuitem" href="https://militestempli.org" target="_blank">MILITES TEMPLI</a>
+        <a class="usp-menu__link" role="menuitem" href="#clubs">CLUBS</a
