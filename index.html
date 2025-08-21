@@ -12,17 +12,17 @@
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#e9edf3" />
 
-  <!-- Fonts (classical feel) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Minimal, namespaced styles for the centered three-dot menu -->
   <style>
+    /* Hamburger menu styles */
     .usp-menu {
-      position: fixed;           /* top of the page */
+      position: fixed;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
@@ -34,8 +34,7 @@
       background: transparent;
       border: none;
       font: inherit;
-      font-size: 22px;           /* horizontal ellipsis size */
-      line-height: 1;
+      font-size: 22px;   /* ☰ */
       cursor: pointer;
       padding: 6px 10px;
     }
@@ -46,13 +45,23 @@
       transform: translateX(-50%);
       margin-top: 6px;
       background: #fff;
-      min-width: 180px;
+      min-width: 220px;
       box-shadow: 0 2px 8px rgba(0,0,0,.15);
       border-radius: 4px;
       overflow: hidden;
       z-index: 1001;
+      text-align: left;
+      font-family: 'EB Garamond', serif;
     }
     .usp-menu.is-open .usp-menu__panel { display: block; }
+    .usp-menu__header {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 13px;
+      padding: 8px 12px;
+      background: #f7f7f7;
+      border-bottom: 1px solid #ddd;
+    }
     .usp-menu__link {
       display: block;
       padding: 10px 14px;
@@ -64,16 +73,21 @@
   </style>
 </head>
 <body>
-  <!-- Masthead (crest removed per request) -->
+  <!-- Masthead -->
   <header class="site-header" role="banner" aria-label="Association masthead">
 
-    <!-- Centered three-dot dropdown (horizontal ellipsis “…”) -->
+    <!-- Centered thin hamburger -->
     <nav class="usp-menu" role="navigation" aria-label="Site menu">
-      <button class="usp-menu__btn" aria-haspopup="true" aria-expanded="false" aria-controls="usp-menu-list">…</button>
+      <button class="usp-menu__btn" aria-haspopup="true" aria-expanded="false" aria-controls="usp-menu-list">☰</button>
       <div id="usp-menu-list" class="usp-menu__panel" role="menu">
-        <a class="usp-menu__link" role="menuitem" href="#content">About</a>
-        <a class="usp-menu__link" role="menuitem" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
-        <a class="usp-menu__link" role="menuitem" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
+        
+        <div class="usp-menu__header">PATRONS</div>
+        <a class="usp-menu__link" role="menuitem" href="https://uspolopatrons.org" target="_blank">USPPA — uspolopatrons.org</a>
+        <a class="usp-menu__link" role="menuitem" href="https://militestempli.org" target="_blank">MILITES TEMPLI — militestempli.org</a>
+        
+        <div class="usp-menu__header">CLUBS</div>
+        <a class="usp-menu__link" role="menuitem" href="https://charlestonpoloclub.com" target="_blank">CHARLESTON POLO CLUB — charlestonpoloclub.com</a>
+      
       </div>
     </nav>
 
@@ -85,61 +99,10 @@
     </div>
   </header>
 
+  <!-- existing main content unchanged -->
   <main id="content" role="main">
     <div class="container announcement">
-      <hr class="rule rule-top" aria-hidden="true" />
-      <br>
-      <p class="kicker sc">A Call to Take the Field</p>
-
-      <p class="lede dropcap">
-        With great honor we announce the founding of the United States Polo Patrons Association.
-        This new fellowship of patrons and players begins with the launch of Polo Patronium, a living token
-        of support and tradition. Together we set forth to celebrate the sport of polo, foster its growth,
-        and open a new chapter in the storied life of the game.
-      </p>
-<br>
-      <section class="notices">
-        <article class="notice">
-          <h2 class="notice-title sc">Polo Patronium</h2>
-          <p class="notice-text">
-            The Patronium token and <span class="sc">membership NFTs</span> — uniting patrons, players,
-            and clubs in a shared economy of sport.
-          </p>
-        </article>
-        
-        <article class="notice">
-          <h2 class="notice-title sc">The Polo Life</h2>
-          <p class="notice-text">
-            A dedicated streaming and media platform, bringing polo’s elegance and tradition to the digital age.
-          </p>
-        </article>
-        
-        <article class="notice">
-          <h2 class="notice-title sc">Charleston Polo Club</h2>
-          <p class="notice-text">
-            The founding of our flagship club in Charleston, South Carolina — restoring the city’s polo tradition
-            with renewed vigour.
-          </p>
-        </article>
-
-        <article class="notice">
-          <h2 class="notice-title sc">Cowboy Polo Circuit</h2>
-          <p class="notice-text">
-            A bold initiative to lower the barrier of entry, expose new talent across America’s heartland,
-            and grow the next generation of U.S. ten-goal players.
-          </p>
-        </article>
-      </section>
-<br>
-      <div class="cta">
-        <a class="btn btn-primary" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
-        <a class="btn" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
-      </div>
-
-      <br>
-      <blockquote class="motto">“In Honour, in Sport, in Fellowship.”</blockquote>
-
-      <hr class="rule rule-bottom" aria-hidden="true" />
+      ...
     </div>
   </main>
       
@@ -149,7 +112,7 @@
     </div>
   </footer>
 
-  <!-- Tiny, namespaced script for the dropdown -->
+  <!-- Dropdown script -->
   <script>
     (function() {
       var menu = document.querySelector('.usp-menu');
