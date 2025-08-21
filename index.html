@@ -19,56 +19,63 @@
 
   <link rel="stylesheet" href="styles.css" />
 
+  <!-- Minimal, namespaced styles for the centered three-dot menu -->
   <style>
-    .dropdown {
-      position: absolute;
+    .usp-menu {
+      position: fixed;           /* top of the page */
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
+      z-index: 1000;
       text-align: center;
+      user-select: none;
     }
-    .dropbtn {
-      background: none;
+    .usp-menu__btn {
+      background: transparent;
       border: none;
-      font-size: 26px;
+      font: inherit;
+      font-size: 22px;           /* horizontal ellipsis size */
+      line-height: 1;
       cursor: pointer;
+      padding: 6px 10px;
     }
-    .dropdown-content {
+    .usp-menu__panel {
       display: none;
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      background-color: #fff;
-      min-width: 160px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      z-index: 10;
       margin-top: 6px;
+      background: #fff;
+      min-width: 180px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      border-radius: 4px;
+      overflow: hidden;
+      z-index: 1001;
     }
-    .dropdown-content a {
-      color: #000;
+    .usp-menu.is-open .usp-menu__panel { display: block; }
+    .usp-menu__link {
+      display: block;
       padding: 10px 14px;
       text-decoration: none;
-      display: block;
+      color: #000;
+      white-space: nowrap;
     }
-    .dropdown-content a:hover {
-      background-color: #f0f0f0;
-    }
-    .dropdown.show .dropdown-content {
-      display: block;
-    }
+    .usp-menu__link:hover { background: #f2f2f2; }
   </style>
 </head>
 <body>
   <!-- Masthead (crest removed per request) -->
   <header class="site-header" role="banner" aria-label="Association masthead">
-    <div class="dropdown">
-      <button class="dropbtn">⋮</button>
-      <div class="dropdown-content">
-        <a href="https://charlestonpoloclub.com" target="_blank">Charleston Polo</a>
-        <a href="https://uspolopatrons.org" target="_blank">USPPA</a>
-        <a href="#content">About</a>
+
+    <!-- Centered three-dot dropdown (horizontal ellipsis “…”) -->
+    <nav class="usp-menu" role="navigation" aria-label="Site menu">
+      <button class="usp-menu__btn" aria-haspopup="true" aria-expanded="false" aria-controls="usp-menu-list">…</button>
+      <div id="usp-menu-list" class="usp-menu__panel" role="menu">
+        <a class="usp-menu__link" role="menuitem" href="#content">About</a>
+        <a class="usp-menu__link" role="menuitem" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
+        <a class="usp-menu__link" role="menuitem" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
       </div>
-    </div>
+    </nav>
 
     <div class="container masthead">
       <h1 class="masthead-title">UNITED STATES<br class="br-md">POLO PATRONS<br>ASSOCIATION
@@ -79,7 +86,61 @@
   </header>
 
   <main id="content" role="main">
-    ...
+    <div class="container announcement">
+      <hr class="rule rule-top" aria-hidden="true" />
+      <br>
+      <p class="kicker sc">A Call to Take the Field</p>
+
+      <p class="lede dropcap">
+        With great honor we announce the founding of the United States Polo Patrons Association.
+        This new fellowship of patrons and players begins with the launch of Polo Patronium, a living token
+        of support and tradition. Together we set forth to celebrate the sport of polo, foster its growth,
+        and open a new chapter in the storied life of the game.
+      </p>
+<br>
+      <section class="notices">
+        <article class="notice">
+          <h2 class="notice-title sc">Polo Patronium</h2>
+          <p class="notice-text">
+            The Patronium token and <span class="sc">membership NFTs</span> — uniting patrons, players,
+            and clubs in a shared economy of sport.
+          </p>
+        </article>
+        
+        <article class="notice">
+          <h2 class="notice-title sc">The Polo Life</h2>
+          <p class="notice-text">
+            A dedicated streaming and media platform, bringing polo’s elegance and tradition to the digital age.
+          </p>
+        </article>
+        
+        <article class="notice">
+          <h2 class="notice-title sc">Charleston Polo Club</h2>
+          <p class="notice-text">
+            The founding of our flagship club in Charleston, South Carolina — restoring the city’s polo tradition
+            with renewed vigour.
+          </p>
+        </article>
+
+        <article class="notice">
+          <h2 class="notice-title sc">Cowboy Polo Circuit</h2>
+          <p class="notice-text">
+            A bold initiative to lower the barrier of entry, expose new talent across America’s heartland,
+            and grow the next generation of U.S. ten-goal players.
+          </p>
+        </article>
+      </section>
+<br>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
+        <a class="btn" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
+      </div>
+
+      <br>
+      <blockquote class="motto">“In Honour, in Sport, in Fellowship.”</blockquote>
+
+      <hr class="rule rule-bottom" aria-hidden="true" />
+    </div>
   </main>
       
   <footer class="site-footer" role="contentinfo">
@@ -88,14 +149,33 @@
     </div>
   </footer>
 
+  <!-- Tiny, namespaced script for the dropdown -->
   <script>
-    document.querySelector('.dropbtn').addEventListener('click', function(e) {
-      e.stopPropagation();
-      document.querySelector('.dropdown').classList.toggle('show');
-    });
-    window.addEventListener('click', function() {
-      document.querySelector('.dropdown').classList.remove('show');
-    });
+    (function() {
+      var menu = document.querySelector('.usp-menu');
+      var btn = document.querySelector('.usp-menu__btn');
+      var panel = document.getElementById('usp-menu-list');
+
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      function toggleMenu(e) {
+        e.stopPropagation();
+        var open = menu.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+
+      btn.addEventListener('click', toggleMenu);
+      window.addEventListener('click', function(e){
+        if (!menu.contains(e.target)) closeMenu();
+      });
+      window.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
   </script>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
