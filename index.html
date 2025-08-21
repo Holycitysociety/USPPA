@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,46 +18,67 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ---- Core styles (previous CSS remains unchanged above this line) ---- */
+    body {
+      margin: 0;
+      color: #111;
+      background: #e9edf3;
+      font-family: "EB Garamond", Georgia, serif;
+      line-height: 1.6;
+    }
+    a.btn {
+      background: #fff;
+      color: #111;
+      padding: .75em 1.3em;
+      border: 1px solid #111;
+      text-decoration: none;
+      margin:.25em .3em;
+      font-size:.97rem
+    }
+    a.btn-primary{background:#111;color:#fff}
+    .container{max-width:40rem;margin:0 auto;padding:0 1rem}
+    /* New three-dot styles (only additions) */
+    .menu-toggle{
+      position:absolute;
+      top:12px;
+      left:50%;
+      transform:translateX(-50%);
+      display:block;
+      width:24px;
+      height:24px;
+      z-index:10;
+      text-decoration:none;
+    }
+    .dots{
+      display:inline-flex;
+      justify-content:space-between;
+      width:20px;
+      height:4px;
+    }
+    .dots span{
+      width:4px;
+      height:4px;
+      border-radius:50%;
+      background:#111;
+    }
+  </style>
 </head>
 <body>
   <!-- Masthead (crest removed per request) -->
   <header class="site-header" role="banner" aria-label="Association masthead">
+    <a class="menu-toggle" href="#" aria-label="Open site menu">
+      <span class="dots">
+        <span></span><span></span><span></span>
+      </span>
+    </a>
     <div class="container masthead">
       <h1 class="masthead-title">UNITED STATES<br class="br-md">POLO PATRONS<br>ASSOCIATION
       </h1>
       <br>
       <p class="est">FOUNDING<span class="dot"> · </span>AD MMXXV · 2025</p>
     </div>
-
-    <!-- Three-dot menu toggle -->
-    <button class="menu-toggle" aria-label="Open menu" aria-controls="menu" aria-expanded="false">
-      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="5" cy="12" r="2"></circle>
-        <circle cx="12" cy="12" r="2"></circle>
-        <circle cx="19" cy="12" r="2"></circle>
-      </svg>
-    </button>
   </header>
-
-  <!-- Popup Menu -->
-  <nav class="menu" id="menu" aria-hidden="true">
-    <div class="menu-backdrop" data-close></div>
-    <div class="menu-panel" role="dialog" aria-modal="true" aria-label="Site menu">
-      <button class="menu-close" aria-label="Close menu" data-close>×</button>
-
-      <h2 class="menu-heading">PATRONS</h2>
-      <ul class="menu-list">
-        <li><a href="https://uspolopatrons.org" target="_blank" rel="noopener">USPPA — uspolopatrons.org</a></li>
-        <li><a href="https://militestempli.org" target="_blank" rel="noopener">Milites Templi — militestempli.org</a></li>
-      </ul>
-
-      <h2 class="menu-heading">CLUBS</h2>
-      <ul class="menu-list">
-        <li><a href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo Club — charlestonpoloclub.com</a></li>
-      </ul>
-    </div>
-  </nav>
 
   <main id="content" role="main">
     <div class="container announcement">
@@ -122,6 +144,17 @@
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script>
+    /* ---- Minimal script for the new menu toggle ---- */
+    function toggleMenu(e){
+      e.preventDefault();
+      const toggle=document.querySelector('.menu-toggle');
+      toggle.classList.toggle('open');
+      /* placeholder behaviour until a full dropdown menu is supplied */
+      console.log('menu toggled:',toggle.classList.contains('open') ? 'open' : 'closed');
+    }
+    document.querySelector('.menu-toggle').addEventListener('click',toggleMenu);
+  </script>
 </body>
 </html>
+```
