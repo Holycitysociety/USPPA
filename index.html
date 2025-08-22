@@ -51,11 +51,21 @@
       border-radius: 4px;
       overflow: hidden;
       z-index: 1001;
+      text-align: left;
     }
     .usp-menu.is-open .usp-menu__panel { display: block; }
+    .usp-menu__heading {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #555;
+      padding: 8px 14px 4px;
+      text-transform: uppercase;
+    }
     .usp-menu__link {
       display: block;
-      padding: 10px 14px;
+      padding: 8px 14px;
       text-decoration: none;
       color: #000;
       white-space: nowrap;
@@ -72,8 +82,12 @@
       <button class="usp-menu__btn" aria-haspopup="true" aria-expanded="false" aria-controls="usp-menu-list">…</button>
       <div id="usp-menu-list" class="usp-menu__panel" role="menu">
         <a class="usp-menu__link" role="menuitem" href="#content">USPPA</a>
-        <a class="usp-menu__link" role="menuitem" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">CHARLESTON POLO CLUB</a>
+
+        <div class="usp-menu__heading">Patrons</div>
         <a class="usp-menu__link" role="menuitem" href="https://militestempli.org" target="_blank" rel="noopener">MILITES TEMPLI</a>
+
+        <div class="usp-menu__heading">Clubs</div>
+        <a class="usp-menu__link" role="menuitem" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">CHARLESTON POLO CLUB</a>
       </div>
     </nav>
 
@@ -132,8 +146,8 @@
       </section>
 <br>
       <div class="cta">
-        <a class="btn btn-primary" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
-        <a class="btn" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
+        <a class="btn btn-primary" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
+        <a class="btn" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
       </div>
 
       <br>
