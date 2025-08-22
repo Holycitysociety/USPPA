@@ -12,17 +12,17 @@
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#e9edf3" />
 
-  <!-- Fonts (classical feel) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Minimal, namespaced styles for the centered three-dot menu -->
+  <!-- Minimal styles for dropdown -->
   <style>
     .usp-menu {
-      position: fixed;           /* top of the page */
+      position: fixed;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
@@ -34,7 +34,7 @@
       background: transparent;
       border: none;
       font: inherit;
-      font-size: 22px;           /* horizontal ellipsis size */
+      font-size: 22px;
       line-height: 1;
       cursor: pointer;
       padding: 6px 10px;
@@ -51,49 +51,49 @@
       border-radius: 4px;
       overflow: hidden;
       z-index: 1001;
-      text-align: left;
     }
     .usp-menu.is-open .usp-menu__panel { display: block; }
-    .usp-menu__heading {
-      font-family: 'Cinzel', serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #555;
-      padding: 8px 14px 4px;
-      text-transform: uppercase;
-    }
     .usp-menu__link {
       display: block;
-      padding: 8px 14px;
+      padding: 10px 14px;
       text-decoration: none;
       color: #000;
       white-space: nowrap;
     }
     .usp-menu__link:hover { background: #f2f2f2; }
+
+    /* Subtle headings inside dropdown */
+    .usp-menu__heading {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #666;
+      padding: 8px 14px 4px;
+      cursor: default;
+      background: #f9f9f9;
+    }
   </style>
 </head>
 <body>
   <!-- Masthead -->
   <header class="site-header" role="banner" aria-label="Association masthead">
 
-    <!-- Centered three-dot dropdown (horizontal ellipsis “…”) -->
+    <!-- Centered three-dot dropdown -->
     <nav class="usp-menu" role="navigation" aria-label="Site menu">
       <button class="usp-menu__btn" aria-haspopup="true" aria-expanded="false" aria-controls="usp-menu-list">…</button>
       <div id="usp-menu-list" class="usp-menu__panel" role="menu">
+        <div class="usp-menu__heading">PATRONS</div>
         <a class="usp-menu__link" role="menuitem" href="#content">USPPA</a>
-
-        <div class="usp-menu__heading">Patrons</div>
         <a class="usp-menu__link" role="menuitem" href="https://militestempli.org" target="_blank" rel="noopener">MILITES TEMPLI</a>
 
-        <div class="usp-menu__heading">Clubs</div>
+        <div class="usp-menu__heading">CLUBS</div>
         <a class="usp-menu__link" role="menuitem" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">CHARLESTON POLO CLUB</a>
       </div>
     </nav>
 
     <div class="container masthead">
-      <h1 class="masthead-title">UNITED STATES<br class="br-md">POLO PATRONS<br>ASSOCIATION
-      </h1>
+      <h1 class="masthead-title">UNITED STATES<br class="br-md">POLO PATRONS<br>ASSOCIATION</h1>
       <br>
       <p class="est">FOUNDING<span class="dot"> · </span>AD MMXXV · 2025</p>
     </div>
@@ -111,7 +111,8 @@
         of support and tradition. Together we set forth to celebrate the sport of polo, foster its growth,
         and open a new chapter in the storied life of the game.
       </p>
-<br>
+      <br>
+
       <section class="notices">
         <article class="notice">
           <h2 class="notice-title sc">Polo Patronium</h2>
@@ -144,10 +145,11 @@
           </p>
         </article>
       </section>
-<br>
+      <br>
+
       <div class="cta">
-        <a class="btn btn-primary" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
-        <a class="btn" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
+        <a class="btn btn-primary" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
+        <a class="btn" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
       </div>
 
       <br>
@@ -163,7 +165,7 @@
     </div>
   </footer>
 
-  <!-- Tiny, namespaced script for the dropdown -->
+  <!-- Dropdown behavior -->
   <script>
     (function() {
       var menu = document.querySelector('.usp-menu');
@@ -189,7 +191,5 @@
       });
     })();
   </script>
-
-  <script src="script.js" defer></script>
 </body>
 </html>
