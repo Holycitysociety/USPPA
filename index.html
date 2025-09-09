@@ -1,3 +1,5 @@
+Here’s the full page with a grouped “Domain Holdings” section inserted right after the Cowboy Polo Circuit block. I didn’t change anything else.
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -73,6 +75,17 @@
       cursor: default;
       background: #f9f9f9;
     }
+
+    /* (Optional) small spacing helpers for grouped domain lists */
+    .domains-group { margin: 0 0 0.75rem; }
+    .domains-group strong { white-space: nowrap; }
+    .domains-label {
+      display: block;
+      font-variant: small-caps;
+      letter-spacing: .04em;
+      color: #555;
+      margin: .35rem 0 .15rem;
+    }
   </style>
 </head>
 <body>
@@ -145,6 +158,56 @@
             and grow the next generation of U.S. ten-goal players.
           </p>
         </article>
+
+        <!-- Domain Holdings (inserted here, grouped; bold kept) -->
+        <article class="notice">
+          <h2 class="notice-title sc">Domain Holdings</h2>
+          <p class="notice-text">
+            Our Association maintains a broad portfolio of polo-related domains to safeguard heritage,
+            expand opportunities, and strengthen the network of clubs, schools, and media platforms.
+          </p>
+
+          <p class="notice-text domains-group">
+            <span class="domains-label">Heritage & Estates</span>
+            <strong>6666polo.com</strong>, <strong>6666poloclub.com</strong><br>
+            <strong>boonehallpolo.com</strong>, <strong>boonehallpoloclub.com</strong><br>
+            <strong>hydeparkpolo.club</strong>, <strong>hydeparkpolo.com</strong>
+          </p>
+
+          <p class="notice-text domains-group">
+            <span class="domains-label">Charleston & Lowcountry</span>
+            <strong>charlestonpolo.club</strong>, <strong>charlestonpolo.com</strong>, <strong>charlestonpolo.stream</strong><br>
+            <strong>charlestonpoloclub.com</strong>, <strong>charlestonpoloclub.org</strong><br>
+            <strong>charlestonpoloclubathydepark.com</strong>, <strong>charlestonpoloclubathydepark.org</strong><br>
+            <strong>charlestonpoloschool.com</strong>, <strong>charlestonyouthpolo.com</strong><br>
+            <strong>charlestownepolo.com</strong>, <strong>charlestownepoloclub.com</strong><br>
+            <strong>kiawahpolo.com</strong>, <strong>palmettopolo.com</strong>, <strong>palmettopoloclub.com</strong><br>
+            <strong>stonoferrypolo.com</strong>, <strong>stonoferrypoloclub.com</strong>, <strong>stonopolo.com</strong>
+          </p>
+
+          <p class="notice-text domains-group">
+            <span class="domains-label">Universities & Regions</span>
+            <strong>carolinapoloclub.com</strong><br>
+            <strong>clemsonpolo.com</strong>, <strong>clemsonpoloclub.com</strong><br>
+            <strong>greenvillepolo.com</strong>, <strong>greenvillepoloclub.com</strong>
+          </p>
+
+          <p class="notice-text domains-group">
+            <span class="domains-label">Cowboy Polo</span>
+            <strong>cowboypolo.com</strong>, <strong>cowboypolo.org</strong>, <strong>cowboypolousa.com</strong>, <strong>vaqueropolo.com</strong>
+          </p>
+
+          <p class="notice-text domains-group">
+            <span class="domains-label">Media & Streaming</span>
+            <strong>thepolo.life</strong>, <strong>thepolo.stream</strong>, <strong>thepololife.com</strong>, <strong>thepolostream.com</strong>
+          </p>
+
+          <p class="notice-text domains-group">
+            <span class="domains-label">National Patronage</span>
+            <strong>uspolopatrons.com</strong>, <strong>uspolopatrons.org</strong>
+          </p>
+        </article>
+        <!-- /Domain Holdings -->
       </section>
       <br>
 
