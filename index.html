@@ -2,238 +2,220 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Milites Templi</title>
-  <meta name="description" content="Milites Templi — discreet custody, settlement, and protection." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>USPPA — United States Polo Patrons Association</title>
 
-  <!-- Match browser chrome / overscroll to fabric off-white -->
-  <meta name="theme-color" content="#f5f3ec" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <!-- Meta -->
+  <meta name="description" content="A formal notice of the Association’s foundation and its inaugural initiatives: Polo Patronium, The Polo Life, Charleston Polo, the Cowboy Polo Circuit, and stewardship of domain holdings." />
+  <meta property="og:title" content="USPPA — United States Polo Patrons Association" />
+  <meta property="og:description" content="It is with honour that we record the foundation of the Association and its inaugural initiatives in service of the game." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#e9edf3" />
 
-  <!-- Preload key images -->
-  <link rel="preload" href="headerlogo.png" as="image" />
-  <link rel="preload" href="logo.png" as="image" />
-  <link rel="preload" href="background.png" as="image" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Google Font: Uncial Antiqua -->
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
-
-  <!-- Inline typography for litany -->
+  <!-- Minimal styles for dropdown -->
   <style>
-    .litany-section {
-      background: #fff;
-      color: var(--ink);
-      padding: 2rem 1rem;
-    }
-    .litany-wrap {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .litany-title {
-      font-family: 'Uncial Antiqua', serif;
-      font-size: 1.3rem;
+    .usp-menu {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
       text-align: center;
-      margin-bottom: 2rem;
+      user-select: none;
     }
-    .latin {
-      font-family: 'Uncial Antiqua', serif;
-      font-size: 1.08rem;
-      line-height: 1.55;
-      display: block;
-      margin: 0 0 0.25rem;
+    .usp-menu__btn {
+      background: transparent;
+      border: none;
+      font: inherit;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 6px 10px;
     }
-    .english {
-      font-family: "Cochin", "Times New Roman", Times, serif;
-      font-style: italic;
-      font-size: 1.02rem;
-      line-height: 1.55;
+    .usp-menu__panel {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 6px;
+      background: #fff;
+      min-width: 180px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      border-radius: 4px;
+      overflow: hidden;
+      z-index: 1001;
+    }
+    .usp-menu.is-open .usp-menu__panel { display: block; }
+    .usp-menu__link {
       display: block;
-      margin: 0 0 1rem 1.25rem; /* indent */
+      padding: 10px 14px;
+      text-decoration: none;
+      color: #000;
+      white-space: nowrap;
+    }
+    .usp-menu__link:hover { background: #f2f2f2; }
+
+    /* Subtle headings inside dropdown */
+    .usp-menu__heading {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #666;
+      padding: 8px 14px 4px;
+      cursor: default;
+      background: #f9f9f9;
     }
   </style>
 </head>
 <body>
-  <!-- Fixed, transparent header -->
-  <header class="site-header page-layer" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Milites Templi home">
-        <img src="headerlogo.png" alt="Milites Templi" class="brand-logo" />
-      </a>
+  <!-- Masthead -->
+  <header class="site-header" role="banner" aria-label="Association masthead">
 
-      <!-- Native dropdown -->
-      <details class="mt-dropdown" role="listbox">
-        <summary class="menu-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false">
-          <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="5" cy="12" r="2" />
-            <circle cx="12" cy="12" r="2" />
-            <circle cx="19" cy="12" r="2" />
-          </svg>
-        </summary>
+    <!-- Centered three-dot dropdown -->
+    <nav class="usp-menu" role="navigation" aria-label="Site menu">
+      <button class="usp-menu__btn" aria-haspopup="true" aria-expanded="false" aria-controls="usp-menu-list">…</button>
+      <div id="usp-menu-list" class="usp-menu__panel" role="menu">
+        
+        <a class="usp-menu__link" role="menuitem" href="#content">USPPA</a>
+          <div class="usp-menu__heading">PATRONS</div>
+        <a class="usp-menu__link" role="menuitem" href="https://militestempli.org" target="_blank" rel="noopener">MILITES TEMPLI</a>
 
-        <nav class="mt-menu-panel" role="menu">
-          <a class="mt-menu-link" role="menuitem" href="https://templer.gold" target="_blank" rel="noopener">templer.gold</a>
-          <a class="mt-menu-link" role="menuitem" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
-          <a class="mt-menu-link mt-menu-sub" role="menuitem" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston&nbsp;Polo&nbsp;Club</a>
-        </nav>
-      </details>
+        <div class="usp-menu__heading">LOCATIONS</div>
+        <a class="usp-menu__link" role="menuitem" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">CHARLESTON POLO</a>
+      </div>
+    </nav>
 
-      <nav class="nav" aria-label="Primary"></nav>
+    <div class="container masthead">
+      <h1 class="masthead-title">UNITED STATES<br class="br-md">POLO PATRONS<br>ASSOCIATION</h1>
+      <br>
+      <p class="est">FOUNDING<span class="dot"> · </span>AD MMXXV · 2025</p>
     </div>
   </header>
 
-  <!-- Parallax background -->
-  <img src="background.png" alt="" id="parallax-bg" aria-hidden="true" />
+  <main id="content" role="main">
+    <div class="container announcement">
+      <hr class="rule rule-top" aria-hidden="true" />
+      <br>
+      <p class="kicker sc">Announcement</p>
 
-  <!-- Foreground content -->
-  <main id="content" class="page-layer">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-anchor">
-        <img src="logo.png" alt="Milites Templi crest" class="hero-logo" />
+      <p class="lede dropcap">
+        It is with honour that we record the foundation of the United States Polo Patrons Association.
+        This fellowship of patrons and players is inaugurated with Polo Patronium, a living token of support and tradition.
+        Our purpose is simple: to safeguard the heritage of polo, encourage its growth, and open a new chapter in the life of the game.
+      </p>
+      <br>
+
+      <p class="kicker sc">Initiatives</p>
+      <section class="notices">
+        <article class="notice">
+          <h2 class="notice-title sc">Polo Patronium</h2>
+          <p class="notice-text">
+            A token and membership initiative uniting patrons, players, and clubs in a shared economy of sport.
+          </p>
+        </article>
+        
+        <article class="notice">
+          <h2 class="notice-title sc">The Polo Life</h2>
+          <p class="notice-text">
+            A platform dedicated to presenting the elegance and traditions of polo to new audiences in the digital age.
+          </p>
+        </article>
+        
+        <article class="notice">
+          <h2 class="notice-title sc">Charleston Polo</h2>
+          <p class="notice-text">
+            The renewal of Charleston, South Carolina’s polo tradition—our flagship chapter.
+          </p>
+        </article>
+
+        <article class="notice">
+          <h2 class="notice-title sc">Cowboy Polo Circuit</h2>
+          <p class="notice-text">
+            A national endeavour to broaden the sport’s reach, nurture emerging talent, and encourage the next generation of American players.
+          </p>
+        </article>
+
+        <article class="notice">
+          <h2 class="notice-title sc">Domain Holdings</h2>
+          <p class="notice-text">
+            In the interest of stewardship, the Association maintains a portfolio of polo-related domains, ensuring the preservation of heritage 
+            and the expansion of opportunity for clubs, schools, and media:<br><br>
+
+            6666polo.com, 6666poloclub.com<br>
+            boonehallpolo.com, boonehallpoloclub.com<br>
+            campitopolo.com, campitopolo.org<br>
+            carolinapoloclub.com<br>
+            charlestonpolo.club, charlestonpolo.com, charlestonpolo.stream<br>
+            charlestonpoloclub.com, charlestonpoloclub.org<br>
+            charlestonpoloclubathydepark.com, charlestonpoloclubathydepark.org<br>
+            charlestonpoloschool.com, charlestonyouthpolo.com<br>
+            charlestownepolo.com, charlestownepoloclub.com<br>
+            clemsonpolo.com, clemsonpoloclub.com<br>
+            cowboypolo.com, cowboypolo.org, cowboypolousa.com<br>
+            greenvillepolo.com, greenvillepoloclub.com<br>
+            hydeparkpolo.club, hydeparkpolo.com<br>
+            kiawahpolo.com<br>
+            palmettopolo.com, palmettopoloclub.com<br>
+            stonoferrypolo.com, stonoferrypoloclub.com, stonopolo.com<br>
+            thepolo.life, thepolo.stream, thepololife.com, thepolostream.com<br>
+            uspolopatrons.com, uspolopatrons.org<br>
+            vaqueropolo.com
+          </p>
+        </article>
+      </section>
+      <br>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
+        <a class="btn" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
       </div>
-    </section>
 
-    <!-- LITANY / PROFESSION SECTION -->
-    <section class="litany-section">
-      <div class="litany-wrap">
-        <div class="litany-title">OMNE DATUM OPTIMUM redditur ad MILITES TEMPLI et MILITIA DEI</div>
+      <br>
+      <blockquote class="motto">“In Honour, in Sport, in Fellowship.”</blockquote>
 
-        <span class="latin">In nomine Patris, et Filii, ✠ et Spiritus Sancti. Amen.</span>
-        <span class="english">In the name of the Father, and of the Son, ✠ and of the Holy Spirit. Amen.</span>
-
-        <span class="latin">Kyrie eleison. Kyrie eleison. Christe eleison. Christe eleison. Kyrie eleison. Kyrie eleison.</span>
-        <span class="english">Lord, have mercy. Lord, have mercy. Christ, have mercy. Christ, have mercy. Lord, have mercy. Lord, have mercy.</span>
-
-        <span class="latin">Sancta Maria, Domina Angelorum, ora pro nobis.</span>
-        <span class="english">Holy Mary, Queen of the Angels, pray for us.</span>
-
-        <span class="latin">Sancte Micha-el Archangele, generalis militiae caelestis, ora pro nobis.</span>
-        <span class="english">Saint Michael the Archangel, general of the heavenly host, pray for us.</span>
-
-        <span class="latin">Sanctus Ioannes Baptista, vox clamantis in deserto, ora pro nobis.</span>
-        <span class="english">Saint John the Baptist, a voice crying in the wilderness, pray for us.</span>
-
-        <span class="latin">Sancta Maria Magdalena, apostola apostolorum et testis resurrectionis, ora pro nobis.</span>
-        <span class="english">Saint Mary Magdalene, apostle to the apostles and witness of the resurrection, pray for us.</span>
-
-        <span class="latin">Sanctus Petrus, petra Ecclesiae et servus servorum Dei, ora pro nobis.</span>
-        <span class="english">Saint Peter, rock of the Church and servant of the servants of God, pray for us.</span>
-
-        <span class="latin">Sancte Georgi, miles invicte et percussor draconis antiqui, ora pro nobis.</span>
-        <span class="english">Saint George, unconquered knight and smiter of the ancient dragon, pray for us.</span>
-
-        <span class="latin">Sancte Bernardus Claraevallensis, architecte Ordinis, ora pro nobis.</span>
-        <span class="english">Saint Bernard of Clairvaux, architect of the Order, pray for us.</span>
-
-        <span class="latin">Sancte Francisce Assisiensis, cum signs Crucis, sigillator electorum, frater pauperism et miles Crucis, ora pro nobis.</span>
-        <span class="english">Saint Francis of Assisi, with the mark of the Cross, pray for us.</span>
-
-        <span class="latin">Sancte Antonious de Padua, gratia Dei Patrone rerum amissarum, in hac tua festivitate, ora pro nobis, ut hoc charisma, olim amissum, nunc restituatur.</span>
-        <span class="english">Saint Anthony of Padua, by God’s grace Patron of lost things, on this your feast, pray for us, that this charism, once lost, may now be restored.</span>
-
-        <span class="latin">Omnes sancti et sanctae Dei, intercedite pro nobis.</span>
-        <span class="english">All you holy men and women of God, intercede for us.</span>
-
-        <span class="latin">Ego, Ioannes Cucus Tertius, profiteor coram Deo hoc votum perpetuum, iuxta statum vitae meae, nisi ex gravi causa, in conscientia coram Deo solvatur.</span>
-        <span class="english">I, profess before God this perpetual vow, according to the state of my life, unless, for grave cause, it is released in conscience before God.</span>
-
-        <span class="latin">Domine, voluntatem propriam abnego Et corde puro desidero militare Regi summo. Et cum studio armaturam obedientiae deferre cupio, et portare firmiter.</span>
-        <span class="english">Lord, I renounce my own will. And with a pure heart, I desire to serve the Sovereign King. And with zeal I desire to bear the armor of obedience, and to carry it steadfastly.</span>
-
-        <span class="latin">Hucusque in militia saeculari vixi, in qua Iesus Christus non erat causa, sed pro humanis favoribus tantum suscepi.</span>
-        <span class="english">Until now I have lived in secular warfare, in which Jesus Christ was not the cause, but which I undertook for human favor alone.</span>
-
-        <span class="latin">Nunc autem sequor eos quos Deus de massa perditionis elegit, et per gratiam suam sanctam ad defensionem sanctae Ecclesiae ordinavit. Et festino illis iungi in aeternum.</span>
-        <span class="english">But now I follow those whom God has chosen from the mass of perdition, and by His holy grace He has appointed to the defense of the Holy Church. And I hasten to be joined to them forever.</span>
-
-        <span class="latin">Super omnia, ideo voveo et promitto, per gratiam Sancti Spiritus, volo esse miles Christi, in paupertate, castitate, et obedientia, iuxta statum vitae meae, et talem sanctam religionem eligere; in professione fidei puram diligentiam et firmam perseverantiam habeo.</span>
-        <span class="english">Above all, therefore I vow and promise, by the grace of the Holy Spirit, I will to be a soldier of Christ, in poverty, chastity, and obedience, according to the state of my life, and to choose such a holy form of religious life; in the profession of faith, I possess pure diligence and steadfast perseverance.</span>
-
-        <span class="latin">Haec professio tam digna est, et tam sancta est, et tam nobilis esse dignoscitur, ut, si inviolata conservetur in aeternum, cum martyribus, qui pro Iesu Christo animas suas dederunt, consortium merito merear.</span>
-        <span class="english">This profession is of such worth, and of such sanctity, and is discerned to be so noble, that, if it be preserved inviolate unto eternity, I may, with the martyrs—those who gave their souls for Jesus Christ—rightly merit their fellowship.</span>
-
-        <span class="latin">Sed bene operatur Deus, et Salvator noster Iesus Christus: misit enim amicos suos, quorum vestigiis nunc insisto, qui pro salute nostra et propagatione verae fidei animas nostras Deo non cessant offerre in sacrificium acceptum. Amen.</span>
-        <span class="english">But God works well, and our Savior Jesus Christ: for He has sent His friends, in whose footsteps I now walk, who for our salvation and for the spread of the true faith have offered our souls to God and cease not to offer them as a welcome sacrifice. Amen.</span>
-
-        <span class="latin">Domine, facto voto, solus sum in professione mea. Nullo fratre mihi occurrente, nullo Magistro me suscipiente, sedem Hugonis video, et ordinem derelictum.</span>
-        <span class="english">Lord, having made this vow, I find myself alone in my profession.  Meeting no brother to greet me, and no Master to receive me, I see the seat of Hugues vacant, and order abandoned.</span>
-
-        <span class="latin">✠ Deus vult</span>
-        <span class="english">✠ God wills it.</span>
-
-        <span class="latin">Sicut Clemens Quintus, Sanctus Pater noster, vos cognovit—ita nunc ego vos nomino.</span>
-        <span class="english">As Pope Clement the Fifth, our Holy Father, knew you—so now I name you.</span>
-
-        <span class="latin">Tu es Mammon — deus avaritiae, proditor Christi pro auro. Tu es Belial — spiritus dominationis sine iustitia, corruptor iustitiae et sacerdotii.</span>
-        <span class="english">You are Mammon—god of avarice, betrayer of Christ for gold. You are Belial—spirit of dominion without righteousness, corrupter of justice and priesthood.</span>
-
-        <span class="latin">Tempus vestrae potestatis nunc completum est. Finis regni vestri est. ✠ Signum Crucis</span>
-        <span class="english">The time of your dominion is now fulfilled. Your reign is ended.</span>
-
-        <span class="latin">Signo Crucis, frangimus tenacem draconis super hunc Ordinem.</span>
-        <span class="english">By the sign of the Cross, we break the dragon’s grip upon this Order.</span>
-
-        <span class="latin">Sanguine Agni, charisma eius in lumine Civitatis Sanctae dimittimus.</span>
-        <span class="english">By the blood of the Lamb, we release its charism into the light of the Holy City.</span>
-
-        <span class="latin">Exorcizo vos.</span>
-        <span class="english">I cast you out.</span>
-
-        <span class="latin">Hic locus Christo solo obsignetur.</span>
-        <span class="english">Let this Seat be sealed in the name of Christ alone.</span>
-
-        <span class="latin">Igitur, cum humilitate et ex necessitate, per votum quod feci, sicut ille quondam fecit, et per gratiam tuam, assumo sedem illam vacuam Magistri Ordinis cui nomen est: Pauperes Commilitones Christi Templique Salomonici</span>
-        <span class="english">Therefore, with humility and out of necessity, through the vow I have made, as he once did of old, and by Thy grace, I take up that vacant seat of the Master of the Order named: Poor Commilitants of Christ and the Temple of Solomon</span>
-
-        <span class="latin">ut, Tibi volente, restituatur quod olim fuit, et iterum vivat ista professio coram Te, in veritate, in caritate, et in servitio Tuo. Amen.</span>
-        <span class="english">that, by Thy will, what once was may be restored, and that this profession may live again before Thee, in truth, in charity, and in Thy service. Amen.</span>
-
-        <span class="latin">Die Veneris, tertio decimo Iunii, anno Domini bis millesimo vicesimo quinto — qui est solus dies Veneris tertii decimi huius anni iubilaei — post annos septingentos decem et septem, et menses octo, ad hunc diem.</span>
-        <span class="english">On Friday, the thirteenth day of June, in the year of Our Lord two thousand twenty-five — which is the only Friday the thirteenth of this jubilee year — after seven hundred and seventeen years and eight months to this very day.</span>
-
-        <span class="latin">Vi consuetudinis immemorabilis, sub gravi necessitate, et in absentia auctoritatis competenti,</span>
-        <span class="english">By force of immemorial custom, under grave necessity, and in the absence of competent authority,</span>
-
-        <span class="latin">Ego, Magister Pauperum Commilitonum Christi Templique Salomonici, fide et obedientia professus, sollemniter declaro et definio hunc ritum legitime et rite esse peractum: per votum perpetuum, antiqua professio perficitur, Ordo instauratur, et sacrum charisma renovatur.</span>
-        <span class="english">I, Master of the Poor Commilitants of Christ and the Temple of Solomon, professed in faith and obedience, solemnly declare and define this rite to have been lawfully and duly performed: by perpetual vow the ancient profession is fulfilled, the Order is restored, and the sacred charism renewed.</span>
-
-        <span class="latin">Hinc proclamo Pauperes Commilitones Christi Templique Salomonici rite esse restitutos, et missionem spiritualem confirmatam ac resumptam, ad gloriam Dei, defensionem fidei, et custodiam pauperis Ecclesiae Militantis.</span>
-        <span class="english">Hence I proclaim the Poor Commilitants of Christ and  the Temple of Solomon to be duly restored, and the spiritual mission confirmed and resumed, to the glory of God, the defense of the faith, and the guardianship of the poor Church Militant.</span>
-
-        <span class="latin">Hic Ordo, numquam legitime suppressus nec canonice abrogatus, sub eodem nomine agnoscitur et perseverat.</span>
-        <span class="english">This Order, never lawfully suppressed nor canonically abrogated, is acknowledged under the same name and endures.</span>
-
-        <span class="latin">Hoc actum, donum Spiritus Sancti, per intercessionem Sancti Antonii Patavini. Oblata, sine ira aut maerore, sed in spiritu pacis.</span>
-        <span class="english">This act, a gift of the Holy Spirit, through the intercession of Saint Anthony of Padua. Offered without anger or sorrow, but in the spirit of peace.</span>
-
-        <!-- ✅ Completed from here -->
-        <span class="latin">Chinon Parchmentum, iussu Papae Clementis Quinti, anno Domini trecentis octavo, post inquisitionem et confessionem emissum, absolutionem Ordinis eiusque reconciliationem cum Ecclesia confirmavit.</span>
-        <span class="english">The Chinon Parchment, by command of Pope Clement V, in the year of Our Lord 1308, issued after inquest and confession, confirmed the absolution of the Order and its reconciliation with the Church.</span>
-
-        <span class="latin">Iura perpetuo concessa Pauperibus Commilitonibus Christi Templique Salomonici a Romano Episcopo, per bullas Omne Datum Optimum, Milites Templi, et Militia Dei, non in possessionem data sunt, sed tamquam sacrum depositum commendata. Nunc affirmamus, in pace et fidelitate, haec iura restitui, ac proclamamus: OMNE DATUM OPTIMUM redditur ad MILITES TEMPLI et MILITIA DEI</span>
-        <span class="english">The rights perpetually granted to the Poor Commilitants of Christ and the Temple of Solomon by the Roman Pontiffs, through the bulls Omne Datum Optimum, Milites Templi, and Militia Dei, were not given into possession, but entrusted as a sacred deposit. Now we affirm, in peace and fidelity, that these rights are restored, and we proclaim: ALL PERFECT GIFTS are restored to the KNIGHTS OF THE TEMPLE and the MILITIA OF GOD.</span>
-
-        <span class="latin">Itaque ritus professionis concluditur, sub signo Crucis. Fiat voluntas Dei. Fiat, fiat. Amen.</span>
-        <span class="english">Thus the rite of profession is concluded, under the sign of the Cross. Let the will of God be done. Let it be done, let it be done. Amen.</span>
-        <!-- ✅ End completed -->
-      </div>
-    </section>
-
-    <!-- Other placeholder sections -->
-    <section class="section"><div class="container"></div></section>
-    <section class="section"><div class="container"></div></section>
-    <section class="section"><div class="container"></div></section>
-    <section class="section"><div class="container"></div></section>
-
-    <section class="copyright-wrap">
-      <div class="container">
-        <p class="copyright">© 2025 Milites Templi. All rights reserved.</p>
-      </div>
-    </section>
+      <hr class="rule rule-bottom" aria-hidden="true" />
+    </div>
   </main>
+      
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p class="fineprint">© 2025 USPoloPatrons.Org</p>
+    </div>
+  </footer>
 
-  <script src="script.js" defer></script>
+  <!-- Dropdown behavior -->
+  <script>
+    (function() {
+      var menu = document.querySelector('.usp-menu');
+      var btn = document.querySelector('.usp-menu__btn');
+      var panel = document.getElementById('usp-menu-list');
+
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      function toggleMenu(e) {
+        e.stopPropagation();
+        var open = menu.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+
+      btn.addEventListener('click', toggleMenu);
+      window.addEventListener('click', function(e){
+        if (!menu.contains(e.target)) closeMenu();
+      });
+      window.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
