@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>USPPA — United States Polo Patrons Association</title>
 
+  <!-- Meta -->
   <meta name="description" content="United States Polo Patrons Association — restoring honour, structure, and sustainability to the game through Patronium and Chapter patronage." />
   <meta property="og:title" content="USPPA — United States Polo Patrons Association" />
   <meta property="og:description" content="A fellowship of patrons and players renewing the tradition of polo through Patronium and the Chapter model." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#f8f9f8" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -29,67 +31,92 @@
       font-family: 'Cinzel', serif;
       margin: 0 0 0.5em;
     }
-    h2.sc, h3.sc {
-      font-variant: small-caps;
-      letter-spacing: 0.05em;
-    }
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    header {
-      text-align: center;
-      padding: 3rem 1rem 2rem;
-    }
-    .masthead-title {
-      font-size: 2rem;
-      line-height: 1.2;
-      font-weight: 700;
-    }
-    .est {
-      font-size: 0.9rem;
-      font-family: 'Cinzel', serif;
-      margin-top: 0.5rem;
-    }
+    h2.sc, h3.sc { font-variant: small-caps; letter-spacing: 0.05em; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+    header { text-align: center; padding: 3rem 1rem 2rem; }
+    .masthead-title { font-size: 2rem; line-height: 1.2; font-weight: 700; }
+    .est { font-size: 0.9rem; font-family: 'Cinzel', serif; margin-top: 0.5rem; }
     .dot { padding: 0 0.4em; }
-    .rule {
-      border: none;
-      border-top: 1px solid #ddd;
-      margin: 2rem 0;
-    }
+    .rule { border: none; border-top: 1px solid #ddd; margin: 2rem 0; }
     .notice { margin-bottom: 2rem; }
-    .notice-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      margin-bottom: 0.3rem;
-    }
+    .notice-title { font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 0.3rem; }
     ul { padding-left: 1.2rem; }
-    .motto {
-      text-align: center;
-      font-style: italic;
-      margin: 2rem 0;
-      font-size: 1.05rem;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #666;
-      padding: 2rem 1rem;
-    }
-    a { color: #000; text-decoration: underline; }
-    a:hover { text-decoration: none; }
+    .motto { text-align: center; font-style: italic; margin: 2rem 0; font-size: 1.05rem; }
+    footer { text-align: center; font-size: 0.8rem; color: #666; padding: 2rem 1rem; }
     @media (min-width: 768px) { .masthead-title { font-size: 3rem; } }
+
+    /* Dropdown Menu */
+    .usp-menu {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      text-align: center;
+      user-select: none;
+    }
+    .usp-menu__btn {
+      background: transparent;
+      border: none;
+      font: inherit;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 6px 10px;
+    }
+    .usp-menu__panel {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 6px;
+      background: #fff;
+      min-width: 180px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      border-radius: 4px;
+      overflow: hidden;
+      z-index: 1001;
+    }
+    .usp-menu.is-open .usp-menu__panel { display: block; }
+    .usp-menu__link {
+      display: block;
+      padding: 10px 14px;
+      text-decoration: none;
+      color: #000;
+      white-space: nowrap;
+    }
+    .usp-menu__link:hover { background: #f2f2f2; }
+    .usp-menu__heading {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #666;
+      padding: 8px 14px 4px;
+      cursor: default;
+      background: #f9f9f9;
+    }
   </style>
 </head>
 
 <body>
   <header>
+    <nav class="usp-menu" role="navigation" aria-label="Site menu">
+      <button class="usp-menu__btn" aria-haspopup="true" aria-expanded="false" aria-controls="usp-menu-list">…</button>
+      <div id="usp-menu-list" class="usp-menu__panel" role="menu">
+        <a class="usp-menu__link" role="menuitem" href="#content">USPPA</a>
+        <div class="usp-menu__heading">PATRONS</div>
+        <a class="usp-menu__link" role="menuitem" href="https://militestempli.org" target="_blank" rel="noopener">MILITES TEMPLI</a>
+        <div class="usp-menu__heading">LOCATIONS</div>
+        <a class="usp-menu__link" role="menuitem" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">CHARLESTON POLO</a>
+      </div>
+    </nav>
+
     <h1 class="masthead-title">UNITED STATES<br>POLO PATRONS<br>ASSOCIATION</h1>
     <p class="est">FOUNDING<span class="dot">·</span>AD MMXXV · 2025</p>
   </header>
 
-  <main class="container">
+  <main id="content" class="container">
 
     <hr class="rule" />
     <h2 class="sc">Announcement</h2>
@@ -167,23 +194,16 @@
     </p>
 
     <hr class="rule" />
-    <h2 class="sc">The Three Orders of Patronage</h2>
+    <h2 class="sc">Founding, Operating, and USPPA Patrons</h2>
     <p>
-      The USPPA recognises three forms of Patronium holder, each playing a vital role in the life and continuity of the sport.
+      There are three forms of Patronium holder.<br><br>
+      <b>Founding Patrons</b> are the first to support the birth of a new Chapter. They provide the initial horses, pasture, and capital that make it possible for a Polo Incubator to begin. During this founding period, their Patronium receives the full measure of available tribute — a reflection of their patronage in helping to seed the future of the sport.
     </p>
-
-    <p><strong>Founding Patrons — The Builders.</strong><br>
-      They fund the birth of a Chapter, supplying the horses, pasture, and capital that allow a Polo Incubator to begin.
-      During this founding period, their Patronium receives the full measure of available tribute — a reflection of their early patronage in seeding the future of the game.
+    <p>
+      <b>Operating Patrons</b> are the active stewards responsible for the management and public play of each Chapter. They receive an operating share or wage once the incubator transitions to stability.
     </p>
-
-    <p><strong>Operating Patrons — The Stewards.</strong><br>
-      These are the partners and professionals who manage the Chapter — overseeing horses, instruction, events, and community life.
-      They may receive a fair wage or a share of the Chapter’s proceeds once profitable, serving as the custodians of its daily honour and operations.
-    </p>
-
-    <p><strong>USPPA Patrons — The Sustainers.</strong><br>
-      These patrons uphold the mission of the Association as a whole, contributing to the national Tribute Pool and sustaining the broader network of Chapters, schools, and circuits.
+    <p>
+      <b>USPPA Patrons</b> are the ongoing supporters who sustain and strengthen a Chapter once it is established.
     </p>
 
     <hr class="rule" />
@@ -204,37 +224,17 @@
     <h2 class="sc">Participation</h2>
     <ul>
       <li>Become a Founding Patron — assist in launching a new Chapter through contribution of capital, horses, or facilities.</li>
-      <li>Become an Operating Patron — manage a Chapter and share in its prosperity through stewardship and service.</li>
-      <li>Become a USPPA Patron — support the Association and share in its ongoing tribute cycles.</li>
+      <li>Become an Operating Patron — oversee the daily life of a Chapter and its players.</li>
+      <li>Become a USPPA Patron — support the national network and share in ongoing tribute cycles.</li>
       <li>Provide Horses or Land — supply the physical foundation of the sport under insured, transparent, and fair agreements.</li>
     </ul>
 
     <hr class="rule" />
     <h2 class="sc">In Plain Terms</h2>
     <p>
-      The Association seeks not to monetise polo, but to stabilise and decentralise it — to bring clarity, fairness, and longevity to the way it is taught, funded, and shared.
-      Patronium and the Polo Incubator model together create a living, self-sustaining framework for the game’s renewal across America.
+      The Association seeks not to monetise polo, but to stabilise and decentralize it — to bring clarity, fairness, and longevity to the way it is taught, funded, and shared. Patronium and the Polo Incubator model together create a living, self-sustaining framework for the game’s renewal across America.
     </p>
     <p>This is how the USPPA will grow the next American 10-Goal player.</p>
-
-    <hr class="rule" />
-    <h2 class="sc">An Invitation to Patrons and Partners</h2>
-    <p>
-      The Association welcomes discerning patrons, landholders, and professionals who wish to take part in the restoration of polo as a sustainable, American-bred enterprise.
-      Each Chapter is a living investment in horses, land, and people — structured not for speculation, but for legacy.
-    </p>
-    <p>
-      Patronium ensures every act of patronage — whether a horse consigned, a pasture opened, or a field sponsored — is recognised and recorded within a transparent, honourable system that rewards those who build the sport.
-      Your contribution does not vanish into expense; it lives on in horses trained, players formed, and fields maintained.
-    </p>
-    <p>
-      Those who have carried the game through their own time know: it survives only by the strength of its patrons.
-      The USPPA now offers a new way to hold that legacy — a means to see your support endure in the form of living tribute.
-    </p>
-    <p>
-      To discuss founding patronage or local chapter formation, please contact the Association at
-      <a href="mailto:contact@uspolopatrons.org">contact@uspolopatrons.org</a>.
-    </p>
 
     <blockquote class="motto">“In honour, in sport, in fellowship.”</blockquote>
   </main>
@@ -242,5 +242,32 @@
   <footer>
     <p>© 2025 USPoloPatrons.org</p>
   </footer>
+
+  <!-- Dropdown behavior -->
+  <script>
+    (function() {
+      var menu = document.querySelector('.usp-menu');
+      var btn = document.querySelector('.usp-menu__btn');
+      var panel = document.getElementById('usp-menu-list');
+
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      function toggleMenu(e) {
+        e.stopPropagation();
+        var open = menu.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+
+      btn.addEventListener('click', toggleMenu);
+      window.addEventListener('click', function(e){
+        if (!menu.contains(e.target)) closeMenu();
+      });
+      window.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
