@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>USPPA — United States Polo Patrons Association</title>
 
+  <!-- Meta -->
   <meta name="description" content="A formal notice of the Association’s foundation and its inaugural initiatives: Polo Patronium, The Polo Life, Charleston Polo, the Cowboy Polo Circuit, and stewardship of domain holdings." />
   <meta property="og:title" content="USPPA — United States Polo Patrons Association" />
   <meta property="og:description" content="It is with honour that we record the foundation of the Association and its inaugural initiatives in service of the game." />
@@ -15,8 +16,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="styles.css" />
 
+  <!-- Minimal styles for dropdown -->
   <style>
     .usp-menu {
       position: fixed;
@@ -70,7 +73,6 @@
     }
   </style>
 </head>
-
 <body>
   <header class="site-header" role="banner" aria-label="Association masthead">
     <nav class="usp-menu" role="navigation" aria-label="Site menu">
@@ -139,34 +141,67 @@
           <p class="notice-text">
             In the interest of stewardship, the Association maintains a portfolio of polo-related domains, ensuring the preservation of heritage 
             and the expansion of opportunity for clubs, schools, and media:<br><br>
-            <!-- Domain list here -->
+            6666polo.com, 6666poloclub.com<br>
+            boonehallpolo.com, boonehallpoloclub.com<br>
+            campitopolo.com, campitopolo.org<br>
+            carolinapoloclub.com<br>
+            charlestonpolo.club, charlestonpolo.com, charlestonpolo.stream<br>
+            charlestonpoloclub.com, charlestonpoloclub.org<br>
+            charlestonpoloclubathydepark.com, charlestonpoloclubathydepark.org<br>
+            charlestonpoloschool.com, charlestonyouthpolo.com<br>
+            charlestownepolo.com, charlestownepoloclub.com<br>
+            clemsonpolo.com, clemsonpoloclub.com<br>
+            cowboypolo.com, cowboypolo.org, cowboypolousa.com<br>
+            greenvillepolo.com, greenvillepoloclub.com<br>
+            hydeparkpolo.club, hydeparkpolo.com<br>
+            kiawahpolo.com<br>
+            palmettopolo.com, palmettopoloclub.com<br>
+            stonoferrypolo.com, stonoferrypoloclub.com, stonopolo.com<br>
+            thepolo.life, thepolo.stream, thepololife.com, thepolostream.com<br>
+            uspolopatrons.com, uspolopatrons.org<br>
+            vaqueropolo.com
           </p>
         </article>
       </section>
 
       <br>
 
-      <p class="kicker sc">Chapter Economics</p>
+      <p class="kicker sc">Patronium Model</p>
       <section class="notices">
         <article class="notice">
-          <h2 class="notice-title sc">Incubation Period (Year One)</h2>
+          <h2 class="notice-title sc">Stewardship-Based Rewards</h2>
           <p class="notice-text">
-            Each new Chapter is launched as a Polo Incubator — operated by an approved Steward and funded by Founding Patrons. In this founding phase:<br><br>
-            • 49% of gross revenue is reserved for discretionary tribute to Founding Patrons<br>
-            • 51% is reinvested into horses, pasture, tack, and growth<br>
-            • The Steward receives a base wage akin to a top groom<br><br>
-            This ensures that Chapters begin with strong backing and honourable alignment — not debt or speculation.
+            Patronium is a utility token and seal of participation — not a security or speculative instrument.
+            It rewards those who walk with us through principled alignment, not entitlement.
+            Rewards may be distributed manually from active Polo Chapters when the mission allows.
           </p>
         </article>
 
         <article class="notice">
-          <h2 class="notice-title sc">Operational Split (Post-Year One)</h2>
+          <h2 class="notice-title sc">Tribute Allocation Framework</h2>
           <p class="notice-text">
-            After the first year, Chapters operate under a long-term revenue allocation model:<br><br>
-            • <strong>51%</strong> — Reinvestment into horses, land, and equipment<br>
-            • <strong>24.5%</strong> — Steward’s share (or fixed salary, whichever is greater)<br>
-            • <strong>24.5%</strong> — Returned to USPPA as national tribute<br><br>
-            This structure aligns incentives across all levels: local care, steward livelihood, and national cohesion.
+            Each active Chapter follows a 51/49 principle:<br>
+            51% — Reinvested into horses, pasture, and operations<br>
+            24.5% — Steward’s draw or groom-equivalent wage<br>
+            24.5% — USPPA tribute pool for Patronium holders<br><br>
+            In the first year, 49% flows to Founding Patrons instead — rewarding those who helped launch.
+          </p>
+        </article>
+
+        <article class="notice">
+          <h2 class="notice-title sc">Claim, Don’t Stake</h2>
+          <p class="notice-text">
+            Rewards are earned, not promised. There is no staking, no yield farming, and no expectation of income.
+            Snapshots may be taken to determine eligibility, and rewards are manually claimable based on alignment and stewardship.
+          </p>
+        </article>
+
+        <article class="notice">
+          <h2 class="notice-title sc">Chapter Pipeline</h2>
+          <p class="notice-text">
+            USPPA Chapters begin with a Steward — a trained or approved individual — and a Polo Incubator funded by Founding Patrons.
+            After 12 months of operations and public play, rewards stabilize, and the local operation matures into a Chapter.<br><br>
+            Local stewards may be compensated with a groom-level wage or retain up to 24.5% of the net revenue, whichever is greater.
           </p>
         </article>
       </section>
@@ -186,13 +221,14 @@
       <hr class="rule rule-bottom" aria-hidden="true" />
     </div>
   </main>
-
+      
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p class="fineprint">© 2025 USPoloPatrons.Org</p>
     </div>
   </footer>
 
+  <!-- Dropdown behavior -->
   <script>
     (function() {
       var menu = document.querySelector('.usp-menu');
@@ -218,5 +254,107 @@
       });
     })();
   </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patronium — United States Polo Patrons Association</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <header class="site-header">
+      <h1 class="masthead-title">Patronium</h1>
+      <p class="est sc">Polo Patronage Perfected</p>
+    </header>
+
+    <section class="announcement">
+      <p class="lede dropcap">The United States Polo Patrons Association (USPPA) has been established to restore American polo as a noble, public-facing pursuit — one not confined to the elite, but grounded in community, stewardship, and sport.</p>
+      <p>To support this mission, we introduce <strong>Patronium</strong>: a digital symbol of patronage that rewards those who underwrite this restoration. It is not a speculative instrument, but a badge of honour — for those who carry the game forward.</p>
+    </section>
+
+    <hr class="rule">
+
+    <section class="notice">
+      <h2 class="notice-title">I. What Is a USPPA Chapter?</h2>
+      <p class="notice-text">A <strong>USPPA Chapter</strong> is a locally operated, nationally governed polo programme seeded through a Polo Incubator. Each chapter is:</p>
+      <ul>
+        <li>Wholly owned by USPPA — no franchising or outside equity</li>
+        <li>Operated by a trained or approved steward</li>
+        <li>Funded by <em>Founding Patrons</em> through tribute</li>
+        <li>Vertically integrated and mission-aligned</li>
+      </ul>
+    </section>
+
+    <section class="notice">
+      <h2 class="notice-title">II. Chapter Economics</h2>
+      <h3>🥇 Founding Phase (Year 1)</h3>
+      <ul>
+        <li>Founding Patrons are whitelisted manually</li>
+        <li>They receive 49% of net discretionary revenue</li>
+        <li>No equity or ownership — only early reward</li>
+      </ul>
+      <p>The steward receives only a base salary (groom's wage equivalent). Their share begins in the next phase.</p>
+
+      <h3>📅 Operational Phase (Post-Year 1)</h3>
+      <table>
+        <thead>
+          <tr><th>Allocation</th><th>Purpose</th><th>Recipient</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>51%</td><td>Reinvestment</td><td>Chapter operations</td></tr>
+          <tr><td>24.5%</td><td>Steward Tribute</td><td>Operator (or wage)</td></tr>
+          <tr><td>24.5%</td><td>National Tribute Pool</td><td>USPPA for Patronium rewards</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="notice">
+      <h2 class="notice-title">III. Patronium Explained</h2>
+      <p><strong>Patronium</strong> is not a token of entitlement. It does not promise income, governance rights, or ownership. It is a seal of alignment — recognition of contribution to the game’s rebirth.</p>
+      <ul>
+        <li>No staking required</li>
+        <li>No automatic yield</li>
+        <li>No profit-sharing or governance rights</li>
+        <li>Rewards are distributed manually from the 24.5% USPPA national share</li>
+      </ul>
+    </section>
+
+    <section class="notice">
+      <h2 class="notice-title">IV. How Rewards Work</h2>
+      <ul>
+        <li>When rewards are loaded, a snapshot of Patronium holders is taken</li>
+        <li>Founding Patron wallets may be boosted via whitelist</li>
+        <li>Manual claim button must be clicked by the user</li>
+        <li>Anti-abuse mechanisms prevent reward gaming via token transfer</li>
+      </ul>
+    </section>
+
+    <section class="notice">
+      <h2 class="notice-title">V. Legal and Cultural Framing</h2>
+      <blockquote>
+        “We do not govern by promise, but by principle. <br>
+        We do not offer entitlement, but extend recognition. <br>
+        We do not speculate — we steward.”
+      </blockquote>
+      <p><strong>Patronium is not a security</strong>. Rewards are not guaranteed, and may be modified or suspended at any time. All rewards are discretionary, cultural, and mission-aligned.</p>
+    </section>
+
+    <section class="notice">
+      <h2 class="notice-title">VI. Summary</h2>
+      <p>Patronium honours those who help build the field — not merely play upon it. The USPPA extends this model to those who wish to see polo thrive again across America: grassroots, good-humoured, and grounded in principle.</p>
+    </section>
+
+    <footer class="site-footer">
+      <p class="fineprint">© 2025 United States Polo Patrons Association · All Rights Reserved</p>
+    </footer>
+  </div>
+
 </body>
 </html>
