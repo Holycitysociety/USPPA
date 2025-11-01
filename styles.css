@@ -106,6 +106,10 @@ h1, h2, h3 {
   background: transparent;
   color: #000;
   transition: background 0.2s ease;
+  border-radius: 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .btn:hover {
@@ -135,6 +139,121 @@ h1, h2, h3 {
 
 .fineprint {
   margin: 0;
+}
+
+/* Patronium Section */
+.patronium-section {
+  background: #f8f8f8;
+  padding: 2rem 1.5rem;
+  margin-top: 3rem;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.patronium-section h2 {
+  font-size: 1.4rem;
+  margin-top: 0;
+  font-family: 'Cinzel', serif;
+}
+
+.patronium-highlight {
+  background: #fff;
+  border-left: 4px solid #000;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+.patronium-claim-note {
+  font-size: 0.95rem;
+  color: #444;
+  font-style: italic;
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Allocation Table */
+.allocation-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.allocation-table th,
+.allocation-table td {
+  border: 1px solid #ccc;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.allocation-table th {
+  background-color: #eee;
+  font-weight: 600;
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+}
+
+/* Dropdown Menu (Inline from HTML, preserved for consistency) */
+.usp-menu {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  text-align: center;
+  user-select: none;
+}
+
+.usp-menu__btn {
+  background: transparent;
+  border: none;
+  font: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+.usp-menu__panel {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  background: #fff;
+  min-width: 180px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.usp-menu.is-open .usp-menu__panel {
+  display: block;
+}
+
+.usp-menu__link {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap;
+}
+
+.usp-menu__link:hover {
+  background: #f2f2f2;
+}
+
+.usp-menu__heading {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #666;
+  padding: 8px 14px 4px;
+  cursor: default;
+  background: #f9f9f9;
 }
 
 /* Responsive */
