@@ -5,254 +5,188 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>USPPA — United States Polo Patrons Association</title>
 
-  <!-- Meta -->
-  <meta name="description" content="A formal notice of the Association’s foundation and its inaugural initiatives: Polo Patronium, The Polo Life, Charleston Polo, the Cowboy Polo Circuit, and stewardship of domain holdings." />
+  <meta name="description" content="The United States Polo Patrons Association — restoring honour, structure, and sustainability to the game through Patronium and community-rooted Polo Chapters." />
   <meta property="og:title" content="USPPA — United States Polo Patrons Association" />
-  <meta property="og:description" content="It is with honour that we record the foundation of the Association and its inaugural initiatives in service of the game." />
+  <meta property="og:description" content="A fellowship of patrons and players renewing the tradition of polo through Patronium and the Chapter model." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#e9edf3" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Minimal styles for dropdown -->
   <style>
-    .usp-menu {
-      position: fixed;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-      text-align: center;
-      user-select: none;
-    }
-    .usp-menu__btn {
-      background: transparent;
-      border: none;
-      font: inherit;
-      font-size: 22px;
-      line-height: 1;
-      cursor: pointer;
-      padding: 6px 10px;
-    }
-    .usp-menu__panel {
-      display: none;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      margin-top: 6px;
+    body {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #111;
       background: #fff;
-      min-width: 180px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.15);
-      border-radius: 4px;
-      overflow: hidden;
-      z-index: 1001;
+      margin: 0;
+      padding: 0;
     }
-    .usp-menu.is-open .usp-menu__panel { display: block; }
-    .usp-menu__link {
-      display: block;
-      padding: 10px 14px;
-      text-decoration: none;
-      color: #000;
-      white-space: nowrap;
-    }
-    .usp-menu__link:hover { background: #f2f2f2; }
-    .usp-menu__heading {
+    h1, h2, h3 {
       font-family: 'Cinzel', serif;
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #666;
-      padding: 8px 14px 4px;
-      cursor: default;
-      background: #f9f9f9;
+      margin: 0 0 0.5em;
+    }
+    .sc { font-variant: small-caps; letter-spacing: 0.05em; }
+    .container { max-width: 750px; margin: 0 auto; padding: 0 20px; }
+    header { text-align: center; padding: 3rem 1rem 2rem; }
+    .masthead-title { font-size: 2rem; line-height: 1.2; font-family: 'Cinzel', serif; font-weight: 700; }
+    .est { font-size: 0.9rem; font-family: 'Cinzel', serif; margin-top: 0.5rem; }
+    .dot { padding: 0 0.4em; }
+    .kicker { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
+    .lede { font-size: 1.1rem; margin-bottom: 1.5rem; }
+    .dropcap::first-letter { float: left; font-size: 3rem; line-height: 1; margin-right: 0.2rem; font-family: 'Cinzel', serif; font-weight: 600; }
+    .rule { border: none; border-top: 1px solid #ddd; margin: 2rem 0; }
+    .notice { margin-bottom: 2rem; }
+    .notice-title { font-size: 1.3rem; font-family: 'Cinzel', serif; margin-bottom: 0.4rem; }
+    .notice-text { margin: 0; }
+    .motto { font-style: italic; text-align: center; margin: 2rem 0; font-size: 1.1rem; }
+    footer { text-align: center; font-size: 0.8rem; color: #666; padding: 2rem 1rem; }
+    @media (min-width: 768px) {
+      .masthead-title { font-size: 3rem; }
     }
   </style>
 </head>
-<body>
-  <header class="site-header" role="banner" aria-label="Association masthead">
-    <nav class="usp-menu" role="navigation" aria-label="Site menu">
-      <button class="usp-menu__btn" aria-haspopup="true" aria-expanded="false" aria-controls="usp-menu-list">…</button>
-      <div id="usp-menu-list" class="usp-menu__panel" role="menu">
-        <a class="usp-menu__link" role="menuitem" href="#content">USPPA</a>
-        <div class="usp-menu__heading">PATRONS</div>
-        <a class="usp-menu__link" role="menuitem" href="https://militestempli.org" target="_blank" rel="noopener">MILITES TEMPLI</a>
-        <div class="usp-menu__heading">LOCATIONS</div>
-        <a class="usp-menu__link" role="menuitem" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">CHARLESTON POLO</a>
-      </div>
-    </nav>
 
-    <div class="container masthead">
-      <h1 class="masthead-title">UNITED STATES<br class="br-md">POLO PATRONS<br>ASSOCIATION</h1>
-      <br>
-      <p class="est">FOUNDING<span class="dot"> · </span>AD MMXXV · 2025</p>
-    </div>
+<body>
+  <header>
+    <h1 class="masthead-title">UNITED STATES<br>POLO PATRONS<br>ASSOCIATION</h1>
+    <p class="est">FOUNDING<span class="dot"> · </span>AD MMXXV · 2025</p>
   </header>
 
-  <main id="content" role="main">
-    <div class="container announcement">
-      <hr class="rule rule-top" aria-hidden="true" />
-      <br>
-      <p class="kicker sc">Announcement</p>
+  <main class="container">
+    <hr class="rule" />
+    <h2 class="sc">Announcement</h2>
+    <p class="lede dropcap">
+      It is with honour that we record the foundation of the United States Polo Patrons Association.
+      This fellowship of patrons and players is inaugurated with Polo Patronium, a living token of support and tradition.
+      Our purpose is simple: to safeguard the heritage of polo, encourage its growth, and open a new chapter in the life of the game.
+    </p>
 
-      <p class="lede dropcap">
-        It is with honour that we record the foundation of the United States Polo Patrons Association.
-        This fellowship of patrons and players is inaugurated with Polo Patronium, a living token of support and tradition.
-        Our purpose is simple: to safeguard the heritage of polo, encourage its growth, and open a new chapter in the life of the game.
+    <h2 class="sc">Initiatives</h2>
+    <div class="notice">
+      <h3 class="notice-title">Polo Patronium</h3>
+      <p class="notice-text">A token and membership initiative uniting patrons, players, and clubs in a shared economy of sport.</p>
+    </div>
+    <div class="notice">
+      <h3 class="notice-title">The Polo Life</h3>
+      <p class="notice-text">A platform dedicated to presenting the elegance and traditions of polo to new audiences in the digital age.</p>
+    </div>
+    <div class="notice">
+      <h3 class="notice-title">Charleston Polo</h3>
+      <p class="notice-text">The renewal of Charleston, South Carolina’s polo tradition — our flagship chapter.</p>
+    </div>
+    <div class="notice">
+      <h3 class="notice-title">Cowboy Polo Circuit</h3>
+      <p class="notice-text">A national endeavour to broaden the sport’s reach, nurture emerging talent, and encourage the next generation of American players.</p>
+    </div>
+    <div class="notice">
+      <h3 class="notice-title">Domain Holdings</h3>
+      <p class="notice-text">
+        In the interest of stewardship, the Association maintains a portfolio of polo-related domains, ensuring the preservation of heritage 
+        and the expansion of opportunity for clubs, schools, and media.<br><br>
+        6666polo.com, 6666poloclub.com<br>
+        boonehallpolo.com, boonehallpoloclub.com<br>
+        campitopolo.com, campitopolo.org<br>
+        carolinapoloclub.com<br>
+        charlestonpolo.club, charlestonpolo.com, charlestonpolo.stream<br>
+        charlestonpoloclub.com, charlestonpoloclub.org<br>
+        charlestonpoloclubathydepark.com, charlestonpoloclubathydepark.org<br>
+        charlestonpoloschool.com, charlestonyouthpolo.com<br>
+        charlestownepolo.com, charlestownepoloclub.com<br>
+        clemsonpolo.com, clemsonpoloclub.com<br>
+        cowboypolo.com, cowboypolo.org, cowboypolousa.com<br>
+        greenvillepolo.com, greenvillepoloclub.com<br>
+        hydeparkpolo.club, hydeparkpolo.com<br>
+        kiawahpolo.com<br>
+        palmettopolo.com, palmettopoloclub.com<br>
+        stonoferrypolo.com, stonoferrypoloclub.com, stonopolo.com<br>
+        thepolo.life, thepolo.stream, thepololife.com, thepolostream.com<br>
+        uspolopatrons.com, uspolopatrons.org<br>
+        vaqueropolo.com
       </p>
-      <br>
-
-      <p class="kicker sc">Initiatives</p>
-      <section class="notices">
-        <article class="notice">
-          <h2 class="notice-title sc">Polo Patronium</h2>
-          <p class="notice-text">
-            A token and membership initiative uniting patrons, players, and clubs in a shared economy of sport.
-          </p>
-        </article>
-        
-        <article class="notice">
-          <h2 class="notice-title sc">The Polo Life</h2>
-          <p class="notice-text">
-            A platform dedicated to presenting the elegance and traditions of polo to new audiences in the digital age.
-          </p>
-        </article>
-        
-        <article class="notice">
-          <h2 class="notice-title sc">Charleston Polo</h2>
-          <p class="notice-text">
-            The renewal of Charleston, South Carolina’s polo tradition—our flagship chapter.
-          </p>
-        </article>
-
-        <article class="notice">
-          <h2 class="notice-title sc">Cowboy Polo Circuit</h2>
-          <p class="notice-text">
-            A national endeavour to broaden the sport’s reach, nurture emerging talent, and encourage the next generation of American players.
-          </p>
-        </article>
-
-        <article class="notice">
-          <h2 class="notice-title sc">Domain Holdings</h2>
-          <p class="notice-text">
-            In the interest of stewardship, the Association maintains a portfolio of polo-related domains, ensuring the preservation of heritage 
-            and the expansion of opportunity for clubs, schools, and media:<br><br>
-            6666polo.com, 6666poloclub.com<br>
-            boonehallpolo.com, boonehallpoloclub.com<br>
-            campitopolo.com, campitopolo.org<br>
-            carolinapoloclub.com<br>
-            charlestonpolo.club, charlestonpolo.com, charlestonpolo.stream<br>
-            charlestonpoloclub.com, charlestonpoloclub.org<br>
-            charlestonpoloclubathydepark.com, charlestonpoloclubathydepark.org<br>
-            charlestonpoloschool.com, charlestonyouthpolo.com<br>
-            charlestownepolo.com, charlestownepoloclub.com<br>
-            clemsonpolo.com, clemsonpoloclub.com<br>
-            cowboypolo.com, cowboypolo.org, cowboypolousa.com<br>
-            greenvillepolo.com, greenvillepoloclub.com<br>
-            hydeparkpolo.club, hydeparkpolo.com<br>
-            kiawahpolo.com<br>
-            palmettopolo.com, palmettopoloclub.com<br>
-            stonoferrypolo.com, stonoferrypoloclub.com, stonopolo.com<br>
-            thepolo.life, thepolo.stream, thepololife.com, thepolostream.com<br>
-            uspolopatrons.com, uspolopatrons.org<br>
-            vaqueropolo.com
-          </p>
-        </article>
-      </section>
-
-      <br>
-
-      <p class="kicker sc">Patronium Model</p>
-      <section class="notices">
-        <article class="notice">
-          <h2 class="notice-title sc">Stewardship-Based Rewards</h2>
-          <p class="notice-text">
-            Patronium is a utility token and seal of participation — not a security or speculative instrument.
-            It rewards those who walk with us through principled alignment, not entitlement.
-            Rewards may be distributed manually from active Polo Chapters when the mission allows.
-          </p>
-        </article>
-
-        <article class="notice">
-          <h2 class="notice-title sc">Tribute Allocation Framework</h2>
-          <p class="notice-text">
-            Each active Chapter follows a 51/49 principle:<br>
-            51% — Reinvested into horses, pasture, and operations<br>
-            24.5% — Steward’s draw or groom-equivalent wage<br>
-            24.5% — USPPA tribute pool for Patronium holders<br><br>
-            In the first year, 49% flows to Founding Patrons instead — rewarding those who helped launch.
-          </p>
-        </article>
-
-        <article class="notice">
-          <h2 class="notice-title sc">Claim, Don’t Stake</h2>
-          <p class="notice-text">
-            Rewards are earned, not promised. There is no staking, no yield farming, and no expectation of income.
-            Snapshots may be taken to determine eligibility, and rewards are manually claimable based on alignment and stewardship.
-          </p>
-        </article>
-
-        <article class="notice">
-          <h2 class="notice-title sc">Chapter Pipeline</h2>
-          <p class="notice-text">
-            USPPA Chapters begin with a Steward — a trained or approved individual — and a Polo Incubator funded by Founding Patrons.
-            After 12 months of operations and public play, rewards stabilize, and the local operation matures into a Chapter.<br><br>
-            Local stewards may be compensated with a groom-level wage or retain up to 24.5% of the net revenue, whichever is greater.
-          </p>
-        </article>
-      </section>
-
-      <br>
-
-      <div class="cta">
-        <a class="btn btn-primary" href="https://charlestonpoloclub.com" target="_blank" rel="noopener">Charleston Polo</a>
-        <a class="btn" href="https://uspolopatrons.org" target="_blank" rel="noopener">uspolopatrons.org</a>
-        <a class="btn" href="#content">Become a Patron</a>
-        <a class="btn" href="#content">Launch a Chapter</a>
-      </div>
-
-      <br>
-      <blockquote class="motto">“In Honour, in Sport, in Fellowship.”<br>— and now, in Tribute.</blockquote>
-
-      <hr class="rule rule-bottom" aria-hidden="true" />
     </div>
+
+    <hr class="rule" />
+
+    <h2 class="sc">Patronium — Polo Patronage Perfected</h2>
+    <p>
+      Patronium is the living token of patronage within the United States Polo Patrons Association.
+      It is the medium through which honourable support is recognised and shared — not through speculation, but through participation.
+      Every token of Patronium represents a place within the fellowship of those who uphold the game, its horses, and its players.
+    </p>
+    <p>
+      It serves as the bridge between patron and player: a clear record of contribution and belonging within a high-trust community of sport.
+      When a chapter prospers, it offers tribute to those whose support made that prosperity possible.
+      This is the essence of Patronium — recognition earned through genuine patronage and service to the field.
+    </p>
+
+    <hr class="rule" />
+
+    <h2 class="sc">Charleston Polo — The USPPA Chapter Test Model</h2>
+    <p>
+      Each USPPA Chapter is a fully integrated polo programme operating under the Association’s standards.
+      A Chapter begins as a Polo Incubator — a local enterprise where horses are gathered, pasture secured, instruction established, and the public welcomed to learn and play.
+    </p>
+    <p>
+      Once an Incubator achieves steady operations, sound horsemanship, and visible community benefit, it becomes a standing Chapter of the Association.
+    </p>
+
+    <hr class="rule" />
+
+    <h2 class="sc">Founding Patrons and Patrons</h2>
+    <p>
+      There are two forms of Patronium holder.
+      Founding Patrons are the first to support the birth of a new Chapter. They provide the initial horses, pasture, and capital that make it possible for a Polo Incubator to begin.
+      During this founding period, their Patronium receives the full measure of available tribute — a reflection of their patronage in helping to seed the future of the sport.
+    </p>
+    <p>
+      Patrons are the ongoing supporters who sustain and strengthen a Chapter once it is established.
+    </p>
+
+    <hr class="rule" />
+
+    <h2 class="sc">The Tribute Framework</h2>
+    <p>
+      Each Chapter follows a principle of balanced and transparent patronage.
+      From its net revenue (gross revenue less operational costs), a Chapter aims to follow this allocation:
+    </p>
+    <ul>
+      <li>51% retained for reinvestment — horses, pasture, equipment, and operations.</li>
+      <li>49% directed to the USPPA Patronium Tribute Pool, from which holders may be recognised for their continued patronage.</li>
+    </ul>
+    <p>
+      During the Polo Incubator period, the founding patron tribute share (49%) flows entirely to Founding Patrons.
+      After the incubator year, once the Chapter achieves stability, the tribute returns to the standard patron tribute model — shared through the USPPA Patronium Pool.
+    </p>
+
+    <hr class="rule" />
+
+    <h2 class="sc">Participation</h2>
+    <ul>
+      <li>Become a Founding Patron — assist in launching a new Chapter through contribution of capital, horses, or facilities.</li>
+      <li>Become a Patron — support the USPPA and share in its ongoing tribute cycles.</li>
+      <li>Provide Horses or Land — supply the physical foundation of the sport under insured, transparent, and fair agreements.</li>
+    </ul>
+
+    <hr class="rule" />
+
+    <h2 class="sc">In Plain Terms</h2>
+    <p>
+      The Association seeks not to monetise polo, but to stabilise it — to bring clarity, fairness, and longevity to the way it is taught, funded, and shared.
+      Patronium and the Polo Incubator model together create a living, self-sustaining framework for the game’s renewal across America.
+    </p>
+    <p>
+      This is how the USPPA will grow the next American 10-Goal player.
+    </p>
+
+    <blockquote class="motto">“In honour, in sport, in fellowship — and, when merited, in tribute.”</blockquote>
   </main>
-      
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <p class="fineprint">© 2025 USPoloPatrons.Org</p>
-    </div>
+
+  <footer>
+    <p>© 2025 USPoloPatrons.org</p>
   </footer>
-
-  <!-- Dropdown behavior -->
-  <script>
-    (function() {
-      var menu = document.querySelector('.usp-menu');
-      var btn = document.querySelector('.usp-menu__btn');
-      var panel = document.getElementById('usp-menu-list');
-
-      function closeMenu() {
-        menu.classList.remove('is-open');
-        btn.setAttribute('aria-expanded', 'false');
-      }
-      function toggleMenu(e) {
-        e.stopPropagation();
-        var open = menu.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      }
-
-      btn.addEventListener('click', toggleMenu);
-      window.addEventListener('click', function(e){
-        if (!menu.contains(e.target)) closeMenu();
-      });
-      window.addEventListener('keydown', function(e){
-        if (e.key === 'Escape') closeMenu();
-      });
-    })();
-  </script>
 </body>
 </html>
