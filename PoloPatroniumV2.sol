@@ -8,10 +8,10 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/draft-ERC20Pe
 import "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/ERC20SnapshotUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/AccessControlEnumerableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
-contract PoloPatroniumV2 is 
+contract PoloPatroniumV2 is
     Initializable,
     ERC20Upgradeable,
     ERC20BurnableUpgradeable,
@@ -19,7 +19,7 @@ contract PoloPatroniumV2 is
     ERC20SnapshotUpgradeable,
     PausableUpgradeable,
     OwnableUpgradeable,
-    AccessControlUpgradeable,
+    AccessControlEnumerableUpgradeable,
     UUPSUpgradeable
 {
     bytes32 public constant OPERATOR_ROLE = keccak256("OPERATOR_ROLE");
@@ -36,25 +36,22 @@ contract PoloPatroniumV2 is
         __ERC20Snapshot_init();
         __Pausable_init();
         __Ownable_init(owner_);
-        __AccessControl_init();
+        __AccessControlEnumerable_init();
         __UUPSUpgradeable_init();
 
-        // Owner gets DEFAULT_ADMIN_ROLE
         _grantRole(DEFAULT_ADMIN_ROLE, owner_);
-
-        // Owner also gets OPERATOR_ROLE initially
         _grantRole(OPERATOR_ROLE, owner_);
     }
 
     // -----------------------------
-    //         SNAPSHOTS
+    // SNAPSHOTS
     // -----------------------------
     function snapshot() external onlyOwner returns (uint256) {
         return _snapshot();
     }
 
     // -----------------------------
-    //         MINTING
+    // MINTING
     // -----------------------------
     function mint(address to, uint256 amount) external {
         require(
@@ -75,7 +72,7 @@ contract PoloPatroniumV2 is
     }
 
     // -----------------------------
-    //         OPERATORS
+    // OPERATORS
     // -----------------------------
     function addOperator(address account) external onlyOwner {
         _grantRole(OPERATOR_ROLE, account);
@@ -97,7 +94,7 @@ contract PoloPatroniumV2 is
     }
 
     // -----------------------------
-    //          PAUSE / UNPAUSE
+    // PAUSE / UNPAUSE
     // -----------------------------
     function pause() external onlyOwner {
         _pause();
@@ -108,7 +105,7 @@ contract PoloPatroniumV2 is
     }
 
     // -----------------------------
-    //        HOOK OVERRIDES
+    // HOOK OVERRIDES
     // -----------------------------
     function _beforeTokenTransfer(
         address from,
@@ -119,7 +116,7 @@ contract PoloPatroniumV2 is
     }
 
     // -----------------------------
-    //        UUPS AUTHORIZATION
+    // UUPS AUTHORIZATION
     // -----------------------------
     function _authorizeUpgrade(address newImplementation)
         internal
