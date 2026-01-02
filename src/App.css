@@ -1,8 +1,6 @@
-/* === YOUR ORIGINAL STYLES, UNCHANGED === */
-
 /* Typography */
 body {
-  font-family: "EB Garamond", serif;
+  font-family: 'EB Garamond', serif;
   font-size: 18px;
   line-height: 1.6;
   color: #111;
@@ -11,10 +9,8 @@ body {
   padding: 0;
 }
 
-h1,
-h2,
-h3 {
-  font-family: "Cinzel", serif;
+h1, h2, h3 {
+  font-family: 'Cinzel', serif;
   margin: 0 0 0.5em;
 }
 
@@ -38,13 +34,13 @@ h3 {
 .masthead-title {
   font-size: 2rem;
   line-height: 1.2;
-  font-family: "Cinzel", serif;
+  font-family: 'Cinzel', serif;
   font-weight: 700;
 }
 
 .est {
   font-size: 0.9rem;
-  font-family: "Cinzel", serif;
+  font-family: 'Cinzel', serif;
   margin-top: 0.5rem;
 }
 
@@ -74,7 +70,7 @@ h3 {
   font-size: 3rem;
   line-height: 1;
   margin-right: 0.2rem;
-  font-family: "Cinzel", serif;
+  font-family: 'Cinzel', serif;
   font-weight: 600;
 }
 
@@ -91,7 +87,7 @@ h3 {
 
 .notice-title {
   font-size: 1.2rem;
-  font-family: "Cinzel", serif;
+  font-family: 'Cinzel', serif;
   margin-bottom: 0.5rem;
 }
 
@@ -99,31 +95,39 @@ h3 {
   margin: 0;
 }
 
-/* Call-to-action buttons */
+/* Call-to-action buttons (UPDATED: pill shaped) */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin: 0.5rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0.65rem 1.35rem;
   text-decoration: none;
-  font-family: "Cinzel", serif;
+  font-family: 'Cinzel', serif;
   border: 1px solid #000;
   background: transparent;
   color: #000;
-  transition: background 0.2s ease;
-  border-radius: 0;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  border-radius: 999px; /* pill */
   font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  cursor: pointer;
 }
 
 .btn:hover {
   background: #000;
   color: #fff;
+  transform: translateY(-1px);
 }
 
 .btn-primary {
   background: #000;
   color: #fff;
+}
+
+.btn-primary:hover {
+  background: #111;
 }
 
 /* Motto */
@@ -157,7 +161,7 @@ h3 {
 .patronium-section h2 {
   font-size: 1.4rem;
   margin-top: 0;
-  font-family: "Cinzel", serif;
+  font-family: 'Cinzel', serif;
 }
 
 .patronium-highlight {
@@ -194,7 +198,7 @@ h3 {
 .allocation-table th {
   background-color: #eee;
   font-weight: 600;
-  font-family: "Cinzel", serif;
+  font-family: 'Cinzel', serif;
   font-size: 0.95rem;
 }
 
@@ -227,7 +231,7 @@ h3 {
   margin-top: 6px;
   background: #fff;
   min-width: 180px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
   border-radius: 4px;
   overflow: hidden;
   z-index: 1001;
@@ -250,7 +254,7 @@ h3 {
 }
 
 .usp-menu__heading {
-  font-family: "Cinzel", serif;
+  font-family: 'Cinzel', serif;
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -260,247 +264,110 @@ h3 {
   background: #f9f9f9;
 }
 
-/* Responsive */
+/* Wallet modal (dark, contrasting) */
+.wallet-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 2000;
+}
+
+.wallet-modal {
+  width: 100%;
+  max-width: 420px;
+  background: #050505;
+  color: #f5eedc;
+  border-radius: 14px;
+  border: 1px solid #3a2b16;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+  padding: 18px 18px 22px;
+  position: relative;
+  font-family: "Cinzel","EB Garamond",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",serif;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.wallet-close {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  color: #e3bf72;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.wallet-title {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-size: 16px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #c7b08a;
+}
+
+.wallet-subtitle {
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 14px;
+  color: #f5eedc;
+}
+
+.wallet-row {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 10px 0 12px;
+  text-align: center;
+}
+
+.wallet-kicker {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9f8a64;
+  margin-bottom: 2px;
+}
+
+.wallet-value {
+  font-size: 13px;
+  color: #f5eedc;
+}
+
+.wallet-balance-big {
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: #f5eedc;
+}
+
+.wallet-divider {
+  height: 1px;
+  background: #3a2b16;
+  opacity: 0.9;
+  margin: 12px 0;
+}
+
+.wallet-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #3a2b16;
+  background: #050505;
+  color: #f5eedc;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+}
+
 @media (min-width: 768px) {
   .masthead-title {
     font-size: 3rem;
   }
-}
-
-/* === SMALL ADDITIONS FOR WALLET + GATE === */
-
-/* Center the header CTA */
-.wallet-cta-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-/* Wallet modal */
-.wallet-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.86);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  padding: 14px;
-}
-
-.wallet-modal-shell {
-  width: 100%;
-  max-width: 380px;
-}
-
-.wallet-modal-card {
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-radius: 14px;
-  border: 1px solid #3a2b16;
-  background: #050505;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.85);
-  padding: 20px 18px 18px;
-  color: #f5eedc;
-  font-size: 13px;
-  font-family: "Cinzel", "EB Garamond", system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", serif;
-  position: relative;
-}
-
-.wallet-modal-close {
-  position: absolute;
-  right: 4px;
-  top: 4px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: transparent;
-  color: #e3bf72;
-  font-size: 30px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.wallet-modal-header {
-  text-align: center;
-  margin-bottom: 14px;
-}
-
-.wallet-modal-title {
-  font-size: 18px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #c7b08a;
-}
-
-.wallet-modal-subtitle {
-  margin-top: 6px;
-  font-size: 11px;
-  color: #f5eedc;
-  opacity: 0.9;
-}
-
-.wallet-connect-wrapper {
-  margin-bottom: 14px;
-}
-
-.wallet-account-section {
-  margin-bottom: 14px;
-}
-
-.wallet-address-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  justify-content: center;
-  margin-bottom: 10px;
-  margin-top: 4px;
-}
-
-.wallet-address-label {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #9f8a64;
-}
-
-.wallet-address-value {
-  font-family: monospace;
-  font-size: 13px;
-}
-
-.wallet-address-copy {
-  border: none;
-  background: transparent;
-  color: #e3bf72;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.wallet-balances {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 10px;
-}
-
-.wallet-balance-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-}
-
-.wallet-balance-label {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #9f8a64;
-}
-
-.wallet-balance-value {
-  color: #f5eedc;
-}
-
-.wallet-signout-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 6px 18px;
-  border-radius: 999px;
-  border: 1px solid #3a2b16;
-  background: transparent;
-  color: #f5eedc;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.wallet-signout-button:hover {
-  background: #111111;
-}
-
-.wallet-modal-footnote {
-  margin-top: 8px;
-  font-size: 10px;
-  color: #c7b08a;
-}
-
-/* Gated content */
-.usp-gate {
-  position: relative;
-}
-
-.usp-gate-content {
-  transition: filter 160ms ease, opacity 160ms ease;
-}
-
-.usp-gate-content--blur {
-  filter: blur(6px);
-  opacity: 0.75;
-  pointer-events: none;
-}
-
-.usp-gate-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(248, 249, 248, 0.92);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 22px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.usp-gate-overlay-inner {
-  max-width: 540px;
-}
-
-.usp-gate-kicker {
-  font-family: "Cinzel", serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #666666;
-  margin-bottom: 6px;
-}
-
-.usp-gate-title {
-  font-family: "Cinzel", serif;
-  font-size: 1.05rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.usp-gate-copy {
-  font-size: 0.96rem;
-  color: #333333;
-  margin-top: 0;
-  margin-bottom: 14px;
-}
-
-.usp-gate-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 24px;
-  border-radius: 999px;
-  border: 1px solid #111111;
-  background: #111111;
-  color: #f8f9f8;
-  font-family: "Cinzel", serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.usp-gate-button:hover {
-  background: #000;
 }
