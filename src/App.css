@@ -1,3 +1,6 @@
+/* === YOUR ORIGINAL STYLES, UNCHANGED === */
+
+/* Typography */
 body {
   font-family: "EB Garamond", serif;
   font-size: 18px;
@@ -15,59 +18,27 @@ h3 {
   margin: 0 0 0.5em;
 }
 
-h2.sc,
-h3.sc {
+.sc {
   font-variant: small-caps;
   letter-spacing: 0.05em;
 }
 
-.page {
-  max-width: 760px;
+/* Layout */
+.container {
+  max-width: 700px;
   margin: 0 auto;
-  padding: 0 20px 96px;
+  padding: 0 20px;
 }
 
-/* Header + masthead */
-
-.usp-header {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0 0;
-}
-
-.usp-wallet-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 24px;
-  border-radius: 999px;
-  border: 1px solid #ccc;
-  background: #111;
-  color: #f5eedc;
-  font-family: "Cinzel", serif;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease,
-    transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.usp-wallet-button:hover {
-  background: #000;
-  border-color: #000;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
-  transform: translateY(-1px);
-}
-
-.usp-masthead {
+.site-header {
   text-align: center;
-  padding: 2.5rem 1rem 2rem;
+  padding: 3rem 1rem 2rem;
 }
 
 .masthead-title {
   font-size: 2rem;
   line-height: 1.2;
+  font-family: "Cinzel", serif;
   font-weight: 700;
 }
 
@@ -81,10 +52,30 @@ h3.sc {
   padding: 0 0.4em;
 }
 
-.container {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0;
+/* Announcement */
+.announcement {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.kicker {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.lede {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dropcap::first-letter {
+  float: left;
+  font-size: 3rem;
+  line-height: 1;
+  margin-right: 0.2rem;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
 }
 
 .rule {
@@ -93,45 +84,199 @@ h3.sc {
   margin: 2rem 0;
 }
 
+/* Notices */
 .notice {
   margin-bottom: 2rem;
 }
 
 .notice-title {
-  font-family: "Cinzel", serif;
   font-size: 1.2rem;
-  margin-bottom: 0.3rem;
+  font-family: "Cinzel", serif;
+  margin-bottom: 0.5rem;
 }
 
-.notice-title a {
-  color: inherit;
+.notice-text {
+  margin: 0;
+}
+
+/* Call-to-action buttons */
+.btn {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.6rem 1.2rem;
   text-decoration: none;
+  font-family: "Cinzel", serif;
+  border: 1px solid #000;
+  background: transparent;
+  color: #000;
+  transition: background 0.2s ease;
+  border-radius: 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-.notice-title a:hover {
-  text-decoration: underline;
+.btn:hover {
+  background: #000;
+  color: #fff;
 }
 
-ul {
-  padding-left: 1.2rem;
+.btn-primary {
+  background: #000;
+  color: #fff;
 }
 
+/* Motto */
 .motto {
-  text-align: center;
   font-style: italic;
+  text-align: center;
   margin: 2rem 0;
-  font-size: 1.05rem;
 }
 
-footer {
+/* Footer */
+.site-footer {
   text-align: center;
   font-size: 0.8rem;
   color: #666;
-  padding: 2rem 0 1rem;
+  padding: 2rem 1rem;
 }
 
-/* ---------- Wallet modal ---------- */
+.fineprint {
+  margin: 0;
+}
 
+/* Patronium Section */
+.patronium-section {
+  background: #f8f8f8;
+  padding: 2rem 1.5rem;
+  margin-top: 3rem;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.patronium-section h2 {
+  font-size: 1.4rem;
+  margin-top: 0;
+  font-family: "Cinzel", serif;
+}
+
+.patronium-highlight {
+  background: #fff;
+  border-left: 4px solid #000;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+.patronium-claim-note {
+  font-size: 0.95rem;
+  color: #444;
+  font-style: italic;
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Allocation Table */
+.allocation-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.allocation-table th,
+.allocation-table td {
+  border: 1px solid #ccc;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.allocation-table th {
+  background-color: #eee;
+  font-weight: 600;
+  font-family: "Cinzel", serif;
+  font-size: 0.95rem;
+}
+
+/* Dropdown Menu */
+.usp-menu {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  text-align: center;
+  user-select: none;
+}
+
+.usp-menu__btn {
+  background: transparent;
+  border: none;
+  font: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+.usp-menu__panel {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  background: #fff;
+  min-width: 180px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.usp-menu.is-open .usp-menu__panel {
+  display: block;
+}
+
+.usp-menu__link {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #000;
+  white-space: nowrap;
+}
+
+.usp-menu__link:hover {
+  background: #f2f2f2;
+}
+
+.usp-menu__heading {
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #666;
+  padding: 8px 14px 4px;
+  cursor: default;
+  background: #f9f9f9;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .masthead-title {
+    font-size: 3rem;
+  }
+}
+
+/* === SMALL ADDITIONS FOR WALLET + GATE === */
+
+/* Center the header CTA */
+.wallet-cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Wallet modal */
 .wallet-modal-backdrop {
   position: fixed;
   inset: 0;
@@ -283,11 +428,9 @@ footer {
   color: #c7b08a;
 }
 
-/* ---------- Gated section ---------- */
-
+/* Gated content */
 .usp-gate {
   position: relative;
-  margin-top: 3rem;
 }
 
 .usp-gate-content {
@@ -360,12 +503,4 @@ footer {
 
 .usp-gate-button:hover {
   background: #000;
-}
-
-/* Responsive masthead size */
-
-@media (min-width: 768px) {
-  .masthead-title {
-    font-size: 3rem;
-  }
 }
