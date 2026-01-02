@@ -1,117 +1,48 @@
 // src/App.jsx
 import React, { useEffect, useRef, useState } from "react";
-import {
-  CheckoutWidget,
-  ConnectEmbed,
-  useActiveAccount,
-  useActiveWallet,
-  useDisconnect,
-  useWalletBalance,
-  darkTheme,
-} from "thirdweb/react";
+import { ConnectEmbed, useActiveAccount, darkTheme } from "thirdweb/react";
 import { createThirdwebClient, defineChain } from "thirdweb";
 import { inAppWallet } from "thirdweb/wallets";
 import "./App.css";
 
 // ---- Thirdweb client / chain / wallets ----
 const client = createThirdwebClient({
-  clientId: "f58c0bfc6e6a2c00092cc3c35db1eed8", // same as your other sites
+  clientId: "f58c0bfc6e6a2c00092cc3c35db1eed8",
 });
 
 const BASE = defineChain(8453);
 
-// Embedded user wallets (EMAIL ONLY)
 const wallets = [
   inAppWallet({
     auth: { options: ["email"] },
   }),
 ];
 
-// Theme (matches your Patronium vibe)
-const patronCheckoutTheme = darkTheme({
+const walletTheme = darkTheme({
   fontFamily:
     '"Cinzel", "EB Garamond", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", serif',
-  colors: {
-    modalBg: "#050505",
-    modalOverlayBg: "rgba(0,0,0,0.85)",
-    borderColor: "#3a2b16",
-    separatorLine: "#3a2b16",
-    mutedBg: "#050505",
-    skeletonBg: "#111111",
-
-    primaryText: "#f5eedc",
-    secondaryText: "#c7b08a",
-    selectedTextColor: "#111111",
-    selectedTextBg: "#f5eedc",
-
-    primaryButtonBg: "#e3bf72",
-    primaryButtonText: "#181210",
-    secondaryButtonBg: "#050505",
-    secondaryButtonText: "#f5eedc",
-    secondaryButtonHoverBg: "#111111",
-    accentButtonBg: "#e3bf72",
-    accentButtonText: "#181210",
-    connectedButtonBg: "#050505",
-    connectedButtonHoverBg: "#111111",
-
-    secondaryIconColor: "#c7b08a",
-    secondaryIconHoverColor: "#f5eedc",
-    secondaryIconHoverBg: "#111111",
-    danger: "#f97373",
-    success: "#4ade80",
-    tooltipBg: "#050505",
-    tooltipText: "#f5eedc",
-    inputAutofillBg: "#050505",
-    scrollbarBg: "#050505",
-  },
 });
 
-// Simple error boundary for CheckoutWidget
-class CheckoutBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-  componentDidCatch(error, info) {
-    console.error("CheckoutWidget crashed:", error, info);
-  }
-  render() {
-    if (this.state.hasError) {
-      return (
-        <p style={{ color: "#e3bf72", marginTop: "12px" }}>
-          Checkout temporarily unavailable. Please try again later.
-        </p>
-      );
-    }
-    return this.props.children;
-  }
-}
-
+// ---- Main App ----
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
-  const [usdAmount, setUsdAmount] = useState("1");
-
   const menuRef = useRef(null);
-
   const account = useActiveAccount();
-  const activeWallet = useActiveWallet();
-  const { disconnect } = useDisconnect();
-
   const year = new Date().getFullYear();
-  const isConnected = !!account;
 
   // Close 3-dot menu on outside click / Esc
   useEffect(() => {
     function handleClick(e) {
       if (!menuRef.current) return;
-      if (!menuRef.current.contains(e.target)) setMenuOpen(false);
+      if (!menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
     }
     function handleKey(e) {
-      if (e.key === "Escape") setMenuOpen(false);
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+      }
     }
     window.addEventListener("click", handleClick);
     window.addEventListener("keydown", handleKey);
@@ -120,96 +51,6 @@ export default function App() {
       window.removeEventListener("keydown", handleKey);
     };
   }, []);
-
-  const shortAddress = account?.address
-    ? `${account.address.slice(0, 6)}…${account.address.slice(-4)}`
-    : "";
-
-  const handleCopyAddress = async () => {
-    if (!account?.address) return;
-    try {
-      await navigator.clipboard.writeText(account.address);
-      alert("Patron Wallet address copied.");
-    } catch (err) {
-      console.error("Clipboard error:", err);
-    }
-  };
-
-  const handleSignOut = () => {
-    if (!activeWallet || !disconnect) return;
-    try {
-      disconnect(activeWallet);
-    } catch (err) {
-      console.error("Error disconnecting wallet:", err);
-    }
-  };
-
-  const normalizedAmount =
-    usdAmount && Number(usdAmount) > 0 ? String(usdAmount) : "1";
-
-  // Balances
-  const { data: baseBalance } = useWalletBalance({
-    address: account?.address,
-    chain: BASE,
-    client,
-  });
-
-  // USDC on Base
-  const { data: usdcBalance } = useWalletBalance({
-    address: account?.address,
-    chain: BASE,
-    client,
-    tokenAddress: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-  });
-
-  // PATRON token on Base
-  const { data: patronBalance } = useWalletBalance({
-    address: account?.address,
-    chain: BASE,
-    client,
-    tokenAddress: "0xD766a771887fFB6c528434d5710B406313CAe03A",
-  });
-
-  // Optional: same behavior as Patronium site (tries to mint after checkout)
-  const handleCheckoutSuccess = async (result) => {
-    try {
-      // If you have the same Netlify function in THIS repo, this will work.
-      // If not, it will fail gracefully and still confirm payment succeeded.
-      const resp = await fetch("/.netlify/functions/mint-patron", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          address: account?.address,
-          usdAmount: normalizedAmount,
-          checkout: {
-            id: result?.id,
-            amountPaid: result?.amountPaid ?? normalizedAmount,
-            currency: result?.currency ?? "USD",
-          },
-        }),
-      });
-
-      if (!resp.ok) {
-        const text = await resp.text();
-        console.warn("mint-patron not available or errored:", text);
-        alert(
-          "Payment succeeded.\n\n" +
-            "Auto-credit wasn’t available on this site yet, but we can reconcile and credit you.\n" +
-            "If you need immediate credit, use PoloPatronium.com."
-        );
-        return;
-      }
-
-      await resp.json();
-      alert("Thank you — payment received. PATRON is being credited.");
-    } catch (err) {
-      console.warn("Checkout success follow-up failed:", err);
-      alert(
-        "Payment succeeded.\n\n" +
-          "Auto-credit wasn’t available on this site yet. We’ll reconcile and credit you."
-      );
-    }
-  };
 
   return (
     <>
@@ -232,7 +73,6 @@ export default function App() {
         >
           …
         </button>
-
         <div
           id="usp-menu-list"
           className="usp-menu__panel"
@@ -294,7 +134,7 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Site header with centered pill Patron Wallet button */}
+      {/* Site header with centered Patron Wallet button */}
       <header className="site-header">
         <button
           className="btn btn-primary"
@@ -312,13 +152,12 @@ export default function App() {
           <br />
           ASSOCIATION
         </h1>
-
         <p className="est">
           FOUNDING<span className="dot">·</span>AD MMXXV · 2025
         </p>
       </header>
 
-      {/* Main USPPA content (your full original content preserved) */}
+      {/* Main USPPA content */}
       <main id="content" className="container">
         <hr className="rule" />
         <h2 className="sc">Announcement</h2>
@@ -348,17 +187,18 @@ export default function App() {
           </p>
         </div>
 
+        {/* ✅ SWAPPED: Cowboy Polo Circuit now comes before Charleston Polo */}
         <div className="notice">
-          <h3 className="notice-title">Charleston Polo</h3>
+          <h3 className="notice-title">Cowboy Polo Circuit</h3>
           <p>
-            The renewal of Charleston, South Carolina’s polo tradition — our
-            flagship Chapter.{" "}
+            A national endeavour to broaden the sport’s reach, nurture emerging
+            talent, and encourage the next generation of American players.{" "}
             <a
-              href="https://charlestonpolo.com"
+              href="https://cowboypolo.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Visit CharlestonPolo.com
+              Learn more at CowboyPolo.com
             </a>
             .
           </p>
@@ -381,16 +221,16 @@ export default function App() {
         </div>
 
         <div className="notice">
-          <h3 className="notice-title">Cowboy Polo Circuit</h3>
+          <h3 className="notice-title">Charleston Polo</h3>
           <p>
-            A national endeavour to broaden the sport’s reach, nurture emerging
-            talent, and encourage the next generation of American players.{" "}
+            The renewal of Charleston, South Carolina’s polo tradition — our
+            flagship Chapter.{" "}
             <a
-              href="https://cowboypolo.com"
+              href="https://charlestonpolo.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Learn more at CowboyPolo.com
+              Visit CharlestonPolo.com
             </a>
             .
           </p>
@@ -590,168 +430,93 @@ export default function App() {
           .
         </p>
 
-        <blockquote className="motto">
-          “In honour, in sport, in fellowship.”
-        </blockquote>
+        <blockquote className="motto">“In honour, in sport, in fellowship.”</blockquote>
       </main>
 
       <footer className="site-footer">
         <p className="fineprint">© {year} USPoloPatrons.org</p>
       </footer>
 
-      {/* Patron Wallet + Patronium sales modal */}
+      {/* Patron Wallet modal */}
       {walletOpen && (
         <div
-          className="wallet-modal-backdrop"
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.82)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "16px",
+            zIndex: 2000,
+          }}
           onClick={() => setWalletOpen(false)}
         >
-          <div className="wallet-modal" onClick={(e) => e.stopPropagation()}>
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: 420,
+              background: "#050505",
+              color: "#f5eedc",
+              borderRadius: 14,
+              border: "1px solid #3a2b16",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.9)",
+              padding: "18px 18px 22px",
+              position: "relative",
+              fontFamily:
+                '"Cinzel", "EB Garamond", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", serif',
+            }}
+          >
             <button
               type="button"
-              className="wallet-close"
               onClick={() => setWalletOpen(false)}
               aria-label="Close Patron Wallet"
-              title="Close"
+              style={{
+                position: "absolute",
+                top: 6,
+                right: 10,
+                border: "none",
+                background: "transparent",
+                color: "#e3bf72",
+                fontSize: 28,
+                cursor: "pointer",
+              }}
             >
               ×
             </button>
 
-            <div className="wallet-title">Patron Wallet</div>
-            <div className="wallet-subtitle">
-              Same email wallet experience as Polo Patronium & Cowboy Polo.
-            </div>
+            <h2
+              style={{
+                marginTop: 6,
+                marginBottom: 6,
+                fontSize: 16,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                textAlign: "center",
+                color: "#c7b08a",
+              }}
+            >
+              Patron Wallet
+            </h2>
+            <p
+              style={{
+                fontSize: 13,
+                textAlign: "center",
+                marginBottom: 14,
+                color: "#f5eedc",
+              }}
+            >
+              Sign in or create your Patron Wallet using email. This is the same
+              wallet used on Polo Patronium and Cowboy Polo.
+            </p>
 
-            {!isConnected ? (
-              <ConnectEmbed
-                client={client}
-                wallets={wallets}
-                chain={BASE}
-                theme={patronCheckoutTheme}
-              />
-            ) : (
-              <>
-                <div style={{ textAlign: "center", marginBottom: 10 }}>
-                  <div style={{ fontFamily: "monospace", fontSize: 13 }}>
-                    {shortAddress}{" "}
-                    <button
-                      type="button"
-                      onClick={handleCopyAddress}
-                      style={{
-                        border: "none",
-                        background: "transparent",
-                        color: "#e3bf72",
-                        cursor: "pointer",
-                        fontSize: 14,
-                      }}
-                      aria-label="Copy address"
-                      title="Copy address"
-                    >
-                      📋
-                    </button>
-                  </div>
-                </div>
-
-                <div className="wallet-row">
-                  <div>
-                    <div className="wallet-kicker">Gas</div>
-                    <div className="wallet-value">
-                      {baseBalance?.displayValue || "0"}{" "}
-                      {baseBalance?.symbol || "ETH"}
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="wallet-kicker">USDC</div>
-                    <div className="wallet-value">
-                      {usdcBalance?.displayValue || "0"}{" "}
-                      {usdcBalance?.symbol || "USDC"}
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ textAlign: "center", marginBottom: 10 }}>
-                  <div className="wallet-kicker">Patronium Balance</div>
-                  <div className="wallet-balance-big">
-                    {patronBalance?.displayValue || "0"}{" "}
-                    {patronBalance?.symbol || "PATRON"}
-                  </div>
-                </div>
-
-                <div style={{ textAlign: "center" }}>
-                  <button
-                    type="button"
-                    onClick={handleSignOut}
-                    style={{
-                      border: "1px solid #3a2b16",
-                      background: "transparent",
-                      color: "#f5eedc",
-                      borderRadius: 999,
-                      padding: "8px 16px",
-                      cursor: "pointer",
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      fontSize: 11,
-                    }}
-                  >
-                    Sign Out
-                  </button>
-                </div>
-
-                <div className="wallet-divider" />
-
-                <div style={{ marginBottom: 10 }}>
-                  <div
-                    style={{
-                      fontSize: 10,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      color: "#c7b08a",
-                      marginBottom: 6,
-                    }}
-                  >
-                    Choose Your Patronage (USD)
-                  </div>
-
-                  <input
-                    className="wallet-input"
-                    type="number"
-                    min="1"
-                    step="1"
-                    value={usdAmount}
-                    onChange={(e) => setUsdAmount(e.target.value)}
-                  />
-                </div>
-
-                <CheckoutBoundary>
-                  <CheckoutWidget
-                    client={client}
-                    name={"USPPA — POLO PATRONIUM"}
-                    description={
-                      "UNITED STATES POLO PATRONS ASSOCIATION · PATRONIUM PATRONAGE"
-                    }
-                    currency={"USD"}
-                    chain={BASE}
-                    amount={normalizedAmount}
-                    // USDC token used for purchase
-                    tokenAddress={"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"}
-                    // your seller wallet (same as Patronium site)
-                    seller={"0xfee3c75691e8c10ed4246b10635b19bfff06ce16"}
-                    buttonLabel={"BUY PATRON (USDC on Base)"}
-                    theme={patronCheckoutTheme}
-                    onSuccess={handleCheckoutSuccess}
-                    onError={(err) => {
-                      console.error("Checkout error:", err);
-                      alert(err?.message || String(err));
-                    }}
-                  />
-                </CheckoutBoundary>
-
-                <div style={{ marginTop: 10, fontSize: 12, color: "#c7b08a" }}>
-                  Note: If auto-credit isn’t enabled on this site yet, purchases
-                  can still be reconciled and credited.
-                </div>
-              </>
-            )}
+            <ConnectEmbed
+              client={client}
+              wallets={wallets}
+              chain={BASE}
+              theme={walletTheme}
+            />
           </div>
         </div>
       )}
