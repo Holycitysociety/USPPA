@@ -243,16 +243,30 @@ ul{ padding-left:1.2rem; }
 .brand-grid{
   display:grid;
   grid-template-columns: 1fr;
-  gap: 28px;
+  gap: 0; /* divider handles spacing */
 }
 
 /* remove individual “card” borders/boxes */
 .logo-block{
-  padding: 6px 0 0;
+  padding: 0;
   background: transparent;
   border: none;
   border-radius: 0;
   box-shadow: none;
+}
+
+/* NEW: dividers + healthy spacing */
+.logo-block + .logo-block{
+  margin-top: 18px; /* outer separation */
+  padding-top: 28px; /* space before line */
+  border-top: 1px solid rgba(227,191,114,.22); /* divider line */
+}
+
+.logo-block + .logo-block::before{
+  content:"";
+  display:block;
+  height: 0;
+  margin-bottom: 28px; /* space after line (before content) */
 }
 
 .initiative-text{
