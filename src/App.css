@@ -1,65 +1,49 @@
-/* src/App.css */
+/* =========================
+   USPPA — Dark Family Theme
+   True black page + warm gold spotlight card
+   ========================= */
 
-/* ===== Theme (white text, gold as LIGHT only) ===== */
-:root {
-  --bg: #050505;
-  --panel: rgba(10, 10, 10, 0.55);
-
-  --fg: #f5f5f5;
-  --muted: rgba(245, 245, 245, 0.72);
-
-  /* gold used ONLY for light, borders, glows */
-  --goldGlow: rgba(227, 191, 114, 0.10);
-  --goldGlow2: rgba(227, 191, 114, 0.06);
-  --goldBorder: rgba(227, 191, 114, 0.22);
-  --goldBorder2: rgba(227, 191, 114, 0.32);
-  --rule: rgba(255, 255, 255, 0.14);
-
-  --max-width: 760px;
-}
-
-/* ===== Base ===== */
-* { box-sizing: border-box; }
-
+/* Typography + base */
 body {
-  margin: 0;
-  padding: 0;
-  color: var(--fg);
-  background:
-    radial-gradient(circle at 22% 8%, var(--goldGlow) 0, rgba(0,0,0,0.0) 42%),
-    radial-gradient(circle at 78% 14%, var(--goldGlow2) 0, rgba(0,0,0,0.0) 46%),
-    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.06) 0, rgba(0,0,0,0.0) 38%),
-    linear-gradient(to bottom, #0a0a0a 0%, #050505 55%, #070707 100%);
   font-family: "EB Garamond", serif;
   font-size: 18px;
   line-height: 1.6;
+  color: #f5f5f5;
+  background: #000; /* real black */
+  margin: 0;
+  padding: 0;
 }
 
+h1,
+h2,
+h3 {
+  font-family: "Cinzel", serif;
+  margin: 0 0 0.5em;
+}
+
+.sc {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+/* Links */
 a {
-  color: var(--fg);                 /* keep links white */
+  color: rgba(245, 245, 245, 0.9);
   text-decoration: underline;
-  text-decoration-color: rgba(245,245,245,0.35);
   text-underline-offset: 3px;
 }
 a:hover {
-  text-decoration-color: rgba(245,245,245,0.75);
+  color: #ffffff;
 }
 
-/* Typography */
-h1, h2, h3 {
-  font-family: "Cinzel", serif;
-  margin: 0 0 0.5em;
-  color: var(--fg);
-}
-.sc { font-variant: small-caps; letter-spacing: 0.05em; }
-
-/* ===== Layout ===== */
+/* Layout */
 .container {
-  max-width: var(--max-width);
+  max-width: 760px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
+/* Header */
 .site-header {
   text-align: center;
   padding: 3rem 1rem 2rem;
@@ -68,121 +52,145 @@ h1, h2, h3 {
 .masthead-title {
   font-size: 2rem;
   line-height: 1.2;
+  font-family: "Cinzel", serif;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 
 .est {
   font-size: 0.9rem;
   font-family: "Cinzel", serif;
   margin-top: 0.5rem;
-  color: var(--muted);
-  letter-spacing: 0.12em;
+  color: rgba(245, 245, 245, 0.75);
+  letter-spacing: 0.08em;
 }
 
-.dot { padding: 0 0.4em; opacity: 0.7; }
+.dot {
+  padding: 0 0.4em;
+}
 
+/* Pill buttons (wallet + any CTAs) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 26px;
+  border-radius: 999px; /* pill */
+  border: 1px solid rgba(255, 255, 255, 0.72);
+
+  background: transparent;
+  color: #ffffff;
+
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.06s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.95);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  /* keep it “poster-style”: outlined, not filled */
+}
+
+/* The “spotlight” poster card for the MAIN content only */
+main.container {
+  margin-top: 22px;
+  padding: 30px 22px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  /* Warm gold spotlight + subtle paper sheen, but card stays dark */
+  background:
+    radial-gradient(circle at 50% 14%,
+      rgba(227, 191, 114, 0.22) 0%,
+      rgba(227, 191, 114, 0.10) 22%,
+      rgba(0, 0, 0, 0.00) 55%),
+    radial-gradient(circle at 50% 10%,
+      rgba(255, 255, 255, 0.07) 0%,
+      rgba(0, 0, 0, 0.00) 52%),
+    linear-gradient(to bottom, #141414 0%, #0a0a0a 55%, #070707 100%);
+
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.80),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Rules */
 .rule {
   border: none;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
   margin: 2rem 0;
 }
 
-/* ===== Notices (paper-like depth) ===== */
+/* Notices — do NOT turn into separate cards (keeps it clean, not muddy) */
 .notice {
   margin-bottom: 2rem;
-  padding: 16px 16px 14px;
-  border-radius: 12px;
-
-  /* subtle “paper depth” but still dark */
-  background:
-    radial-gradient(circle at 18% 0%, rgba(255,255,255,0.05) 0, rgba(0,0,0,0) 55%),
-    radial-gradient(circle at 82% 20%, var(--goldGlow2) 0, rgba(0,0,0,0) 60%),
-    rgba(8, 8, 8, 0.55);
-
-  border: 1px solid rgba(255,255,255,0.10);
-  box-shadow: 0 18px 34px rgba(0,0,0,0.65);
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
 
 .notice-title {
-  font-size: 1.05rem;
   font-family: "Cinzel", serif;
-  margin-bottom: 0.35rem;
-  letter-spacing: 0.06em;
-  color: var(--fg);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.04em;
 }
 
-.notice p { margin: 0; color: var(--muted); }
+.notice p {
+  margin: 0;
+  color: rgba(245, 245, 245, 0.72);
+}
 
-ul { padding-left: 1.2rem; color: var(--muted); }
+/* Lists */
+ul {
+  padding-left: 1.2rem;
+  color: rgba(245, 245, 245, 0.72);
+}
 
+/* Motto */
 .motto {
   text-align: center;
   font-style: italic;
   margin: 2rem 0;
   font-size: 1.05rem;
-  color: var(--fg);
+  color: rgba(245, 245, 245, 0.80);
 }
 
-/* ===== Buttons (Pill, white like Cowboy) ===== */
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.5rem;
-  padding: 0.7rem 1.35rem;
-  border-radius: 999px; /* pill */
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  background: transparent;
-  color: var(--fg);
-
-  font-family: "Cinzel", serif;
-  font-size: 0.92rem;
-  text-transform: uppercase;
-  letter-spacing: 0.10em;
-
-  cursor: pointer;
-  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
-}
-
-.btn:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.92);
-  transform: translateY(-1px);
-  box-shadow:
-    0 14px 28px rgba(0,0,0,0.55),
-    0 0 0 3px rgba(255,255,255,0.06);
-}
-
-.btn-primary {
-  background: rgba(255, 255, 255, 0.95);
-  color: #000;
-  border-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.55);
-}
-
-.btn-primary:hover {
-  background: #ffffff;
-  border-color: #ffffff;
-  box-shadow:
-    0 18px 34px rgba(0,0,0,0.7),
-    0 0 0 4px rgba(255,255,255,0.08);
-}
-
-/* ===== Footer ===== */
+/* Footer */
 .site-footer {
   text-align: center;
   font-size: 0.8rem;
-  color: rgba(245, 245, 245, 0.62);
-  padding: 2rem 1rem;
+  color: rgba(245, 245, 245, 0.55);
+  padding: 2rem 1rem 2.5rem;
 }
+
 .fineprint {
   margin: 0;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-/* ===== Dropdown Menu (dark, paper depth, no gold text) ===== */
+/* =========================
+   Dropdown menu (3 dots)
+   Dark theme version
+   ========================= */
 .usp-menu {
   position: fixed;
   top: 10px;
@@ -194,69 +202,12 @@ ul { padding-left: 1.2rem; color: var(--muted); }
 }
 
 .usp-menu__btn {
-  background:
-    radial-gradient(circle at 30% 0%, var(--goldGlow2) 0, rgba(0,0,0,0) 55%),
-    rgba(5, 5, 5, 0.65);
-  border: 1px solid rgba(255,255,255,0.18);
-  color: rgba(255,255,255,0.92); /* white */
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.9);
+
   font: inherit;
   font-size: 22px;
   line-height: 1;
-  cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 999px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
 
-.usp-menu__panel {
-  display: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 10px;
-  min-width: 220px;
-
-  background:
-    radial-gradient(circle at 18% 0%, rgba(255,255,255,0.05) 0, rgba(0,0,0,0) 60%),
-    radial-gradient(circle at 82% 18%, var(--goldGlow2) 0, rgba(0,0,0,0) 62%),
-    rgba(6, 6, 6, 0.98);
-
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.14);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.75);
-  z-index: 1001;
-}
-
-.usp-menu.is-open .usp-menu__panel { display: block; }
-
-.usp-menu__link {
-  display: block;
-  padding: 12px 14px;
-  text-decoration: none;
-  color: rgba(255,255,255,0.92); /* white */
-  white-space: nowrap;
-  font-size: 0.95rem;
-}
-
-.usp-menu__link:hover {
-  background: rgba(255,255,255,0.06);
-}
-
-.usp-menu__heading {
-  font-family: "Cinzel", serif;
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.70); /* muted white */
-  padding: 10px 14px 8px;
-  cursor: default;
-  background: rgba(255, 255, 255, 0.04);
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-/* ===== Responsive ===== */
-@media (min-width: 768px) {
-  .masthead-title { font-size: 3rem; }
-}
+  cursor: pointer
