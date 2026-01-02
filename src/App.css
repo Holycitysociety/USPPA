@@ -1,240 +1,154 @@
-/* src/App.css */
-
-/* =========================
-   THEME (Black + spotlights)
-   ========================= */
-:root {
-  --bg: #050505;
-  --fg: #f5f5f5;
-  --muted: #bdbdbd;
-  --ink: #111111;
-
-  --accent: #e3bf72;     /* warm gold accent (wallet + links) */
-  --accent2: #c7b08a;    /* muted gold */
-
-  --border: #2b2b2b;
-  --panel: #0a0a0a;
-
-  --max-width: 760px;
+:root{
+  --bg:#000;
+  --fg:#f5eedc;
+  --muted:#c7b08a;
+  --muted2:#9f8a64;
+  --border:#3a2b16;
+  --panel:#050505;
+  --max:760px;
 }
 
-/* =============
-   Base / reset
-   ============= */
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-
-  /* “spotlights” like Cowboy Polo */
+/* base */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family:"EB Garamond", serif;
+  font-size:18px;
+  line-height:1.6;
+  color:var(--fg);
   background:
-    radial-gradient(circle at 30% 6%, rgba(255, 255, 255, 0.08) 0, rgba(0, 0, 0, 0.92) 48%),
-    radial-gradient(circle at 70% 18%, rgba(227, 191, 114, 0.07) 0, rgba(0, 0, 0, 0.95) 52%),
-    radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.05) 0, rgba(0, 0, 0, 0.98) 58%),
-    var(--bg);
-
-  color: var(--fg);
-  font-family: "EB Garamond", serif;
-  font-size: 18px;
-  line-height: 1.6;
+    radial-gradient(circle at 20% 10%, #2a2a2a 0, rgba(0,0,0,0) 55%),
+    radial-gradient(circle at 80% 0%, #1f1f1f 0, rgba(0,0,0,0) 55%),
+    radial-gradient(circle at 50% 120%, #222 0, rgba(0,0,0,0) 55%),
+    #000;
 }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
+a{ color:#e3bf72; }
+a:hover{ opacity:.92; }
+
+.page{
+  padding: 22px 16px 88px;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* =================
-   Layout / wrappers
-   ================= */
-.container {
-  max-width: var(--max-width);
+/* layout */
+.container{
+  max-width: var(--max);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 4px;
 }
 
-.site-header {
-  text-align: center;
-  padding: 3rem 1rem 2rem;
+/* headings */
+h1,h2,h3{
+  font-family:"Cinzel", serif;
+  margin:0 0 .5em;
+  color:var(--fg);
+}
+.sc{
+  font-variant: small-caps;
+  letter-spacing: .05em;
 }
 
-.masthead-title {
-  font-family: "Cinzel", serif;
+/* header */
+.site-header{
+  text-align:center;
+  padding: 2.8rem 1rem 1.6rem;
+}
+.masthead-title{
   font-size: 2rem;
   line-height: 1.15;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin: 0 0 0.5em;
 }
-
-.est {
-  font-size: 0.9rem;
-  font-family: "Cinzel", serif;
-  margin-top: 0.5rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.est{
+  font-size:.9rem;
+  font-family:"Cinzel", serif;
+  margin-top:.5rem;
   color: var(--muted);
+  letter-spacing:.06em;
+}
+.dot{ padding:0 .4em; }
+
+@media (min-width: 768px){
+  .masthead-title{ font-size: 3rem; }
 }
 
-.dot {
-  padding: 0 0.4em;
-}
-
-.sc {
-  font-variant: small-caps;
-  letter-spacing: 0.05em;
-  font-family: "Cinzel", serif;
-}
-
-/* =====
-   Rules
-   ===== */
-.rule {
-  border: none;
-  border-top: 1px solid var(--border);
+/* rule */
+.rule{
+  border:none;
+  border-top:1px solid rgba(227,191,114,.35);
   margin: 2rem 0;
 }
 
-/* ==========
-   Notices
-   ========== */
-.notice {
-  margin-bottom: 2rem;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  background:
-    radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.05) 0, rgba(0,0,0,0) 55%),
-    rgba(8, 8, 8, 0.65);
-  border-radius: 10px;
-  box-shadow: 0 14px 30px rgba(0,0,0,0.55);
-}
-
-.notice-title {
-  font-family: "Cinzel", serif;
-  font-size: 1.1rem;
-  margin: 0 0 0.4rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--fg);
-}
-
-ul {
-  padding-left: 1.2rem;
-  color: var(--muted);
-}
-
-p {
-  margin: 0 0 1rem;
-  color: var(--muted);
-}
-
-b,
-strong {
-  color: var(--fg);
-}
-
-/* ==========
-   Buttons (pill)
-   ========== */
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  margin: 0.5rem;
-  padding: 0.78rem 1.3rem;
-
-  border-radius: 999px;               /* pill */
-  border: 1px solid rgba(227, 191, 114, 0.6);
-
-  font-family: "Cinzel", serif;
-  font-size: 0.92rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
+/* pill buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(227,191,114,.55);
   background: transparent;
   color: var(--fg);
-  cursor: pointer;
-  text-decoration: none;
-
-  transition:
-    background 0.18s ease,
-    border-color 0.18s ease,
-    color 0.18s ease,
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
+  text-decoration:none;
+  cursor:pointer;
+  font-family:"Cinzel", serif;
+  font-size:.82rem;
+  text-transform: uppercase;
+  letter-spacing:.12em;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease;
 }
 
-.btn:hover {
+.btn:hover{
+  background: rgba(227,191,114,.10);
+  border-color: rgba(227,191,114,.85);
   transform: translateY(-1px);
 }
 
-.btn-primary {
-  background: var(--accent);
-  color: #120e0a;
-  border-color: var(--accent);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.55);
+.btn-primary{
+  background: #e3bf72;
+  color: #181210;
+  border-color: #e3bf72;
 }
 
-.btn-primary:hover {
-  background: #f1cf86;
-  border-color: #f1cf86;
-  box-shadow: 0 16px 36px rgba(0,0,0,0.75);
+.btn-primary:hover{
+  background:#f1d18a;
+  border-color:#f1d18a;
 }
 
-.btn-outline {
-  border-color: rgba(245, 245, 245, 0.35);
-  color: var(--muted);
+.btn-outline{
+  background: transparent;
 }
 
-.btn-outline:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.55);
-  color: var(--fg);
-}
+.btn-pill{ border-radius:999px; }
 
-/* ==========
-   Motto / footer
-   ========== */
-.motto {
-  text-align: center;
+/* notices */
+.notice{ margin-bottom: 2rem; }
+.notice-title{
+  font-family:"Cinzel", serif;
+  font-size:1.2rem;
+  margin-bottom:.3rem;
+}
+ul{ padding-left:1.2rem; }
+.motto{
+  text-align:center;
   font-style: italic;
   margin: 2rem 0;
   font-size: 1.05rem;
   color: var(--fg);
 }
 
-.site-footer {
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--muted);
-  padding: 2rem 1rem 2.5rem;
-  border-top: 1px solid var(--border);
-  margin-top: 2.5rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+/* footer */
+.site-footer{
+  text-align:center;
+  font-size:.8rem;
+  color: rgba(199,176,138,.8);
+  padding: 2.2rem 1rem;
 }
+.fineprint{ margin:0; letter-spacing:.08em; text-transform:uppercase; }
 
-.fineprint {
-  margin: 0;
-}
-
-/* ======================
-   3-dot dropdown menu
-   ====================== */
-.usp-menu {
+/* Dropdown menu */
+.usp-menu{
   position: fixed;
   top: 10px;
   left: 50%;
@@ -243,82 +157,270 @@ strong {
   text-align: center;
   user-select: none;
 }
-
-.usp-menu__btn {
-  background: rgba(0,0,0,0.35);
-  border: 1px solid rgba(255,255,255,0.18);
+.usp-menu__btn{
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(227,191,114,.45);
   color: var(--fg);
   font: inherit;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-radius: 999px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
-
-.usp-menu__panel {
-  display: none;
-  position: absolute;
-  left: 50%;
+.usp-menu__panel{
+  display:none;
+  position:absolute;
+  left:50%;
   transform: translateX(-50%);
   margin-top: 8px;
-
-  background: rgba(8, 8, 8, 0.96);
+  background: #050505;
   min-width: 210px;
-
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 12px;
-  overflow: hidden;
-
-  box-shadow: 0 18px 46px rgba(0,0,0,0.75);
+  box-shadow: 0 18px 55px rgba(0,0,0,.75);
+  border-radius: 10px;
+  overflow:hidden;
+  z-index: 1001;
+  border: 1px solid rgba(227,191,114,.28);
 }
-
-.usp-menu.is-open .usp-menu__panel {
-  display: block;
-}
-
-.usp-menu__heading {
-  font-family: "Cinzel", serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent2);
-  padding: 10px 14px 6px;
-  background: rgba(255,255,255,0.03);
-  cursor: default;
-}
-
-.usp-menu__link {
-  display: block;
+.usp-menu.is-open .usp-menu__panel{ display:block; }
+.usp-menu__link{
+  display:block;
   padding: 10px 14px;
-  text-decoration: none;
+  text-decoration:none;
   color: var(--fg);
   white-space: nowrap;
-  font-size: 15px;
+  letter-spacing:.06em;
+}
+.usp-menu__link:hover{
+  background: rgba(227,191,114,.10);
+}
+.usp-menu__heading{
+  font-family:"Cinzel", serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(199,176,138,.9);
+  padding: 9px 14px 6px;
+  cursor: default;
+  background: rgba(255,255,255,.03);
+  border-top: 1px solid rgba(227,191,114,.14);
 }
 
-.usp-menu__link:hover {
-  background: rgba(255,255,255,0.06);
+/* ROADMAP */
+.roadmap-wrap{
+  margin-top: 2.4rem;
+  margin-bottom: 2.2rem;
+}
+.roadmap-title{
+  text-align:center;
+  margin-bottom: 26px;
+}
+.roadmap-kicker{
+  font-size: 11px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 4px;
+  font-family:"Cinzel", serif;
+}
+.roadmap-word{
+  font-size: 20px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--fg);
+  font-family:"Cinzel", serif;
+}
+.roadmap-rule{
+  margin: 10px auto 0;
+  height: 1px;
+  width: 86px;
+  background: rgba(227,191,114,.35);
 }
 
-/* ==========
-   Responsive
-   ========== */
-@media (min-width: 768px) {
-  .masthead-title {
-    font-size: 3rem;
+/* grid cards */
+.brand-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 860px){
+  .brand-grid{
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 }
 
-@media (max-width: 520px) {
-  .container {
-    padding: 0 14px;
-  }
+.logo-block{
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255,255,255,.06) 0, rgba(0,0,0,0) 60%),
+    #050505;
+  border: 1px solid rgba(227,191,114,.22);
+  border-radius: 14px;
+  padding: 16px 16px 14px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.75);
+}
 
-  .site-header {
-    padding-top: 2.5rem;
-  }
+.initiative-text{
+  margin: 12px 0 12px;
+  color: rgba(245,238,220,.86);
+  font-size: .98rem;
+}
+
+.cta-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Wordmarks pulled/paired to Patronium look */
+.logo-polo-patronium{
+  text-align:center;
+  line-height:1.05;
+}
+.logo-polo-patronium .top{
+  display:block;
+  font-family:"Cinzel", serif;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-size: 12px;
+  color: var(--muted);
+}
+.logo-polo-patronium .main{
+  display:block;
+  font-family:"Cinzel", serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size: 22px;
+  color: var(--fg);
+  margin-top: 2px;
+}
+
+.logo-usp-string-remuda{
+  text-align:center;
+}
+
+.logo-cowboy-polo-circuit{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding: 12px 10px;
+  border: 1px solid rgba(199,176,138,.65);
+  border-radius: 12px;
+  color: var(--fg);
+  font-family:"Cinzel", serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-size: 12px;
+}
+
+.logo-the-polo-life{
+  text-align:center;
+  line-height:1.05;
+}
+.logo-the-polo-life .top{
+  display:block;
+  font-family:"Cinzel", serif;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-size: 12px;
+  color: var(--muted);
+}
+.logo-the-polo-life .main{
+  display:block;
+  font-family:"Cinzel", serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size: 22px;
+  color: var(--fg);
+  margin-top: 2px;
+}
+
+.logo-charleston-polo{
+  text-align:center;
+  padding: 12px 10px;
+  border: 1px solid rgba(199,176,138,.65);
+  border-radius: 12px;
+}
+.logo-charleston-polo .top{
+  display:block;
+  font-family:"Cinzel", serif;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-size: 12px;
+  color: var(--muted);
+}
+.logo-charleston-polo .main{
+  display:block;
+  font-family:"Cinzel", serif;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size: 22px;
+  color: var(--fg);
+  margin-top: 2px;
+}
+
+.roadmap-footnote{
+  margin: 18px auto 0;
+  max-width: 640px;
+  text-align:center;
+  color: rgba(199,176,138,.85);
+  font-size: .95rem;
+}
+
+/* Wallet modal */
+.wallet-modal-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  z-index: 9999;
+}
+
+.wallet-modal{
+  width: 100%;
+  max-width: 420px;
+  background: #050505;
+  color: #f5eedc;
+  border-radius: 14px;
+  border: 1px solid #3a2b16;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+  padding: 18px 18px 20px;
+  position: relative;
+  font-family:
+    "Cinzel","EB Garamond",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",serif;
+}
+
+.wallet-close{
+  position:absolute;
+  top: 2px;
+  right: 10px;
+  border:none;
+  background: transparent;
+  color: #e3bf72;
+  font-size: 34px;
+  cursor:pointer;
+}
+
+.wallet-title{
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #c7b08a;
+}
+
+.wallet-sub{
+  font-size: 13px;
+  text-align:center;
+  margin-bottom: 14px;
+  color: #f5eedc;
 }
