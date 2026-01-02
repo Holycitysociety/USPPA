@@ -239,43 +239,39 @@ ul{ padding-left:1.2rem; }
   background: rgba(227,191,114,.35);
 }
 
-/* grid cards */
+/* SINGLE COLUMN STACKED ALWAYS */
 .brand-grid{
   display:grid;
   grid-template-columns: 1fr;
-  gap: 14px;
-}
-@media (min-width: 860px){
-  .brand-grid{
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
+  gap: 28px;
 }
 
+/* remove individual “card” borders/boxes */
 .logo-block{
-  background:
-    radial-gradient(circle at 12% 0%, rgba(255,255,255,.06) 0, rgba(0,0,0,0) 60%),
-    #050505;
-  border: 1px solid rgba(227,191,114,.22);
-  border-radius: 14px;
-  padding: 16px 16px 14px;
-  box-shadow: 0 18px 48px rgba(0,0,0,.75);
+  padding: 6px 0 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .initiative-text{
-  margin: 12px 0 12px;
+  margin: 10px 0 12px;
   color: rgba(245,238,220,.86);
-  font-size: .98rem;
+  font-size: 1.02rem;
+  text-align: center;
 }
 
+/* centered CTA row */
 .cta-row{
   display:flex;
   flex-wrap:wrap;
+  justify-content: center;
   gap: 10px;
   margin-top: 10px;
 }
 
-/* Wordmarks pulled/paired to Patronium look */
+/* Wordmarks (no borders, no boxes) */
 .logo-polo-patronium{
   text-align:center;
   line-height:1.05;
@@ -293,7 +289,7 @@ ul{ padding-left:1.2rem; }
   font-family:"Cinzel", serif;
   letter-spacing:.18em;
   text-transform:uppercase;
-  font-size: 22px;
+  font-size: 26px;
   color: var(--fg);
   margin-top: 2px;
 }
@@ -307,14 +303,14 @@ ul{ padding-left:1.2rem; }
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding: 12px 10px;
-  border: 1px solid rgba(199,176,138,.65);
-  border-radius: 12px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
   color: var(--fg);
   font-family:"Cinzel", serif;
   letter-spacing:.14em;
   text-transform:uppercase;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .logo-the-polo-life{
@@ -334,16 +330,16 @@ ul{ padding-left:1.2rem; }
   font-family:"Cinzel", serif;
   letter-spacing:.18em;
   text-transform:uppercase;
-  font-size: 22px;
+  font-size: 26px;
   color: var(--fg);
   margin-top: 2px;
 }
 
 .logo-charleston-polo{
   text-align:center;
-  padding: 12px 10px;
-  border: 1px solid rgba(199,176,138,.65);
-  border-radius: 12px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
 }
 .logo-charleston-polo .top{
   display:block;
@@ -358,17 +354,17 @@ ul{ padding-left:1.2rem; }
   font-family:"Cinzel", serif;
   letter-spacing:.18em;
   text-transform:uppercase;
-  font-size: 22px;
+  font-size: 26px;
   color: var(--fg);
   margin-top: 2px;
 }
 
 .roadmap-footnote{
-  margin: 18px auto 0;
+  margin: 22px auto 0;
   max-width: 640px;
   text-align:center;
   color: rgba(199,176,138,.85);
-  font-size: .95rem;
+  font-size: .98rem;
 }
 
 /* Wallet modal */
