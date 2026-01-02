@@ -7,7 +7,7 @@ import "./App.css";
 
 // ---- Thirdweb client / chain / wallets ----
 const client = createThirdwebClient({
-  clientId: "f58c0bfc6e6a2c00092cc3c35db1eed8",
+  clientId: "f58c0bfc6e6a2c00092cc3c35db1eed8", // same as Patronium/Cowboy
 });
 
 const BASE = defineChain(8453);
@@ -21,28 +21,57 @@ const wallets = [
 const walletTheme = darkTheme({
   fontFamily:
     '"Cinzel", "EB Garamond", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", serif',
+  colors: {
+    modalBg: "#050505",
+    modalOverlayBg: "rgba(0,0,0,0.85)",
+    borderColor: "#3a2b16",
+    separatorLine: "#3a2b16",
+    mutedBg: "#050505",
+
+    primaryText: "#f5eedc",
+    secondaryText: "#c7b08a",
+    selectedTextColor: "#111111",
+    selectedTextBg: "#f5eedc",
+
+    primaryButtonBg: "#e3bf72",
+    primaryButtonText: "#181210",
+    secondaryButtonBg: "#050505",
+    secondaryButtonText: "#f5eedc",
+    secondaryButtonHoverBg: "#111111",
+    accentButtonBg: "#e3bf72",
+    accentButtonText: "#181210",
+    connectedButtonBg: "#050505",
+    connectedButtonHoverBg: "#111111",
+
+    secondaryIconColor: "#c7b08a",
+    secondaryIconHoverColor: "#f5eedc",
+    secondaryIconHoverBg: "#111111",
+    danger: "#f97373",
+    success: "#4ade80",
+    tooltipBg: "#050505",
+    tooltipText: "#f5eedc",
+    inputAutofillBg: "#050505",
+    scrollbarBg: "#050505",
+  },
 });
 
-// ---- Main App ----
 export default function App() {
+  const year = new Date().getFullYear();
   const [menuOpen, setMenuOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
+
   const menuRef = useRef(null);
   const account = useActiveAccount();
-  const year = new Date().getFullYear();
+  const isConnected = !!account;
 
   // Close 3-dot menu on outside click / Esc
   useEffect(() => {
     function handleClick(e) {
       if (!menuRef.current) return;
-      if (!menuRef.current.contains(e.target)) {
-        setMenuOpen(false);
-      }
+      if (!menuRef.current.contains(e.target)) setMenuOpen(false);
     }
     function handleKey(e) {
-      if (e.key === "Escape") {
-        setMenuOpen(false);
-      }
+      if (e.key === "Escape") setMenuOpen(false);
     }
     window.addEventListener("click", handleClick);
     window.addEventListener("keydown", handleKey);
@@ -52,8 +81,18 @@ export default function App() {
     };
   }, []);
 
+  // Escape closes wallet modal
+  useEffect(() => {
+    if (!walletOpen) return;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setWalletOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [walletOpen]);
+
   return (
-    <>
+    <div className="page">
       {/* Fixed 3-dot menu */}
       <nav
         className={`usp-menu ${menuOpen ? "is-open" : ""}`}
@@ -73,6 +112,7 @@ export default function App() {
         >
           …
         </button>
+
         <div
           id="usp-menu-list"
           className="usp-menu__panel"
@@ -83,7 +123,7 @@ export default function App() {
             USPPA
           </a>
 
-          <div className="usp-menu__heading">Patrons</div>
+          <div className="usp-menu__heading">PATRONS</div>
           <a
             className="usp-menu__link"
             role="menuitem"
@@ -91,7 +131,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Polo Patronium
+            POLO PATRONIUM
           </a>
           <a
             className="usp-menu__link"
@@ -100,10 +140,10 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Milites Templi
+            MILITES TEMPLI
           </a>
 
-          <div className="usp-menu__heading">Chapters & Initiatives</div>
+          <div className="usp-menu__heading">CHAPTERS</div>
           <a
             className="usp-menu__link"
             role="menuitem"
@@ -111,7 +151,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Charleston Polo
+            CHARLESTON POLO
           </a>
           <a
             className="usp-menu__link"
@@ -120,7 +160,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Cowboy Polo Circuit
+            COWBOY POLO CIRCUIT
           </a>
           <a
             className="usp-menu__link"
@@ -129,20 +169,20 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            The Polo Life
+            THE POLO LIFE
           </a>
         </div>
       </nav>
 
-      {/* Site header with centered Patron Wallet button */}
+      {/* Header */}
       <header className="site-header">
         <button
-          className="btn btn-primary"
+          className="btn btn-primary btn-pill"
           type="button"
           onClick={() => setWalletOpen(true)}
-          style={{ marginBottom: "1.25rem" }}
+          style={{ marginBottom: "1.15rem" }}
         >
-          Patron Wallet
+          {isConnected ? "OPEN PATRON WALLET" : "PATRON WALLET"}
         </button>
 
         <h1 className="masthead-title">
@@ -157,9 +197,9 @@ export default function App() {
         </p>
       </header>
 
-      {/* Main USPPA content */}
       <main id="content" className="container">
         <hr className="rule" />
+
         <h2 className="sc">Announcement</h2>
         <p>
           It is with honour that we record the foundation of the United States
@@ -169,122 +209,200 @@ export default function App() {
           encourage its growth, and open a new chapter in the life of the game.
         </p>
 
-        <h2 className="sc">Initiative Roadmap</h2>
+        {/* INITIATIVE ROADMAP (Wordmarks + CTA pills) */}
+        <section className="roadmap-wrap">
+          <div className="roadmap-title">
+            <div className="roadmap-kicker">INITIATIVE</div>
+            <div className="roadmap-word">ROADMAP</div>
+            <div className="roadmap-rule" />
+          </div>
 
-        <div className="notice">
-          <h3 className="notice-title">Polo Patronium</h3>
-          <p>
-            A token and membership initiative uniting patrons, players, and
-            clubs in a shared economy of sport.{" "}
-            <a
-              href="https://polopatronium.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn more at PoloPatronium.com
-            </a>
-            .
+          <div className="brand-grid">
+            {/* POLO PATRONIUM (simple wordmark) */}
+            <div className="logo-block">
+              <div className="logo-polo-patronium">
+                <span className="top">POLO</span>
+                <span className="main">PATRONIUM</span>
+              </div>
+
+              <p className="initiative-text">
+                A token and membership initiative uniting patrons, players, and
+                clubs in a shared economy of sport.
+              </p>
+
+              <div className="cta-row">
+                <a
+                  className="btn btn-outline btn-pill"
+                  href="https://polopatronium.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  VISIT POLOPATRONIUM.COM
+                </a>
+              </div>
+            </div>
+
+            {/* 777 WORDMARK BLOCK (exact from Patronium App.jsx) */}
+            <div className="logo-block">
+              <div className="logo-usp-string-remuda">
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.5em",
+                    padding: "8px 16px 6px",
+                    borderTop: "1px solid #c7b08a",
+                    borderBottom: "1px solid #c7b08a",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      color: "#c7b08a",
+                    }}
+                  >
+                    THREE
+                  </span>
+                  <span style={{ fontSize: "12px", color: "#c7b08a" }}>·</span>
+                  <span
+                    style={{
+                      fontSize: "32px",
+                      letterSpacing: "0.22em",
+                      color: "#f5eedc",
+                      lineHeight: 1,
+                    }}
+                  >
+                    7̶7̶7̶
+                  </span>
+                  <span style={{ fontSize: "12px", color: "#c7b08a" }}>·</span>
+                  <span
+                    style={{
+                      fontSize: "10px",
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      color: "#c7b08a",
+                    }}
+                  >
+                    SEVENS
+                  </span>
+                </div>
+
+                <div
+                  style={{
+                    marginTop: "6px",
+                    fontSize: "9px",
+                    letterSpacing: "0.32em",
+                    textTransform: "uppercase",
+                    color: "#9f8a64",
+                  }}
+                >
+                  STRING REMUDA
+                </div>
+              </div>
+
+              <p className="initiative-text">
+                Our managed herd of USPPA horses — consigned or owned by the
+                Association, assigned to operating patrons, trainers and local
+                players, and developed for play, exhibition and training across
+                our programmes.
+              </p>
+
+              <div className="cta-row">
+                <a
+                  className="btn btn-outline btn-pill"
+                  href="https://uspolopatrons.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  READ USPPA MODEL
+                </a>
+              </div>
+            </div>
+
+            {/* COWBOY POLO CIRCUIT (placed BEFORE Charleston per your request) */}
+            <div className="logo-block">
+              <div className="logo-cowboy-polo-circuit">
+                <span>COWBOY&nbsp;POLO&nbsp;CIRCUIT</span>
+              </div>
+
+              <p className="initiative-text">
+                A national endeavour to broaden Polo&apos;s reach, nurture
+                emerging talent, and encourage the next generation of American
+                players.
+              </p>
+
+              <div className="cta-row">
+                <a
+                  className="btn btn-outline btn-pill"
+                  href="https://cowboypolo.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  VISIT COWBOYPOLO.COM
+                </a>
+              </div>
+            </div>
+
+            {/* THE POLO LIFE */}
+            <div className="logo-block">
+              <div className="logo-the-polo-life">
+                <span className="top">THE</span>
+                <span className="main">POLO LIFE</span>
+              </div>
+
+              <p className="initiative-text">
+                A platform dedicated to presenting the elegance and traditions
+                of polo to new audiences in the digital age.
+              </p>
+
+              <div className="cta-row">
+                <a
+                  className="btn btn-outline btn-pill"
+                  href="https://thepololife.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  VISIT THEPOLOLIFE.COM
+                </a>
+              </div>
+            </div>
+
+            {/* CHARLESTON POLO */}
+            <div className="logo-block">
+              <div className="logo-charleston-polo">
+                <span className="top">CHARLESTON</span>
+                <span className="main">POLO CLUB</span>
+              </div>
+
+              <p className="initiative-text">
+                The renewal of Charleston, South Carolina&apos;s polo tradition —
+                our flagship Chapter and living test model for the USPPA Polo
+                Incubator.
+              </p>
+
+              <div className="cta-row">
+                <a
+                  className="btn btn-outline btn-pill"
+                  href="https://charlestonpolo.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  VISIT CHARLESTONPOLO.COM
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <p className="roadmap-footnote">
+            These initiatives are coordinated and supported through Polo
+            Patronium — the living token of patronage within the USPPA.
           </p>
-        </div>
+        </section>
 
-        {/* ✅ SWAPPED: Cowboy Polo Circuit now comes before Charleston Polo */}
-        <div className="notice">
-          <h3 className="notice-title">Cowboy Polo Circuit</h3>
-          <p>
-            A national endeavour to broaden the sport’s reach, nurture emerging
-            talent, and encourage the next generation of American players.{" "}
-            <a
-              href="https://cowboypolo.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn more at CowboyPolo.com
-            </a>
-            .
-          </p>
-        </div>
-
-        <div className="notice">
-          <h3 className="notice-title">The Polo Life</h3>
-          <p>
-            A platform dedicated to presenting the elegance and traditions of
-            polo to new audiences in the digital age.{" "}
-            <a
-              href="https://thepololife.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Visit ThePoloLife.com
-            </a>
-            .
-          </p>
-        </div>
-
-        <div className="notice">
-          <h3 className="notice-title">Charleston Polo</h3>
-          <p>
-            The renewal of Charleston, South Carolina’s polo tradition — our
-            flagship Chapter.{" "}
-            <a
-              href="https://charlestonpolo.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Visit CharlestonPolo.com
-            </a>
-            .
-          </p>
-        </div>
-
-        <div className="notice">
-          <h3 className="notice-title">Domain Holdings</h3>
-          <p>
-            In the interest of stewardship, the Association maintains a
-            portfolio of polo-related domains, ensuring the preservation of
-            heritage and the expansion of opportunity for clubs, schools, and
-            media.
-            <br />
-            <br />
-            6666polo.com, 6666poloclub.com
-            <br />
-            boonehallpolo.com, boonehallpoloclub.com
-            <br />
-            campitopolo.com, campitopolo.org
-            <br />
-            carolinapoloclub.com
-            <br />
-            charlestonpolo.club, charlestonpolo.com, charlestonpolo.stream
-            <br />
-            charlestonpoloclub.com, charlestonpoloclub.org
-            <br />
-            charlestonpoloclubathydepark.com, charlestonpoloclubathydepark.org
-            <br />
-            charlestonpoloschool.com, charlestonyouthpolo.com
-            <br />
-            charlestownepolo.com, charlestownepoloclub.com
-            <br />
-            clemsonpolo.com, clemsonpoloclub.com
-            <br />
-            cowboypolo.com, cowboypolo.org, cowboypolousa.com
-            <br />
-            greenvillepolo.com, greenvillepoloclub.com
-            <br />
-            hydeparkpolo.club, hydeparkpolo.com
-            <br />
-            kiawahpolo.com
-            <br />
-            palmettopolo.com, palmettopoloclub.com
-            <br />
-            stonoferrypolo.com, stonoferrypoloclub.com, stonopolo.com
-            <br />
-            thepolo.life, thepolo.stream, thepololife.com, thepolostream.com
-            <br />
-            uspolopatrons.com, uspolopatrons.org
-            <br />
-            vaqueropolo.com
-          </p>
-        </div>
-
+        {/* Remaining content (your original HTML content, kept) */}
         <hr className="rule" />
         <h2 className="sc">Patronium — Polo Patronage Perfected</h2>
         <p>
@@ -345,9 +463,9 @@ export default function App() {
         <hr className="rule" />
         <h2 className="sc">The Tribute Framework</h2>
         <p>
-          Each Chapter follows a principle of balanced and transparent
-          patronage. From its net revenue (gross revenue less operational
-          costs), a Chapter aims to follow this allocation:
+          Each Chapter follows a principle of balanced and transparent patronage.
+          From its net revenue (gross revenue less operational costs), a Chapter
+          aims to follow this allocation:
         </p>
         <ul>
           <li>
@@ -437,89 +555,30 @@ export default function App() {
         <p className="fineprint">© {year} USPoloPatrons.org</p>
       </footer>
 
-      {/* Patron Wallet modal */}
+      {/* Patron Wallet modal (NO screen-lock / overflow changes) */}
       {walletOpen && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.82)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "16px",
-            zIndex: 2000,
-          }}
-          onClick={() => setWalletOpen(false)}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              width: "100%",
-              maxWidth: 420,
-              background: "#050505",
-              color: "#f5eedc",
-              borderRadius: 14,
-              border: "1px solid #3a2b16",
-              boxShadow: "0 20px 60px rgba(0,0,0,0.9)",
-              padding: "18px 18px 22px",
-              position: "relative",
-              fontFamily:
-                '"Cinzel", "EB Garamond", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", serif',
-            }}
-          >
+        <div className="wallet-modal-backdrop" onClick={() => setWalletOpen(false)}>
+          <div className="wallet-modal" onClick={(e) => e.stopPropagation()}>
             <button
               type="button"
+              className="wallet-close"
               onClick={() => setWalletOpen(false)}
               aria-label="Close Patron Wallet"
-              style={{
-                position: "absolute",
-                top: 6,
-                right: 10,
-                border: "none",
-                background: "transparent",
-                color: "#e3bf72",
-                fontSize: 28,
-                cursor: "pointer",
-              }}
             >
               ×
             </button>
 
-            <h2
-              style={{
-                marginTop: 6,
-                marginBottom: 6,
-                fontSize: 16,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                textAlign: "center",
-                color: "#c7b08a",
-              }}
-            >
-              Patron Wallet
-            </h2>
-            <p
-              style={{
-                fontSize: 13,
-                textAlign: "center",
-                marginBottom: 14,
-                color: "#f5eedc",
-              }}
-            >
-              Sign in or create your Patron Wallet using email. This is the same
-              wallet used on Polo Patronium and Cowboy Polo.
-            </p>
+            <div className="wallet-title">PATRON WALLET</div>
+            <div className="wallet-sub">
+              {isConnected
+                ? "You are signed in."
+                : "Sign in or create your Patron Wallet using email."}
+            </div>
 
-            <ConnectEmbed
-              client={client}
-              wallets={wallets}
-              chain={BASE}
-              theme={walletTheme}
-            />
+            <ConnectEmbed client={client} wallets={wallets} chain={BASE} theme={walletTheme} />
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
