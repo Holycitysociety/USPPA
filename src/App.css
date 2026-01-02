@@ -243,7 +243,7 @@ ul{ padding-left:1.2rem; }
 .brand-grid{
   display:grid;
   grid-template-columns: 1fr;
-  gap: 0; /* divider handles spacing */
+  gap: 0; /* dividers handle spacing */
 }
 
 /* remove individual “card” borders/boxes */
@@ -253,22 +253,30 @@ ul{ padding-left:1.2rem; }
   border: none;
   border-radius: 0;
   box-shadow: none;
+  text-align: center;
 }
 
-/* NEW: dividers + healthy spacing */
+/* NEW: spacer above each initiative (applies to every block including first) */
+.logo-block{
+  padding-top: 22px; /* spacer above initiative */
+}
+
+/* NEW: spacer + divider line + spacer above each line (for every block after the first) */
 .logo-block + .logo-block{
-  margin-top: 18px; /* outer separation */
-  padding-top: 28px; /* space before line */
-  border-top: 1px solid rgba(227,191,114,.22); /* divider line */
+  margin-top: 0;                /* keep tight; we control all spacing explicitly */
+  padding-top: 36px;            /* spacer above the divider line */
+  border-top: 1px solid rgba(227,191,114,.22); /* the divider line */
 }
 
+/* spacer below the divider line before the initiative content */
 .logo-block + .logo-block::before{
   content:"";
   display:block;
   height: 0;
-  margin-bottom: 28px; /* space after line (before content) */
+  margin-bottom: 22px;
 }
 
+/* initiative copy */
 .initiative-text{
   margin: 10px 0 12px;
   color: rgba(245,238,220,.86);
