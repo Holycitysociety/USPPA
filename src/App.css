@@ -1,0 +1,371 @@
+body {
+  font-family: "EB Garamond", serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #111;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Cinzel", serif;
+  margin: 0 0 0.5em;
+}
+
+h2.sc,
+h3.sc {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 20px 96px;
+}
+
+/* Header + masthead */
+
+.usp-header {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 0;
+}
+
+.usp-wallet-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 24px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #111;
+  color: #f5eedc;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+    transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.usp-wallet-button:hover {
+  background: #000;
+  border-color: #000;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+.usp-masthead {
+  text-align: center;
+  padding: 2.5rem 1rem 2rem;
+}
+
+.masthead-title {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.est {
+  font-size: 0.9rem;
+  font-family: "Cinzel", serif;
+  margin-top: 0.5rem;
+}
+
+.dot {
+  padding: 0 0.4em;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 2rem 0;
+}
+
+.notice {
+  margin-bottom: 2rem;
+}
+
+.notice-title {
+  font-family: "Cinzel", serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.notice-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.notice-title a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  padding-left: 1.2rem;
+}
+
+.motto {
+  text-align: center;
+  font-style: italic;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #666;
+  padding: 2rem 0 1rem;
+}
+
+/* ---------- Wallet modal ---------- */
+
+.wallet-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.86);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 14px;
+}
+
+.wallet-modal-shell {
+  width: 100%;
+  max-width: 380px;
+}
+
+.wallet-modal-card {
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 14px;
+  border: 1px solid #3a2b16;
+  background: #050505;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.85);
+  padding: 20px 18px 18px;
+  color: #f5eedc;
+  font-size: 13px;
+  font-family: "Cinzel", "EB Garamond", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", serif;
+  position: relative;
+}
+
+.wallet-modal-close {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #e3bf72;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.wallet-modal-header {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.wallet-modal-title {
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c7b08a;
+}
+
+.wallet-modal-subtitle {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #f5eedc;
+  opacity: 0.9;
+}
+
+.wallet-connect-wrapper {
+  margin-bottom: 14px;
+}
+
+.wallet-account-section {
+  margin-bottom: 14px;
+}
+
+.wallet-address-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 4px;
+}
+
+.wallet-address-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9f8a64;
+}
+
+.wallet-address-value {
+  font-family: monospace;
+  font-size: 13px;
+}
+
+.wallet-address-copy {
+  border: none;
+  background: transparent;
+  color: #e3bf72;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.wallet-balances {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.wallet-balance-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.wallet-balance-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9f8a64;
+}
+
+.wallet-balance-value {
+  color: #f5eedc;
+}
+
+.wallet-signout-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: 1px solid #3a2b16;
+  background: transparent;
+  color: #f5eedc;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.wallet-signout-button:hover {
+  background: #111111;
+}
+
+.wallet-modal-footnote {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #c7b08a;
+}
+
+/* ---------- Gated section ---------- */
+
+.usp-gate {
+  position: relative;
+  margin-top: 3rem;
+}
+
+.usp-gate-content {
+  transition: filter 160ms ease, opacity 160ms ease;
+}
+
+.usp-gate-content--blur {
+  filter: blur(6px);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.usp-gate-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(248, 249, 248, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.usp-gate-overlay-inner {
+  max-width: 540px;
+}
+
+.usp-gate-kicker {
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #666666;
+  margin-bottom: 6px;
+}
+
+.usp-gate-title {
+  font-family: "Cinzel", serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.usp-gate-copy {
+  font-size: 0.96rem;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.usp-gate-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 24px;
+  border-radius: 999px;
+  border: 1px solid #111111;
+  background: #111111;
+  color: #f8f9f8;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.usp-gate-button:hover {
+  background: #000;
+}
+
+/* Responsive masthead size */
+
+@media (min-width: 768px) {
+  .masthead-title {
+    font-size: 3rem;
+  }
+}
