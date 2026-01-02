@@ -1,196 +1,239 @@
-/* =========================
-   USPPA — Dark Family Theme
-   True black page + warm gold spotlight card
-   ========================= */
+/* src/App.css */
 
-/* Typography + base */
+/* =========================
+   THEME (Black + spotlights)
+   ========================= */
+:root {
+  --bg: #050505;
+  --fg: #f5f5f5;
+  --muted: #bdbdbd;
+  --ink: #111111;
+
+  --accent: #e3bf72;     /* warm gold accent (wallet + links) */
+  --accent2: #c7b08a;    /* muted gold */
+
+  --border: #2b2b2b;
+  --panel: #0a0a0a;
+
+  --max-width: 760px;
+}
+
+/* =============
+   Base / reset
+   ============= */
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+
+  /* “spotlights” like Cowboy Polo */
+  background:
+    radial-gradient(circle at 30% 6%, rgba(255, 255, 255, 0.08) 0, rgba(0, 0, 0, 0.92) 48%),
+    radial-gradient(circle at 70% 18%, rgba(227, 191, 114, 0.07) 0, rgba(0, 0, 0, 0.95) 52%),
+    radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.05) 0, rgba(0, 0, 0, 0.98) 58%),
+    var(--bg);
+
+  color: var(--fg);
   font-family: "EB Garamond", serif;
   font-size: 18px;
   line-height: 1.6;
-  color: #f5f5f5;
-  background: #000; /* real black */
-  margin: 0;
-  padding: 0;
 }
 
-h1,
-h2,
-h3 {
-  font-family: "Cinzel", serif;
-  margin: 0 0 0.5em;
-}
-
-.sc {
-  font-variant: small-caps;
-  letter-spacing: 0.05em;
-}
-
-/* Links */
 a {
-  color: rgba(245, 245, 245, 0.9);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-a:hover {
-  color: #ffffff;
+  color: var(--accent);
+  text-decoration: none;
 }
 
-/* Layout */
+a:hover {
+  text-decoration: underline;
+}
+
+/* =================
+   Layout / wrappers
+   ================= */
 .container {
-  max-width: 760px;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* Header */
 .site-header {
   text-align: center;
   padding: 3rem 1rem 2rem;
 }
 
 .masthead-title {
-  font-size: 2rem;
-  line-height: 1.2;
   font-family: "Cinzel", serif;
+  font-size: 2rem;
+  line-height: 1.15;
   font-weight: 700;
   letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.5em;
 }
 
 .est {
   font-size: 0.9rem;
   font-family: "Cinzel", serif;
   margin-top: 0.5rem;
-  color: rgba(245, 245, 245, 0.75);
   letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .dot {
   padding: 0 0.4em;
 }
 
-/* Pill buttons (wallet + any CTAs) */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 12px 26px;
-  border-radius: 999px; /* pill */
-  border: 1px solid rgba(255, 255, 255, 0.72);
-
-  background: transparent;
-  color: #ffffff;
-
+.sc {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
   font-family: "Cinzel", serif;
-  font-size: 14px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.06s ease;
 }
 
-.btn:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.95);
-}
-
-.btn:active {
-  transform: translateY(1px);
-}
-
-.btn-primary {
-  /* keep it “poster-style”: outlined, not filled */
-}
-
-/* The “spotlight” poster card for the MAIN content only */
-main.container {
-  margin-top: 22px;
-  padding: 30px 22px;
-
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-
-  /* Warm gold spotlight + subtle paper sheen, but card stays dark */
-  background:
-    radial-gradient(circle at 50% 14%,
-      rgba(227, 191, 114, 0.22) 0%,
-      rgba(227, 191, 114, 0.10) 22%,
-      rgba(0, 0, 0, 0.00) 55%),
-    radial-gradient(circle at 50% 10%,
-      rgba(255, 255, 255, 0.07) 0%,
-      rgba(0, 0, 0, 0.00) 52%),
-    linear-gradient(to bottom, #141414 0%, #0a0a0a 55%, #070707 100%);
-
-  box-shadow:
-    0 28px 80px rgba(0, 0, 0, 0.80),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-/* Rules */
+/* =====
+   Rules
+   ===== */
 .rule {
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid var(--border);
   margin: 2rem 0;
 }
 
-/* Notices — do NOT turn into separate cards (keeps it clean, not muddy) */
+/* ==========
+   Notices
+   ========== */
 .notice {
   margin-bottom: 2rem;
-  padding: 0;
-  border: none;
-  background: transparent;
-  box-shadow: none;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.05) 0, rgba(0,0,0,0) 55%),
+    rgba(8, 8, 8, 0.65);
+  border-radius: 10px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.55);
 }
 
 .notice-title {
   font-family: "Cinzel", serif;
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
-  color: rgba(255, 255, 255, 0.92);
-  letter-spacing: 0.04em;
+  font-size: 1.1rem;
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg);
 }
 
-.notice p {
-  margin: 0;
-  color: rgba(245, 245, 245, 0.72);
-}
-
-/* Lists */
 ul {
   padding-left: 1.2rem;
-  color: rgba(245, 245, 245, 0.72);
+  color: var(--muted);
 }
 
-/* Motto */
+p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+
+b,
+strong {
+  color: var(--fg);
+}
+
+/* ==========
+   Buttons (pill)
+   ========== */
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0.5rem;
+  padding: 0.78rem 1.3rem;
+
+  border-radius: 999px;               /* pill */
+  border: 1px solid rgba(227, 191, 114, 0.6);
+
+  font-family: "Cinzel", serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  text-decoration: none;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #120e0a;
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.55);
+}
+
+.btn-primary:hover {
+  background: #f1cf86;
+  border-color: #f1cf86;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.75);
+}
+
+.btn-outline {
+  border-color: rgba(245, 245, 245, 0.35);
+  color: var(--muted);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.55);
+  color: var(--fg);
+}
+
+/* ==========
+   Motto / footer
+   ========== */
 .motto {
   text-align: center;
   font-style: italic;
   margin: 2rem 0;
   font-size: 1.05rem;
-  color: rgba(245, 245, 245, 0.80);
+  color: var(--fg);
 }
 
-/* Footer */
 .site-footer {
   text-align: center;
   font-size: 0.8rem;
-  color: rgba(245, 245, 245, 0.55);
+  color: var(--muted);
   padding: 2rem 1rem 2.5rem;
-}
-
-.fineprint {
-  margin: 0;
+  border-top: 1px solid var(--border);
+  margin-top: 2.5rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-/* =========================
-   Dropdown menu (3 dots)
-   Dark theme version
-   ========================= */
+.fineprint {
+  margin: 0;
+}
+
+/* ======================
+   3-dot dropdown menu
+   ====================== */
 .usp-menu {
   position: fixed;
   top: 10px;
@@ -202,12 +245,80 @@ ul {
 }
 
 .usp-menu__btn {
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: rgba(255, 255, 255, 0.9);
-
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--fg);
   font: inherit;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.45);
+}
 
-  cursor: pointer
+.usp-menu__panel {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+
+  background: rgba(8, 8, 8, 0.96);
+  min-width: 210px;
+
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow: 0 18px 46px rgba(0,0,0,0.75);
+}
+
+.usp-menu.is-open .usp-menu__panel {
+  display: block;
+}
+
+.usp-menu__heading {
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  padding: 10px 14px 6px;
+  background: rgba(255,255,255,0.03);
+  cursor: default;
+}
+
+.usp-menu__link {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: var(--fg);
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+.usp-menu__link:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+/* ==========
+   Responsive
+   ========== */
+@media (min-width: 768px) {
+  .masthead-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .site-header {
+    padding-top: 2.5rem;
+  }
+}
