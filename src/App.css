@@ -1,17 +1,52 @@
-/* Typography */
+/* src/App.css */
+
+/* ===== Theme ===== */
+:root {
+  --bg: #050505;
+  --panel: #0b0b0b;
+  --fg: #f5eedc;
+  --muted: #c7b08a;
+  --ink: #111111;
+
+  --gold: #e3bf72;
+  --gold-2: #c7b08a;
+
+  --border: #3a2b16;
+  --rule: rgba(227, 191, 114, 0.25);
+
+  --max-width: 760px;
+}
+
+/* ===== Base ===== */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'EB Garamond', serif;
+  font-family: "EB Garamond", serif;
   font-size: 18px;
   line-height: 1.6;
-  color: #111;
-  background: #fff;
+  color: var(--fg);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(227, 191, 114, 0.08) 0, rgba(0, 0, 0, 0.95) 45%),
+    radial-gradient(circle at 50% 65%, rgba(255, 255, 255, 0.04) 0, rgba(0, 0, 0, 0.98) 55%),
+    var(--bg);
   margin: 0;
   padding: 0;
 }
 
+a {
+  color: var(--gold);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 h1, h2, h3 {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   margin: 0 0 0.5em;
+  color: var(--fg);
 }
 
 .sc {
@@ -19,9 +54,9 @@ h1, h2, h3 {
   letter-spacing: 0.05em;
 }
 
-/* Layout */
+/* ===== Layout ===== */
 .container {
-  max-width: 700px;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -34,175 +69,126 @@ h1, h2, h3 {
 .masthead-title {
   font-size: 2rem;
   line-height: 1.2;
-  font-family: 'Cinzel', serif;
   font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 .est {
   font-size: 0.9rem;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   margin-top: 0.5rem;
+  color: var(--muted);
+  letter-spacing: 0.12em;
 }
 
 .dot {
   padding: 0 0.4em;
-}
-
-/* Announcement */
-.announcement {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.kicker {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 1rem;
-}
-
-.lede {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-}
-
-.dropcap::first-letter {
-  float: left;
-  font-size: 3rem;
-  line-height: 1;
-  margin-right: 0.2rem;
-  font-family: 'Cinzel', serif;
-  font-weight: 600;
+  color: var(--gold-2);
 }
 
 .rule {
   border: none;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--rule);
   margin: 2rem 0;
 }
 
-/* Notices */
+/* ===== Notices ===== */
 .notice {
   margin-bottom: 2rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.0));
+  border: 1px solid rgba(58, 43, 22, 0.65);
+  border-radius: 10px;
+  padding: 16px 16px 14px;
 }
 
 .notice-title {
-  font-size: 1.2rem;
-  font-family: 'Cinzel', serif;
-  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  font-family: "Cinzel", serif;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.06em;
+  color: var(--fg);
 }
 
-.notice-text {
+.notice p {
   margin: 0;
+  color: var(--muted);
 }
 
-/* Call-to-action buttons (UPDATED: pill shaped) */
+ul {
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.motto {
+  text-align: center;
+  font-style: italic;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+  color: var(--fg);
+}
+
+/* ===== Buttons (Pill) ===== */
 .btn {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   margin: 0.5rem;
-  padding: 0.65rem 1.35rem;
+  padding: 0.7rem 1.35rem;
   text-decoration: none;
-  font-family: 'Cinzel', serif;
-  border: 1px solid #000;
-  background: transparent;
-  color: #000;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
-  border-radius: 999px; /* pill */
-  font-size: 0.95rem;
+
+  font-family: "Cinzel", serif;
+  font-size: 0.92rem;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.08em;
+
+  border-radius: 999px; /* pill */
+  border: 1px solid rgba(227, 191, 114, 0.55);
+  background: transparent;
+  color: var(--fg);
+
   cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .btn:hover {
-  background: #000;
-  color: #fff;
+  background: rgba(227, 191, 114, 0.08);
+  border-color: rgba(227, 191, 114, 0.8);
   transform: translateY(-1px);
 }
 
 .btn-primary {
-  background: #000;
-  color: #fff;
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
 }
 
 .btn-primary:hover {
-  background: #111;
+  background: #f1cf86;
+  border-color: #f1cf86;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.7);
 }
 
-/* Motto */
-.motto {
-  font-style: italic;
-  text-align: center;
-  margin: 2rem 0;
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(227, 191, 114, 0.18);
 }
 
-/* Footer */
+/* ===== Footer ===== */
 .site-footer {
   text-align: center;
   font-size: 0.8rem;
-  color: #666;
+  color: rgba(199, 176, 138, 0.9);
   padding: 2rem 1rem;
 }
 
 .fineprint {
   margin: 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-/* Patronium Section */
-.patronium-section {
-  background: #f8f8f8;
-  padding: 2rem 1.5rem;
-  margin-top: 3rem;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-}
-
-.patronium-section h2 {
-  font-size: 1.4rem;
-  margin-top: 0;
-  font-family: 'Cinzel', serif;
-}
-
-.patronium-highlight {
-  background: #fff;
-  border-left: 4px solid #000;
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  font-style: italic;
-}
-
-.patronium-claim-note {
-  font-size: 0.95rem;
-  color: #444;
-  font-style: italic;
-  margin-top: -1rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Allocation Table */
-.allocation-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1.5rem 0;
-}
-
-.allocation-table th,
-.allocation-table td {
-  border: 1px solid #ccc;
-  padding: 0.75rem 1rem;
-  text-align: left;
-  font-size: 0.95rem;
-}
-
-.allocation-table th {
-  background-color: #eee;
-  font-weight: 600;
-  font-family: 'Cinzel', serif;
-  font-size: 0.95rem;
-}
-
-/* Dropdown Menu */
+/* ===== Dropdown Menu (Dark) ===== */
 .usp-menu {
   position: fixed;
   top: 10px;
@@ -214,13 +200,17 @@ h1, h2, h3 {
 }
 
 .usp-menu__btn {
-  background: transparent;
-  border: none;
+  background: rgba(5, 5, 5, 0.65);
+  border: 1px solid rgba(58, 43, 22, 0.75);
+  color: var(--gold);
   font: inherit;
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .usp-menu__panel {
@@ -228,13 +218,15 @@ h1, h2, h3 {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 6px;
-  background: #fff;
-  min-width: 180px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.15);
-  border-radius: 4px;
+  margin-top: 10px;
+
+  background: rgba(5, 5, 5, 0.98);
+  min-width: 210px;
+  box-shadow: 0 18px 60px rgba(0,0,0,.7);
+  border-radius: 12px;
   overflow: hidden;
   z-index: 1001;
+  border: 1px solid rgba(58, 43, 22, 0.9);
 }
 
 .usp-menu.is-open .usp-menu__panel {
@@ -243,129 +235,30 @@ h1, h2, h3 {
 
 .usp-menu__link {
   display: block;
-  padding: 10px 14px;
+  padding: 12px 14px;
   text-decoration: none;
-  color: #000;
+  color: var(--fg);
   white-space: nowrap;
+  font-size: 0.95rem;
 }
 
 .usp-menu__link:hover {
-  background: #f2f2f2;
+  background: rgba(227, 191, 114, 0.08);
 }
 
 .usp-menu__heading {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #666;
-  padding: 8px 14px 4px;
+  color: rgba(199, 176, 138, 0.95);
+  padding: 10px 14px 8px;
   cursor: default;
-  background: #f9f9f9;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(58, 43, 22, 0.65);
 }
 
-/* Wallet modal (dark, contrasting) */
-.wallet-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.82);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  z-index: 2000;
-}
-
-.wallet-modal {
-  width: 100%;
-  max-width: 420px;
-  background: #050505;
-  color: #f5eedc;
-  border-radius: 14px;
-  border: 1px solid #3a2b16;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.9);
-  padding: 18px 18px 22px;
-  position: relative;
-  font-family: "Cinzel","EB Garamond",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",serif;
-  max-height: 90vh;
-  overflow: auto;
-}
-
-.wallet-close {
-  position: absolute;
-  top: 6px;
-  right: 10px;
-  border: none;
-  background: transparent;
-  color: #e3bf72;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-.wallet-title {
-  margin-top: 6px;
-  margin-bottom: 6px;
-  font-size: 16px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-align: center;
-  color: #c7b08a;
-}
-
-.wallet-subtitle {
-  font-size: 13px;
-  text-align: center;
-  margin-bottom: 14px;
-  color: #f5eedc;
-}
-
-.wallet-row {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  flex-wrap: wrap;
-  margin: 10px 0 12px;
-  text-align: center;
-}
-
-.wallet-kicker {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #9f8a64;
-  margin-bottom: 2px;
-}
-
-.wallet-value {
-  font-size: 13px;
-  color: #f5eedc;
-}
-
-.wallet-balance-big {
-  font-size: 18px;
-  letter-spacing: 0.02em;
-  color: #f5eedc;
-}
-
-.wallet-divider {
-  height: 1px;
-  background: #3a2b16;
-  opacity: 0.9;
-  margin: 12px 0;
-}
-
-.wallet-input {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #3a2b16;
-  background: #050505;
-  color: #f5eedc;
-  font-size: 16px;
-  outline: none;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.55);
-}
-
+/* ===== Responsive ===== */
 @media (min-width: 768px) {
   .masthead-title {
     font-size: 3rem;
