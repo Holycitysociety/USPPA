@@ -463,7 +463,7 @@ export default function App() {
               ×
             </button>
 
-            <div className="wallet-title">U S P P A <br>
+            <div className="wallet-title">U S P P A <br/>
               Patron Wallet</div>
             <div className="wallet-subtitle">
               Sign in or create your Patron Wallet using email.
