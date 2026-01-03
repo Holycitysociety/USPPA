@@ -281,8 +281,12 @@ ul {
    Roadmap section
 -------------------------------------------------- */
 
+/* Narrower column so everything (logos, copy, buttons) sits inside
+   the same vertical rails on tablet & mobile. */
 .roadmap {
   text-align: center;
+  max-width: 34rem;
+  margin: 0 auto;
 }
 
 .roadmap-head {
@@ -291,28 +295,31 @@ ul {
 
 .roadmap-kicker {
   font-family: "Cinzel", serif;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--usp-gold-deep);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 
 .roadmap-title {
   font-family: "Cinzel", serif;
-  font-size: 1.25rem;
-  letter-spacing: 0.22em;
+  font-size: 1.35rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--usp-ink);
 }
 
 .initiative {
-  margin-bottom: 2.4rem;
+  margin-bottom: 2.6rem;
 }
 
 .initiative-text {
-  font-size: 0.98rem;
+  font-size: 1rem;
   margin-top: 0.9rem;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-row {
@@ -337,7 +344,7 @@ ul {
   margin-top: 0.75rem;
 }
 
-/* Wordmark blocks */
+/* Wordmark blocks (scaled up a bit) */
 .wm {
   font-family: "Cinzel", serif;
   text-transform: uppercase;
@@ -345,48 +352,48 @@ ul {
 }
 
 .wm-top {
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   color: var(--usp-gold-deep);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
 }
 
 .wm-main {
-  font-size: 1rem;
+  font-size: 1.15rem;
   color: var(--usp-ink);
 }
 
 .wm-sub {
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
   color: var(--usp-gold-deep);
-  margin-top: 0.5rem;
+  margin-top: 0.55rem;
 }
 
 .wm-patronium .wm-main {
-  font-size: 1.2rem;
-  letter-spacing: 0.24em;
+  font-size: 1.4rem;
+  letter-spacing: 0.26em;
 }
 
 .wm-patronium .wm-sub {
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
 }
 
 .wm-patronium .wm-rule {
   height: 1px;
-  width: 72%;
-  max-width: 320px;
+  width: 78%;
+  max-width: 340px;
   background: var(--usp-border-soft);
-  margin: 0.7rem auto 0.4rem;
+  margin: 0.8rem auto 0.45rem;
 }
 
 .wm-cowboy .wm-main {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 .wm-cowboy .wm-mid {
-  margin-top: 0.25rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.36em;
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.4em;
   color: var(--usp-ink-muted);
 }
 
@@ -395,7 +402,7 @@ ul {
 }
 
 .wm-simple .wm-main {
-  font-size: 1.05rem;
+  font-size: 1.25rem;
 }
 
 /* --------------------------------------------------
@@ -453,7 +460,7 @@ ul {
   font-size: 1rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
- 	color: var(--usp-ink);
+  color: var(--usp-ink);
   margin-bottom: 0.5rem;
 }
 
