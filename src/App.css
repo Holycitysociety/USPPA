@@ -1,7 +1,4 @@
-/* src/App.css
-   CHANGESET: smaller, more focused HERO spotlight + reduce ONLY the hero title size by ~25%
-   (Wordmarks + all other text untouched)
-*/
+/* src/App.css */
 
 /* -----------------------------
    Palette
@@ -59,7 +56,6 @@ p{ margin:0 0 1.1rem; }
 
 /* -----------------------------
    Background: WHITE spotlights then fade to jet black (no repeating)
-   (UPDATED: tighter hero spotlight)
 ----------------------------- */
 .page{
   min-height:100vh;
@@ -67,10 +63,10 @@ p{ margin:0 0 1.1rem; }
     /* tighter, brighter hero spotlight (focused on title) */
     radial-gradient(520px 320px at 50% 150px, rgba(255,255,255,0.20), rgba(0,0,0,0) 60%),
 
-    /* secondary soft halo (subtle, supporting) */
+    /* secondary soft halo */
     radial-gradient(980px 640px at 50% 320px, rgba(255,255,255,0.08), rgba(0,0,0,0) 72%),
 
-    /* fade to jet black for the rest of the scroll */
+    /* fade to jet black */
     linear-gradient(to bottom, rgba(0,0,0,0.00) 0px, rgba(0,0,0,0.70) 320px, #000 760px);
 
   background-repeat:no-repeat;
@@ -163,13 +159,12 @@ p{ margin:0 0 1.1rem; }
   margin-bottom:20px;
 }
 
-/* Two-line wordmark (forced) */
 .masthead-title{
   margin:0;
   display:inline-block;
   font-family:"Cinzel", serif;
 
-  /* UPDATED: reduce size by ~25% */
+  /* reduced ~25% */
   font-size:clamp(20px, 5.4vw, 40px);
 
   line-height:1.03;
@@ -178,13 +173,8 @@ p{ margin:0 0 1.1rem; }
   color:var(--ink);
   text-shadow:0 22px 70px rgba(0,0,0,0.78);
 
-  /* best-practice: keep breathing room on small screens without affecting other text */
+  /* best-practice breathing room on small screens */
   padding-inline:12px;
-}
-
-.masthead-line{
-  display:block;
-  white-space:nowrap;
 }
 
 .est{
@@ -216,7 +206,7 @@ p{ margin:0 0 1.1rem; }
 }
 
 /* -----------------------------
-   Buttons (pill) — grayscale base + gold accents
+   Buttons (pill)
 ----------------------------- */
 .btn{
   border-radius:999px;
@@ -314,7 +304,7 @@ p{ margin:0 0 1.1rem; }
 }
 
 /* -----------------------------
-   Wordmarks (unchanged)
+   Wordmarks (do not touch)
 ----------------------------- */
 .wm{ text-align:center; }
 
@@ -377,7 +367,6 @@ p{ margin:0 0 1.1rem; }
   height:1px;
   width:120px;
   background:rgba(227,191,114,0.28);
-  box-shadow:0 0 0 1px rgba(0,0,0,0.0);
 }
 
 .roadmap-footnote{
@@ -443,6 +432,17 @@ p{ margin:0 0 1.1rem; }
 .gate-cta{ margin-top:14px; }
 
 /* -----------------------------
+   Motto
+----------------------------- */
+.motto{
+  text-align:center;
+  font-style:italic;
+  margin:30px 0 0;
+  font-size:18px;
+  color:rgba(242,242,242,0.78);
+}
+
+/* -----------------------------
    Wallet modal
 ----------------------------- */
 .wallet-backdrop{
@@ -493,8 +493,6 @@ p{ margin:0 0 1.1rem; }
   line-height:1.2;
 }
 
-.wallet-title .gold{ color:var(--gold); }
-
 .wallet-subtitle{
   text-align:center;
   font-size:13px;
@@ -519,21 +517,17 @@ p{ margin:0 0 1.1rem; }
 
 /* -----------------------------
    Mobile tweaks
-   (UPDATED: hero title reduced here too; wordmarks untouched)
 ----------------------------- */
 @media (max-width:420px){
   body{ font-size:17px; }
   .container{ width:calc(100% - 34px); }
   .site-header{ padding-top:78px; }
 
-  /* keep the “two-line” hero wordmark readable but smaller */
   .masthead-title{
     font-size:clamp(18px, 5.0vw, 34px);
     letter-spacing:.055em;
     padding-inline:10px;
   }
 
-  .wm-main{ font-size:28px; }
-  .wm-patronium .wm-main{ font-size:30px; }
-  .wm-cowboy .wm-main{ font-size:30px; }
+  /* Wordmarks stay the same (per your instruction) */
 }
