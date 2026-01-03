@@ -191,15 +191,16 @@ body {
   font-size: 0.72rem;
 }
 
-/* Two-line wordmark hero */
+/* Two-line wordmark hero (fine weight, locked to 2 lines) */
 .masthead-title {
   font-family: "Cinzel", serif;
+  font-weight: 400;
   text-transform: uppercase;
-  font-size: clamp(1.3rem, 4vw, 2.4rem);
-  line-height: 1.35;
+  font-size: clamp(1.05rem, 3.3vw, 2rem);
+  line-height: 1.45;
   margin: 0 0 0.9rem;
   color: var(--usp-ink);
-  max-width: 20ch;
+  max-width: 28ch;
   margin-inline: auto;
 }
 
@@ -208,11 +209,11 @@ body {
 }
 
 .masthead-line:first-child {
-  letter-spacing: 0.24em;
+  letter-spacing: 0.2em;
 }
 
 .masthead-line:last-child {
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
 }
 
 .est {
@@ -452,7 +453,7 @@ ul {
   font-size: 1rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--usp-ink);
+ 	color: var(--usp-ink);
   margin-bottom: 0.5rem;
 }
 
@@ -538,8 +539,8 @@ ul {
   }
 
   .masthead-title {
-    font-size: clamp(1.4rem, 3vw, 2.5rem);
-    max-width: 22ch;
+    font-size: clamp(1.2rem, 2.8vw, 2.1rem);
+    max-width: 30ch;
   }
 
   .container {
