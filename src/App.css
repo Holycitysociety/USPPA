@@ -35,10 +35,10 @@ body {
   color: var(--usp-ink);
   background:
     radial-gradient(
-      circle at 50% 80px,
-      rgba(255, 255, 255, 0.15) 0,
-      rgba(255, 255, 255, 0.04) 180px,
-      transparent 340px
+      circle at 50% 86px,
+      rgba(255, 255, 255, 0.13) 0,
+      rgba(255, 255, 255, 0.04) 150px,
+      transparent 280px
     ),
     #050505;
   background-repeat: no-repeat;
@@ -99,7 +99,7 @@ body {
   box-shadow: 0 8px 26px rgba(0, 0, 0, 0.6);
 }
 
-/* Top gold Patron Wallet pill */
+/* Top Patron Wallet pill */
 .header-actions .btn {
   padding-inline: 2.4rem;
 }
@@ -191,17 +191,28 @@ body {
   font-size: 0.72rem;
 }
 
-/* Keep hero title comfortably inside viewport on small phones */
+/* Two-line wordmark hero */
 .masthead-title {
   font-family: "Cinzel", serif;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: clamp(1.1rem, 3.6vw, 2.1rem);
-  line-height: 1.5;
-  margin: 0 0 0.85rem;
+  font-size: clamp(1.3rem, 4vw, 2.4rem);
+  line-height: 1.35;
+  margin: 0 0 0.9rem;
   color: var(--usp-ink);
-  max-width: 22ch;
+  max-width: 20ch;
   margin-inline: auto;
+}
+
+.masthead-line {
+  display: block;
+}
+
+.masthead-line:first-child {
+  letter-spacing: 0.24em;
+}
+
+.masthead-line:last-child {
+  letter-spacing: 0.18em;
 }
 
 .est {
@@ -394,6 +405,11 @@ ul {
   position: relative;
 }
 
+.gate-lock-anchor {
+  position: relative;
+}
+
+/* Full-screen blur overlay, but only rendered after gateActive=true */
 .gate-overlay {
   position: fixed;
   inset: 0;
@@ -522,8 +538,8 @@ ul {
   }
 
   .masthead-title {
-    font-size: clamp(1.3rem, 2.8vw, 2.2rem);
-    max-width: 26ch;
+    font-size: clamp(1.4rem, 3vw, 2.5rem);
+    max-width: 22ch;
   }
 
   .container {
