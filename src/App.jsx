@@ -1,14 +1,6 @@
 // src/App.jsx
 import React, { useEffect, useRef, useState } from "react";
-import {
-  CheckoutWidget,
-  ConnectEmbed,
-  useActiveAccount,
-  useActiveWallet,
-  useDisconnect,
-  useWalletBalance,
-  darkTheme,
-} from "thirdweb/react";
+import { ConnectEmbed, useActiveAccount, darkTheme } from "thirdweb/react";
 import { createThirdwebClient, defineChain } from "thirdweb";
 import { inAppWallet } from "thirdweb/wallets";
 import "./App.css";
@@ -26,68 +18,10 @@ const wallets = [
   }),
 ];
 
-// Themed checkout / connect to match the Patronium wallet
-const patronCheckoutTheme = darkTheme({
+const walletTheme = darkTheme({
   fontFamily:
     '"Cinzel", "EB Garamond", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", serif',
-  colors: {
-    modalBg: "#050505",
-    modalOverlayBg: "rgba(0,0,0,0.85)",
-    borderColor: "#3a2b16",
-    separatorLine: "#3a2b16",
-    mutedBg: "#050505",
-    skeletonBg: "#111111",
-
-    primaryText: "#f5eedc",
-    secondaryText: "#c7b08a",
-    selectedTextColor: "#111111",
-    selectedTextBg: "#f5eedc",
-
-    primaryButtonBg: "#e3bf72",
-    primaryButtonText: "#181210",
-    secondaryButtonBg: "#050505",
-    secondaryButtonText: "#f5eedc",
-    secondaryButtonHoverBg: "#111111",
-    accentButtonBg: "#e3bf72",
-    accentButtonText: "#181210",
-    connectedButtonBg: "#050505",
-    connectedButtonHoverBg: "#111111",
-
-    secondaryIconColor: "#c7b08a",
-    secondaryIconHoverColor: "#f5eedc",
-    secondaryIconHoverBg: "#111111",
-    danger: "#f97373",
-    success: "#4ade80",
-    tooltipBg: "#050505",
-    tooltipText: "#f5eedc",
-    inputAutofillBg: "#050505",
-    scrollbarBg: "#050505",
-  },
 });
-
-// Simple error boundary for CheckoutWidget
-class CheckoutBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-  componentDidCatch(error, info) {
-    console.error("CheckoutWidget crashed:", error, info);
-  }
-  render() {
-    if (this.state.hasError) {
-      return (
-        <p style={{ color: "#e3bf72", marginTop: "12px" }}>
-          Checkout temporarily unavailable. Please try again later.
-        </p>
-      );
-    }
-    return this.props.children;
-  }
-}
 
 // ---- Main App ----
 export default function App() {
@@ -95,41 +29,14 @@ export default function App() {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
-  const [usdAmount, setUsdAmount] = useState("1");
 
   // Gate: begins at “Patronium — Polo Patronage Perfected”
   const gateRef = useRef(null);
   const hasTriggeredGateRef = useRef(false);
 
   const menuRef = useRef(null);
-
   const account = useActiveAccount();
-  const activeWallet = useActiveWallet();
-  const { disconnect } = useDisconnect();
   const isConnected = !!account;
-
-  // Native ETH on Base (gas)
-  const { data: baseBalance } = useWalletBalance({
-    address: account?.address,
-    chain: BASE,
-    client,
-  });
-
-  // USDC on Base
-  const { data: usdcBalance } = useWalletBalance({
-    address: account?.address,
-    chain: BASE,
-    client,
-    tokenAddress: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-  });
-
-  // PATRON on Base
-  const { data: patronBalance } = useWalletBalance({
-    address: account?.address,
-    chain: BASE,
-    client,
-    tokenAddress: "0xD766a771887fFB6c528434d5710B406313CAe03A",
-  });
 
   // --- dropdown menu: outside click / Esc ---
   useEffect(() => {
@@ -148,7 +55,7 @@ export default function App() {
     };
   }, []);
 
-  // --- scroll lock ONLY when wallet modal open (mobile-safe) ---
+  // --- scroll lock ONLY when wallet modal open ---
   useEffect(() => {
     if (!walletOpen) return;
 
@@ -194,81 +101,14 @@ export default function App() {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // in case user loads mid-page
+    // run once in case user loads mid-page
+    onScroll();
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [isConnected]);
 
   const openWallet = () => setWalletOpen(true);
   const closeWallet = () => setWalletOpen(false);
-
-  const handleSignOut = () => {
-    if (!activeWallet || !disconnect) return;
-    try {
-      disconnect(activeWallet);
-    } catch (err) {
-      console.error("Error disconnecting wallet:", err);
-    }
-  };
-
-  const shortAddress = account?.address
-    ? `${account.address.slice(0, 6)}…${account.address.slice(-4)}`
-    : "";
-
-  const handleCopyAddress = async () => {
-    if (!account?.address) return;
-    try {
-      await navigator.clipboard.writeText(account.address);
-      alert("Patron Wallet address copied.");
-    } catch (err) {
-      console.error("Clipboard error:", err);
-    }
-  };
-
-  const normalizedAmount =
-    usdAmount && Number(usdAmount) > 0 ? String(usdAmount) : "1";
-
-  const handleCheckoutSuccess = async (result) => {
-    try {
-      if (!account?.address) return;
-
-      const resp = await fetch("/.netlify/functions/mint-patron", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          address: account.address,
-          usdAmount: normalizedAmount,
-          checkout: {
-            id: result?.id,
-            amountPaid: result?.amountPaid ?? normalizedAmount,
-            currency: result?.currency ?? "USD",
-          },
-        }),
-      });
-
-      if (!resp.ok) {
-        const text = await resp.text();
-        console.error("mint-patron error:", text);
-        alert(
-          "Payment succeeded, but we could not mint PATRON automatically.\n" +
-            "We’ll review your transaction and credit you manually if needed."
-        );
-        return;
-      }
-
-      await resp.json();
-      alert(
-        "Thank you — your patronage payment was received.\n\n" +
-          "PATRON is being credited to your wallet."
-      );
-    } catch (err) {
-      console.error("Error in handleCheckoutSuccess:", err);
-      alert(
-        "Payment completed, but there was an error minting PATRON.\n" +
-          "We’ll review and fix this on our side."
-      );
-    }
-  };
 
   return (
     <div className="page">
@@ -322,7 +162,7 @@ export default function App() {
             Milites Templi
           </a>
 
-          <div className="usp-menu__heading">Chapters & Initiatives</div>
+          <div className="usp-menu__heading">Chapters &amp; Initiatives</div>
           <a
             className="usp-menu__link"
             role="menuitem"
@@ -357,7 +197,7 @@ export default function App() {
       <header id="top" className="site-header">
         <div className="header-actions">
           <button
-            className="btn btn-gold"
+            className="btn btn-primary"
             type="button"
             onClick={openWallet}
           >
@@ -366,9 +206,8 @@ export default function App() {
         </div>
 
         <h1 className="masthead-title">
-          UNITED STATES POLO
-          <br />
-          PATRONS ASSOCIATION
+          <span className="masthead-line">UNITED STATES POLO</span>
+          <span className="masthead-line">PATRONS ASSOCIATION</span>
         </h1>
 
         <p className="est">
@@ -376,7 +215,7 @@ export default function App() {
         </p>
       </header>
 
-      {/* Intro */}
+      {/* Intro + body */}
       <main className="container">
         <hr className="rule" />
 
@@ -404,12 +243,10 @@ export default function App() {
               className="wm wm-patronium"
               aria-label="Polo Patronium wordmark"
             >
-              <div className="wm-top wm-kicker">Official Token</div>
+              <div className="wm-top">Official Token</div>
               <div className="wm-main">POLO&nbsp;PATRONIUM</div>
               <div className="wm-rule" />
-              <div className="wm-sub">
-                Symbol &quot;PATRON&quot; · Built on Base
-              </div>
+              <div className="wm-sub">Symbol “PATRON” · Built on Base</div>
             </div>
 
             <p className="initiative-text">
@@ -468,7 +305,7 @@ export default function App() {
           {/* THE POLO LIFE */}
           <div className="initiative">
             <div className="wm wm-simple" aria-label="The Polo Life wordmark">
-              <div className="wm-top wm-kicker">Media</div>
+              <div className="wm-top">Media</div>
               <div className="wm-main">THE&nbsp;POLO&nbsp;LIFE</div>
               <div className="wm-sub">
                 Stories · Horses · Players · Chapters
@@ -500,7 +337,7 @@ export default function App() {
               className="wm wm-simple"
               aria-label="Charleston Polo wordmark"
             >
-              <div className="wm-top wm-kicker">Flagship Chapter</div>
+              <div className="wm-top">Flagship Chapter</div>
               <div className="wm-main">CHARLESTON&nbsp;POLO</div>
               <div className="wm-sub">USPPA Chapter Test Model</div>
             </div>
@@ -536,7 +373,7 @@ export default function App() {
             GATED ZONE STARTS HERE (blur overlay begins here)
            ------------------------------------------------------- */}
         <div ref={gateRef} className="gate-zone" id="patronium-polo-patronage">
-          {/* Persistent blur overlay when NOT connected */}
+          {/* Sticky blur overlay when NOT connected */}
           {!isConnected && (
             <div
               className="gate-overlay"
@@ -551,8 +388,12 @@ export default function App() {
                   This section and everything below is reserved for signed-in
                   patrons. Tap here to open Patron Wallet.
                 </div>
-                <div className="gate-cta">
-                  <button className="btn" type="button" onClick={openWallet}>
+                <div style={{ marginTop: 14 }}>
+                  <button
+                    className="btn btn-outline"
+                    type="button"
+                    onClick={openWallet}
+                  >
                     Open Patron Wallet
                   </button>
                 </div>
@@ -673,9 +514,9 @@ export default function App() {
             decentralise it — to bring clarity, fairness, and longevity to the
             way it is taught, funded, and shared. Patronium and the Polo
             Incubator model together create a living, self-sustaining framework
-            for the game’s renewal across America. This is how the USPPA will
-            grow the next American 10-Goal player.
+            for the game’s renewal across America.
           </p>
+          <p>This is how the USPPA will grow the next American 10-Goal player.</p>
 
           <hr className="rule" />
 
@@ -688,12 +529,11 @@ export default function App() {
             speculation, but for legacy.
           </p>
           <p>
-            Patronium ensures every act of patronage — whether a horse
-            consigned, a pasture opened, or a field sponsored — is recognised
-            and recorded within a transparent, honourable system that rewards
-            those who build the sport. Your contribution does not vanish into
-            expense; it lives on in horses trained, players formed, and fields
-            maintained.
+            Patronium ensures every act of patronage — whether a horse consigned,
+            a pasture opened, or a field sponsored — is recognised and recorded
+            within a transparent, honourable system that rewards those who build
+            the sport. Your contribution does not vanish into expense; it lives
+            on in horses trained, players formed, and fields maintained.
           </p>
           <p>
             Those who have carried the game through their own time know: it
@@ -720,10 +560,13 @@ export default function App() {
         </footer>
       </main>
 
-      {/* Patron Wallet modal – unified with Patronium site */}
+      {/* Patron Wallet modal */}
       {walletOpen && (
         <div className="wallet-backdrop" onClick={closeWallet}>
-          <div className="wallet-shell" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="wallet-shell"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               className="wallet-close"
               type="button"
@@ -742,229 +585,12 @@ export default function App() {
               Sign in or create your Patron Wallet using email.
             </div>
 
-            {/* Connect OR account view */}
-            {!account ? (
-              <div style={{ marginBottom: "14px" }}>
-                <ConnectEmbed
-                  client={client}
-                  wallets={wallets}
-                  chain={BASE}
-                  theme={patronCheckoutTheme}
-                />
-              </div>
-            ) : (
-              <div
-                style={{
-                  marginBottom: "14px",
-                  textAlign: "center",
-                  fontSize: "13px",
-                }}
-              >
-                {/* Address + copy */}
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: 8,
-                    marginBottom: "10px",
-                    marginTop: "2px",
-                  }}
-                >
-                  <div style={{ fontFamily: "monospace", fontSize: "13px" }}>
-                    {shortAddress}
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleCopyAddress}
-                    style={{
-                      border: "none",
-                      background: "transparent",
-                      color: "#e3bf72",
-                      cursor: "pointer",
-                      fontSize: "14px",
-                    }}
-                    aria-label="Copy Patron Wallet address"
-                  >
-                    📋
-                  </button>
-                </div>
-
-                {/* Gas + USDC */}
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: "28px",
-                    marginBottom: "10px",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <div>
-                    <div
-                      style={{
-                        fontSize: "10px",
-                        letterSpacing: "0.14em",
-                        textTransform: "uppercase",
-                        color: "#9f8a64",
-                        marginBottom: "2px",
-                      }}
-                    >
-                      Gas
-                    </div>
-                    <div
-                      style={{ color: "#f5eedc", fontSize: "13px" }}
-                    >{`${baseBalance?.displayValue || "0"} ${
-                      baseBalance?.symbol || "ETH"
-                    }`}</div>
-                  </div>
-
-                  <div>
-                    <div
-                      style={{
-                        fontSize: "10px",
-                        letterSpacing: "0.14em",
-                        textTransform: "uppercase",
-                        color: "#9f8a64",
-                        marginBottom: "2px",
-                      }}
-                    >
-                      USDC
-                    </div>
-                    <div
-                      style={{ color: "#f5eedc", fontSize: "13px" }}
-                    >{`${usdcBalance?.displayValue || "0"} ${
-                      usdcBalance?.symbol || "USDC"
-                    }`}</div>
-                  </div>
-                </div>
-
-                {/* Patron balance */}
-                <div style={{ marginBottom: "12px" }}>
-                  <div
-                    style={{
-                      fontSize: "10px",
-                      letterSpacing: "0.18em",
-                      textTransform: "uppercase",
-                      color: "#c7b08a",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    Patronium Balance
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "18px",
-                      letterSpacing: "0.02em",
-                      color: "#f5eedc",
-                    }}
-                  >
-                    {patronBalance?.displayValue || "0"}{" "}
-                    {patronBalance?.symbol || "PATRON"}
-                  </div>
-                </div>
-
-                <button
-                  className="btn"
-                  style={{
-                    minWidth: "auto",
-                    padding: "6px 18px",
-                    fontSize: "11px",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                  }}
-                  onClick={handleSignOut}
-                >
-                  Sign Out
-                </button>
-              </div>
-            )}
-
-            {/* Amount + Checkout (gated by connection) */}
-            <div style={{ position: "relative" }}>
-              {!isConnected && (
-                <button
-                  type="button"
-                  onClick={closeWallet}
-                  aria-label="Close Patron Wallet"
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "rgba(0,0,0,0.68)",
-                    zIndex: 10,
-                    borderRadius: "12px",
-                    border: "none",
-                    padding: 0,
-                    cursor: "pointer",
-                  }}
-                />
-              )}
-
-              <div
-                style={{
-                  opacity: !isConnected ? 0.75 : 1,
-                  pointerEvents: isConnected ? "auto" : "none",
-                  transition: "opacity 160ms ease",
-                }}
-              >
-                <div style={{ marginBottom: "12px" }}>
-                  <label
-                    style={{
-                      display: "block",
-                      fontSize: "10px",
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      color: "#c7b08a",
-                      marginBottom: "6px",
-                    }}
-                  >
-                    Choose Your Patronage (USD)
-                  </label>
-                  <input
-                    type="number"
-                    min="1"
-                    step="1"
-                    value={usdAmount}
-                    onChange={(e) => setUsdAmount(e.target.value)}
-                    style={{
-                      width: "100%",
-                      padding: "10px 12px",
-                      borderRadius: "10px",
-                      border: "1px solid #3a2b16",
-                      background: "#050505",
-                      color: "#f5eedc",
-                      fontSize: "16px",
-                      outline: "none",
-                      boxShadow: "0 10px 30px rgba(0,0,0,0.55)",
-                    }}
-                  />
-                </div>
-
-                <CheckoutBoundary>
-                  <CheckoutWidget
-                    client={client}
-                    name={"POLO PATRONIUM"}
-                    description={
-                      "USPPA PATRONAGE UTILITY TOKEN · THREE SEVENS 7̶7̶7̶ REMUDA · COWBOY POLO CIRCUIT · THE POLO LIFE · CHARLESTON POLO CLUB"
-                    }
-                    currency={"USD"}
-                    chain={BASE}
-                    amount={normalizedAmount}
-                    tokenAddress={
-                      "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
-                    }
-                    seller={"0xfee3c75691e8c10ed4246b10635b19bfff06ce16"}
-                    buttonLabel={"BUY PATRON (USDC on Base)"}
-                    theme={patronCheckoutTheme}
-                    onSuccess={handleCheckoutSuccess}
-                    onError={(err) => {
-                      console.error("Checkout error:", err);
-                      alert(err?.message || String(err));
-                    }}
-                  />
-                </CheckoutBoundary>
-              </div>
-            </div>
+            <ConnectEmbed
+              client={client}
+              wallets={wallets}
+              chain={BASE}
+              theme={walletTheme}
+            />
           </div>
         </div>
       )}
