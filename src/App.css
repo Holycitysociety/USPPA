@@ -1,409 +1,365 @@
-/* src/App.css */
-
+/* Typography + base */
 :root {
-  --bg: #000000;
-  --fg: #ffffff;
-  --muted: rgba(255, 255, 255, 0.74);
-  --muted2: rgba(255, 255, 255, 0.55);
-  --border: rgba(255, 255, 255, 0.22);
-  --gold: #f5eedc;
-  --gold2: #c7b08a;
-
-  --max-width: 900px;
-  --container: 760px;
+  --gold: #e3bf72;
+  --gold-2: #c7b08a;
+  --ink: #050505;
+  --jet: #000000;
+  --paper: #f5eedc;
+  --muted: #9f8a64;
+  --line: rgba(227, 191, 114, 0.24);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
+html, body {
   height: 100%;
 }
 
 body {
   margin: 0;
-  color: var(--fg);
-  font-family: "EB Garamond", serif;
-  line-height: 1.65;
-
-  /* Non-repeating spotlight header, fades to jet black */
-  background-image:
-    radial-gradient(900px 520px at 30% 12%, rgba(255,255,255,0.12), rgba(0,0,0,0) 60%),
-    radial-gradient(720px 460px at 72% 18%, rgba(255,255,255,0.08), rgba(0,0,0,0) 62%),
-    radial-gradient(1100px 680px at 50% 0%, rgba(255,255,255,0.06), rgba(0,0,0,0) 70%),
-    linear-gradient(to bottom, #090909 0%, #000000 520px, #000000 100%);
-  background-repeat: no-repeat;
-  background-size:
-    100% 680px,
-    100% 680px,
-    100% 680px,
-    100% 100%;
-  background-color: #000;
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--paper);
+  background: var(--jet);
 }
 
+/* Page background: single spotlight at top, fades to jet black; NO repeat */
 .page {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 28px 18px 84px;
+  min-height: 100vh;
+  position: relative;
+  background: var(--jet);
+  overflow-x: hidden;
 }
 
+/* Spotlight layer */
+.page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  /* A soft spotlight + vignette */
+  background:
+    radial-gradient(1200px 520px at 50% 12%, rgba(227,191,114,0.12), rgba(0,0,0,0) 62%),
+    radial-gradient(900px 420px at 50% 18%, rgba(255,255,255,0.06), rgba(0,0,0,0) 60%),
+    radial-gradient(1400px 900px at 50% 0%, rgba(0,0,0,0.2), rgba(0,0,0,0.92) 70%);
+}
+
+/* Content layer above background */
+.page > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: 'Cinzel', serif;
+  margin: 0 0 0.5em;
+}
+
+.sc {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+/* Layout */
 .container {
-  max-width: var(--container);
+  max-width: 760px;
   margin: 0 auto;
-  padding: 0 12px;
-}
-
-a {
-  color: var(--gold);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(245, 238, 220, 0.35);
-}
-a:hover {
-  border-bottom-color: rgba(245, 238, 220, 0.8);
+  padding: 0 20px 40px;
 }
 
 .site-header {
   text-align: center;
-  padding: 34px 0 18px;
+  padding: 3.1rem 1rem 2.2rem;
 }
 
 .header-actions {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-bottom: 18px;
 }
 
 .masthead-title {
-  font-family: "Cinzel", serif;
+  font-size: 2rem;
+  line-height: 1.06;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  line-height: 1.12;
-  margin: 0 0 10px;
-  font-size: clamp(1.85rem, 4.5vw, 2.6rem);
 }
 
 .est {
-  margin: 0;
-  font-family: "Cinzel", serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  font-family: 'Cinzel', serif;
+  margin-top: 0.75rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(245, 238, 220, 0.72);
 }
 
 .dot {
-  padding: 0 0.45em;
-  opacity: 0.9;
+  padding: 0 0.55em;
+  color: rgba(227,191,114,0.8);
 }
 
-.sc {
-  font-family: "Cinzel", serif;
-  font-variant: small-caps;
-  letter-spacing: 0.08em;
-  text-transform: none;
-  margin-top: 0;
-}
-
+/* Rules */
 .rule {
   border: none;
-  border-top: 1px solid var(--border);
-  margin: 26px 0;
+  border-top: 1px solid rgba(227,191,114,0.22);
+  margin: 0;
 }
 
-.rule.rule-spaced {
-  margin: 40px 0;
+.rule-spaced {
+  margin: 2.25rem 0;
 }
 
-ul {
-  padding-left: 1.1rem;
-  color: var(--muted);
-}
-
-p {
-  color: var(--muted);
-  font-size: 1.02rem;
-}
-
-.motto {
-  text-align: center;
-  font-style: italic;
-  margin: 2.2rem 0 0;
-  font-size: 1.08rem;
-  color: rgba(255, 255, 255, 0.78);
-}
-
-/* Dropdown Menu */
-.usp-menu {
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1100;
-  text-align: center;
-  user-select: none;
-}
-
-.usp-menu__btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #fff;
-  font: inherit;
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 7px 12px;
-  border-radius: 999px;
-}
-
-.usp-menu__panel {
-  display: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 8px;
-  background: #0a0a0a;
-  min-width: 210px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
-  border-radius: 14px;
-  overflow: hidden;
-  z-index: 1101;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.usp-menu.is-open .usp-menu__panel {
-  display: block;
-}
-
-.usp-menu__link {
-  display: block;
-  padding: 12px 14px;
+/* Links */
+a {
+  color: var(--gold);
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.9);
-  white-space: nowrap;
-  font-family: "Cinzel", serif;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
-.usp-menu__link:hover {
-  background: rgba(255, 255, 255, 0.06);
+a:hover {
+  text-decoration: underline;
 }
 
-.usp-menu__heading {
-  font-family: "Cinzel", serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-  padding: 10px 14px 8px;
-  cursor: default;
-  background: rgba(255, 255, 255, 0.03);
-}
-
-/* Buttons — pill */
+/* Buttons: pill-shaped */
 .btn {
   display: inline-flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding: 12px 22px;
+
+  padding: 0.8rem 1.25rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  font-family: "Cinzel", serif;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-size: 0.78rem;
-  background: transparent;
-  color: #fff;
-  cursor: pointer;
+
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+
+  border: 1px solid rgba(227,191,114,0.60);
+  background: rgba(0,0,0,0.60);
+  color: var(--gold);
+
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Make the "white buttons" black like the others */
-.btn-primary {
-  background: transparent;
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.55);
-}
-.btn-primary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.85);
+.btn:hover {
+  background: rgba(227,191,114,0.10);
+  border-color: rgba(227,191,114,0.85);
+  transform: translateY(-1px);
 }
 
-.btn-outline:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.85);
+/* Top Patron Wallet button: gold filled */
+.btn-gold {
+  background: rgba(227,191,114,0.95);
+  color: #181210;
+  border-color: rgba(227,191,114,0.95);
 }
-
-/* Top Patron Wallet button = gold */
-.header-actions .btn {
-  background: var(--gold);
-  color: #111;
-  border-color: var(--gold);
-}
-.header-actions .btn:hover {
-  background: #ffffff;
-  border-color: #ffffff;
+.btn-gold:hover {
+  background: rgba(227,191,114,1);
+  border-color: rgba(227,191,114,1);
 }
 
 /* Roadmap */
 .roadmap {
-  margin-top: 10px;
+  margin-top: 0.5rem;
 }
 
 .roadmap-head {
   text-align: center;
-  margin: 12px 0 28px;
+  margin-bottom: 24px;
 }
 
 .roadmap-kicker {
-  font-family: "Cinzel", serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.26em;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-  margin-bottom: 6px;
+  color: rgba(159, 138, 100, 0.95);
+  margin-bottom: 4px;
 }
 
 .roadmap-title {
-  font-family: "Cinzel", serif;
   font-size: 1.05rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(245, 238, 220, 0.92);
 }
 
 .initiative {
-  text-align: center;
-  padding: 6px 0;
+  padding: 18px 0 10px;
 }
 
 .initiative-text {
-  max-width: 700px;
-  margin: 12px auto 0;
-  color: rgba(255, 255, 255, 0.68);
+  margin: 12px auto 16px;
+  max-width: 640px;
+  color: rgba(245, 238, 220, 0.88);
 }
 
 .cta-row {
   display: flex;
-  gap: 12px;
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 16px;
+  margin-bottom: 18px;
 }
 
 .divider {
   height: 1px;
-  width: min(420px, 82%);
-  background: rgba(255, 255, 255, 0.16);
-  margin: 34px auto;
+  width: 100%;
+  background: rgba(227,191,114,0.18);
+  margin: 18px 0 10px;
 }
 
 /* Wordmarks */
 .wm {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  text-align: center;
   margin: 0 auto;
+  max-width: 680px;
 }
 
 .wm-top {
-  font-family: "Cinzel", serif;
   font-size: 0.72rem;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(199, 176, 138, 0.9);
+  margin-bottom: 6px;
 }
 
 .wm-main {
-  font-family: "Cinzel", serif;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-family: 'Cinzel', serif;
+  font-size: 1.55rem;
   letter-spacing: 0.22em;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+  color: rgba(245, 238, 220, 0.95);
+  line-height: 1.1;
 }
 
 .wm-sub {
-  font-family: "Cinzel", serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
+  margin-top: 8px;
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.52);
+  color: rgba(159, 138, 100, 0.95);
 }
 
 .wm-rule {
   height: 1px;
-  width: 120px;
-  background: rgba(245, 238, 220, 0.45);
-  margin-top: 6px;
-  margin-bottom: 4px;
+  width: 180px;
+  margin: 10px auto 0;
+  background: rgba(227,191,114,0.35);
 }
 
-/* POLO PATRONIUM wordmark tuning */
+/* Patronium wordmark gets a subtle “plaque” look */
 .wm-patronium .wm-main {
-  font-size: clamp(1.35rem, 3.8vw, 1.85rem);
+  font-size: 1.65rem;
+  letter-spacing: 0.26em;
+  text-shadow: 0 8px 22px rgba(0,0,0,0.65);
+}
+.wm-patronium .wm-rule {
+  width: 220px;
+}
+
+/* Cowboy wordmark: stacked + spaced */
+.wm-cowboy .wm-main {
+  font-size: 1.5rem;
   letter-spacing: 0.28em;
 }
-.wm-patronium .wm-top {
-  color: var(--gold2);
-}
-.wm-patronium .wm-sub {
-  color: rgba(199, 176, 138, 0.8);
-}
-
-/* COWBOY wordmark tuning */
-.wm-cowboy .wm-main {
-  font-size: clamp(1.45rem, 4vw, 2rem);
-  letter-spacing: 0.26em;
-}
 .wm-cowboy .wm-mid {
-  font-family: "Cinzel", serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.22em;
+  margin-top: 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.78);
-  margin-top: 2px;
+  color: rgba(199,176,138,0.95);
 }
-.wm-cowboy .wm-dot {
-  display: inline-block;
-  margin: 0 0.65em;
-  color: var(--gold2);
+.wm-dot {
+  padding: 0 10px;
+  color: rgba(227,191,114,0.75);
 }
 
 /* Simple wordmark */
 .wm-simple .wm-main {
-  font-size: clamp(1.15rem, 3.2vw, 1.5rem);
+  font-size: 1.35rem;
   letter-spacing: 0.22em;
 }
-.wm-simple .wm-top {
-  color: var(--gold2);
+
+/* Footnote */
+.roadmap-footnote {
+  margin: 20px auto 0;
+  text-align: center;
+  max-width: 680px;
+  color: rgba(245, 238, 220, 0.72);
+  font-style: italic;
 }
 
-.roadmap-footnote {
-  text-align: center;
-  max-width: 720px;
-  margin: 30px auto 0;
-  font-size: 0.98rem;
-  color: rgba(255, 255, 255, 0.62);
+/* Gated zone */
+.gate-zone {
+  position: relative;
+}
+
+/* Blur overlay starts here */
+.gate-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0,0,0,0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 28px 18px;
+  cursor: pointer;
+}
+
+.gate-card {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(0,0,0,0.62);
+  border: 1px solid rgba(227,191,114,0.28);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 22px 70px rgba(0,0,0,0.80);
+}
+
+.gate-kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(199,176,138,0.95);
+  margin-bottom: 6px;
+  font-family: "Cinzel", serif;
+}
+
+.gate-title {
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245,238,220,0.95);
+  margin-bottom: 8px;
+  font-family: "Cinzel", serif;
+}
+
+.gate-copy {
+  color: rgba(245,238,220,0.82);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.gate-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
 }
 
 /* Footer */
 .site-footer {
   text-align: center;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.55);
-  padding: 36px 8px 0;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: rgba(245,238,220,0.62);
+  padding: 2rem 1rem 1.75rem;
 }
 
 .fineprint {
@@ -414,116 +370,130 @@ p {
 .wallet-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.86);
+  z-index: 9999;
+  background: rgba(0,0,0,0.86);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 3000;
+  justify-content: center;
   padding: 14px;
 }
 
 .wallet-shell {
   width: 100%;
   max-width: 420px;
-  background: #050505;
-  color: var(--gold);
-  border-radius: 16px;
-  border: 1px solid rgba(245, 238, 220, 0.2);
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.85);
-  padding: 18px 16px 18px;
+  background: rgba(5,5,5,0.94);
+  border: 1px solid rgba(227,191,114,0.32);
+  border-radius: 18px;
+  padding: 20px 18px 18px;
+  box-shadow: 0 22px 75px rgba(0,0,0,0.88);
   position: relative;
 }
 
 .wallet-close {
   position: absolute;
-  top: 6px;
-  right: 10px;
+  top: 10px;
+  right: 12px;
+  width: 56px;
+  height: 56px;
   border: none;
   background: transparent;
-  color: var(--gold2);
-  font-size: 28px;
+  color: rgba(245,238,220,0.95);
+  font-size: 38px;
+  line-height: 1;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .wallet-title {
-  font-family: "Cinzel", serif;
   text-align: center;
-  font-size: 0.95rem;
-  letter-spacing: 0.24em;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold2);
-  margin-top: 8px;
-  margin-bottom: 6px;
+  color: rgba(199,176,138,0.95);
+  font-size: 1rem;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .wallet-subtitle {
   text-align: center;
-  font-size: 0.9rem;
-  color: rgba(245, 238, 220, 0.88);
-  margin-bottom: 14px;
+  color: rgba(245,238,220,0.80);
+  margin: 0 auto 14px;
+  max-width: 320px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Dropdown menu (dark) */
+.usp-menu {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  text-align: center;
+  user-select: none;
+}
+
+.usp-menu__btn {
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(227,191,114,0.35);
+  color: rgba(245,238,220,0.9);
+  font: inherit;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 7px 10px;
+  border-radius: 12px;
+}
+
+.usp-menu__panel {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  background: rgba(5,5,5,0.96);
+  min-width: 210px;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.7);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 1001;
+  border: 1px solid rgba(227,191,114,0.25);
+}
+
+.usp-menu.is-open .usp-menu__panel {
+  display: block;
+}
+
+.usp-menu__link {
+  display: block;
+  padding: 11px 14px;
+  text-decoration: none;
+  color: rgba(245,238,220,0.92);
+  white-space: nowrap;
+}
+
+.usp-menu__link:hover {
+  background: rgba(227,191,114,0.10);
+}
+
+.usp-menu__heading {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(199,176,138,0.95);
+  padding: 10px 14px 6px;
+  cursor: default;
+  background: rgba(255,255,255,0.03);
+  border-top: 1px solid rgba(227,191,114,0.10);
 }
 
 /* Responsive */
-@media (max-width: 640px) {
-  .page {
-    padding: 24px 14px 70px;
+@media (min-width: 768px) {
+  .masthead-title {
+    font-size: 3.1rem;
   }
-  .usp-menu__panel {
-    min-width: 200px;
-  }
-}
-
-/* ---- Persistent gate overlay (starts at Patronium section) ---- */
-.gate-zone {
-  position: relative;
-}
-
-.gate-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 50;
-
-  background: rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 26px 16px;
-  cursor: pointer;
-}
-
-.gate-card {
-  width: min(560px, 92%);
-  background: rgba(5, 5, 5, 0.78);
-  border: 1px solid rgba(245, 238, 220, 0.18);
-  border-radius: 16px;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.75);
-  padding: 18px 16px 16px;
-  text-align: center;
-}
-
-.gate-kicker {
-  font-family: "Cinzel", serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(199, 176, 138, 0.92);
-  margin-bottom: 8px;
-}
-
-.gate-title {
-  font-family: "Cinzel", serif;
-  font-size: 0.95rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(245, 238, 220, 0.96);
-  margin-bottom: 10px;
-}
-
-.gate-copy {
-  color: rgba(245, 238, 220, 0.82);
-  font-size: 0.98rem;
-  line-height: 1.55;
 }
