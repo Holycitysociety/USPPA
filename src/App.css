@@ -1,24 +1,24 @@
 /* src/App.css
-   USPPA — unified black/white grayscale palette across brands
-   Gold accents retained
-   ALL spotlights are WHITE (no gold glow)
+   CHANGESET: smaller, more focused HERO spotlight + reduce ONLY the hero title size by ~25%
+   (Wordmarks + all other text untouched)
 */
 
 /* -----------------------------
    Palette
 ----------------------------- */
 :root{
-  /* Core grayscale */
   --bg:#000000;
-  --ink:#f2f2f2;          /* main text */
-  --ink2:#d9d9d9;         /* secondary text */
-  --muted:#b8b8b8;        /* headings/support */
-  --muted2:#8f8f8f;       /* quiet labels */
-  --line:#2a2a2a;         /* dividers/borders (neutral) */
-  --panel:#0a0a0a;        /* panels */
-  --panel2:#050505;       /* deeper panels */
 
-  /* Gold accents (keep) */
+  --ink:#f2f2f2;
+  --ink2:#d9d9d9;
+  --muted:#b8b8b8;
+  --muted2:#8f8f8f;
+
+  --line:#2a2a2a;
+
+  --panel:#0a0a0a;
+  --panel2:#050505;
+
   --gold:#e3bf72;
   --gold2:#c7b08a;
 }
@@ -28,6 +28,7 @@
 ----------------------------- */
 *{ box-sizing:border-box; }
 html, body { height:100%; }
+
 body{
   margin:0;
   color:var(--ink);
@@ -58,13 +59,20 @@ p{ margin:0 0 1.1rem; }
 
 /* -----------------------------
    Background: WHITE spotlights then fade to jet black (no repeating)
+   (UPDATED: tighter hero spotlight)
 ----------------------------- */
 .page{
   min-height:100vh;
   background:
-    radial-gradient(850px 520px at 50% 145px, rgba(255,255,255,0.18), rgba(0,0,0,0) 62%),
-    radial-gradient(1200px 780px at 50% 340px, rgba(255,255,255,0.10), rgba(0,0,0,0) 70%),
+    /* tighter, brighter hero spotlight (focused on title) */
+    radial-gradient(520px 320px at 50% 150px, rgba(255,255,255,0.20), rgba(0,0,0,0) 60%),
+
+    /* secondary soft halo (subtle, supporting) */
+    radial-gradient(980px 640px at 50% 320px, rgba(255,255,255,0.08), rgba(0,0,0,0) 72%),
+
+    /* fade to jet black for the rest of the scroll */
     linear-gradient(to bottom, rgba(0,0,0,0.00) 0px, rgba(0,0,0,0.70) 320px, #000 760px);
+
   background-repeat:no-repeat;
   background-color:#000;
 }
@@ -160,12 +168,18 @@ p{ margin:0 0 1.1rem; }
   margin:0;
   display:inline-block;
   font-family:"Cinzel", serif;
-  font-size:clamp(26px, 7.2vw, 54px);
+
+  /* UPDATED: reduce size by ~25% */
+  font-size:clamp(20px, 5.4vw, 40px);
+
   line-height:1.03;
   letter-spacing:0.075em;
   text-transform:uppercase;
   color:var(--ink);
   text-shadow:0 22px 70px rgba(0,0,0,0.78);
+
+  /* best-practice: keep breathing room on small screens without affecting other text */
+  padding-inline:12px;
 }
 
 .masthead-line{
@@ -220,15 +234,9 @@ p{ margin:0 0 1.1rem; }
   -webkit-backdrop-filter:blur(6px);
 }
 
-.btn:hover{
-  background:rgba(255,255,255,0.06);
-}
+.btn:hover{ background:rgba(255,255,255,0.06); }
+.btn:active{ transform:translateY(1px); }
 
-.btn:active{
-  transform:translateY(1px);
-}
-
-/* Default “primary” stays dark (grayscale) */
 .btn-primary{
   background:rgba(0,0,0,0.34);
   border-color:rgba(255,255,255,0.18);
@@ -236,7 +244,6 @@ p{ margin:0 0 1.1rem; }
 }
 .btn-primary:hover{ background:rgba(255,255,255,0.08); }
 
-/* Gold accent button (for top Patron Wallet, etc.) */
 .btn-gold{
   background:rgba(227,191,114,0.18);
   border-color:rgba(227,191,114,0.55);
@@ -244,7 +251,6 @@ p{ margin:0 0 1.1rem; }
 }
 .btn-gold:hover{ background:rgba(227,191,114,0.24); }
 
-/* Optional: subtle gold ring on focus */
 .btn:focus-visible{
   outline:none;
   box-shadow:
@@ -308,7 +314,7 @@ p{ margin:0 0 1.1rem; }
 }
 
 /* -----------------------------
-   Wordmarks (grayscale type + gold accents where needed)
+   Wordmarks (unchanged)
 ----------------------------- */
 .wm{ text-align:center; }
 
@@ -340,13 +346,11 @@ p{ margin:0 0 1.1rem; }
   color:rgba(242,242,242,0.52);
 }
 
-/* Patronium wordmark refinement */
 .wm-patronium .wm-main{
   font-size:32px;
   letter-spacing:.22em;
 }
 
-/* Cowboy wordmark refinement */
 .wm-cowboy .wm-main{
   font-size:32px;
   letter-spacing:.20em;
@@ -363,13 +367,11 @@ p{ margin:0 0 1.1rem; }
 
 .wm-dot{ padding:0 .6em; }
 
-/* Simple wordmark */
 .wm-simple .wm-main{
   font-size:28px;
   letter-spacing:.20em;
 }
 
-/* If you want tiny gold hairlines inside a wordmark */
 .wm-rule{
   margin:10px auto 0;
   height:1px;
@@ -386,7 +388,7 @@ p{ margin:0 0 1.1rem; }
 }
 
 /* -----------------------------
-   Gate blur overlay (Patronium section)
+   Gate blur overlay
 ----------------------------- */
 .gate-zone{ position:relative; }
 
@@ -458,7 +460,7 @@ p{ margin:0 0 1.1rem; }
   width:100%;
   max-width:420px;
   border-radius:18px;
-  border:1px solid rgba(227,191,114,0.22); /* gold accent frame */
+  border:1px solid rgba(227,191,114,0.22);
   background:rgba(5,5,5,0.96);
   box-shadow:0 24px 90px rgba(0,0,0,0.85);
   padding:18px 18px 20px;
@@ -517,15 +519,20 @@ p{ margin:0 0 1.1rem; }
 
 /* -----------------------------
    Mobile tweaks
+   (UPDATED: hero title reduced here too; wordmarks untouched)
 ----------------------------- */
 @media (max-width:420px){
   body{ font-size:17px; }
   .container{ width:calc(100% - 34px); }
   .site-header{ padding-top:78px; }
+
+  /* keep the “two-line” hero wordmark readable but smaller */
   .masthead-title{
-    font-size:clamp(23px, 6.4vw, 44px);
+    font-size:clamp(18px, 5.0vw, 34px);
     letter-spacing:.055em;
+    padding-inline:10px;
   }
+
   .wm-main{ font-size:28px; }
   .wm-patronium .wm-main{ font-size:30px; }
   .wm-cowboy .wm-main{ font-size:30px; }
