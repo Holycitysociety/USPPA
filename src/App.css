@@ -472,3 +472,58 @@ p {
     min-width: 200px;
   }
 }
+
+/* ---- Persistent gate overlay (starts at Patronium section) ---- */
+.gate-zone {
+  position: relative;
+}
+
+.gate-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 26px 16px;
+  cursor: pointer;
+}
+
+.gate-card {
+  width: min(560px, 92%);
+  background: rgba(5, 5, 5, 0.78);
+  border: 1px solid rgba(245, 238, 220, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.75);
+  padding: 18px 16px 16px;
+  text-align: center;
+}
+
+.gate-kicker {
+  font-family: "Cinzel", serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(199, 176, 138, 0.92);
+  margin-bottom: 8px;
+}
+
+.gate-title {
+  font-family: "Cinzel", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245, 238, 220, 0.96);
+  margin-bottom: 10px;
+}
+
+.gate-copy {
+  color: rgba(245, 238, 220, 0.82);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
