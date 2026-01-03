@@ -149,14 +149,16 @@ p{ margin:0 0 1.1rem; }
 ----------------------------- */
 .site-header{
   text-align:center;
-  padding:82px 0 26px;
+  /* slightly more air at the top and bottom */
+  padding:100px 0 32px;
 }
 
 .header-actions{
   display:flex;
   justify-content:center;
   align-items:center;
-  margin-bottom:20px;
+  /* more breathing room between wallet and title */
+  margin-bottom:28px;
 }
 
 .masthead-title{
@@ -164,7 +166,7 @@ p{ margin:0 0 1.1rem; }
   display:inline-block;
   font-family:"Cinzel", serif;
 
-  /* reduced ~25% */
+  /* reduced ~25% vs original */
   font-size:clamp(20px, 5.4vw, 40px);
 
   line-height:1.03;
@@ -173,7 +175,7 @@ p{ margin:0 0 1.1rem; }
   color:var(--ink);
   text-shadow:0 22px 70px rgba(0,0,0,0.78);
 
-  /* best-practice breathing room on small screens */
+  /* breathing room inside on mobile */
   padding-inline:12px;
 }
 
@@ -210,7 +212,7 @@ p{ margin:0 0 1.1rem; }
 ----------------------------- */
 .btn{
   border-radius:999px;
-  padding:12px 18px;
+  padding:12px 20px;
   border:1px solid rgba(255,255,255,0.16);
   background:rgba(0,0,0,0.28);
   color:var(--ink);
@@ -234,12 +236,17 @@ p{ margin:0 0 1.1rem; }
 }
 .btn-primary:hover{ background:rgba(255,255,255,0.08); }
 
+/* solid gold wallet button, matching token site */
 .btn-gold{
-  background:rgba(227,191,114,0.18);
-  border-color:rgba(227,191,114,0.55);
-  color:var(--ink);
+  background:var(--gold);
+  border-color:var(--gold);
+  color:#181210;
+  box-shadow:0 18px 54px rgba(0,0,0,0.65);
 }
-.btn-gold:hover{ background:rgba(227,191,114,0.24); }
+.btn-gold:hover{
+  background:#f0cd83;
+  border-color:#f0cd83;
+}
 
 .btn:focus-visible{
   outline:none;
@@ -304,7 +311,7 @@ p{ margin:0 0 1.1rem; }
 }
 
 /* -----------------------------
-   Wordmarks (do not touch)
+   Wordmarks
 ----------------------------- */
 .wm{ text-align:center; }
 
@@ -521,13 +528,13 @@ p{ margin:0 0 1.1rem; }
 @media (max-width:420px){
   body{ font-size:17px; }
   .container{ width:calc(100% - 34px); }
-  .site-header{ padding-top:78px; }
+
+  /* keep some air but not cramped */
+  .site-header{ padding-top:90px; }
 
   .masthead-title{
     font-size:clamp(18px, 5.0vw, 34px);
     letter-spacing:.055em;
     padding-inline:10px;
   }
-
-  /* Wordmarks stay the same (per your instruction) */
 }
