@@ -27,32 +27,14 @@ const walletTheme = darkTheme({
 export default function App() {
   const year = 2026;
 
-  const [menuOpen, setMenuOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
   const [gateActive, setGateActive] = useState(false);
 
-  const menuRef = useRef(null);
-  const gateRef = useRef(null); // anchor a bit below the Patronium heading
+  // gate anchor just below the Patronium heading
+  const gateRef = useRef(null);
 
   const account = useActiveAccount();
   const isConnected = !!account;
-
-  // --- dropdown menu: outside click / Esc ---
-  useEffect(() => {
-    function handleClick(e) {
-      if (!menuRef.current) return;
-      if (!menuRef.current.contains(e.target)) setMenuOpen(false);
-    }
-    function handleKey(e) {
-      if (e.key === "Escape") setMenuOpen(false);
-    }
-    window.addEventListener("click", handleClick);
-    window.addEventListener("keydown", handleKey);
-    return () => {
-      window.removeEventListener("click", handleClick);
-      window.removeEventListener("keydown", handleKey);
-    };
-  }, []);
 
   // --- scroll lock ONLY when wallet modal open ---
   useEffect(() => {
@@ -111,87 +93,6 @@ export default function App() {
 
   return (
     <div className={`page ${gateActive && !isConnected ? "page-gated" : ""}`}>
-      {/* Fixed 3-dot menu */}
-      <nav
-        className={`usp-menu ${menuOpen ? "is-open" : ""}`}
-        role="navigation"
-        aria-label="Site menu"
-        ref={menuRef}
-      >
-        <button
-          className="usp-menu__btn"
-          aria-haspopup="true"
-          aria-expanded={menuOpen ? "true" : "false"}
-          aria-controls="usp-menu-list"
-          onClick={(e) => {
-            e.stopPropagation();
-            setMenuOpen((v) => !v);
-          }}
-        >
-          …
-        </button>
-
-        <div
-          id="usp-menu-list"
-          className="usp-menu__panel"
-          role="menu"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <a className="usp-menu__link" role="menuitem" href="#top">
-            USPPA
-          </a>
-
-          <div className="usp-menu__heading">Patrons</div>
-          <a
-            className="usp-menu__link"
-            role="menuitem"
-            href="https://polopatronium.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Polo Patronium
-          </a>
-          <a
-            className="usp-menu__link"
-            role="menuitem"
-            href="https://militestempli.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Milites Templi
-          </a>
-
-          <div className="usp-menu__heading">Chapters & Initiatives</div>
-          <a
-            className="usp-menu__link"
-            role="menuitem"
-            href="https://charlestonpolo.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Charleston Polo
-          </a>
-          <a
-            className="usp-menu__link"
-            role="menuitem"
-            href="https://cowboypolo.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Cowboy Polo Circuit
-          </a>
-          <a
-            className="usp-menu__link"
-            role="menuitem"
-            href="https://thepololife.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            The Polo Life
-          </a>
-        </div>
-      </nav>
-
       {/* Header / hero */}
       <header id="top" className="site-header">
         <div className="header-actions">
@@ -204,7 +105,15 @@ export default function App() {
           </button>
         </div>
 
-        <h1 className="masthead-title">
+        <h1
+          className="masthead-title"
+          style={{
+            // widen title to roughly the content column width, responsive
+            maxWidth: "min(90vw, 26rem)",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
           UNITED STATES POLO
           <br />
           PATRONS ASSOCIATION
@@ -401,8 +310,12 @@ export default function App() {
             </div>
           )}
 
-          {/* Patronium heading + first paragraphs (no gate yet) */}
+          {/* Patronium heading */}
           <h2 className="sc">Patronium — Polo Patronage Perfected</h2>
+
+          {/* Invisible anchor moved UP: sits just under the heading now */}
+          <div ref={gateRef} className="gate-anchor" aria-hidden="true" />
+
           <p>
             Patronium is the living token of patronage within the United States
             Polo Patrons Association. It is the medium through which honourable
@@ -419,10 +332,6 @@ export default function App() {
             recognition earned through genuine patronage and service to the
             field.
           </p>
-
-          {/* Invisible anchor a few lines below the heading:
-              when THIS crosses near the top, gate becomes active */}
-          <div ref={gateRef} className="gate-anchor" aria-hidden="true" />
 
           <hr className="rule" />
 
