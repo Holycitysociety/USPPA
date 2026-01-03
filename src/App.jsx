@@ -186,11 +186,9 @@ export default function App() {
         </button>
 
         <h1 className="masthead-title">
-          UNITED STATES
+          UNITED STATES POLO
           <br />
-          POLO PATRONS
-          <br />
-          ASSOCIATION
+          PATRONS ASSOCIATION
         </h1>
         <p className="est">
           FOUNDING<span className="dot">·</span>AD MMXXV · 2025
