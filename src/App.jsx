@@ -30,13 +30,16 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
 
-  // Gate: begins at “Patronium — Polo Patronage Perfected”
+  // Gate starts at: “Patronium — Polo Patronage Perfected”
   const gateRef = useRef(null);
   const hasTriggeredGateRef = useRef(false);
 
   const menuRef = useRef(null);
   const account = useActiveAccount();
   const isConnected = !!account;
+
+  const openWallet = () => setWalletOpen(true);
+  const closeWallet = () => setWalletOpen(false);
 
   // --- dropdown menu: outside click / Esc ---
   useEffect(() => {
@@ -55,7 +58,7 @@ export default function App() {
     };
   }, []);
 
-  // --- scroll lock ONLY when wallet modal open (robust mobile-safe) ---
+  // --- scroll lock ONLY when wallet modal open (mobile-safe; avoids white screen) ---
   useEffect(() => {
     if (!walletOpen) return;
 
@@ -82,7 +85,7 @@ export default function App() {
   // --- auto-open wallet once when gate hits viewport (if not connected) ---
   useEffect(() => {
     if (isConnected) {
-      hasTriggeredGateRef.current = false; // allow future sessions if they sign out
+      hasTriggeredGateRef.current = false; // allow again if they sign out later
       return;
     }
 
@@ -94,7 +97,6 @@ export default function App() {
       const rect = el.getBoundingClientRect();
       const triggerY = 120; // px from top
 
-      // When the gate area reaches near the top, pop wallet once
       if (rect.top <= triggerY) {
         hasTriggeredGateRef.current = true;
         setWalletOpen(true);
@@ -102,14 +104,9 @@ export default function App() {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    // run once in case user loads mid-page
     onScroll();
-
     return () => window.removeEventListener("scroll", onScroll);
   }, [isConnected]);
-
-  const openWallet = () => setWalletOpen(true);
-  const closeWallet = () => setWalletOpen(false);
 
   return (
     <div className="page">
@@ -163,7 +160,7 @@ export default function App() {
             Milites Templi
           </a>
 
-          <div className="usp-menu__heading">Chapters & Initiatives</div>
+          <div className="usp-menu__heading">Chapters &amp; Initiatives</div>
           <a
             className="usp-menu__link"
             role="menuitem"
@@ -197,7 +194,7 @@ export default function App() {
       {/* Header */}
       <header id="top" className="site-header">
         <div className="header-actions">
-          <button className="btn" type="button" onClick={openWallet}>
+          <button className="btn btn-gold" type="button" onClick={openWallet}>
             Patron Wallet
           </button>
         </div>
@@ -213,9 +210,9 @@ export default function App() {
         </p>
       </header>
 
-      {/* Intro */}
+      {/* Main */}
       <main className="container">
-        <hr className="rule" />
+        <hr className="rule rule-spaced" />
 
         <h2 className="sc">Announcement</h2>
         <p>
@@ -250,7 +247,12 @@ export default function App() {
             </p>
 
             <div className="cta-row">
-              <a className="btn btn-primary" href="https://polopatronium.com" target="_blank" rel="noopener noreferrer">
+              <a
+                className="btn"
+                href="https://polopatronium.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Polopatronium.com
               </a>
             </div>
@@ -263,7 +265,9 @@ export default function App() {
             <div className="wm wm-cowboy" aria-label="Cowboy Polo Circuit wordmark">
               <div className="wm-main">COWBOY&nbsp;POLO</div>
               <div className="wm-mid">
-                <span className="wm-dot">·</span>CIRCUIT<span className="wm-dot">·</span>
+                <span className="wm-dot">·</span>
+                CIRCUIT
+                <span className="wm-dot">·</span>
               </div>
               <div className="wm-sub">American Development Pipeline</div>
             </div>
@@ -274,7 +278,12 @@ export default function App() {
             </p>
 
             <div className="cta-row">
-              <a className="btn btn-primary" href="https://cowboypolo.com" target="_blank" rel="noopener noreferrer">
+              <a
+                className="btn"
+                href="https://cowboypolo.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Cowboypolo.com
               </a>
             </div>
@@ -296,7 +305,12 @@ export default function App() {
             </p>
 
             <div className="cta-row">
-              <a className="btn btn-primary" href="https://thepololife.com" target="_blank" rel="noopener noreferrer">
+              <a
+                className="btn"
+                href="https://thepololife.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Thepololife.com
               </a>
             </div>
@@ -318,7 +332,12 @@ export default function App() {
             </p>
 
             <div className="cta-row">
-              <a className="btn btn-primary" href="https://charlestonpolo.com" target="_blank" rel="noopener noreferrer">
+              <a
+                className="btn"
+                href="https://charlestonpolo.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Charlestonpolo.com
               </a>
             </div>
@@ -336,18 +355,22 @@ export default function App() {
             GATED ZONE STARTS HERE (blur overlay begins here)
            ------------------------------------------------------- */}
         <div ref={gateRef} className="gate-zone" id="patronium-polo-patronage">
-          {/* Persistent blur overlay when NOT connected */}
           {!isConnected && (
-            <div className="gate-overlay" onClick={openWallet} role="button" aria-label="Sign in required">
-              <div className="gate-card">
+            <div
+              className="gate-overlay"
+              onClick={openWallet}
+              role="button"
+              aria-label="Sign in required"
+            >
+              <div className="gate-card" onClick={(e) => e.stopPropagation()}>
                 <div className="gate-kicker">Patron Wallet Required</div>
                 <div className="gate-title">Sign in to continue</div>
                 <div className="gate-copy">
                   This section and everything below is reserved for signed-in patrons.
-                  Tap here to open Patron Wallet.
+                  Tap below to open USPPA Patron Wallet.
                 </div>
-                <div style={{ marginTop: 14 }}>
-                  <button className="btn" type="button" onClick={openWallet}>
+                <div className="gate-cta">
+                  <button className="btn btn-gold" type="button" onClick={openWallet}>
                     Open Patron Wallet
                   </button>
                 </div>
@@ -369,7 +392,7 @@ export default function App() {
             tribute to those whose support made that prosperity possible.
           </p>
 
-          <hr className="rule" />
+          <hr className="rule rule-spaced" />
 
           <h2 className="sc">Charleston Polo — The USPPA Chapter Test Model</h2>
           <p>
@@ -383,12 +406,10 @@ export default function App() {
             benefit, it becomes a standing Chapter of the Association.
           </p>
 
-          <hr className="rule" />
+          <hr className="rule rule-spaced" />
 
           <h2 className="sc">Founding, Operating, and USPPA Patrons</h2>
-          <p>
-            There are three forms of Patronium holder.
-          </p>
+          <p>There are three forms of Patronium holder.</p>
           <p>
             <b>Founding Patrons</b> are the first to support the birth of a new Chapter. They provide
             the initial horses, pasture, and capital that make it possible for a Polo Incubator to begin.
@@ -400,7 +421,7 @@ export default function App() {
             <b>USPPA Patrons</b> are the ongoing supporters who sustain and strengthen a Chapter once it is established.
           </p>
 
-          <hr className="rule" />
+          <hr className="rule rule-spaced" />
 
           <h2 className="sc">The Tribute Framework</h2>
           <p>
@@ -417,7 +438,7 @@ export default function App() {
             </li>
           </ul>
 
-          <hr className="rule" />
+          <hr className="rule rule-spaced" />
 
           <h2 className="sc">Participation</h2>
           <ul>
@@ -427,7 +448,7 @@ export default function App() {
             <li>Provide Horses or Land — supply the physical foundation of the sport under insured, transparent, and fair agreements.</li>
           </ul>
 
-          <hr className="rule" />
+          <hr className="rule rule-spaced" />
 
           <h2 className="sc">In Plain Terms</h2>
           <p>
@@ -435,7 +456,7 @@ export default function App() {
             fairness, and longevity to the way it is taught, funded, and shared.
           </p>
 
-          <hr className="rule" />
+          <hr className="rule rule-spaced" />
 
           <h2 className="sc">An Invitation to Patrons and Partners</h2>
           <p>
@@ -459,17 +480,31 @@ export default function App() {
       {walletOpen && (
         <div className="wallet-backdrop" onClick={closeWallet}>
           <div className="wallet-shell" onClick={(e) => e.stopPropagation()}>
-            <button className="wallet-close" type="button" onClick={closeWallet} aria-label="Close Patron Wallet">
+            <button
+              className="wallet-close"
+              type="button"
+              onClick={closeWallet}
+              aria-label="Close Patron Wallet"
+            >
               ×
             </button>
 
-            <div className="wallet-title">U S P P A <br/>
-              Patron Wallet</div>
-            <div className="wallet-subtitle">
-              Sign in or create your Patron Wallet using email.
+            <div className="wallet-title">
+              USPPA
+              <br />
+              PATRON WALLET
             </div>
 
-            <ConnectEmbed client={client} wallets={wallets} chain={BASE} theme={walletTheme} />
+            <div className="wallet-subtitle">
+              Sign in or create your USPPA Patron Wallet using email.
+            </div>
+
+            <ConnectEmbed
+              client={client}
+              wallets={wallets}
+              chain={BASE}
+              theme={walletTheme}
+            />
           </div>
         </div>
       )}
