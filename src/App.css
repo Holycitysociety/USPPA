@@ -1,14 +1,21 @@
+/* src/App.css */
+
+/* -----------------------------
+   ROOT / BASE
+----------------------------- */
 :root {
-  --bg: #000000;
-  --fg: #ffffff;
-  --muted: rgba(255, 255, 255, 0.74);
-  --muted2: rgba(255, 255, 255, 0.55);
-  --border: rgba(255, 255, 255, 0.22);
-  --gold: #f5eedc;
-  --gold2: #c7b08a;
+  --bg: #000;
+  --fg: #f5eedc;
+  --muted: #c7b08a;
+  --muted-2: #9f8a64;
+  --border: #3a2b16;
+  --panel: #050505;
+  --panel-2: #0b0b0b;
+  --gold: #e3bf72;
 
   --max-width: 900px;
-  --container: 760px;
+  --copy-width: 760px;
+  --radius: 14px;
 }
 
 * {
@@ -26,436 +33,437 @@ body {
   font-family: "EB Garamond", serif;
   line-height: 1.65;
 
-  /* Non-repeating spotlight header, fades to jet black */
-  background-image:
-    radial-gradient(900px 520px at 30% 12%, rgba(255,255,255,0.12), rgba(0,0,0,0) 60%),
-    radial-gradient(720px 460px at 72% 18%, rgba(255,255,255,0.08), rgba(0,0,0,0) 62%),
-    radial-gradient(1100px 680px at 50% 0%, rgba(255,255,255,0.06), rgba(0,0,0,0) 70%),
-    linear-gradient(to bottom, #090909 0%, #000000 520px, #000000 100%);
+  /* Spotlight at top, then fade to jet black — NO REPEAT */
+  background:
+    radial-gradient(900px 520px at 30% 0%, rgba(227, 191, 114, 0.18) 0%, rgba(0,0,0,0) 60%),
+    radial-gradient(720px 460px at 70% 10%, rgba(199, 176, 138, 0.12) 0%, rgba(0,0,0,0) 62%),
+    linear-gradient(to bottom, #0a0a0a 0%, #000 520px, #000 100%);
   background-repeat: no-repeat;
-  background-size:
-    100% 680px,
-    100% 680px,
-    100% 680px,
-    100% 100%;
-  background-color: #000;
-}
-
-.page {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 28px 18px 84px;
-}
-
-.container {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 12px;
+  background-size: 100% auto;
+  background-attachment: scroll;
 }
 
 a {
   color: var(--gold);
   text-decoration: none;
-  border-bottom: 1px solid rgba(245, 238, 220, 0.35);
 }
+
 a:hover {
-  border-bottom-color: rgba(245, 238, 220, 0.8);
-}
-
-.site-header {
-  text-align: center;
-  padding: 34px 0 18px;
-}
-
-.header-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 18px;
-}
-
-.masthead-title {
-  font-family: "Cinzel", serif;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1.12;
-  margin: 0 0 10px;
-  font-size: clamp(1.85rem, 4.5vw, 2.6rem);
-}
-
-.est {
-  margin: 0;
-  font-family: "Cinzel", serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.dot {
-  padding: 0 0.45em;
-  opacity: 0.9;
-}
-
-.sc {
-  font-family: "Cinzel", serif;
-  font-variant: small-caps;
-  letter-spacing: 0.08em;
-  text-transform: none;
-  margin-top: 0;
-}
-
-.rule {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 26px 0;
-}
-
-.rule.rule-spaced {
-  margin: 40px 0;
+  text-decoration: underline;
 }
 
 ul {
-  padding-left: 1.1rem;
-  color: var(--muted);
+  padding-left: 1.2rem;
 }
 
-p {
-  color: var(--muted);
-  font-size: 1.02rem;
+/* -----------------------------
+   LAYOUT WRAPPER
+----------------------------- */
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 22px 18px 96px;
 }
 
-.motto {
-  text-align: center;
-  font-style: italic;
-  margin: 2.2rem 0 0;
-  font-size: 1.08rem;
-  color: rgba(255, 255, 255, 0.78);
-}
-
-/* Dropdown Menu */
-.usp-menu {
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1100;
-  text-align: center;
-  user-select: none;
-}
-
-.usp-menu__btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #fff;
-  font: inherit;
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 7px 12px;
-  border-radius: 999px;
-}
-
-.usp-menu__panel {
-  display: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 8px;
-  background: #0a0a0a;
-  min-width: 210px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
-  border-radius: 14px;
-  overflow: hidden;
-  z-index: 1101;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.usp-menu.is-open .usp-menu__panel {
-  display: block;
-}
-
-.usp-menu__link {
-  display: block;
-  padding: 12px 14px;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.9);
-  white-space: nowrap;
-  font-family: "Cinzel", serif;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-.usp-menu__link:hover {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.usp-menu__heading {
-  font-family: "Cinzel", serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-  padding: 10px 14px 8px;
-  cursor: default;
-  background: rgba(255, 255, 255, 0.03);
-}
-
-/* Buttons — pill */
+/* -----------------------------
+   BUTTONS (pill)
+----------------------------- */
 .btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+
   padding: 12px 22px;
-  border-radius: 999px;
+  border-radius: 999px; /* pill */
   border: 1px solid rgba(255, 255, 255, 0.55);
+
   font-family: "Cinzel", serif;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-size: 0.78rem;
+  font-size: 12px;
+
   background: transparent;
   color: #fff;
   cursor: pointer;
-  text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 
+.btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+/* outline = dark */
+.btn-outline {
+  background: transparent;
+}
+
+/* primary = BLACK like the others (not white) */
 .btn-primary {
+  background: #0b0b0b;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+/* TOP wallet button = GOLD */
+.btn-gold {
   background: var(--gold);
   color: #111;
   border-color: var(--gold);
 }
 
-.btn-primary:hover {
+.btn-gold:hover {
   background: #fff;
   border-color: #fff;
 }
 
-.btn-outline:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.85);
+/* -----------------------------
+   MASTHEAD (top lines)
+----------------------------- */
+.masthead {
+  margin: 10px 0 18px;
+  border: 1px solid rgba(199, 176, 138, 0.25);
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius);
+  padding: 18px 16px 16px;
 }
 
-/* Roadmap */
-.roadmap {
-  margin-top: 10px;
-}
-
-.roadmap-head {
+.masthead-inner {
   text-align: center;
-  margin: 12px 0 28px;
 }
 
-.roadmap-kicker {
+.masthead-line-1 {
+  display: grid;
+  gap: 6px;
   font-family: "Cinzel", serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.masthead-rule {
+  height: 1px;
+  width: 180px;
+  margin: 14px auto 12px;
+  background: rgba(199, 176, 138, 0.45);
+}
+
+.masthead-line-2 {
+  font-family: "Cinzel", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  color: var(--muted-2);
+}
+
+.masthead-presents {
   margin-bottom: 6px;
 }
 
-.roadmap-title {
+/* -----------------------------
+   HERO
+----------------------------- */
+.hero-title {
+  margin: 22px 0 8px;
+  text-align: center;
   font-family: "Cinzel", serif;
-  font-size: 1.05rem;
-  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: 0.2em;
+  font-size: clamp(30px, 6vw, 44px);
+  color: #fff;
 }
 
-.initiative {
+.hero-symbol {
+  max-width: 720px;
+  margin: 0 auto;
   text-align: center;
-  padding: 6px 0;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-network {
+  margin-top: 6px;
+  color: var(--muted-2);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+.hero-contract {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.hero-contract-label {
+  color: var(--muted-2);
+}
+
+.hero-contract-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  color: #fff;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.hero-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* -----------------------------
+   WALLET MODAL (helpers)
+----------------------------- */
+.wallet-modal-backdrop {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* -----------------------------
+   ROADMAP SECTION
+----------------------------- */
+.brand-row {
+  margin-top: 44px;
+  padding-top: 10px;
+}
+
+.roadmap-title {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.brand-grid {
+  max-width: var(--copy-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr; /* single column */
+  row-gap: 18px;
+}
+
+.logo-block {
+  padding: 0;
+  margin: 0;
+  text-align: center; /* centered stack */
 }
 
 .initiative-text {
-  max-width: 700px;
-  margin: 12px auto 0;
-  color: rgba(255, 255, 255, 0.68);
+  margin: 10px auto 0;
+  max-width: 680px;
+  color: rgba(245, 238, 220, 0.86);
+  font-size: 16px;
+  line-height: 1.65;
+  text-align: justify;
 }
 
-.cta-row {
+/* CTA row inside each initiative block */
+.initiative-cta {
+  margin-top: 14px;
   display: flex;
-  gap: 12px;
   justify-content: center;
-  align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 16px;
 }
 
+/* dividing line with healthy spacer */
 .divider {
+  width: 110px;
   height: 1px;
-  width: min(420px, 82%);
-  background: rgba(255, 255, 255, 0.16);
-  margin: 34px auto;
+  margin: 18px auto 18px;
+  background: rgba(199, 176, 138, 0.45);
 }
 
-/* Wordmarks */
-.wm {
+/* -----------------------------
+   WORDMARKS (improved)
+----------------------------- */
+
+/* Cowboy Polo Circuit wordmark */
+.logo-cowboy-polo-circuit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px 10px;
+  border-top: 1px solid rgba(199, 176, 138, 0.55);
+  border-bottom: 1px solid rgba(199, 176, 138, 0.55);
+  font-family: "Cinzel", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* Polo Patronium wordmark (use if you switch from inline to class) */
+.logo-polo-patronium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 18px 8px;
+  border-top: 1px solid rgba(199, 176, 138, 0.55);
+  border-bottom: 1px solid rgba(199, 176, 138, 0.55);
+  font-family: "Cinzel", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* The Polo Life */
+.logo-the-polo-life {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-family: "Cinzel", serif;
+  text-transform: uppercase;
+}
+
+.logo-the-polo-life .top {
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  color: var(--muted);
+}
+
+.logo-the-polo-life .main {
+  font-size: 18px;
+  letter-spacing: 0.22em;
+  color: #fff;
+}
+
+/* Charleston Polo */
+.logo-charleston-polo {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  margin: 0 auto;
+  padding: 10px 18px 8px;
+  border-top: 1px solid rgba(199, 176, 138, 0.55);
+  border-bottom: 1px solid rgba(199, 176, 138, 0.55);
 }
 
-.wm-top {
+.logo-charleston-polo .top {
   font-family: "Cinzel", serif;
-  font-size: 0.72rem;
+  text-transform: uppercase;
   letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.62);
+  font-size: 12px;
+  color: var(--muted);
 }
 
-.wm-main {
+.logo-charleston-polo .main {
   font-family: "Cinzel", serif;
-  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.95);
-}
-
-.wm-sub {
-  font-family: "Cinzel", serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.52);
-}
-
-.wm-rule {
-  height: 1px;
-  width: 120px;
-  background: rgba(245, 238, 220, 0.45);
-  margin-top: 6px;
-  margin-bottom: 4px;
-}
-
-/* POLO PATRONIUM wordmark tuning */
-.wm-patronium .wm-main {
-  font-size: clamp(1.35rem, 3.8vw, 1.85rem);
-  letter-spacing: 0.28em;
-}
-.wm-patronium .wm-top {
-  color: var(--gold2);
-}
-.wm-patronium .wm-sub {
-  color: rgba(199, 176, 138, 0.8);
-}
-
-/* COWBOY wordmark tuning */
-.wm-cowboy .wm-main {
-  font-size: clamp(1.45rem, 4vw, 2rem);
-  letter-spacing: 0.26em;
-}
-.wm-cowboy .wm-mid {
-  font-family: "Cinzel", serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.78);
-  margin-top: 2px;
-}
-.wm-cowboy .wm-dot {
-  display: inline-block;
-  margin: 0 0.65em;
-  color: var(--gold2);
-}
-
-/* Simple wordmark */
-.wm-simple .wm-main {
-  font-size: clamp(1.15rem, 3.2vw, 1.5rem);
-  letter-spacing: 0.22em;
-}
-.wm-simple .wm-top {
-  color: var(--gold2);
+  font-size: 16px;
+  color: #fff;
 }
 
 .roadmap-footnote {
+  max-width: var(--copy-width);
+  margin: 22px auto 0;
   text-align: center;
-  max-width: 720px;
-  margin: 30px auto 0;
-  font-size: 0.98rem;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(245, 238, 220, 0.75);
+  font-size: 13px;
+  letter-spacing: 0.04em;
 }
 
-/* Footer */
-.site-footer {
+/* -----------------------------
+   COPY / GATED SECTION
+----------------------------- */
+.copy-section {
+  max-width: var(--copy-width);
+  margin: 54px auto 0;
+  padding-top: 10px;
+}
+
+.copy-section-title {
   text-align: center;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.55);
-  padding: 36px 8px 0;
+  font-family: "Cinzel", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.copy-block {
+  margin: 18px 0;
+  padding: 18px 16px 16px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(199, 176, 138, 0.22);
+  border-radius: var(--radius);
+}
+
+.copy-block h3 {
+  margin: 0 0 10px;
+  font-family: "Cinzel", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 13px;
+  color: #fff;
+}
+
+.copy-block p,
+.copy-block li {
+  color: rgba(245, 238, 220, 0.88);
+  font-size: 16px;
+}
+
+.copy-block ul {
+  margin: 10px 0 0;
+}
+
+/* -----------------------------
+   FOOTER
+----------------------------- */
+footer {
+  margin-top: 54px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(199, 176, 138, 0.25);
+  text-align: center;
+  color: rgba(245, 238, 220, 0.65);
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.fineprint {
-  margin: 0;
+footer > div {
+  margin: 6px 0;
 }
 
-/* Wallet modal */
-.wallet-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.86);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3000;
-  padding: 14px;
-}
-
-.wallet-shell {
-  width: 100%;
-  max-width: 420px;
-  background: #050505;
-  color: var(--gold);
-  border-radius: 16px;
-  border: 1px solid rgba(245, 238, 220, 0.2);
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.85);
-  padding: 18px 16px 18px;
-  position: relative;
-}
-
-.wallet-close {
-  position: absolute;
-  top: 6px;
-  right: 10px;
-  border: none;
-  background: transparent;
-  color: var(--gold2);
-  font-size: 28px;
-  cursor: pointer;
-}
-
-.wallet-title {
-  font-family: "Cinzel", serif;
-  text-align: center;
-  font-size: 0.95rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold2);
-  margin-top: 8px;
-  margin-bottom: 6px;
-}
-
-.wallet-subtitle {
-  text-align: center;
-  font-size: 0.9rem;
-  color: rgba(245, 238, 220, 0.88);
-  margin-bottom: 14px;
-}
-
-/* Responsive */
+/* -----------------------------
+   RESPONSIVE
+----------------------------- */
 @media (max-width: 640px) {
   .page {
-    padding: 24px 14px 70px;
+    padding: 18px 14px 86px;
   }
-  .usp-menu__panel {
-    min-width: 200px;
+
+  .hero-contract-value {
+    font-size: 11px;
+    word-break: break-all;
+  }
+
+  .btn {
+    padding: 11px 18px;
+    font-size: 11px;
+  }
+
+  .initiative-text {
+    text-align: left;
   }
 }
