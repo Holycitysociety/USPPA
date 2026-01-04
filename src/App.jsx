@@ -114,6 +114,10 @@ export default function App() {
 
   const walletScrollRef = useRef(null);
 
+  // Gate section ref (Patronium — Polo Patronage Perfected)
+  const gateRef = useRef(null);
+  const hasTriggeredGateRef = useRef(false);
+
   // Native ETH on Base (gas)
   const { data: baseBalance } = useWalletBalance({
     address: account?.address,
@@ -129,7 +133,7 @@ export default function App() {
     tokenAddress: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
   });
 
-  // PATRON
+  // PATRON on Base
   const { data: patronBalance } = useWalletBalance({
     address: account?.address,
     chain: BASE,
@@ -244,6 +248,37 @@ export default function App() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [walletOpen]);
+
+  // Reset scroll-gate state when they connect / disconnect
+  useEffect(() => {
+    hasTriggeredGateRef.current = false;
+  }, [isConnected]);
+
+  // Auto-open wallet once when the Patronium section scrolls into view (if NOT connected)
+  useEffect(() => {
+    if (isConnected) return;
+
+    const onScroll = () => {
+      if (hasTriggeredGateRef.current) return;
+      const el = gateRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const triggerY = 120; // px from top of viewport
+
+      // When the top of the gate-zone comes near the top, open once
+      if (rect.top <= triggerY && rect.bottom > 0) {
+        hasTriggeredGateRef.current = true;
+        setWalletOpen(true);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // In case they load already scrolled down:
+    onScroll();
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isConnected]);
 
   return (
     <div className="page">
@@ -426,7 +461,11 @@ export default function App() {
         {/* -------------------------------------------------------
             GATED ZONE STARTS HERE (blur overlay begins here)
            ------------------------------------------------------- */}
-        <div className="gate-zone" id="patronium-polo-patronage">
+        <div
+          className="gate-zone"
+          id="patronium-polo-patronage"
+          ref={gateRef}
+        >
           {!isConnected && (
             <div
               className="gate-overlay"
@@ -439,7 +478,8 @@ export default function App() {
                 <div className="gate-title">Sign in to continue</div>
                 <div className="gate-copy">
                   This section and everything below is reserved for signed-in
-                  patrons. Tap here to open the USPPA Patron Wallet.
+                  patrons. Tap here or scroll into this section to open the
+                  USPPA Patron Wallet.
                 </div>
                 <div style={{ marginTop: 14 }}>
                   <button
