@@ -365,20 +365,23 @@ ul {
   margin-top: 60px;
 }
 
-/* UPDATED: gradient + blur overlay that gets heavier down the page */
+/* UPDATED: gradient blur overlay starting at "Polo Patronage Perfected" */
 .gate-overlay {
   position: absolute;
   inset: 0;
   z-index: 40;
+
+  /* gradient so top is lighter, bottom more obscured */
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0.55) 40%,
-    rgba(0, 0, 0, 0.8) 70%,
-    rgba(0, 0, 0, 0.95) 100%
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.55) 45%,
+    rgba(0, 0, 0, 0.88) 100%
   );
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+
   display: flex;
   align-items: center;
   justify-content: center;
