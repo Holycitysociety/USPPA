@@ -105,74 +105,6 @@ body {
 }
 
 /* --------------------------------------------------
-   Floating 3-dot menu
--------------------------------------------------- */
-
-.usp-menu {
-  position: fixed;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1200;
-  text-align: center;
-  user-select: none;
-}
-
-.usp-menu__btn {
-  width: 54px;
-  height: 54px;
-  border-radius: 18px;
-  border: 1px solid var(--usp-border-soft);
-  background: rgba(0, 0, 0, 0.9);
-  color: var(--usp-ink);
-  font-size: 26px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.usp-menu__panel {
-  display: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 8px;
-  background: #050505;
-  min-width: 200px;
-  border-radius: 10px;
-  border: 1px solid var(--usp-border-soft);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
-  overflow: hidden;
-}
-
-.usp-menu.is-open .usp-menu__panel {
-  display: block;
-}
-
-.usp-menu__link {
-  display: block;
-  padding: 10px 16px;
-  text-decoration: none;
-  color: var(--usp-ink);
-  font-size: 0.8rem;
-}
-
-.usp-menu__link:hover {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.usp-menu__heading {
-  font-family: "Cinzel", serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--usp-gold-deep);
-  padding: 8px 16px 4px;
-}
-
-/* --------------------------------------------------
    Masthead / hero
 -------------------------------------------------- */
 
@@ -412,13 +344,12 @@ ul {
   position: relative;
 }
 
-/* Blur overlay lives only inside gate-zone: from the
-   “Patronium — Polo Patronage Perfected” heading down. */
+/* More transparent blur overlay */
 .gate-overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: rgba(5, 5, 5, 0.78);
+  background: rgba(5, 5, 5, 0.6); /* was 0.78 */
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
   display: flex;
