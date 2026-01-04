@@ -337,32 +337,49 @@ ul {
 }
 
 /* --------------------------------------------------
-   Gated content overlay
+   Gated content overlay (blur gradient)
 -------------------------------------------------- */
 
 .gate-zone {
   position: relative;
 }
 
-/* MUCH lighter blur + vertical gradient so top text is clearer */
+/* Clickable overlay; blur is handled by ::before / ::after */
 .gate-overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(5, 5, 5, 0.05) 0%,
-      rgba(5, 5, 5, 0.18) 35%,
-      rgba(5, 5, 5, 0.4) 65%,
-      rgba(5, 5, 5, 0.6) 100%
-    );
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.4rem;
+}
+
+/* Light blur on top band (first lines) */
+.gate-overlay::before,
+.gate-overlay::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.gate-overlay::before {
+  top: 0;
+  height: 45%;
+  background: rgba(5, 5, 5, 0.08);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* Stronger blur lower down */
+.gate-overlay::after {
+  top: 35%;
+  bottom: 0;
+  background: rgba(5, 5, 5, 0.32);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .gate-card {
@@ -378,6 +395,8 @@ ul {
   padding: 1.5rem 1.4rem 1.6rem;
   text-align: center;
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.9);
+  position: relative;
+  z-index: 3; /* above blur layers */
 }
 
 .gate-kicker {
