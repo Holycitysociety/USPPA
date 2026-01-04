@@ -191,7 +191,7 @@ body {
   font-size: 0.72rem;
 }
 
-/* Two-line wordmark hero (fine weight, locked to 2 lines) */
+/* Two-line wordmark hero */
 .masthead-title {
   font-family: "Cinzel", serif;
   font-weight: 400;
@@ -281,8 +281,6 @@ ul {
    Roadmap section
 -------------------------------------------------- */
 
-/* Narrower column so everything (logos, copy, buttons) sits inside
-   the same vertical rails on tablet & mobile. */
 .roadmap {
   text-align: center;
   max-width: 34rem;
@@ -344,7 +342,8 @@ ul {
   margin-top: 0.75rem;
 }
 
-/* Wordmark blocks (scaled up a bit) */
+/* Wordmark blocks */
+
 .wm {
   font-family: "Cinzel", serif;
   text-transform: uppercase;
@@ -413,15 +412,12 @@ ul {
   position: relative;
 }
 
-.gate-lock-anchor {
-  position: relative;
-}
-
-/* Full-screen blur overlay, but only rendered after gateActive=true */
+/* Blur overlay lives only inside gate-zone: from the
+   “Patronium — Polo Patronage Perfected” heading down. */
 .gate-overlay {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: 900;
+  z-index: 2;
   background: rgba(5, 5, 5, 0.78);
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
