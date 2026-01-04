@@ -29,14 +29,14 @@ export default function App() {
 
   const [walletOpen, setWalletOpen] = useState(false);
 
-  // This is now a *marker* lower in the gated text, not the whole section.
-  const gateRef = useRef(null);
-  const hasTriggeredGateRef = useRef(false);
-
   const account = useActiveAccount();
   const isConnected = !!account;
 
-  // --- scroll lock ONLY when wallet modal open (mobile-safe) ---
+  // Gate: wrapper around “Patronium — Polo Patronage Perfected”
+  const gateRef = useRef(null);
+  const hasTriggeredGateRef = useRef(false);
+
+  // --- scroll lock ONLY when wallet modal open (mobile-friendly) ---
   useEffect(() => {
     if (!walletOpen) return;
 
@@ -60,20 +60,11 @@ export default function App() {
     };
   }, [walletOpen]);
 
-  // --- Esc closes wallet ---
-  useEffect(() => {
-    if (!walletOpen) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") setWalletOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [walletOpen]);
-
-  // --- auto-open wallet once when the *marker* reaches bottom of viewport ---
+  // --- auto-open wallet ONCE when gate hits *bottom* of viewport ---
   useEffect(() => {
     if (isConnected) {
-      hasTriggeredGateRef.current = false; // allow again on future sessions if they sign out
+      // if they connect, allow a future session to re-trigger
+      hasTriggeredGateRef.current = false;
       return;
     }
 
@@ -83,19 +74,20 @@ export default function App() {
       if (!el) return;
 
       const rect = el.getBoundingClientRect();
-      const viewportH =
+      const viewportHeight =
         window.innerHeight || document.documentElement.clientHeight;
 
-      // Trigger when the *top* of the marker reaches
-      // the *bottom* of the viewport
-      if (rect.top <= viewportH) {
+      // NEW LOGIC:
+      // Trigger when the top of the gate element reaches
+      // the *bottom* edge of the viewport (or above).
+      if (rect.top <= viewportHeight) {
         hasTriggeredGateRef.current = true;
         setWalletOpen(true);
       }
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    // Run once in case user loads already mid-way
+    // run once in case they load partway down the page
     onScroll();
 
     return () => window.removeEventListener("scroll", onScroll);
@@ -106,26 +98,25 @@ export default function App() {
 
   return (
     <div className="page">
-      {/* Header / hero */}
+      {/* Top header with Patron Wallet button */}
       <header id="top" className="site-header">
         <div className="header-actions">
-          <button className="btn btn-primary" type="button" onClick={openWallet}>
+          <button className="btn btn-primary-pill" type="button" onClick={openWallet}>
             Patron Wallet
           </button>
         </div>
 
         <h1 className="masthead-title">
-          UNITED STATES POLO
-          <br />
-          PATRONS ASSOCIATION
+          <span className="masthead-line">UNITED STATES POLO</span>
+          <span className="masthead-line">PATRONS ASSOCIATION</span>
         </h1>
 
         <p className="est">
-          AD MMXXVI <span className="dot">·</span> 2026
+          AD MMXXVI<span className="dot">·</span>2026
         </p>
       </header>
 
-      {/* Main content */}
+      {/* Intro + body */}
       <main className="container">
         <hr className="rule" />
 
@@ -163,7 +154,7 @@ export default function App() {
 
             <div className="cta-row">
               <a
-                className="btn btn-primary"
+                className="btn btn-primary-pill"
                 href="https://polopatronium.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -194,7 +185,7 @@ export default function App() {
 
             <div className="cta-row">
               <a
-                className="btn btn-primary"
+                className="btn btn-primary-pill"
                 href="https://cowboypolo.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -223,7 +214,7 @@ export default function App() {
 
             <div className="cta-row">
               <a
-                className="btn btn-primary"
+                className="btn btn-primary-pill"
                 href="https://thepololife.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -251,7 +242,7 @@ export default function App() {
 
             <div className="cta-row">
               <a
-                className="btn btn-primary"
+                className="btn btn-primary-pill"
                 href="https://charlestonpolo.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -263,24 +254,22 @@ export default function App() {
 
           <p className="roadmap-footnote">
             All initiatives are coordinated and supported through Polo
-            Patronium — the living token of patronage within the United States
+            Patronium, the living token of patronage within the United States
             Polo Patrons Association.
           </p>
         </section>
 
         <hr className="rule rule-spaced" />
 
-        {/* -------------------------------------------------------
-            GATED ZONE STARTS HERE
-           ------------------------------------------------------- */}
-        <div className="gate-zone" id="patronium-polo-patronage">
-          {/* Blur overlay when NOT connected */}
+        {/* ---------------- GATED ZONE (anchor is this wrapper) --------- */}
+        <div ref={gateRef} className="gate-zone" id="patronium-polo-patronage">
+          {/* Blur/lock overlay (always present when NOT connected) */}
           {!isConnected && (
             <div
               className="gate-overlay"
               onClick={openWallet}
               role="button"
-              aria-label="Sign in required to view Patronium framework"
+              aria-label="Sign in required"
             >
               <div className="gate-card">
                 <div className="gate-kicker">Patron Wallet Required</div>
@@ -291,7 +280,7 @@ export default function App() {
                 </div>
                 <div style={{ marginTop: 14 }}>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary-pill"
                     type="button"
                     onClick={openWallet}
                   >
@@ -343,10 +332,7 @@ export default function App() {
           <p>
             <b>Founding Patrons</b> are the first to support the birth of a new
             Chapter. They provide the initial horses, pasture, and capital that
-            make it possible for a Polo Incubator to begin. During this founding
-            period, their Patronium receives the full measure of available
-            tribute — a reflection of their patronage in helping to seed the
-            future of the sport.
+            make it possible for a Polo Incubator to begin.
           </p>
           <p>
             <b>Operating Patrons</b> are the active stewards responsible for the
@@ -360,15 +346,6 @@ export default function App() {
           </p>
 
           <hr className="rule" />
-
-          {/* 🔻 GATE TRIGGER MARKER MOVED LOWER IN THE TEXT 🔻 */}
-          <div
-            ref={gateRef}
-            style={{
-              height: "1px",
-              marginTop: "2.5rem", // small offset so it fires a bit after the previous section
-            }}
-          />
 
           <h2 className="sc">The Tribute Framework</h2>
           <p>
@@ -424,9 +401,9 @@ export default function App() {
             decentralise it — to bring clarity, fairness, and longevity to the
             way it is taught, funded, and shared. Patronium and the Polo
             Incubator model together create a living, self-sustaining framework
-            for the game’s renewal across America. This is how the USPPA will
-            grow the next American 10-Goal player.
+            for the game’s renewal across America.
           </p>
+          <p>This is how the USPPA will grow the next American 10-Goal player.</p>
 
           <hr className="rule" />
 
