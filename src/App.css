@@ -1,17 +1,9 @@
-/* src/App.css */
+/* -------------------------------------------------
+   Global base
+------------------------------------------------- */
 
-/* --------------------------------------------------
-   Base + palette
--------------------------------------------------- */
 :root {
-  --usp-bg: #050505;
-  --usp-ink: #f5f3ee;
-  --usp-ink-muted: #d8d0c3;
-  --usp-gold: #e3bf72;
-  --usp-gold-soft: #c7b08a;
-  --usp-gold-deep: #9f8a64;
-  --usp-border-soft: #3a2b16;
-  --usp-border-faint: #2a2318;
+  color-scheme: dark;
 }
 
 *,
@@ -24,486 +16,419 @@ html,
 body {
   margin: 0;
   padding: 0;
-  min-height: 100%;
 }
 
 body {
-  font-family: "EB Garamond", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", serif;
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--usp-ink);
-  background:
-    radial-gradient(
-      circle at 50% 86px,
-      rgba(255, 255, 255, 0.13) 0,
-      rgba(255, 255, 255, 0.04) 150px,
-      transparent 280px
-    ),
-    #050505;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
+  font-family: "EB Garamond", serif;
+  font-size: 17px;
+  line-height: 1.7;
+  background: #050505;
+  color: #f5eedc;
+  -webkit-font-smoothing: antialiased;
 }
 
 .page {
   min-height: 100vh;
+  background: #050505;
+  color: #f5eedc;
 }
 
-/* --------------------------------------------------
-   Buttons
--------------------------------------------------- */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 1.6rem;
-  border-radius: 999px;
-  border: 1px solid var(--usp-border-soft);
-  background: transparent;
-  color: var(--usp-ink);
-  font-family: "Cinzel", serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+a {
+  color: #e3bf72;
   text-decoration: none;
-  cursor: pointer;
-  transition:
-    background 160ms ease,
-    color 160ms ease,
-    box-shadow 160ms ease,
-    transform 120ms ease;
-  white-space: nowrap;
 }
 
-.btn-primary {
-  background: var(--usp-gold);
-  color: #181210;
-  border-color: var(--usp-gold);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+a:hover {
+  text-decoration: underline;
 }
 
-.btn-outline {
-  background: transparent;
-  color: var(--usp-ink);
-  border-color: var(--usp-border-soft);
-}
+/* -------------------------------------------------
+   Typography
+------------------------------------------------- */
 
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
-}
-
-.btn:active {
-  transform: translateY(0);
-  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.6);
-}
-
-/* Top Patron Wallet pill */
-.header-actions .btn {
-  padding-inline: 2.4rem;
-}
-
-/* --------------------------------------------------
-   Masthead / hero
--------------------------------------------------- */
-
-.site-header {
-  padding: 5.2rem 1.75rem 2.75rem;
-  text-align: center;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.header-actions {
-  margin-bottom: 1.8rem;
-}
-
-.header-actions .btn {
-  font-size: 0.72rem;
-}
-
-/* Two-line wordmark hero */
-.masthead-title {
+h1,
+h2,
+h3 {
   font-family: "Cinzel", serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  font-size: clamp(1.05rem, 3.3vw, 2rem);
-  line-height: 1.45;
-  margin: 0 0 0.9rem;
-  color: var(--usp-ink);
-  max-width: 28ch;
-  margin-inline: auto;
+  margin: 0 0 0.6em;
 }
 
-.masthead-line {
-  display: block;
-}
-
-.masthead-line:first-child {
-  letter-spacing: 0.2em;
-}
-
-.masthead-line:last-child {
-  letter-spacing: 0.16em;
-}
-
-.est {
-  font-family: "Cinzel", serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--usp-gold-soft);
-  margin: 0;
-}
-
-.dot {
-  padding: 0 0.5em;
-}
-
-/* --------------------------------------------------
-   Layout / type
--------------------------------------------------- */
-
-.container {
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 0 1.6rem 3.5rem;
-}
-
-.rule {
-  border: none;
-  border-top: 1px solid var(--usp-border-faint);
-  margin: 2.4rem 0;
-}
-
-.rule-spaced {
-  margin: 3rem 0;
-}
-
-h2.sc {
-  font-family: "Cinzel", serif;
+.sc {
   font-variant: small-caps;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
+  text-transform: lowercase; /* shows as small caps */
   font-size: 0.95rem;
-  margin: 0 0 0.75rem;
-  color: var(--usp-gold-soft);
-}
-
-p {
-  margin: 0 0 1.05rem;
-  color: var(--usp-ink-muted);
-}
-
-ul {
-  padding-left: 1.2rem;
-  margin: 0 0 1.4rem;
-  color: var(--usp-ink-muted);
 }
 
 .motto {
   text-align: center;
   font-style: italic;
-  margin: 2.5rem 0 0;
-  font-size: 1rem;
+  margin: 3rem auto 2rem;
+  font-size: 1.1rem;
+  max-width: 34rem;
+  color: #e4dcc3;
 }
 
-/* --------------------------------------------------
-   Roadmap section
--------------------------------------------------- */
+/* -------------------------------------------------
+   Layout containers
+------------------------------------------------- */
 
-.roadmap {
-  text-align: center;
-  max-width: 34rem;
+.container {
+  max-width: 760px;
+  padding: 0 22px 4rem;
   margin: 0 auto;
 }
 
+.site-header {
+  text-align: center;
+  padding: 4.5rem 1.5rem 3rem;
+  background:
+    radial-gradient(
+      circle at top center,
+      rgba(255, 255, 255, 0.26) 0,
+      rgba(255, 255, 255, 0.16) 18%,
+      rgba(255, 255, 255, 0.04) 38%,
+      rgba(0, 0, 0, 0) 68%
+    ),
+    #050505;
+}
+
+/* -------------------------------------------------
+   Hero wordmark + header actions
+------------------------------------------------- */
+
+.header-actions {
+  margin-bottom: 2.1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.masthead-title {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  line-height: 1.35;
+  font-size: clamp(1.7rem, 3.9vw, 2.4rem);
+}
+
+.masthead-line {
+  display: block;
+  max-width: min(18ch, 92vw);
+  margin: 0 auto;
+}
+
+.est {
+  font-family: "Cinzel", serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-top: 1.2rem;
+  color: #c7b08a;
+}
+
+.dot {
+  padding: 0 0.4em;
+}
+
+/* -------------------------------------------------
+   Rules, sections, footer
+------------------------------------------------- */
+
+.rule {
+  border: none;
+  border-top: 1px solid #2b2419;
+  margin: 2.4rem 0;
+}
+
+.rule-spaced {
+  margin: 3.1rem 0 2.7rem;
+}
+
+.site-footer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #7c705a;
+  padding: 2.5rem 1.5rem 2.1rem;
+  border-top: 1px solid #221a12;
+  margin-top: 3rem;
+}
+
+.fineprint {
+  margin: 0;
+}
+
+/* -------------------------------------------------
+   Buttons
+------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.9rem;
+  border-radius: 999px;
+  font-family: "Cinzel", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid #e3bf72;
+  background: transparent;
+  color: #f5eedc;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease,
+    border-color 150ms ease;
+}
+
+.btn-primary {
+  background: #e3bf72;
+  color: #181210;
+  border-color: #e3bf72;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+}
+
+.btn-primary:hover {
+  background: #f0cb7d;
+  border-color: #f0cb7d;
+  color: #181210;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #f5eedc;
+  border-color: #e3bf72;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.65);
+}
+
+.btn-outline:hover {
+  background: #e3bf72;
+  color: #181210;
+}
+
+/* -------------------------------------------------
+   Roadmap block
+------------------------------------------------- */
+
+.roadmap {
+  text-align: center;
+}
+
 .roadmap-head {
-  margin-bottom: 2rem;
+  margin-bottom: 2.1rem;
 }
 
 .roadmap-kicker {
   font-family: "Cinzel", serif;
   font-size: 0.75rem;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--usp-gold-deep);
-  margin-bottom: 0.3rem;
+  color: #b89f78;
+  margin-bottom: 0.45rem;
 }
 
 .roadmap-title {
   font-family: "Cinzel", serif;
-  font-size: 1.35rem;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--usp-ink);
+  font-size: 1rem;
 }
 
 .initiative {
-  margin-bottom: 2.6rem;
+  margin-bottom: 2.9rem;
+}
+
+.wm {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.2rem;
+}
+
+.wm-top {
+  font-size: 0.68rem;
+  color: #b89f78;
+  margin-bottom: 0.35rem;
+}
+
+.wm-main {
+  font-family: "Cinzel", serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.26em;
+}
+
+.wm-sub {
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: #a89a80;
+}
+
+.wm-rule {
+  height: 1px;
+  width: 70%;
+  margin: 0.55rem auto 0.4rem;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #3a2b16,
+    transparent
+  );
+}
+
+/* Patronium wordmark slightly larger */
+.wm-patronium .wm-main {
+  font-size: 1.15rem;
+}
+
+/* Cowboy Polo */
+.wm-cowboy .wm-main {
+  font-size: 1.09rem;
+}
+
+.wm-mid {
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  margin-top: 0.25rem;
+  color: #b7aa8b;
+}
+
+.wm-dot {
+  padding: 0 0.3em;
+}
+
+/* Simple wordmarks (The Polo Life, Charleston) */
+.wm-simple .wm-main {
+  font-size: 1rem;
 }
 
 .initiative-text {
-  font-size: 1rem;
-  margin-top: 0.9rem;
   max-width: 32rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 1.3rem;
+  font-size: 0.96rem;
+  color: #e4dcc3;
 }
 
 .cta-row {
-  margin-top: 1.1rem;
-}
-
-.cta-row .btn {
-  min-width: 210px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.6rem;
 }
 
 .divider {
   height: 1px;
-  width: 70%;
-  max-width: 360px;
-  margin: 2rem auto 0;
-  background: var(--usp-border-faint);
+  width: 64%;
+  margin: 0 auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #262018,
+    transparent
+  );
 }
 
 .roadmap-footnote {
-  font-size: 0.86rem;
-  color: var(--usp-ink-muted);
-  margin-top: 0.75rem;
+  margin: 1.7rem auto 0;
+  max-width: 32rem;
+  font-size: 0.88rem;
+  color: #b7aa8b;
 }
 
-/* Wordmark blocks */
-
-.wm {
-  font-family: "Cinzel", serif;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-}
-
-.wm-top {
-  font-size: 0.78rem;
-  color: var(--usp-gold-deep);
-  margin-bottom: 0.4rem;
-}
-
-.wm-main {
-  font-size: 1.15rem;
-  color: var(--usp-ink);
-}
-
-.wm-sub {
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
-  color: var(--usp-gold-deep);
-  margin-top: 0.55rem;
-}
-
-.wm-patronium .wm-main {
-  font-size: 1.4rem;
-  letter-spacing: 0.26em;
-}
-
-.wm-patronium .wm-sub {
-  letter-spacing: 0.24em;
-}
-
-.wm-patronium .wm-rule {
-  height: 1px;
-  width: 78%;
-  max-width: 340px;
-  background: var(--usp-border-soft);
-  margin: 0.8rem auto 0.45rem;
-}
-
-.wm-cowboy .wm-main {
-  font-size: 1.3rem;
-}
-
-.wm-cowboy .wm-mid {
-  margin-top: 0.3rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.4em;
-  color: var(--usp-ink-muted);
-}
-
-.wm-cowboy .wm-dot {
-  margin: 0 0.4em;
-}
-
-.wm-simple .wm-main {
-  font-size: 1.25rem;
-}
-
-/* --------------------------------------------------
-   Gated content overlay (blur gradient)
--------------------------------------------------- */
+/* -------------------------------------------------
+   Gate zone + blur overlay
+------------------------------------------------- */
 
 .gate-zone {
   position: relative;
+  margin-top: 3.4rem;
 }
 
-/* Clickable overlay; blur is handled by ::before / ::after */
+/* 
+   Overlay now pins its card near the TOP of the blurred section
+   instead of vertically centering it.
+*/
 .gate-overlay {
   position: absolute;
   inset: 0;
-  z-index: 2;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 1.4rem;
-}
-
-/* Light blur on top band (first lines) */
-.gate-overlay::before,
-.gate-overlay::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  pointer-events: none;
-}
-
-.gate-overlay::before {
-  top: 0;
-  height: 45%;
-  background: rgba(5, 5, 5, 0.08);
+  justify-content: flex-start;      /* <— key change */
+  padding-top: 1.6rem;              /* space from top of blur */
+  pointer-events: auto;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.02) 0%,
+    rgba(5, 5, 5, 0.13) 40%,
+    rgba(5, 5, 5, 0.28) 100%
+  );
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
 
-/* Stronger blur lower down */
-.gate-overlay::after {
-  top: 35%;
-  bottom: 0;
-  background: rgba(5, 5, 5, 0.32);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+/* a bit more breathing room on larger screens */
+@media (min-width: 768px) {
+  .gate-overlay {
+    padding-top: 2.4rem;
+  }
 }
 
 .gate-card {
-  max-width: 380px;
-  border-radius: 14px;
-  border: 1px solid var(--usp-border-soft);
+  max-width: 540px;
+  width: 90%;
+  border-radius: 22px;
+  border: 1px solid #3a2b16;
+  padding: 1.7rem 1.4rem 1.5rem;
   background: radial-gradient(
-      circle at 50% 0,
-      rgba(255, 255, 255, 0.1) 0,
-      transparent 220px
+      circle at top center,
+      rgba(255, 255, 255, 0.06) 0,
+      transparent 55%
     ),
-    #050505;
-  padding: 1.5rem 1.4rem 1.6rem;
+    rgba(5, 5, 5, 0.94);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.9);
   text-align: center;
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.9);
-  position: relative;
-  z-index: 3; /* above blur layers */
 }
 
 .gate-kicker {
   font-family: "Cinzel", serif;
   font-size: 0.7rem;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--usp-gold-soft);
-  margin-bottom: 0.4rem;
+  color: #b89f78;
+  margin-bottom: 0.45rem;
 }
 
 .gate-title {
   font-family: "Cinzel", serif;
-  font-size: 1rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--usp-ink);
-  margin-bottom: 0.5rem;
-}
-
-.gate-copy {
-  font-size: 0.9rem;
-  color: var(--usp-ink-muted);
-}
-
-/* --------------------------------------------------
-   Wallet modal
--------------------------------------------------- */
-
-.wallet-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.86);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 14px;
-}
-
-.wallet-shell {
-  width: 100%;
-  max-width: 380px;
-  border-radius: 14px;
-  border: 1px solid var(--usp-border-soft);
-  background: #050505;
-  color: var(--usp-ink);
-  padding: 22px 18px 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-  position: relative;
-  font-family: "Cinzel", serif;
-}
-
-.wallet-close {
-  position: absolute;
-  right: 6px;
-  top: 6px;
-  border: none;
-  background: transparent;
-  color: var(--usp-gold);
-  font-size: 30px;
-  cursor: pointer;
-}
-
-.wallet-title {
-  text-align: center;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  margin-bottom: 0.4rem;
-}
-
-.wallet-subtitle {
-  text-align: center;
-  font-family: "EB Garamond", serif;
-  font-size: 0.85rem;
-  color: var(--usp-ink-muted);
   margin-bottom: 0.8rem;
 }
 
-/* --------------------------------------------------
-   Footer
--------------------------------------------------- */
-
-.site-footer {
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--usp-ink-muted);
-  padding: 2.6rem 1.5rem 3rem;
+.gate-copy {
+  font-size: 0.95rem;
+  margin-bottom: 0.9rem;
+  color: #e5ddc4;
 }
 
-/* --------------------------------------------------
-   Responsive tweaks
--------------------------------------------------- */
+/* -------------------------------------------------
+   Responsive tweak for text widths
+------------------------------------------------- */
 
-@media (min-width: 768px) {
-  .site-header {
-    padding-top: 6rem;
-    padding-bottom: 3.25rem;
+@media (min-width: 900px) {
+  body {
+    font-size: 18px;
   }
 
   .masthead-title {
-    font-size: clamp(1.2rem, 2.8vw, 2.1rem);
-    max-width: 30ch;
+    font-size: 2.4rem;
   }
 
   .container {
-    padding-bottom: 4.2rem;
+    padding-inline: 26px;
   }
 }
