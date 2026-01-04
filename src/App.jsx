@@ -167,8 +167,10 @@ export default function App() {
     }
   };
 
-  const normalizedAmount =
-    usdAmount && Number(usdAmount) > 0 ? String(usdAmount) : "1";
+  // Normalised amount (both number + string forms)
+  const normalizedAmountNumber =
+    usdAmount && Number(usdAmount) > 0 ? Number(usdAmount) : 1;
+  const normalizedAmount = String(normalizedAmountNumber);
 
   const handleCheckoutSuccess = async (result) => {
     try {
@@ -180,11 +182,11 @@ export default function App() {
         body: JSON.stringify({
           address: account.address,
           usdAmount: normalizedAmount,
-          checkout: {
-            id: result?.id,
-            amountPaid: result?.amountPaid ?? normalizedAmount,
-            currency: result?.currency ?? "USD",
-          },
+          // Optional but useful for logging on the function side
+          paymentTxHash:
+            result?.transactionHash ||
+            result?.id ||
+            null,
         }),
       });
 
@@ -964,7 +966,7 @@ export default function App() {
                       }
                       currency={"USD"}
                       chain={BASE}
-                      amount={normalizedAmount}
+                      amount={normalizedAmountNumber}
                       tokenAddress={
                         "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
                       }
