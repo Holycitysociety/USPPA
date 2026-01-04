@@ -29,7 +29,8 @@ export default function App() {
 
   const [walletOpen, setWalletOpen] = useState(false);
 
-  const gateRef = useRef(null); // gated section anchor
+  // This is now a *marker* lower in the gated text, not the whole section.
+  const gateRef = useRef(null);
   const hasTriggeredGateRef = useRef(false);
 
   const account = useActiveAccount();
@@ -69,10 +70,10 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, [walletOpen]);
 
-  // --- auto-open wallet once when gated section reaches *bottom* of viewport ---
+  // --- auto-open wallet once when the *marker* reaches bottom of viewport ---
   useEffect(() => {
     if (isConnected) {
-      hasTriggeredGateRef.current = false; // allow again in a fresh session
+      hasTriggeredGateRef.current = false; // allow again on future sessions if they sign out
       return;
     }
 
@@ -85,7 +86,7 @@ export default function App() {
       const viewportH =
         window.innerHeight || document.documentElement.clientHeight;
 
-      // Trigger when the *top* of the gated section reaches
+      // Trigger when the *top* of the marker reaches
       // the *bottom* of the viewport
       if (rect.top <= viewportH) {
         hasTriggeredGateRef.current = true;
@@ -94,7 +95,7 @@ export default function App() {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    // run once in case user loads midway down
+    // Run once in case user loads already mid-way
     onScroll();
 
     return () => window.removeEventListener("scroll", onScroll);
@@ -270,13 +271,9 @@ export default function App() {
         <hr className="rule rule-spaced" />
 
         {/* -------------------------------------------------------
-            GATED ZONE STARTS HERE (gateRef lives on this wrapper)
+            GATED ZONE STARTS HERE
            ------------------------------------------------------- */}
-        <div
-          ref={gateRef}
-          className="gate-zone"
-          id="patronium-polo-patronage"
-        >
+        <div className="gate-zone" id="patronium-polo-patronage">
           {/* Blur overlay when NOT connected */}
           {!isConnected && (
             <div
@@ -363,6 +360,15 @@ export default function App() {
           </p>
 
           <hr className="rule" />
+
+          {/* 🔻 GATE TRIGGER MARKER MOVED LOWER IN THE TEXT 🔻 */}
+          <div
+            ref={gateRef}
+            style={{
+              height: "1px",
+              marginTop: "2.5rem", // small offset so it fires a bit after the previous section
+            }}
+          />
 
           <h2 className="sc">The Tribute Framework</h2>
           <p>
