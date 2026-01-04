@@ -27,77 +27,146 @@ const walletTheme = darkTheme({
 export default function App() {
   const year = 2026;
 
+  const [menuOpen, setMenuOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
-  const [gateActive, setGateActive] = useState(false);
 
-  // gate anchor just below the Patronium heading
-  const gateRef = useRef(null);
-
+  const menuRef = useRef(null);
   const account = useActiveAccount();
   const isConnected = !!account;
 
-  // --- scroll lock ONLY when wallet modal open ---
+  // --- dropdown menu: outside click / Esc ---
+  useEffect(() => {
+    function handleClick(e) {
+      if (!menuRef.current) return;
+      if (!menuRef.current.contains(e.target)) setMenuOpen(false);
+    }
+    function handleKey(e) {
+      if (e.key === "Escape") setMenuOpen(false);
+    }
+    window.addEventListener("click", handleClick);
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      window.removeEventListener("click", handleClick);
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, []);
+
+  // --- scroll lock ONLY when wallet modal open (mobile-safe) ---
   useEffect(() => {
     if (!walletOpen) return;
 
-    const y = window.scrollY;
+    const scrollY = window.scrollY;
+    const { position, top, left, right, width } = document.body.style;
+
     document.body.style.position = "fixed";
-    document.body.style.top = `-${y}px`;
+    document.body.style.top = `-${scrollY}px`;
     document.body.style.left = "0";
     document.body.style.right = "0";
     document.body.style.width = "100%";
 
     return () => {
-      const top = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
+      document.body.style.position = position;
+      document.body.style.top = top;
+      document.body.style.left = left;
+      document.body.style.right = right;
+      document.body.style.width = width;
 
-      const restoreY = top ? Math.abs(parseInt(top, 10)) : 0;
-      window.scrollTo(0, restoreY);
+      const restoreY = top ? Math.abs(parseInt(top, 10)) : scrollY;
+      window.scrollTo(0, restoreY || 0);
     };
   }, [walletOpen]);
-
-  // --- gate trigger: when the invisible anchor passes near the top ---
-  useEffect(() => {
-    const onScroll = () => {
-      const anchor = gateRef.current;
-      if (!anchor) return;
-
-      const rect = anchor.getBoundingClientRect();
-      const triggerOffset = 40; // px from top of viewport
-
-      const activeNow = rect.top <= triggerOffset;
-      setGateActive(activeNow);
-
-      if (!isConnected && activeNow) {
-        document.body.classList.add("gate-locked");
-      } else {
-        document.body.classList.remove("gate-locked");
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // run once on load
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      document.body.classList.remove("gate-locked");
-    };
-  }, [isConnected]);
 
   const openWallet = () => setWalletOpen(true);
   const closeWallet = () => setWalletOpen(false);
 
   return (
-    <div className={`page ${gateActive && !isConnected ? "page-gated" : ""}`}>
-      {/* Header / hero */}
+    <div className="page">
+      {/* Fixed 3-dot menu */}
+      <nav
+        className={`usp-menu ${menuOpen ? "is-open" : ""}`}
+        role="navigation"
+        aria-label="Site menu"
+        ref={menuRef}
+      >
+        <button
+          className="usp-menu__btn"
+          aria-haspopup="true"
+          aria-expanded={menuOpen ? "true" : "false"}
+          aria-controls="usp-menu-list"
+          onClick={(e) => {
+            e.stopPropagation();
+            setMenuOpen((v) => !v);
+          }}
+        >
+          …
+        </button>
+
+        <div
+          id="usp-menu-list"
+          className="usp-menu__panel"
+          role="menu"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <a className="usp-menu__link" role="menuitem" href="#top">
+            USPPA
+          </a>
+
+          <div className="usp-menu__heading">Patrons</div>
+          <a
+            className="usp-menu__link"
+            role="menuitem"
+            href="https://polopatronium.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Polo Patronium
+          </a>
+          <a
+            className="usp-menu__link"
+            role="menuitem"
+            href="https://militestempli.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Milites Templi
+          </a>
+
+          <div className="usp-menu__heading">Chapters &amp; Initiatives</div>
+          <a
+            className="usp-menu__link"
+            role="menuitem"
+            href="https://charlestonpolo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Charleston Polo
+          </a>
+          <a
+            className="usp-menu__link"
+            role="menuitem"
+            href="https://cowboypolo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Cowboy Polo Circuit
+          </a>
+          <a
+            className="usp-menu__link"
+            role="menuitem"
+            href="https://thepololife.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            The Polo Life
+          </a>
+        </div>
+      </nav>
+
+      {/* Header */}
       <header id="top" className="site-header">
         <div className="header-actions">
           <button
-            className="btn btn-primary btn-wallet"
+            className="btn btn-primary"
             type="button"
             onClick={openWallet}
           >
@@ -105,27 +174,19 @@ export default function App() {
           </button>
         </div>
 
-        <h1
-          className="masthead-title"
-          style={{
-            // widen title to roughly the content column width, responsive
-            maxWidth: "min(90vw, 26rem)",
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-        >
-          UNITED STATES POLO
-          <br />
-          PATRONS ASSOCIATION
+        <h1 className="masthead-title">
+          <span className="masthead-line">United States Polo</span>
+          <span className="masthead-line">Patrons Association</span>
         </h1>
 
         <p className="est">
-          AD MMXXVI<span className="dot">·</span>2026
+          FOUNDING<span className="dot">·</span>AD MMXXVI
+          <span className="dot">·</span>2026
         </p>
       </header>
 
+      {/* Intro + roadmap */}
       <main className="container">
-        {/* Announcement */}
         <hr className="rule" />
 
         <h2 className="sc">Announcement</h2>
@@ -139,7 +200,7 @@ export default function App() {
 
         <hr className="rule rule-spaced" />
 
-        {/* Initiative Roadmap — single column, centered wordmarks + CTAs */}
+        {/* Initiative Roadmap — single column, centered CTAs */}
         <section className="roadmap" aria-label="Initiative Roadmap">
           <div className="roadmap-head">
             <div className="roadmap-kicker">Initiative</div>
@@ -153,7 +214,7 @@ export default function App() {
               aria-label="Polo Patronium wordmark"
             >
               <div className="wm-top">Official Token</div>
-              <div className="wm-main">POLO&nbsp;PATRONIUM</div>
+              <div className="wm-main">Polo Patronium</div>
               <div className="wm-rule" />
               <div className="wm-sub">Symbol “PATRON” · Built on Base</div>
             </div>
@@ -165,7 +226,7 @@ export default function App() {
 
             <div className="cta-row">
               <a
-                className="btn"
+                className="btn btn-primary"
                 href="https://polopatronium.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -183,9 +244,9 @@ export default function App() {
               className="wm wm-cowboy"
               aria-label="Cowboy Polo Circuit wordmark"
             >
-              <div className="wm-main">COWBOY&nbsp;POLO</div>
+              <div className="wm-main">Cowboy Polo</div>
               <div className="wm-mid">
-                <span className="wm-dot">·</span>CIRCUIT
+                <span className="wm-dot">·</span>Circuit
                 <span className="wm-dot">·</span>
               </div>
               <div className="wm-sub">American Development Pipeline</div>
@@ -199,7 +260,7 @@ export default function App() {
 
             <div className="cta-row">
               <a
-                className="btn"
+                className="btn btn-primary"
                 href="https://cowboypolo.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -215,7 +276,7 @@ export default function App() {
           <div className="initiative">
             <div className="wm wm-simple" aria-label="The Polo Life wordmark">
               <div className="wm-top">Media</div>
-              <div className="wm-main">THE&nbsp;POLO&nbsp;LIFE</div>
+              <div className="wm-main">The Polo Life</div>
               <div className="wm-sub">
                 Stories · Horses · Players · Chapters
               </div>
@@ -228,7 +289,7 @@ export default function App() {
 
             <div className="cta-row">
               <a
-                className="btn"
+                className="btn btn-primary"
                 href="https://thepololife.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -247,7 +308,7 @@ export default function App() {
               aria-label="Charleston Polo wordmark"
             >
               <div className="wm-top">Flagship Chapter</div>
-              <div className="wm-main">CHARLESTON&nbsp;POLO</div>
+              <div className="wm-main">Charleston Polo</div>
               <div className="wm-sub">USPPA Chapter Test Model</div>
             </div>
 
@@ -259,7 +320,7 @@ export default function App() {
 
             <div className="cta-row">
               <a
-                className="btn"
+                className="btn btn-primary"
                 href="https://charlestonpolo.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -279,27 +340,32 @@ export default function App() {
         <hr className="rule rule-spaced" />
 
         {/* -------------------------------------------------------
-            GATED ZONE STARTS HERE
+            GATED ZONE STARTS HERE (blur overlay begins here)
+            Overlay is present whenever NOT signed in, from
+            this heading down, and disappears once connected.
            ------------------------------------------------------- */}
-        <div className="gate-zone" id="patronium-polo-patronage">
-          {/* Blur overlay only once the anchor is past trigger & user not connected */}
-          {!isConnected && gateActive && (
+        <section
+          className="gate-zone"
+          id="patronium-polo-patronage"
+          aria-label="Patronium framework and chapter structure"
+        >
+          {!isConnected && (
             <div
               className="gate-overlay"
               onClick={openWallet}
               role="button"
-              aria-label="Sign in required to continue"
+              aria-label="Sign in required to view this section"
             >
               <div className="gate-card">
                 <div className="gate-kicker">Patron Wallet Required</div>
                 <div className="gate-title">Sign in to continue</div>
                 <div className="gate-copy">
                   This section and everything below is reserved for signed-in
-                  patrons. Tap here to open the Patron Wallet.
+                  patrons. Tap here to open Patron Wallet.
                 </div>
                 <div style={{ marginTop: 14 }}>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-outline"
                     type="button"
                     onClick={openWallet}
                   >
@@ -310,12 +376,7 @@ export default function App() {
             </div>
           )}
 
-          {/* Patronium heading */}
           <h2 className="sc">Patronium — Polo Patronage Perfected</h2>
-
-          {/* Invisible anchor moved UP: sits just under the heading now */}
-          <div ref={gateRef} className="gate-anchor" aria-hidden="true" />
-
           <p>
             Patronium is the living token of patronage within the United States
             Polo Patrons Association. It is the medium through which honourable
@@ -335,7 +396,9 @@ export default function App() {
 
           <hr className="rule" />
 
-          <h2 className="sc">Charleston Polo — The USPPA Chapter Test Model</h2>
+          <h2 className="sc">
+            Charleston Polo — The USPPA Chapter Test Model
+          </h2>
           <p>
             Each USPPA Chapter is a fully integrated polo programme operating
             under the Association’s standards. A Chapter begins as a Polo
@@ -352,10 +415,8 @@ export default function App() {
           <hr className="rule" />
 
           <h2 className="sc">Founding, Operating, and USPPA Patrons</h2>
+          <p>There are three forms of Patronium holder.</p>
           <p>
-            There are three forms of Patronium holder.
-            <br />
-            <br />
             <b>Founding Patrons</b> are the first to support the birth of a new
             Chapter. They provide the initial horses, pasture, and capital that
             make it possible for a Polo Incubator to begin. During this founding
@@ -367,7 +428,7 @@ export default function App() {
             <b>Operating Patrons</b> are the active stewards responsible for the
             management of each Chapter. They receive a base salary during the
             incubator period and an operating share of tribute once the
-            incubator transitions to a full chapter.
+            incubator transitions to a full Chapter.
           </p>
           <p>
             <b>USPPA Patrons</b> are the ongoing supporters who sustain and
@@ -384,19 +445,18 @@ export default function App() {
           </p>
           <ul>
             <li>
-              <strong>51 % +</strong> retained for reinvestment — horses,
+              <strong>51%+</strong> retained for reinvestment — horses,
               pasture, equipment, and operations.
             </li>
             <li>
-              <strong>49 %</strong> max. available to the Patronium Tribute
-              Pool, from which holders are recognised for their continued
-              patronage.
+              <strong>49%</strong> max. available to the Patronium Tribute Pool,
+              from which holders are recognised for their continued patronage.
             </li>
           </ul>
           <p>
             During the Polo Incubator period, the Founding Patrons are
             whitelisted for direct proportional tribute from the Polo Incubators
-            they support (49 % of tribute). After the first year, or when the
+            they support (49% of tribute). After the first year, or when the
             Incubator can support itself, it transitions to a full Chapter and
             the tribute returns to the standard USPPA Patron tribute.
           </p>
@@ -433,9 +493,7 @@ export default function App() {
             Incubator model together create a living, self-sustaining framework
             for the game’s renewal across America.
           </p>
-          <p>
-            This is how the USPPA will grow the next American 10-Goal player.
-          </p>
+          <p>This is how the USPPA will grow the next American 10-Goal player.</p>
 
           <hr className="rule" />
 
@@ -472,7 +530,7 @@ export default function App() {
           <blockquote className="motto">
             “In honour, in sport, in fellowship.”
           </blockquote>
-        </div>
+        </section>
 
         <footer className="site-footer">
           <p className="fineprint">© {year} USPoloPatrons.org</p>
@@ -482,7 +540,10 @@ export default function App() {
       {/* Patron Wallet modal */}
       {walletOpen && (
         <div className="wallet-backdrop" onClick={closeWallet}>
-          <div className="wallet-shell" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="wallet-shell"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               className="wallet-close"
               type="button"
