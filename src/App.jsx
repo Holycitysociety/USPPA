@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ConnectEmbed, useActiveAccount, darkTheme } from "thirdweb/react";
 import { createThirdwebClient, defineChain } from "thirdweb";
 import { inAppWallet } from "thirdweb/wallets";
@@ -27,29 +27,10 @@ const walletTheme = darkTheme({
 export default function App() {
   const year = 2026;
 
-  const [menuOpen, setMenuOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
 
-  const menuRef = useRef(null);
   const account = useActiveAccount();
   const isConnected = !!account;
-
-  // --- dropdown menu: outside click / Esc ---
-  useEffect(() => {
-    function handleClick(e) {
-      if (!menuRef.current) return;
-      if (!menuRef.current.contains(e.target)) setMenuOpen(false);
-    }
-    function handleKey(e) {
-      if (e.key === "Escape") setMenuOpen(false);
-    }
-    window.addEventListener("click", handleClick);
-    window.addEventListener("keydown", handleKey);
-    return () => {
-      window.removeEventListener("click", handleClick);
-      window.removeEventListener("keydown", handleKey);
-    };
-  }, []);
 
   // --- scroll lock ONLY when wallet modal open (mobile-safe) ---
   useEffect(() => {
@@ -81,87 +62,6 @@ export default function App() {
 
   return (
     <div className="page">
-      {/* Fixed 3-dot menu */}
-      <nav
-        className={`usp-menu ${menuOpen ? "is-open" : ""}`}
-        role="navigation"
-        aria-label="Site menu"
-        ref={menuRef}
-      >
-        <button
-          className="usp-menu__btn"
-          aria-haspopup="true"
-          aria-expanded={menuOpen ? "true" : "false"}
-          aria-controls="usp-menu-list"
-          onClick={(e) => {
-            e.stopPropagation();
-            setMenuOpen((v) => !v);
-          }}
-        >
-          …
-        </button>
-
-        <div
-          id="usp-menu-list"
-          className="usp-menu__panel"
-          role="menu"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <a className="usp-menu__link" role="menuitem" href="#top">
-            USPPA
-          </a>
-
-          <div className="usp-menu__heading">Patrons</div>
-          <a
-            className="usp-menu__link"
-            role="menuitem"
-            href="https://polopatronium.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Polo Patronium
-          </a>
-          <a
-            className="usp-menu__link"
-            role="menuitem"
-            href="https://militestempli.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Milites Templi
-          </a>
-
-          <div className="usp-menu__heading">Chapters &amp; Initiatives</div>
-          <a
-            className="usp-menu__link"
-            role="menuitem"
-            href="https://charlestonpolo.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Charleston Polo
-          </a>
-          <a
-            className="usp-menu__link"
-            role="menuitem"
-            href="https://cowboypolo.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Cowboy Polo Circuit
-          </a>
-          <a
-            className="usp-menu__link"
-            role="menuitem"
-            href="https://thepololife.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            The Polo Life
-          </a>
-        </div>
-      </nav>
-
       {/* Header */}
       <header id="top" className="site-header">
         <div className="header-actions">
@@ -340,9 +240,7 @@ export default function App() {
         <hr className="rule rule-spaced" />
 
         {/* -------------------------------------------------------
-            GATED ZONE STARTS HERE (blur overlay begins here)
-            Overlay is present whenever NOT signed in, from
-            this heading down, and disappears once connected.
+            GATED ZONE STARTS HERE
            ------------------------------------------------------- */}
         <section
           className="gate-zone"
@@ -540,10 +438,7 @@ export default function App() {
       {/* Patron Wallet modal */}
       {walletOpen && (
         <div className="wallet-backdrop" onClick={closeWallet}>
-          <div
-            className="wallet-shell"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="wallet-shell" onClick={(e) => e.stopPropagation()}>
             <button
               className="wallet-close"
               type="button"
