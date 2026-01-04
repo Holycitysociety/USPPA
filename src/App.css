@@ -344,14 +344,21 @@ ul {
   position: relative;
 }
 
-/* More transparent blur overlay */
+/* MUCH lighter blur + vertical gradient so top text is clearer */
 .gate-overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: rgba(5, 5, 5, 0.6); /* was 0.78 */
-  backdrop-filter: blur(11px);
-  -webkit-backdrop-filter: blur(11px);
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(5, 5, 5, 0.05) 0%,
+      rgba(5, 5, 5, 0.18) 35%,
+      rgba(5, 5, 5, 0.4) 65%,
+      rgba(5, 5, 5, 0.6) 100%
+    );
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
