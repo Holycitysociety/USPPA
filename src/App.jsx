@@ -393,11 +393,11 @@ export default function App() {
             <div className="divider" />
           </div>
 
-          {/* THE POLO LIFE */}
+          {/* THE POLO WAY */}
           <div className="initiative">
-            <div className="wm wm-simple" aria-label="The Polo Life wordmark">
+            <div className="wm wm-simple" aria-label="The Polo Way wordmark">
               <div className="wm-top">Media</div>
-              <div className="wm-main">THE&nbsp;POLO&nbsp;LIFE</div>
+              <div className="wm-main">THE&nbsp;POLO&nbsp;WAY</div>
               <div className="wm-sub">
                 Stories · Horses · Players · Chapters
               </div>
@@ -411,11 +411,11 @@ export default function App() {
             <div className="cta-row">
               <a
                 className="btn btn-outline"
-                href="https://thepololife.com"
+                href="https://thepoloway.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Thepololife.com
+                Thepoloway.com
               </a>
             </div>
 
@@ -962,7 +962,7 @@ export default function App() {
                       client={client}
                       name={"POLO PATRONIUM"}
                       description={
-                        "USPPA PATRONAGE UTILITY TOKEN · THREE SEVENS 7̶7̶7̶ REMUDA · COWBOY POLO CIRCUIT · THE POLO LIFE · CHARLESTON POLO CLUB"
+                        "USPPA PATRONAGE UTILITY TOKEN · THREE SEVENS 7̶7̶7̶ REMUDA · COWBOY POLO CIRCUIT · THE POLO · CHARLESTON POLO"
                       }
                       currency={"USD"}
                       chain={BASE}
