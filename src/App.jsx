@@ -390,6 +390,27 @@ export default function App() {
             <div className="divider" />
           </div>
 
+          {/* THREE SEVENS REMUDA */}
+          <div className="initiative">
+            <div
+              className="wm wm-three-sevens"
+              aria-label="Three Sevens Remuda wordmark"
+            >
+              <div className="wm-top">Shared Remuda</div>
+              <div className="three-sevens-mark">
+                <div className="three-sevens-numeral">7̶7̶7̶</div>
+                <div className="three-sevens-text">THREE SEVENS REMUDA</div>
+              </div>
+            </div>
+
+            <p className="initiative-text">
+              The shared USPPA string of horses, managed as a living remuda
+              across Cowboy Polo, Patronium, and future Chapters.
+            </p>
+
+            <div className="divider" />
+          </div>
+
           {/* THE POLO WAY */}
           <div className="initiative">
             <div className="wm wm-simple" aria-label="The Polo Way wordmark">
