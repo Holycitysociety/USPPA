@@ -103,21 +103,31 @@ h3 {
   justify-content: center;
 }
 
-/* smaller + slightly tighter so each line fits in one row on mobile */
+/* Responsive masthead: always 2 lines, never wraps mid-phrase */
 .masthead-title {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-weight: 600;
-  line-height: 1.3;
-  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+  line-height: 1.28;
+  /* scales with viewport, capped on desktop */
+  font-size: min(5vw, 2.1rem);
 }
 
-/* allow each line to use full width so it stays to two lines total */
+/* each phrase stays on a single line */
 .masthead-line {
   display: block;
   max-width: 100%;
   margin: 0 auto;
+  white-space: nowrap;
+}
+
+/* extra safety for very narrow phones */
+@media (max-width: 380px) {
+  .masthead-title {
+    font-size: min(4.4vw, 1.7rem);
+    letter-spacing: 0.14em;
+  }
 }
 
 .est {
@@ -348,9 +358,7 @@ h3 {
   margin-top: 3.4rem;
 }
 
-/*
-   Overlay pins its card near the top of the blurred section.
-*/
+/* Overlay pins its card near the top of the blurred section. */
 .gate-overlay {
   position: absolute;
   inset: 0;
