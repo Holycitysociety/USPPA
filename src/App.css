@@ -117,6 +117,7 @@ h3 {
   /* allow full responsive width instead of narrow 18ch cap */
   max-width: 100%;
   margin: 0 auto;
+  white-space: nowrap; /* keep each span on a single line */
 }
 
 .est {
