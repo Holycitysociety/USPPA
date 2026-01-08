@@ -677,7 +677,7 @@ export default function App() {
                 width: "100%",
                 maxHeight: "90vh",
                 overflowY: "auto",
-                border: "1px solid "#3a2b16",
+                border: "1px solid #3a2b16",   // ✅ fixed string
                 borderRadius: 14,
                 padding: "16px",
                 paddingTop: "26px",
