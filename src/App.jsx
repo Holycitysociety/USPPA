@@ -404,8 +404,7 @@ export default function App() {
             </div>
 
             <p className="initiative-text">
-              The shared USPPA string of horses, managed as a living remuda
-              across Cowboy Polo, Patronium, and future Chapters.
+              The managed herd of USPPA horses — consigned or owned by the Association, assigned to operating patrons, trainers and local players, and developed for play, exhibition and training across our programmes.
             </p>
 
             <div className="divider" />
