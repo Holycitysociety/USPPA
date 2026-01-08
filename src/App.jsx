@@ -391,4 +391,598 @@ export default function App() {
           </div>
 
           {/* THE POLO WAY */}
-          <div class
+          <div className="initiative">
+            <div className="wm wm-simple" aria-label="The Polo Way wordmark">
+              <div className="wm-top">Media</div>
+              <div className="wm-main">THE&nbsp;POLO&nbsp;WAY</div>
+              <div className="wm-sub">
+                Stories · Horses · Players · Chapters
+              </div>
+            </div>
+
+            <p className="initiative-text">
+              A platform dedicated to presenting the elegance and traditions of
+              polo to new audiences in the digital age.
+            </p>
+
+            <div className="cta-row">
+              <a
+                className="btn btn-outline"
+                href="https://thepoloway.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Thepoloway.com
+              </a>
+            </div>
+
+            <div className="divider" />
+          </div>
+
+          {/* CHARLESTON POLO */}
+          <div className="initiative">
+            <div
+              className="wm wm-simple"
+              aria-label="Charleston Polo wordmark"
+            >
+              <div className="wm-top">Flagship Chapter</div>
+              <div className="wm-main">CHARLESTON&nbsp;POLO</div>
+              <div className="wm-sub">USPPA Chapter Test Model</div>
+            </div>
+
+            <p className="initiative-text">
+              The renewal of Charleston, South Carolina’s polo tradition — our
+              flagship Chapter and living test model for the USPPA incubator
+              framework.
+            </p>
+
+            <div className="cta-row">
+              <a
+                className="btn btn-outline"
+                href="https://charlestonpolo.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Charlestonpolo.com
+              </a>
+            </div>
+          </div>
+
+          <p className="roadmap-footnote">
+            All initiatives are coordinated and supported through Polo
+            Patronium — the living token of patronage within the United States
+            Polo Patrons Association.
+          </p>
+        </section>
+
+        <hr className="rule rule-spaced" />
+
+        {/* -------------------------------------------------------
+            GATED ZONE STARTS HERE (blur overlay begins here)
+           ------------------------------------------------------- */}
+        <div
+          className="gate-zone"
+          id="patronium-polo-patronage"
+          ref={gateRef}
+        >
+          {!isConnected && (
+            <div
+              className="gate-overlay"
+              onClick={openWallet}
+              role="button"
+              aria-label="Sign in required"
+            >
+              <div className="gate-card">
+                <div className="gate-kicker">Patron Wallet Required</div>
+                <div className="gate-title">Sign in to continue</div>
+                <div className="gate-copy">
+                  This section and everything below is reserved for signed-in
+                  patrons. Tap here or scroll into this section to open the
+                  USPPA Patron Wallet.
+                </div>
+                <div style={{ marginTop: 14 }}>
+                  <button
+                    className="btn btn-outline"
+                    type="button"
+                    onClick={openWallet}
+                  >
+                    Open Patron Wallet
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <h2 className="sc">Patronium — Polo Patronage Perfected</h2>
+          <p>
+            Patronium is the living token of patronage within the United States
+            Polo Patrons Association. It is the medium through which honourable
+            support is recognised and shared — not through speculation, but
+            through participation. Every token of Patronium represents a place
+            within the fellowship of those who uphold the game, its horses, and
+            its players.
+          </p>
+          <p>
+            It serves as the bridge between patron and player: a clear record of
+            contribution and belonging within a high-trust community of sport.
+            When a Chapter prospers, it offers tribute to those whose support
+            made that prosperity possible. This is the essence of Patronium —
+            recognition earned through genuine patronage and service to the
+            field.
+          </p>
+
+          <hr className="rule" />
+
+          <h2 className="sc">Charleston Polo — The USPPA Chapter Test Model</h2>
+          <p>
+            Each USPPA Chapter is a fully integrated polo programme operating
+            under the Association’s standards. A Chapter begins as a Polo
+            Incubator — a local startup where horses are gathered, pasture
+            secured, instruction established, and the public welcomed to learn
+            and play.
+          </p>
+          <p>
+            Once an Incubator achieves steady operations, sound horsemanship,
+            and visible community benefit, it becomes a standing Chapter of the
+            Association.
+          </p>
+
+          <hr className="rule" />
+
+          <h2 className="sc">Founding, Operating, and USPPA Patrons</h2>
+          <p>There are three forms of Patronium holder.</p>
+          <p>
+            <b>Founding Patrons</b> are the first to support the birth of a new
+            Chapter. They provide the initial horses, pasture, and capital that
+            make it possible for a Polo Incubator to begin. During this founding
+            period, their Patronium receives the full measure of available
+            tribute — a reflection of their patronage in helping to seed the
+            future of the sport.
+          </p>
+          <p>
+            <b>Operating Patrons</b> are the active stewards responsible for the
+            management of each Chapter. They receive a base salary during the
+            incubator period and an operating share of tribute once the
+            incubator transitions to a full chapter.
+          </p>
+          <p>
+            <b>USPPA Patrons</b> are the ongoing supporters who sustain and
+            strengthen a Chapter once it is established.
+          </p>
+
+          <hr className="rule" />
+
+          <h2 className="sc">The Tribute Framework</h2>
+          <p>
+            Each Chapter follows a principle of balanced and transparent
+            patronage. From its net revenue (gross revenue less operational
+            costs), a Chapter aims to follow this allocation:
+          </p>
+          <ul>
+            <li>
+              <strong>51%+</strong> retained for reinvestment — horses,
+              pasture, equipment, and operations.
+            </li>
+            <li>
+              <strong>49%</strong> max. available to the Patronium Tribute Pool,
+              from which holders are recognised for their continued patronage.
+            </li>
+          </ul>
+          <p>
+            During the Polo Incubator period, the Founding Patrons are
+            whitelisted for direct proportional tribute from the Polo Incubators
+            they support (49% of tribute). After the first year, or when the
+            Incubator can support itself, it transitions to a full Chapter and
+            the tribute returns to the standard USPPA Patron tribute.
+          </p>
+
+          <hr className="rule" />
+
+          <h2 className="sc">Participation</h2>
+          <ul>
+            <li>
+              Become a Founding Patron — assist in launching a new Chapter
+              through contribution of capital, horses, or facilities.
+            </li>
+            <li>
+              Become an Operating Patron — oversee the daily life of a Chapter
+              and its players.
+            </li>
+            <li>
+              Become a USPPA Patron — support the national network and share in
+              ongoing tribute cycles.
+            </li>
+            <li>
+              Provide Horses or Land — supply the physical foundation of the
+              sport under insured, transparent, and fair agreements.
+            </li>
+          </ul>
+
+          <hr className="rule" />
+
+          <h2 className="sc">In Plain Terms</h2>
+          <p>
+            The Association seeks not to monetise polo, but to stabilise and
+            decentralise it — to bring clarity, fairness, and longevity to the
+            way it is taught, funded, and shared. Patronium and the Polo
+            Incubator model together create a living, self-sustaining framework
+            for the game’s renewal across America.
+          </p>
+          <p>This is how the USPPA will grow the next American 10-Goal player.</p>
+
+          <hr className="rule" />
+
+          <h2 className="sc">An Invitation to Patrons and Partners</h2>
+          <p>
+            The Association welcomes discerning patrons, landholders, and
+            professionals who wish to take part in the restoration of polo as a
+            sustainable, American-bred enterprise. Each Chapter is a living
+            investment in horses, land, and people — structured not for
+            speculation, but for legacy.
+          </p>
+          <p>
+            Patronium ensures every act of patronage — whether a horse
+            consigned, a pasture opened, or a field sponsored — is recognised
+            and recorded within a transparent, honourable system that rewards
+            those who build the sport. Your contribution does not vanish into
+            expense; it lives on in horses trained, players formed, and fields
+            maintained.
+          </p>
+          <p>
+            Those who have carried the game through their own time know: it
+            survives only by the strength of its patrons. The USPPA now offers a
+            new way to hold that legacy — a means to see your support endure in
+            the form of living tribute.
+          </p>
+          <p>
+            To discuss founding patronage or local chapter formation, please
+            contact the Founder at{" "}
+            <a href="mailto:john@charlestonpoloclub.com">
+              john@charlestonpoloclub.com
+            </a>
+            .
+          </p>
+
+          <blockquote className="motto">
+            “In honour, in sport, in fellowship.”
+          </blockquote>
+        </div>
+
+        <footer className="site-footer">
+          <p className="fineprint">© {year} USPoloPatrons.org</p>
+        </footer>
+      </main>
+
+      {/* Patron Wallet modal – same behaviour as Patronium page */}
+      {walletOpen && (
+        <div
+          className="wallet-backdrop"
+          onClick={closeWallet}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.86)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+            padding: "14px",
+          }}
+        >
+          <div style={{ width: "100%", maxWidth: 380 }}>
+            <div
+              ref={walletScrollRef}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                width: "100%",
+                maxHeight: "90vh",
+                overflowY: "auto",
+                border: "1px solid #3a2b16",
+                borderRadius: 14,
+                padding: "16px",
+                paddingTop: "26px",
+                background: "#050505",
+                boxShadow: "0 18px 60px rgba(0,0,0,0.85)",
+                fontFamily:
+                  '"Cinzel", "EB Garamond", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", serif',
+                color: "#f5eedc",
+                fontSize: 13,
+                position: "relative",
+              }}
+            >
+              {/* Header */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: 10,
+                  position: "relative",
+                  paddingTop: 4,
+                  textAlign: "center",
+                  flexDirection: "column",
+                  gap: 2,
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 10,
+                    letterSpacing: "0.24em",
+                    textTransform: "uppercase",
+                    color: "#9f8a64",
+                  }}
+                >
+                  U&nbsp;S&nbsp;P&nbsp;P&nbsp;A
+                </div>
+                <div
+                  style={{
+                    fontSize: 16,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "#c7b08a",
+                    lineHeight: 1.1,
+                  }}
+                >
+                  Patron Wallet
+                </div>
+
+                <button
+                  onClick={closeWallet}
+                  aria-label="Close wallet"
+                  title="Close"
+                  style={{
+                    position: "absolute",
+                    right: 0,
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: 56,
+                    height: 56,
+                    border: "none",
+                    background: "transparent",
+                    color: "#e3bf72",
+                    fontSize: 38,
+                    lineHeight: 1,
+                    cursor: "pointer",
+                    padding: 0,
+                    WebkitTapHighlightColor: "transparent",
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+
+              <p
+                style={{
+                  fontSize: 13,
+                  textAlign: "center",
+                  marginBottom: 14,
+                  color: "#f5eedc",
+                  fontFamily: '"EB Garamond", serif',
+                }}
+              >
+                Sign in or create your Patron Wallet using email. This is the
+                same wallet used on Polo Patronium and Cowboy Polo.
+              </p>
+
+              {/* Connect / Account */}
+              {!account ? (
+                <div style={{ marginBottom: 14 }}>
+                  <ConnectEmbed
+                    client={client}
+                    wallets={wallets}
+                    chain={BASE}
+                    theme={patronCheckoutTheme}
+                  />
+                </div>
+              ) : (
+                <div style={{ marginBottom: 14, textAlign: "center" }}>
+                  {/* Address + copy */}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: 8,
+                      marginBottom: 10,
+                      marginTop: 2,
+                    }}
+                  >
+                    <div style={{ fontFamily: "monospace", fontSize: 13 }}>
+                      {shortAddress}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleCopyAddress}
+                      style={{
+                        border: "none",
+                        background: "transparent",
+                        color: "#e3bf72",
+                        cursor: "pointer",
+                        fontSize: 14,
+                      }}
+                      aria-label="Copy Patron Wallet address"
+                    >
+                      📋
+                    </button>
+                  </div>
+
+                  {/* Gas + USDC */}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: 28,
+                      marginBottom: 10,
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <div>
+                      <div
+                        style={{
+                          fontSize: 10,
+                          letterSpacing: "0.14em",
+                          textTransform: "uppercase",
+                          color: "#9f8a64",
+                          marginBottom: 2,
+                        }}
+                      >
+                        Gas
+                      </div>
+                      <div style={{ color: "#f5eedc", fontSize: 13 }}>
+                        {baseBalance?.displayValue || "0"}{" "}
+                        {baseBalance?.symbol || "ETH"}
+                      </div>
+                    </div>
+
+                    <div>
+                      <div
+                        style={{
+                          fontSize: 10,
+                          letterSpacing: "0.14em",
+                          textTransform: "uppercase",
+                          color: "#9f8a64",
+                          marginBottom: 2,
+                        }}
+                      >
+                        USDC
+                      </div>
+                      <div style={{ color: "#f5eedc", fontSize: 13 }}>
+                        {usdcBalance?.displayValue || "0"}{" "}
+                        {usdcBalance?.symbol || "USDC"}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Patron balance */}
+                  <div style={{ marginBottom: 12 }}>
+                    <div
+                      style={{
+                        fontSize: 10,
+                        letterSpacing: "0.18em",
+                        textTransform: "uppercase",
+                        color: "#c7b08a",
+                        marginBottom: 4,
+                      }}
+                    >
+                      Patronium Balance
+                    </div>
+                    <div
+                      style={{
+                        fontSize: 18,
+                        letterSpacing: "0.02em",
+                        color: "#f5eedc",
+                      }}
+                    >
+                      {patronBalance?.displayValue || "0"}{" "}
+                      {patronBalance?.symbol || "PATRON"}
+                    </div>
+                  </div>
+
+                  <button
+                    className="btn btn-outline"
+                    style={{
+                      minWidth: "auto",
+                      padding: "6px 18px",
+                      fontSize: 11,
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                    }}
+                    onClick={handleSignOut}
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              )}
+
+              {/* Amount + Checkout (disabled visually until connected) */}
+              <div style={{ position: "relative" }}>
+                {!isConnected && (
+                  <button
+                    type="button"
+                    onClick={closeWallet}
+                    aria-label="Connect wallet first"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: "rgba(0,0,0,0.68)",
+                      zIndex: 10,
+                      borderRadius: 12,
+                      border: "none",
+                      padding: 0,
+                      cursor: "pointer",
+                    }}
+                  />
+                )}
+
+                <div
+                  style={{
+                    opacity: !isConnected ? 0.75 : 1,
+                    pointerEvents: isConnected ? "auto" : "none",
+                    transition: "opacity 160ms ease",
+                  }}
+                >
+                  <div style={{ marginBottom: 12 }}>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: 10,
+                        letterSpacing: "0.12em",
+                        textTransform: "uppercase",
+                        color: "#c7b08a",
+                        marginBottom: 6,
+                      }}
+                    >
+                      Choose Your Patronage (USD)
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      step="1"
+                      value={usdAmount}
+                      onChange={(e) => setUsdAmount(e.target.value)}
+                      style={{
+                        width: "100%",
+                        padding: "10px 12px",
+                        borderRadius: 10,
+                        border: "1px solid #3a2b16",
+                        background: "#050505",
+                        color: "#f5eedc",
+                        fontSize: 16,
+                        outline: "none",
+                        boxShadow: "0 10px 30px rgba(0,0,0,0.55)",
+                      }}
+                    />
+                  </div>
+
+                  <CheckoutBoundary>
+                    <CheckoutWidget
+                      client={client}
+                      name={"POLO PATRONIUM"}
+                      description={
+                        "USPPA PATRONAGE UTILITY TOKEN · THREE SEVENS 7̶7̶7̶ REMUDA · COWBOY POLO CIRCUIT · THE POLO · CHARLESTON POLO"
+                      }
+                      currency={"USD"}
+                      chain={BASE}
+                      amount={normalizedAmountNumber}
+                      tokenAddress={
+                        "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+                      }
+                      seller={"0xfee3c75691e8c10ed4246b10635b19bfff06ce16"}
+                      buttonLabel={"BUY PATRON (USDC on Base)"}
+                      theme={patronCheckoutTheme}
+                      onSuccess={handleCheckoutSuccess}
+                      onError={(err) => {
+                        console.error("Checkout error:", err);
+                        alert(err?.message || String(err));
+                      }}
+                    />
+                  </CheckoutBoundary>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
