@@ -107,11 +107,11 @@ h3 {
 .masthead-title {
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   font-weight: 600;
   line-height: 1.28;
-  /* scales with viewport, capped on desktop */
-  font-size: min(5vw, 2.1rem);
+  /* slightly larger, still responsive */
+  font-size: min(6vw, 2.3rem);
 }
 
 /* each phrase stays on a single line */
@@ -122,11 +122,11 @@ h3 {
   white-space: nowrap;
 }
 
-/* extra safety for very narrow phones */
+/* extra safety for very narrow phones: shrink just a bit */
 @media (max-width: 380px) {
   .masthead-title {
-    font-size: min(4.4vw, 1.7rem);
-    letter-spacing: 0.14em;
+    font-size: min(5.3vw, 1.8rem);
+    letter-spacing: 0.11em;
   }
 }
 
@@ -434,7 +434,7 @@ h3 {
   }
 
   .masthead-title {
-    font-size: 2.1rem;
+    font-size: 2.3rem;
   }
 
   .container {
