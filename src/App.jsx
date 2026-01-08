@@ -183,10 +183,7 @@ export default function App() {
           address: account.address,
           usdAmount: normalizedAmount,
           // Optional but useful for logging on the function side
-          paymentTxHash:
-            result?.transactionHash ||
-            result?.id ||
-            null,
+          paymentTxHash: result?.transactionHash || result?.id || null,
         }),
       });
 
@@ -680,7 +677,7 @@ export default function App() {
                 width: "100%",
                 maxHeight: "90vh",
                 overflowY: "auto",
-                border: "1px solid #3a2b16",
+                border: "1px solid "#3a2b16",
                 borderRadius: 14,
                 padding: "16px",
                 paddingTop: "26px",
