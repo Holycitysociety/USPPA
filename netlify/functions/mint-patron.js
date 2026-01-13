@@ -34,32 +34,41 @@ exports.handler = async (event) => {
       };
     }
 
-    // Simple mapping: 1 USD = 1 PATRON (tunable)
+    // 1 USD = PATRON_PER_USD tokens
     const patronAmount = usdNum * PATRON_PER_USD;
     const amountWei = ethers.parseUnits(String(patronAmount), DECIMALS);
 
     console.log(
-      `Minting ${patronAmount} PATRON to ${address}`,
+      `Transferring ${patronAmount} PATRON to ${address}`,
       paymentTxHash ? `for payment tx ${paymentTxHash}` : ""
     );
 
     const provider = new ethers.JsonRpcProvider(RPC_URL);
     const signer = new ethers.Wallet(TREASURY_PRIVATE_KEY, provider);
 
-    // Minimal ABI – adjust if your contract uses a different mint function
     const patronAbi = [
-      "function mint(address to, uint256 amount) public",
       "function transfer(address to, uint256 amount) public returns (bool)",
+      "function balanceOf(address account) view returns (uint256)",
     ];
 
     const patron = new ethers.Contract(TOKEN_ADDRESS, patronAbi, signer);
 
-    // If this signer can mint:
-    const tx = await patron.mint(address, amountWei);
+    // Optional: sanity-check treasury balance before transfer
+    const treasuryAddr = await signer.getAddress();
+    const bal = await patron.balanceOf(treasuryAddr);
+    if (bal < amountWei) {
+      console.error(
+        `Insufficient PATRON in treasury: have ${bal.toString()}, need ${amountWei.toString()}`
+      );
+      return {
+        statusCode: 500,
+        body: JSON.stringify({
+          error: "Treasury has insufficient PATRON to complete this purchase.",
+        }),
+      };
+    }
 
-    // If instead you only transfer pre-minted tokens, use:
-    // const tx = await patron.transfer(address, amountWei);
-
+    const tx = await patron.transfer(address, amountWei);
     const receipt = await tx.wait();
 
     return {
@@ -69,12 +78,12 @@ exports.handler = async (event) => {
         to: address,
         usdAmount,
         patronAmount,
-        mintedAmountHuman: `${patronAmount} PATRON`,
+        transferredAmountHuman: `${patronAmount} PATRON`,
         txHash: receipt.transactionHash,
       }),
     };
   } catch (err) {
-    console.error("Mint error:", err);
+    console.error("Mint/transfer error:", err);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Mint failed" }),
