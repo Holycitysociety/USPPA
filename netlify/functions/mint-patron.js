@@ -19,6 +19,14 @@ exports.handler = async (event) => {
     const DECIMALS = Number(process.env.PATRON_DECIMALS || "18");
     const PATRON_PER_USD = Number(process.env.PATRON_PER_USD || "1");
 
+    if (!RPC_URL || !TOKEN_ADDRESS || !TREASURY_PRIVATE_KEY) {
+      console.error("Missing RPC_URL / PATRON_TOKEN_ADDRESS / TREASURY_PRIVATE_KEY");
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "Server misconfigured" }),
+      };
+    }
+
     if (!address || !ethers.isAddress(address)) {
       return {
         statusCode: 400,
@@ -46,27 +54,12 @@ exports.handler = async (event) => {
     const provider = new ethers.JsonRpcProvider(RPC_URL);
     const signer = new ethers.Wallet(TREASURY_PRIVATE_KEY, provider);
 
+    // Treasury already holds pre-minted PATRON; we just transfer out
     const patronAbi = [
       "function transfer(address to, uint256 amount) public returns (bool)",
-      "function balanceOf(address account) view returns (uint256)",
     ];
 
     const patron = new ethers.Contract(TOKEN_ADDRESS, patronAbi, signer);
-
-    // Optional: sanity-check treasury balance before transfer
-    const treasuryAddr = await signer.getAddress();
-    const bal = await patron.balanceOf(treasuryAddr);
-    if (bal < amountWei) {
-      console.error(
-        `Insufficient PATRON in treasury: have ${bal.toString()}, need ${amountWei.toString()}`
-      );
-      return {
-        statusCode: 500,
-        body: JSON.stringify({
-          error: "Treasury has insufficient PATRON to complete this purchase.",
-        }),
-      };
-    }
 
     const tx = await patron.transfer(address, amountWei);
     const receipt = await tx.wait();
@@ -79,11 +72,11 @@ exports.handler = async (event) => {
         usdAmount,
         patronAmount,
         transferredAmountHuman: `${patronAmount} PATRON`,
-        txHash: receipt.transactionHash,
+        txHash: receipt.hash || receipt.transactionHash,
       }),
     };
   } catch (err) {
-    console.error("Mint/transfer error:", err);
+    console.error("Mint / transfer error:", err);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Mint failed" }),
