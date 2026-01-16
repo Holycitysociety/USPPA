@@ -175,7 +175,7 @@ export default function App() {
   /**
    * IMPORTANT:
    * Do NOT call any mint/transfer function from the client.
-   * Fulfillment should be done server-side from thirdweb webhook data.
+   * Fulfillment is done server-side from thirdweb webhook data.
    */
   const handleCheckoutSuccess = async (result) => {
     console.log("Checkout success:", result);
@@ -461,7 +461,6 @@ export default function App() {
             </div>
           )}
 
-          {/* (rest of your copy unchanged) */}
           <h2 className="sc">Patronium — Polo Patronage Perfected</h2>
           <p>
             Patronium is the living token of patronage within the United States
@@ -469,8 +468,6 @@ export default function App() {
             support is recognised and shared — not through speculation, but
             through participation.
           </p>
-
-          {/* ... keep everything below as-is ... */}
 
           <blockquote className="motto">“In honour, in sport, in fellowship.”</blockquote>
         </div>
@@ -786,15 +783,25 @@ export default function App() {
                       client={client}
                       name={"POLO PATRONIUM"}
                       description={
-                        "USPPA PATRONAGE UTILITY TOKEN · THREE SEVENS 7̶7̶7̶ REMUDA · COWBOY POLO CIRCUIT · THE POLO · CHARLESTON POLO"
+                        "USPPA PATRONAGE UTILITY TOKEN · THREE SEVENS 7̶7̶7̶ REMUDA · COWBOY POLO CIRCUIT · THE POLO WAY · CHARLESTON POLO"
                       }
                       currency={"USD"}
                       chain={BASE}
                       amount={normalizedAmount}
-                      tokenAddress={"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"} // USDC on Base
-                      seller={"0xfee3c75691e8c10ed4246b10635b19bfff06ce16"} // must match SELLER_ADDRESS
+                      tokenAddress={
+                        "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+                      } // USDC on Base
+                      seller={
+                        "0xfee3c75691e8c10ed4246b10635b19bfff06ce16"
+                      } // must match SELLER_ADDRESS
                       buttonLabel={"BUY PATRON (USDC on Base)"}
                       theme={patronCheckoutTheme}
+                      // critical: send buyer wallet for onramp webhooks
+                      purchaseData={
+                        account?.address
+                          ? { walletAddress: account.address }
+                          : undefined
+                      }
                       onSuccess={handleCheckoutSuccess}
                       onError={(err) => {
                         console.error("Checkout error:", err);
