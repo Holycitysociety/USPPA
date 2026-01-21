@@ -282,45 +282,22 @@ export default function App() {
           position: "sticky",
           top: 0,
           zIndex: 9000,
-          padding: "6px 10px 0",
+          padding: "6px 0 0",
           background: "transparent",
           backdropFilter: "blur(8px)",
           WebkitBackdropFilter: "blur(8px)",
         }}
       >
-        <nav
-          aria-label="USPPA family sites"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 4,
-            flexWrap: "wrap",
-            maxWidth: 680,
-            margin: "0 auto",
-          }}
-        >
+        <nav aria-label="USPPA family sites" className="site-tabs">
           {navTabs.map((tab) => {
             const isActive = tab.id === activeSite;
             return (
               <a
                 key={tab.id}
                 href={tab.href}
-                style={{
-                  textDecoration: "none",
-                  fontSize: 10,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  padding: "6px 12px 4px",
-                  borderTopLeftRadius: 10,
-                  borderTopRightRadius: 10,
-                  borderLeft: "1px solid #3a2b16",
-                  borderRight: "1px solid #3a2b16",
-                  borderTop: "1px solid #3a2b16",
-                  borderBottom: isActive ? "1px solid transparent" : "1px solid #3a2b16",
-                  color: isActive ? "#f5eedc" : "#c7b08a",
-                  background: "transparent",
-                  whiteSpace: "nowrap",
-                }}
+                className={`site-tab ${
+                  isActive ? "site-tab--active" : "site-tab--inactive"
+                }`}
               >
                 {tab.label}
               </a>
