@@ -184,7 +184,7 @@ export default function App() {
 
     alert(
       "Payment received.\n\n" +
-        "PATRON will be credited automatically (usually within moments).\n" +
+        "PATRON will be credited automatically.\n" +
         "If you do not see it shortly, contact support with your wallet address."
     );
   };
@@ -268,10 +268,22 @@ export default function App() {
 
   const navTabs = [
     { id: "usppa", label: "USPPA", href: "https://uspolopatrons.org" },
-    { id: "patronium", label: "Polo Patronium", href: "https://polopatronium.com" },
-    { id: "cowboy", label: "Cowboy Polo Circuit", href: "https://cowboypolo.com" },
+    {
+      id: "patronium",
+      label: "Polo Patronium",
+      href: "https://polopatronium.com",
+    },
+    {
+      id: "cowboy",
+      label: "Cowboy Polo Circuit",
+      href: "https://cowboypolo.com",
+    },
     { id: "poloway", label: "The Polo Way", href: "https://thepoloway.com" },
-    { id: "charleston", label: "Charleston Polo", href: "https://charlestonpolo.com" },
+    {
+      id: "charleston",
+      label: "Charleston Polo",
+      href: "https://charlestonpolo.com",
+    },
   ];
 
   return (
@@ -282,22 +294,47 @@ export default function App() {
           position: "sticky",
           top: 0,
           zIndex: 9000,
-          padding: "6px 0 0",
+          padding: "6px 10px 0",
           background: "transparent",
           backdropFilter: "blur(8px)",
           WebkitBackdropFilter: "blur(8px)",
         }}
       >
-        <nav aria-label="USPPA family sites" className="site-tabs">
+        <nav
+          aria-label="USPPA family sites"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 4,
+            flexWrap: "wrap",
+            maxWidth: 680,
+            margin: "0 auto",
+          }}
+        >
           {navTabs.map((tab) => {
             const isActive = tab.id === activeSite;
             return (
               <a
                 key={tab.id}
                 href={tab.href}
-                className={`site-tab ${
-                  isActive ? "site-tab--active" : "site-tab--inactive"
-                }`}
+                style={{
+                  textDecoration: "none",
+                  fontSize: 10,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  padding: "6px 12px 4px",
+                  borderTopLeftRadius: 10,
+                  borderTopRightRadius: 10,
+                  borderLeft: "1px solid #3a2b16",
+                  borderRight: "1px solid #3a2b16",
+                  borderTop: "1px solid #3a2b16",
+                  borderBottom: isActive
+                    ? "1px solid transparent"
+                    : "1px solid #3a2b16",
+                  color: isActive ? "#f5eedc" : "#c7b08a",
+                  background: "transparent",
+                  whiteSpace: "nowrap",
+                }}
               >
                 {tab.label}
               </a>
@@ -348,7 +385,10 @@ export default function App() {
 
           {/* POLO PATRONIUM */}
           <div className="initiative">
-            <div className="wm wm-patronium" aria-label="Polo Patronium wordmark">
+            <div
+              className="wm wm-patronium"
+              aria-label="Polo Patronium wordmark"
+            >
               <div className="wm-top">Official Token</div>
               <div className="wm-main">POLO&nbsp;PATRONIUM</div>
               <div className="wm-rule" />
@@ -376,10 +416,14 @@ export default function App() {
 
           {/* COWBOY POLO CIRCUIT */}
           <div className="initiative">
-            <div className="wm wm-cowboy" aria-label="Cowboy Polo Circuit wordmark">
+            <div
+              className="wm wm-cowboy"
+              aria-label="Cowboy Polo Circuit wordmark"
+            >
               <div className="wm-main">COWBOY&nbsp;POLO</div>
               <div className="wm-mid">
-                <span className="wm-dot">·</span>CIRCUIT<span className="wm-dot">·</span>
+                <span className="wm-dot">·</span>CIRCUIT
+                <span className="wm-dot">·</span>
               </div>
               <div className="wm-sub">American Development Pipeline</div>
             </div>
@@ -406,7 +450,10 @@ export default function App() {
 
           {/* THREE SEVENS REMUDA */}
           <div className="initiative">
-            <div className="wm wm-three-sevens" aria-label="Three Sevens Remuda wordmark">
+            <div
+              className="wm wm-three-sevens"
+              aria-label="Three Sevens Remuda wordmark"
+            >
               <div className="wm-top">Remuda</div>
               <div className="three-sevens-mark">
                 <div className="three-sevens-numeral">7̶7̶7̶</div>
@@ -453,7 +500,10 @@ export default function App() {
 
           {/* CHARLESTON POLO */}
           <div className="initiative">
-            <div className="wm wm-simple" aria-label="Charleston Polo wordmark">
+            <div
+              className="wm wm-simple"
+              aria-label="Charleston Polo wordmark"
+            >
               <div className="wm-top">Flagship Chapter</div>
               <div className="wm-main">CHARLESTON&nbsp;POLO</div>
               <div className="wm-sub">USPPA Chapter Test Model</div>
@@ -504,7 +554,11 @@ export default function App() {
                   USPPA Patron Wallet.
                 </div>
                 <div style={{ marginTop: 14 }}>
-                  <button className="btn btn-outline" type="button" onClick={openWallet}>
+                  <button
+                    className="btn btn-outline"
+                    type="button"
+                    onClick={openWallet}
+                  >
                     Open Patron Wallet
                   </button>
                 </div>
@@ -520,7 +574,9 @@ export default function App() {
             through participation.
           </p>
 
-          <blockquote className="motto">“In honour, in sport, in fellowship.”</blockquote>
+          <blockquote className="motto">
+            “In honour, in sport, in fellowship.”
+          </blockquote>
         </div>
 
         <footer className="site-footer">
@@ -832,7 +888,7 @@ export default function App() {
                   <CheckoutBoundary>
                     <CheckoutWidget
                       client={client}
-                      name={"POLO PATRONIUM"}
+                      name={"BUY POLO PATRONIUM (PATRON)"}
                       description={
                         "USPPA PATRONAGE UTILITY TOKEN · THREE SEVENS 7̶7̶7̶ REMUDA · COWBOY POLO CIRCUIT · THE POLO WAY · CHARLESTON POLO"
                       }
@@ -847,12 +903,8 @@ export default function App() {
                       } // must match SELLER_ADDRESS
                       buttonLabel={"BUY PATRON (USDC on Base)"}
                       theme={patronCheckoutTheme}
-                      // critical: send buyer wallet for onramp webhooks
-                      purchaseData={
-                        account?.address
-                          ? { walletAddress: account.address }
-                          : undefined
-                      }
+                      // ✅ match Cowboy Polo: always pass purchaseData object
+                      purchaseData={{ walletAddress: account?.address }}
                       onSuccess={handleCheckoutSuccess}
                       onError={(err) => {
                         console.error("Checkout error:", err);
