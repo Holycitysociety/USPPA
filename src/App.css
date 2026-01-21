@@ -43,6 +43,52 @@ a:hover {
 }
 
 /* -------------------------------------------------
+   Top site tab strip (scrollable)
+------------------------------------------------- */
+
+.site-tabs {
+  display: flex;
+  gap: 4px;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 10px 4px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.site-tabs::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+.site-tab {
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 6px 12px 4px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-left: 1px solid #3a2b16;
+  border-right: 1px solid #3a2b16;
+  border-top: 1px solid #3a2b16;
+  background: transparent;
+  white-space: nowrap;
+  flex: 0 0 auto; /* prevent wrapping / shrinking */
+}
+
+.site-tab--active {
+  color: #f5eedc;
+  border-bottom: 1px solid transparent;
+}
+
+.site-tab--inactive {
+  color: #c7b08a;
+  border-bottom: 1px solid #3a2b16;
+}
+
+/* -------------------------------------------------
    Typography
 ------------------------------------------------- */
 
