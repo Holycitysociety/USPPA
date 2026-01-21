@@ -171,18 +171,12 @@ export default function App() {
     }
   };
 
-  // Normalised amount (both number + string forms)
   /*
   const normalizedAmountNumber =
     usdAmount && Number(usdAmount) > 0 ? Number(usdAmount) : 1;
   const normalizedAmount = String(normalizedAmountNumber);
   */
 
-  /**
-   * IMPORTANT:
-   * Do NOT call any mint/transfer function from the client.
-   * Fulfillment is done server-side from thirdweb webhook data.
-   */
   /*
   const handleCheckoutSuccess = async (result) => {
     console.log("Checkout success:", result);
@@ -306,16 +300,9 @@ export default function App() {
           WebkitBackdropFilter: "blur(8px)",
         }}
       >
-        <nav
+        <div
+          className="site-tabs"
           aria-label="USPPA family sites"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 4,
-            flexWrap: "wrap",
-            maxWidth: 680,
-            margin: "0 auto",
-          }}
         >
           {navTabs.map((tab) => {
             const isActive = tab.id === activeSite;
@@ -323,30 +310,16 @@ export default function App() {
               <a
                 key={tab.id}
                 href={tab.href}
-                style={{
-                  textDecoration: "none",
-                  fontSize: 10,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  padding: "6px 12px 4px",
-                  borderTopLeftRadius: 10,
-                  borderTopRightRadius: 10,
-                  borderLeft: "1px solid #3a2b16",
-                  borderRight: "1px solid #3a2b16",
-                  borderTop: "1px solid #3a2b16",
-                  borderBottom: isActive
-                    ? "1px solid transparent"
-                    : "1px solid #3a2b16",
-                  color: isActive ? "#f5eedc" : "#c7b08a",
-                  background: "transparent",
-                  whiteSpace: "nowrap",
-                }}
+                className={
+                  "site-tab " +
+                  (isActive ? "site-tab--active" : "site-tab--inactive")
+                }
               >
                 {tab.label}
               </a>
             );
           })}
-        </nav>
+        </div>
       </div>
 
       {/* Header / hero */}
@@ -814,19 +787,45 @@ export default function App() {
                     </div>
                   </div>
 
-                  <button
-                    className="btn btn-outline"
+                  {/* Buy PATRON + Sign Out actions */}
+                  <div
                     style={{
-                      minWidth: "auto",
-                      padding: "6px 18px",
-                      fontSize: 11,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      gap: 8,
                     }}
-                    onClick={handleSignOut}
                   >
-                    Sign Out
-                  </button>
+                    <a
+                      href="https://cowboypolo.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      style={{
+                        minWidth: "auto",
+                        padding: "6px 18px",
+                        fontSize: 11,
+                        letterSpacing: "0.12em",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Buy PATRON at CowboyPolo.com
+                    </a>
+
+                    <button
+                      className="btn btn-outline"
+                      style={{
+                        minWidth: "auto",
+                        padding: "6px 18px",
+                        fontSize: 11,
+                        letterSpacing: "0.12em",
+                        textTransform: "uppercase",
+                      }}
+                      onClick={handleSignOut}
+                    >
+                      Sign Out
+                    </button>
+                  </div>
                 </div>
               )}
 
@@ -909,7 +908,6 @@ export default function App() {
                       } // must match SELLER_ADDRESS
                       buttonLabel={"BUY PATRON (USDC on Base)"}
                       theme={patronCheckoutTheme}
-                      // ✅ match Cowboy Polo: always pass purchaseData object
                       purchaseData={{ walletAddress: account?.address }}
                       onSuccess={handleCheckoutSuccess}
                       onError={(err) => {
