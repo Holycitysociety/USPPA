@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  CheckoutWidget,
+  // CheckoutWidget,
   ConnectEmbed,
   useActiveAccount,
   useActiveWallet,
@@ -74,6 +74,7 @@ const patronCheckoutTheme = darkTheme({
 // ---------------------------------------------
 // Simple error boundary for CheckoutWidget
 // ---------------------------------------------
+/*
 class CheckoutBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -96,6 +97,7 @@ class CheckoutBoundary extends React.Component {
     return this.props.children;
   }
 }
+*/
 
 // ---------------------------------------------
 // Main App
@@ -104,7 +106,7 @@ export default function App() {
   const year = 2026;
 
   const [walletOpen, setWalletOpen] = useState(false);
-  const [usdAmount, setUsdAmount] = useState("1");
+  // const [usdAmount, setUsdAmount] = useState("1");
 
   const account = useActiveAccount();
   const activeWallet = useActiveWallet();
@@ -170,15 +172,18 @@ export default function App() {
   };
 
   // Normalised amount (both number + string forms)
+  /*
   const normalizedAmountNumber =
     usdAmount && Number(usdAmount) > 0 ? Number(usdAmount) : 1;
   const normalizedAmount = String(normalizedAmountNumber);
+  */
 
   /**
    * IMPORTANT:
    * Do NOT call any mint/transfer function from the client.
    * Fulfillment is done server-side from thirdweb webhook data.
    */
+  /*
   const handleCheckoutSuccess = async (result) => {
     console.log("Checkout success:", result);
 
@@ -188,6 +193,7 @@ export default function App() {
         "If you do not see it shortly, contact support with your wallet address."
     );
   };
+  */
 
   // Scroll lock while wallet modal is open (mobile-safe)
   useEffect(() => {
@@ -347,7 +353,7 @@ export default function App() {
       <header id="top" className="site-header">
         <div className="header-actions">
           <button className="btn btn-primary" type="button" onClick={openWallet}>
-            Patron Wallet
+            Sign In / Sign Up
           </button>
         </div>
 
@@ -656,7 +662,6 @@ export default function App() {
                 >
                   Patron Wallet
                 </div>
-
                 <button
                   onClick={closeWallet}
                   aria-label="Close wallet"
@@ -825,7 +830,8 @@ export default function App() {
                 </div>
               )}
 
-              {/* Amount + Checkout */}
+              {/* Amount + Checkout – commented out */}
+              {/*
               <div style={{ position: "relative" }}>
                 {!isConnected && (
                   <button
@@ -914,6 +920,7 @@ export default function App() {
                   </CheckoutBoundary>
                 </div>
               </div>
+              */}
             </div>
           </div>
         </div>
