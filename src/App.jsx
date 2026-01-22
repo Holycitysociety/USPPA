@@ -700,7 +700,7 @@ export default function App() {
                     }}
                   >
                     <a
-                      href="https://cowboypolo.com/#wallet"
+                      href="https://cowboypolo.netlify.app/#wallet"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-primary"
