@@ -286,8 +286,6 @@ export default function App() {
               <a
                 className="btn btn-outline"
                 href="https://polopatronium.com"
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 Polopatronium.com
               </a>
@@ -320,8 +318,6 @@ export default function App() {
               <a
                 className="btn btn-outline"
                 href="https://cowboypolo.com"
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 Cowboypolo.com
               </a>
@@ -370,8 +366,6 @@ export default function App() {
               <a
                 className="btn btn-outline"
                 href="https://thepoloway.com"
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 Thepoloway.com
               </a>
@@ -401,8 +395,6 @@ export default function App() {
               <a
                 className="btn btn-outline"
                 href="https://charlestonpoloclub.com"
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 Charlestonpolo.com
               </a>
@@ -701,8 +693,6 @@ export default function App() {
                   >
                     <a
                       href="https://cowboypolo.com/#wallet"
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="btn btn-primary"
                       style={{
                         minWidth: "auto",
