@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  // CheckoutWidget,
   ConnectEmbed,
   useActiveAccount,
   useActiveWallet,
@@ -72,34 +71,6 @@ const patronCheckoutTheme = darkTheme({
 });
 
 // ---------------------------------------------
-// Simple error boundary for CheckoutWidget
-// ---------------------------------------------
-/*
-class CheckoutBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-  componentDidCatch(error, info) {
-    console.error("CheckoutWidget crashed:", error, info);
-  }
-  render() {
-    if (this.state.hasError) {
-      return (
-        <p style={{ color: "#e3bf72", marginTop: "12px" }}>
-          Checkout temporarily unavailable. Please try again later.
-        </p>
-      );
-    }
-    return this.props.children;
-  }
-}
-*/
-
-// ---------------------------------------------
 // Main App
 // ---------------------------------------------
 export default function App() {
@@ -118,9 +89,6 @@ export default function App() {
   // Gate section ref (Patronium — Polo Patronage Perfected)
   const gateRef = useRef(null);
   const hasTriggeredGateRef = useRef(false);
-
-  // Shared site tab state
-  const [activeSite, setActiveSite] = useState("");
 
   // Native ETH on Base (gas)
   const { data: baseBalance } = useWalletBalance({
@@ -255,73 +223,8 @@ export default function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isConnected]);
 
-  // Determine active tab from hostname
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const host = window.location.hostname.toLowerCase();
-    if (host.includes("uspolopatrons")) setActiveSite("usppa");
-    else if (host.includes("polopatronium")) setActiveSite("patronium");
-    else if (host.includes("cowboypolo")) setActiveSite("cowboy");
-    else if (host.includes("thepoloway")) setActiveSite("poloway");
-    else if (host.includes("charlestonpolo")) setActiveSite("charleston");
-  }, []);
-
-  const navTabs = [
-    { id: "usppa", label: "USPPA", href: "https://uspolopatrons.org" },
-    {
-      id: "patronium",
-      label: "Polo Patronium",
-      href: "https://polopatronium.com",
-    },
-    {
-      id: "cowboy",
-      label: "Cowboy Polo Circuit",
-      href: "https://cowboypolo.com",
-    },
-    { id: "poloway", label: "The Polo Way", href: "https://thepoloway.com" },
-    {
-      id: "charleston",
-      label: "Charleston Polo",
-      href: "https://charlestonpolo.com",
-    },
-  ];
-
   return (
     <div className="page">
-      {/* SHARED TAB HEADER */}
-      <div
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 9000,
-          padding: "6px 10px 0",
-          background: "transparent",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-        }}
-      >
-        <div
-          className="site-tabs"
-          aria-label="USPPA family sites"
-        >
-          {navTabs.map((tab) => {
-            const isActive = tab.id === activeSite;
-            return (
-              <a
-                key={tab.id}
-                href={tab.href}
-                className={
-                  "site-tab " +
-                  (isActive ? "site-tab--active" : "site-tab--inactive")
-                }
-              >
-                {tab.label}
-              </a>
-            );
-          })}
-        </div>
-      </div>
-
       {/* Header / hero */}
       <header id="top" className="site-header">
         <div className="header-actions">
