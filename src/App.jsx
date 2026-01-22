@@ -1,7 +1,6 @@
-// src/App.jsx
 import React, { useEffect, useRef, useState } from "react";
 import {
-  CheckoutWidget,
+  // CheckoutWidget,
   ConnectEmbed,
   useActiveAccount,
   useActiveWallet,
@@ -75,6 +74,7 @@ const patronCheckoutTheme = darkTheme({
 // ---------------------------------------------
 // Simple error boundary for CheckoutWidget
 // ---------------------------------------------
+/*
 class CheckoutBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -97,6 +97,7 @@ class CheckoutBoundary extends React.Component {
     return this.props.children;
   }
 }
+*/
 
 // ---------------------------------------------
 // Main App
@@ -105,7 +106,7 @@ export default function App() {
   const year = 2026;
 
   const [walletOpen, setWalletOpen] = useState(false);
-  const [usdAmount, setUsdAmount] = useState("1");
+  // const [usdAmount, setUsdAmount] = useState("1");
 
   const account = useActiveAccount();
   const activeWallet = useActiveWallet();
@@ -117,6 +118,9 @@ export default function App() {
   // Gate section ref (Patronium — Polo Patronage Perfected)
   const gateRef = useRef(null);
   const hasTriggeredGateRef = useRef(false);
+
+  // Shared site tab state
+  const [activeSite, setActiveSite] = useState("");
 
   // Native ETH on Base (gas)
   const { data: baseBalance } = useWalletBalance({
@@ -167,25 +171,23 @@ export default function App() {
     }
   };
 
-  // Normalised amount (both number + string forms)
+  /*
   const normalizedAmountNumber =
     usdAmount && Number(usdAmount) > 0 ? Number(usdAmount) : 1;
   const normalizedAmount = String(normalizedAmountNumber);
+  */
 
-  /**
-   * IMPORTANT:
-   * Do NOT call any mint/transfer function from the client.
-   * Fulfillment is done server-side from thirdweb webhook data.
-   */
+  /*
   const handleCheckoutSuccess = async (result) => {
     console.log("Checkout success:", result);
 
     alert(
       "Payment received.\n\n" +
-        "PATRON will be credited automatically (usually within moments).\n" +
+        "PATRON will be credited automatically.\n" +
         "If you do not see it shortly, contact support with your wallet address."
     );
   };
+  */
 
   // Scroll lock while wallet modal is open (mobile-safe)
   useEffect(() => {
@@ -253,13 +255,78 @@ export default function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isConnected]);
 
+  // Determine active tab from hostname
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const host = window.location.hostname.toLowerCase();
+    if (host.includes("uspolopatrons")) setActiveSite("usppa");
+    else if (host.includes("polopatronium")) setActiveSite("patronium");
+    else if (host.includes("cowboypolo")) setActiveSite("cowboy");
+    else if (host.includes("thepoloway")) setActiveSite("poloway");
+    else if (host.includes("charlestonpolo")) setActiveSite("charleston");
+  }, []);
+
+  const navTabs = [
+    { id: "usppa", label: "USPPA", href: "https://uspolopatrons.org" },
+    {
+      id: "patronium",
+      label: "Polo Patronium",
+      href: "https://polopatronium.com",
+    },
+    {
+      id: "cowboy",
+      label: "Cowboy Polo Circuit",
+      href: "https://cowboypolo.com",
+    },
+    { id: "poloway", label: "The Polo Way", href: "https://thepoloway.com" },
+    {
+      id: "charleston",
+      label: "Charleston Polo",
+      href: "https://charlestonpolo.com",
+    },
+  ];
+
   return (
     <div className="page">
+      {/* SHARED TAB HEADER */}
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 9000,
+          padding: "6px 10px 0",
+          background: "transparent",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+        }}
+      >
+        <div
+          className="site-tabs"
+          aria-label="USPPA family sites"
+        >
+          {navTabs.map((tab) => {
+            const isActive = tab.id === activeSite;
+            return (
+              <a
+                key={tab.id}
+                href={tab.href}
+                className={
+                  "site-tab " +
+                  (isActive ? "site-tab--active" : "site-tab--inactive")
+                }
+              >
+                {tab.label}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Header / hero */}
       <header id="top" className="site-header">
         <div className="header-actions">
           <button className="btn btn-primary" type="button" onClick={openWallet}>
-            Patron Wallet
+            Sign In / Sign Up
           </button>
         </div>
 
@@ -297,7 +364,10 @@ export default function App() {
 
           {/* POLO PATRONIUM */}
           <div className="initiative">
-            <div className="wm wm-patronium" aria-label="Polo Patronium wordmark">
+            <div
+              className="wm wm-patronium"
+              aria-label="Polo Patronium wordmark"
+            >
               <div className="wm-top">Official Token</div>
               <div className="wm-main">POLO&nbsp;PATRONIUM</div>
               <div className="wm-rule" />
@@ -325,10 +395,14 @@ export default function App() {
 
           {/* COWBOY POLO CIRCUIT */}
           <div className="initiative">
-            <div className="wm wm-cowboy" aria-label="Cowboy Polo Circuit wordmark">
+            <div
+              className="wm wm-cowboy"
+              aria-label="Cowboy Polo Circuit wordmark"
+            >
               <div className="wm-main">COWBOY&nbsp;POLO</div>
               <div className="wm-mid">
-                <span className="wm-dot">·</span>CIRCUIT<span className="wm-dot">·</span>
+                <span className="wm-dot">·</span>CIRCUIT
+                <span className="wm-dot">·</span>
               </div>
               <div className="wm-sub">American Development Pipeline</div>
             </div>
@@ -355,7 +429,10 @@ export default function App() {
 
           {/* THREE SEVENS REMUDA */}
           <div className="initiative">
-            <div className="wm wm-three-sevens" aria-label="Three Sevens Remuda wordmark">
+            <div
+              className="wm wm-three-sevens"
+              aria-label="Three Sevens Remuda wordmark"
+            >
               <div className="wm-top">Remuda</div>
               <div className="three-sevens-mark">
                 <div className="three-sevens-numeral">7̶7̶7̶</div>
@@ -402,7 +479,10 @@ export default function App() {
 
           {/* CHARLESTON POLO */}
           <div className="initiative">
-            <div className="wm wm-simple" aria-label="Charleston Polo wordmark">
+            <div
+              className="wm wm-simple"
+              aria-label="Charleston Polo wordmark"
+            >
               <div className="wm-top">Flagship Chapter</div>
               <div className="wm-main">CHARLESTON&nbsp;POLO</div>
               <div className="wm-sub">USPPA Chapter Test Model</div>
@@ -453,7 +533,11 @@ export default function App() {
                   USPPA Patron Wallet.
                 </div>
                 <div style={{ marginTop: 14 }}>
-                  <button className="btn btn-outline" type="button" onClick={openWallet}>
+                  <button
+                    className="btn btn-outline"
+                    type="button"
+                    onClick={openWallet}
+                  >
                     Open Patron Wallet
                   </button>
                 </div>
@@ -469,7 +553,9 @@ export default function App() {
             through participation.
           </p>
 
-          <blockquote className="motto">“In honour, in sport, in fellowship.”</blockquote>
+          <blockquote className="motto">
+            “In honour, in sport, in fellowship.”
+          </blockquote>
         </div>
 
         <footer className="site-footer">
@@ -549,7 +635,6 @@ export default function App() {
                 >
                   Patron Wallet
                 </div>
-
                 <button
                   onClick={closeWallet}
                   aria-label="Close wallet"
@@ -702,23 +787,50 @@ export default function App() {
                     </div>
                   </div>
 
-                  <button
-                    className="btn btn-outline"
+                  {/* Buy PATRON + Sign Out actions */}
+                  <div
                     style={{
-                      minWidth: "auto",
-                      padding: "6px 18px",
-                      fontSize: 11,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      gap: 8,
                     }}
-                    onClick={handleSignOut}
                   >
-                    Sign Out
-                  </button>
+                    <a
+                      href="https://cowboypolo.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      style={{
+                        minWidth: "auto",
+                        padding: "6px 18px",
+                        fontSize: 11,
+                        letterSpacing: "0.12em",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Buy PATRON at CowboyPolo.com
+                    </a>
+
+                    <button
+                      className="btn btn-outline"
+                      style={{
+                        minWidth: "auto",
+                        padding: "6px 18px",
+                        fontSize: 11,
+                        letterSpacing: "0.12em",
+                        textTransform: "uppercase",
+                      }}
+                      onClick={handleSignOut}
+                    >
+                      Sign Out
+                    </button>
+                  </div>
                 </div>
               )}
 
-              {/* Amount + Checkout */}
+              {/* Amount + Checkout – commented out */}
+              {/*
               <div style={{ position: "relative" }}>
                 {!isConnected && (
                   <button
@@ -781,7 +893,7 @@ export default function App() {
                   <CheckoutBoundary>
                     <CheckoutWidget
                       client={client}
-                      name={"POLO PATRONIUM"}
+                      name={"BUY POLO PATRONIUM (PATRON)"}
                       description={
                         "USPPA PATRONAGE UTILITY TOKEN · THREE SEVENS 7̶7̶7̶ REMUDA · COWBOY POLO CIRCUIT · THE POLO WAY · CHARLESTON POLO"
                       }
@@ -796,12 +908,7 @@ export default function App() {
                       } // must match SELLER_ADDRESS
                       buttonLabel={"BUY PATRON (USDC on Base)"}
                       theme={patronCheckoutTheme}
-                      // critical: send buyer wallet for onramp webhooks
-                      purchaseData={
-                        account?.address
-                          ? { walletAddress: account.address }
-                          : undefined
-                      }
+                      purchaseData={{ walletAddress: account?.address }}
                       onSuccess={handleCheckoutSuccess}
                       onError={(err) => {
                         console.error("Checkout error:", err);
@@ -811,6 +918,7 @@ export default function App() {
                   </CheckoutBoundary>
                 </div>
               </div>
+              */}
             </div>
           </div>
         </div>
