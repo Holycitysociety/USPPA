@@ -400,7 +400,7 @@ export default function App() {
             <div className="cta-row">
               <a
                 className="btn btn-outline"
-                href="https://charlestonpolo.com"
+                href="https://charlestonpoloclub.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
