@@ -700,7 +700,7 @@ export default function App() {
                     }}
                   >
                     <a
-                      href="https://cowboypolo.com"
+                      href="https://cowboypolo.com/#wallet"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-primary"
@@ -712,7 +712,7 @@ export default function App() {
                         textTransform: "uppercase",
                       }}
                     >
-                      Buy PATRON at CowboyPolo.com
+                      BUY PATRON
                     </a>
 
                     <button
