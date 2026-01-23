@@ -301,7 +301,7 @@ export default function App() {
               className="wm wm-cowboy"
               aria-label="Cowboy Polo Circuit wordmark"
             >
-              <div className="wm-main">COWBOY&nbsp;POLO</div>
+              <div className="wm-main">COWBOY&nbsp;POLO CIRCUIT</div>
               <div className="wm-mid">
                 <span className="wm-dot">·</span>CIRCUIT
                 <span className="wm-dot">·</span>
