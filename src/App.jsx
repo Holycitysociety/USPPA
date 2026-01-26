@@ -252,7 +252,7 @@ export default function App() {
         <p>
           It is with honour that we record the foundation of the United States
           Polo Patrons Association. This fellowship of patrons and players is
-          inaugurated with <i>Polo Patronium</i>, a living token of support and
+          inaugurated with <i>Patronium</i>, a living token of support and
           tradition. Our purpose is simple: to safeguard the heritage of polo,
           encourage its growth, and open a new chapter in the life of the game.
         </p>
@@ -266,14 +266,14 @@ export default function App() {
             <div className="roadmap-title">Roadmap</div>
           </div>
 
-          {/* POLO PATRONIUM */}
+          {/* PATRONIUM */}
           <div className="initiative">
             <div
               className="wm wm-patronium"
               aria-label="Polo Patronium wordmark"
             >
-              <div className="wm-top">Official Token</div>
-              <div className="wm-main">POLO&nbsp;PATRONIUM</div>
+              <div className="wm-top">Official Polo Patronage Token</div>
+              <div className="wm-main">PATRONIUM</div>
               <div className="wm-rule" />
               <div className="wm-sub">Symbol “PATRON” · Built on Base</div>
             </div>
