@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useEffect, useRef, useState } from "react";
 import {
   ConnectEmbed,
@@ -229,9 +228,12 @@ export default function App() {
       {/* Header / hero */}
       <header id="top" className="site-header">
         <div className="header-actions">
-          <button className="btn btn-primary" type="button" onClick={openWallet}>
+          <a
+            className="btn btn-primary"
+            href="https://cowboypolo.com/#/wallet"
+          >
             Sign In / Sign Up
-          </button>
+          </a>
         </div>
 
         <h1 className="masthead-title">
@@ -284,10 +286,7 @@ export default function App() {
             </p>
 
             <div className="cta-row">
-              <a
-                className="btn btn-outline"
-                href="https://polopatronium.com"
-              >
+              <a className="btn btn-outline" href="https://polopatronium.com">
                 Polopatronium.com
               </a>
             </div>
@@ -302,7 +301,7 @@ export default function App() {
               aria-label="Cowboy Polo Circuit wordmark"
             >
               <div className="wm-main">COWBOY&nbsp;POLO CIRCUIT</div>
-              
+
               <div className="wm-sub">American Development Pipeline</div>
             </div>
 
@@ -313,10 +312,7 @@ export default function App() {
             </p>
 
             <div className="cta-row">
-              <a
-                className="btn btn-outline"
-                href="https://cowboypolo.com"
-              >
+              <a className="btn btn-outline" href="https://cowboypolo.com">
                 Cowboypolo.com
               </a>
             </div>
@@ -361,10 +357,7 @@ export default function App() {
             </p>
 
             <div className="cta-row">
-              <a
-                className="btn btn-outline"
-                href="https://thepoloway.com"
-              >
+              <a className="btn btn-outline" href="https://thepoloway.com">
                 Thepoloway.com
               </a>
             </div>
