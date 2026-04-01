@@ -22,6 +22,9 @@ const client = createThirdwebClient({
 const BASE = defineChain(8453);
 
 // Embedded user wallets (EMAIL ONLY)
+// NOTE:
+// Keeping this local wallet setup in place for later, even though
+// the current public UX routes users directly to Cowboy Polo wallet.
 const wallets = [
   inAppWallet({
     auth: {
@@ -31,8 +34,10 @@ const wallets = [
 ];
 
 // ---------------------------------------------
-// Themed checkout / wallet (same spec as Patronium)
-// ---------------------------------------------
+// Themed local wallet modal (kept for future USPPA member area use)
+// NOTE:
+// This styling remains available for when USPPA gets its own
+// member-only / private patron area again.
 const patronCheckoutTheme = darkTheme({
   fontFamily:
     '"Cinzel", "EB Garamond", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", serif',
@@ -77,8 +82,10 @@ const patronCheckoutTheme = darkTheme({
 export default function App() {
   const year = 2026;
 
+  // NOTE:
+  // Kept for future USPPA private member area.
+  // Currently not triggered by public UI.
   const [walletOpen, setWalletOpen] = useState(false);
-  // const [usdAmount, setUsdAmount] = useState("1");
 
   const account = useActiveAccount();
   const activeWallet = useActiveWallet();
@@ -87,7 +94,9 @@ export default function App() {
 
   const walletScrollRef = useRef(null);
 
-  // Gate section ref (Patronium — Polo Patronage Perfected)
+  // NOTE:
+  // Kept for future gated/member section use.
+  // No visible gate is currently rendered.
   const gateRef = useRef(null);
   const hasTriggeredGateRef = useRef(false);
 
@@ -114,6 +123,8 @@ export default function App() {
     tokenAddress: "0xD766a771887fFB6c528434d5710B406313CAe03A",
   });
 
+  // NOTE:
+  // Preserved for future USPPA local wallet usage.
   const openWallet = () => setWalletOpen(true);
   const closeWallet = () => setWalletOpen(false);
 
@@ -140,25 +151,10 @@ export default function App() {
     }
   };
 
-  /*
-  const normalizedAmountNumber =
-    usdAmount && Number(usdAmount) > 0 ? Number(usdAmount) : 1;
-  const normalizedAmount = String(normalizedAmountNumber);
-  */
+  // ---------------------------------------------
+  // Local modal behavior retained for later reuse
+  // ---------------------------------------------
 
-  /*
-  const handleCheckoutSuccess = async (result) => {
-    console.log("Checkout success:", result);
-
-    alert(
-      "Payment received.\n\n" +
-        "PATRON will be credited automatically.\n" +
-        "If you do not see it shortly, contact support with your wallet address."
-    );
-  };
-  */
-
-  // Scroll lock while wallet modal is open (mobile-safe)
   useEffect(() => {
     if (!walletOpen) return;
 
@@ -185,7 +181,6 @@ export default function App() {
     };
   }, [walletOpen]);
 
-  // Escape key closes wallet
   useEffect(() => {
     if (!walletOpen) return;
     const onKeyDown = (e) => {
@@ -195,12 +190,13 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [walletOpen]);
 
-  // Reset scroll-gate state when they connect / disconnect
   useEffect(() => {
     hasTriggeredGateRef.current = false;
   }, [isConnected]);
 
-  // Auto-open wallet once when the Patronium section scrolls into view (if NOT connected)
+  // NOTE:
+  // Auto-open gate logic preserved, but since no visible gated overlay
+  // is rendered right now, it is effectively dormant.
   useEffect(() => {
     if (isConnected) return;
 
@@ -210,7 +206,7 @@ export default function App() {
       if (!el) return;
 
       const rect = el.getBoundingClientRect();
-      const triggerY = 120; // px from top of viewport
+      const triggerY = 120;
 
       if (rect.top <= triggerY && rect.bottom > 0) {
         hasTriggeredGateRef.current = true;
@@ -229,9 +225,21 @@ export default function App() {
       {/* Header / hero */}
       <header id="top" className="site-header">
         <div className="header-actions">
-          <button className="btn btn-primary" type="button" onClick={openWallet}>
+          {/* 
+            PUBLIC CTA:
+            For now, route all sign-in / sign-up traffic straight to the
+            Cowboy Polo wallet experience.
+            
+            LOCAL USPPA MODAL:
+            Hidden from public UX for now, but code remains below for later
+            reuse when USPPA gets its own private member area.
+          */}
+          <a
+            className="btn btn-primary"
+            href="https://cowboypolo.com/#/wallet"
+          >
             Sign In / Sign Up
-          </button>
+          </a>
         </div>
 
         <h1 className="masthead-title">
@@ -302,7 +310,7 @@ export default function App() {
               aria-label="Cowboy Polo Circuit wordmark"
             >
               <div className="wm-main">COWBOY&nbsp;POLO CIRCUIT</div>
-              
+
               <div className="wm-sub">American Development Pipeline</div>
             </div>
 
@@ -408,42 +416,17 @@ export default function App() {
 
         <hr className="rule rule-spaced" />
 
-        {/* -------------------------------------------------------
-            GATED ZONE STARTS HERE (blur overlay begins here)
-           ------------------------------------------------------- */}
+        {/* 
+          NOTE:
+          Former gated zone remains as a normal content section for now.
+          Visible blur gate / lockout has been removed until USPPA has a real
+          private members area worth protecting.
+        */}
         <div
           className="gate-zone"
           id="patronium-polo-patronage"
           ref={gateRef}
         >
-          {!isConnected && (
-            <div
-              className="gate-overlay"
-              onClick={openWallet}
-              role="button"
-              aria-label="Sign in required"
-            >
-              <div className="gate-card">
-                <div className="gate-kicker">Patron Wallet Required</div>
-                <div className="gate-title">Sign in to continue</div>
-                <div className="gate-copy">
-                  This section and everything below is reserved for signed-in
-                  patrons. Tap here or scroll into this section to open the
-                  USPPA Patron Wallet.
-                </div>
-                <div style={{ marginTop: 14 }}>
-                  <button
-                    className="btn btn-outline"
-                    type="button"
-                    onClick={openWallet}
-                  >
-                    Open Patron Wallet
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
           <h2 className="sc">Patronium — Polo Patronage Perfected</h2>
           <p>
             Patronium is the living token of patronage within the United States
@@ -614,7 +597,22 @@ export default function App() {
         </footer>
       </main>
 
-      {/* Patron Wallet modal */}
+      {/* 
+        LOCAL USPPA MODAL WALLET
+        ------------------------------------------------
+        This modal is intentionally kept in the codebase
+        even though it is not currently the primary public
+        flow. It can be re-enabled later for:
+
+        - USPPA private member area
+        - local patron-only content
+        - steward/admin access
+        - chapter dashboards
+        - internal forms or reports
+
+        For now, the public CTA routes users directly to:
+        https://cowboypolo.com/#/wallet
+      */}
       {walletOpen && (
         <div
           className="wallet-backdrop"
@@ -724,7 +722,6 @@ export default function App() {
                 same wallet used on Polo Patronium and Cowboy Polo.
               </p>
 
-              {/* Connect / Account */}
               {!account ? (
                 <div style={{ marginBottom: 14 }}>
                   <ConnectEmbed
@@ -736,7 +733,6 @@ export default function App() {
                 </div>
               ) : (
                 <div style={{ marginBottom: 14, textAlign: "center" }}>
-                  {/* Address + copy */}
                   <div
                     style={{
                       display: "flex",
@@ -766,7 +762,6 @@ export default function App() {
                     </button>
                   </div>
 
-                  {/* Gas + USDC */}
                   <div
                     style={{
                       display: "flex",
@@ -813,7 +808,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Patron balance */}
                   <div style={{ marginBottom: 12 }}>
                     <div
                       style={{
@@ -838,7 +832,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Buy PATRON + Sign Out actions */}
                   <div
                     style={{
                       display: "flex",
@@ -848,7 +841,7 @@ export default function App() {
                     }}
                   >
                     <a
-                      href="https://cowboypolo.com/#wallet"
+                      href="https://cowboypolo.com/#/wallet"
                       className="btn btn-primary"
                       style={{
                         minWidth: "auto",
@@ -858,7 +851,7 @@ export default function App() {
                         textTransform: "uppercase",
                       }}
                     >
-                      BUY PATRON
+                      Open Full Patron Wallet
                     </a>
 
                     <button
@@ -877,97 +870,6 @@ export default function App() {
                   </div>
                 </div>
               )}
-
-              {/* Amount + Checkout – commented out */}
-              {/*
-              <div style={{ position: "relative" }}>
-                {!isConnected && (
-                  <button
-                    type="button"
-                    onClick={closeWallet}
-                    aria-label="Connect wallet first"
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "rgba(0,0,0,0.68)",
-                      zIndex: 10,
-                      borderRadius: 12,
-                      border: "none",
-                      padding: 0,
-                      cursor: "pointer",
-                    }}
-                  />
-                )}
-
-                <div
-                  style={{
-                    opacity: !isConnected ? 0.75 : 1,
-                    pointerEvents: isConnected ? "auto" : "none",
-                    transition: "opacity 160ms ease",
-                  }}
-                >
-                  <div style={{ marginBottom: 12 }}>
-                    <label
-                      style={{
-                        display: "block",
-                        fontSize: 10,
-                        letterSpacing: "0.12em",
-                        textTransform: "uppercase",
-                        color: "#c7b08a",
-                        marginBottom: 6,
-                      }}
-                    >
-                      Choose Your Patronage (USD)
-                    </label>
-                    <input
-                      type="number"
-                      min="1"
-                      step="1"
-                      value={usdAmount}
-                      onChange={(e) => setUsdAmount(e.target.value)}
-                      style={{
-                        width: "100%",
-                        padding: "10px 12px",
-                        borderRadius: 10,
-                        border: "1px solid #3a2b16",
-                        background: "#050505",
-                        color: "#f5eedc",
-                        fontSize: 16,
-                        outline: "none",
-                        boxShadow: "0 10px 30px rgba(0,0,0,0.55)",
-                      }}
-                    />
-                  </div>
-
-                  <CheckoutBoundary>
-                    <CheckoutWidget
-                      client={client}
-                      name={"BUY POLO PATRONIUM (PATRON)"}
-                      description={
-                        "USPPA PATRONAGE UTILITY TOKEN · THREE SEVENS 7̶7̶7̶ REMUDA · COWBOY POLO CIRCUIT · THE POLO WAY · CHARLESTON POLO"
-                      }
-                      currency={"USD"}
-                      chain={BASE}
-                      amount={normalizedAmount}
-                      tokenAddress={
-                        "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
-                      } // USDC on Base
-                      seller={
-                        "0xfee3c75691e8c10ed4246b10635b19bfff06ce16"
-                      } // must match SELLER_ADDRESS
-                      buttonLabel={"BUY PATRON (USDC on Base)"}
-                      theme={patronCheckoutTheme}
-                      purchaseData={{ walletAddress: account?.address }}
-                      onSuccess={handleCheckoutSuccess}
-                      onError={(err) => {
-                        console.error("Checkout error:", err);
-                        alert(err?.message || String(err));
-                      }}
-                    />
-                  </CheckoutBoundary>
-                </div>
-              </div>
-              */}
             </div>
           </div>
         </div>
