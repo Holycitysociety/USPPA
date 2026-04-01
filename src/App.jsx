@@ -22,9 +22,6 @@ const client = createThirdwebClient({
 const BASE = defineChain(8453);
 
 // Embedded user wallets (EMAIL ONLY)
-// NOTE:
-// Keeping this local wallet setup in place for later, even though
-// the current public UX routes users directly to Cowboy Polo wallet.
 const wallets = [
   inAppWallet({
     auth: {
@@ -34,10 +31,8 @@ const wallets = [
 ];
 
 // ---------------------------------------------
-// Themed local wallet modal (kept for future USPPA member area use)
-// NOTE:
-// This styling remains available for when USPPA gets its own
-// member-only / private patron area again.
+// Themed checkout / wallet (same spec as Patronium)
+// ---------------------------------------------
 const patronCheckoutTheme = darkTheme({
   fontFamily:
     '"Cinzel", "EB Garamond", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", serif',
@@ -82,9 +77,6 @@ const patronCheckoutTheme = darkTheme({
 export default function App() {
   const year = 2026;
 
-  // NOTE:
-  // Kept for future USPPA private member area.
-  // Currently not triggered by public UI.
   const [walletOpen, setWalletOpen] = useState(false);
 
   const account = useActiveAccount();
@@ -94,11 +86,8 @@ export default function App() {
 
   const walletScrollRef = useRef(null);
 
-  // NOTE:
-  // Kept for future gated/member section use.
-  // No visible gate is currently rendered.
+  // Kept in place for future private/member gating use
   const gateRef = useRef(null);
-  const hasTriggeredGateRef = useRef(false);
 
   // Native ETH on Base (gas)
   const { data: baseBalance } = useWalletBalance({
@@ -123,8 +112,6 @@ export default function App() {
     tokenAddress: "0xD766a771887fFB6c528434d5710B406313CAe03A",
   });
 
-  // NOTE:
-  // Preserved for future USPPA local wallet usage.
   const openWallet = () => setWalletOpen(true);
   const closeWallet = () => setWalletOpen(false);
 
@@ -151,10 +138,7 @@ export default function App() {
     }
   };
 
-  // ---------------------------------------------
-  // Local modal behavior retained for later reuse
-  // ---------------------------------------------
-
+  // Scroll lock while wallet modal is open (mobile-safe)
   useEffect(() => {
     if (!walletOpen) return;
 
@@ -181,6 +165,7 @@ export default function App() {
     };
   }, [walletOpen]);
 
+  // Escape key closes wallet
   useEffect(() => {
     if (!walletOpen) return;
     const onKeyDown = (e) => {
@@ -190,50 +175,11 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [walletOpen]);
 
-  useEffect(() => {
-    hasTriggeredGateRef.current = false;
-  }, [isConnected]);
-
-  // NOTE:
-  // Auto-open gate logic preserved, but since no visible gated overlay
-  // is rendered right now, it is effectively dormant.
-  useEffect(() => {
-    if (isConnected) return;
-
-    const onScroll = () => {
-      if (hasTriggeredGateRef.current) return;
-      const el = gateRef.current;
-      if (!el) return;
-
-      const rect = el.getBoundingClientRect();
-      const triggerY = 120;
-
-      if (rect.top <= triggerY && rect.bottom > 0) {
-        hasTriggeredGateRef.current = true;
-        setWalletOpen(true);
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isConnected]);
-
   return (
     <div className="page">
       {/* Header / hero */}
       <header id="top" className="site-header">
         <div className="header-actions">
-          {/* 
-            PUBLIC CTA:
-            For now, route all sign-in / sign-up traffic straight to the
-            Cowboy Polo wallet experience.
-            
-            LOCAL USPPA MODAL:
-            Hidden from public UX for now, but code remains below for later
-            reuse when USPPA gets its own private member area.
-          */}
           <a
             className="btn btn-primary"
             href="https://cowboypolo.com/#/wallet"
@@ -292,10 +238,7 @@ export default function App() {
             </p>
 
             <div className="cta-row">
-              <a
-                className="btn btn-outline"
-                href="https://polopatronium.com"
-              >
+              <a className="btn btn-outline" href="https://polopatronium.com">
                 Polopatronium.com
               </a>
             </div>
@@ -321,10 +264,7 @@ export default function App() {
             </p>
 
             <div className="cta-row">
-              <a
-                className="btn btn-outline"
-                href="https://cowboypolo.com"
-              >
+              <a className="btn btn-outline" href="https://cowboypolo.com">
                 Cowboypolo.com
               </a>
             </div>
@@ -369,10 +309,7 @@ export default function App() {
             </p>
 
             <div className="cta-row">
-              <a
-                className="btn btn-outline"
-                href="https://thepoloway.com"
-              >
+              <a className="btn btn-outline" href="https://thepoloway.com">
                 Thepoloway.com
               </a>
             </div>
@@ -416,12 +353,9 @@ export default function App() {
 
         <hr className="rule rule-spaced" />
 
-        {/* 
-          NOTE:
-          Former gated zone remains as a normal content section for now.
-          Visible blur gate / lockout has been removed until USPPA has a real
-          private members area worth protecting.
-        */}
+        {/* -------------------------------------------------------
+            GATED ZONE KEPT IN PLACE BUT CURRENTLY UNGATED
+           ------------------------------------------------------- */}
         <div
           className="gate-zone"
           id="patronium-polo-patronage"
@@ -597,22 +531,7 @@ export default function App() {
         </footer>
       </main>
 
-      {/* 
-        LOCAL USPPA MODAL WALLET
-        ------------------------------------------------
-        This modal is intentionally kept in the codebase
-        even though it is not currently the primary public
-        flow. It can be re-enabled later for:
-
-        - USPPA private member area
-        - local patron-only content
-        - steward/admin access
-        - chapter dashboards
-        - internal forms or reports
-
-        For now, the public CTA routes users directly to:
-        https://cowboypolo.com/#/wallet
-      */}
+      {/* Local Patron Wallet modal kept for future member-area use, currently not triggered */}
       {walletOpen && (
         <div
           className="wallet-backdrop"
@@ -851,7 +770,7 @@ export default function App() {
                         textTransform: "uppercase",
                       }}
                     >
-                      Open Full Patron Wallet
+                      BUY PATRON
                     </a>
 
                     <button
