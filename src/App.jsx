@@ -394,10 +394,7 @@ export default function App() {
             In its early life a Chapter begins as a Polo Incubator: a local
             startup where the “bring your own horse” model allows riders and
             stables to join the Circuit quickly, while a shared remuda is
-            trained for exhibitions, league play, and new riders. Once an
-            Incubator demonstrates steady operations, sound horsemanship, and
-            visible benefit to our community, it is recognised as a standing
-            Chapter of the USPPA.
+            trained for exhibitions, league play, and new riders.
           </p>
           <p>
             Once an Incubator achieves steady operations, sound horsemanship,
