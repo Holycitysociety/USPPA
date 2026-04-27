@@ -402,7 +402,7 @@ export default function App() {
           <p>
             In its early life a Chapter begins as a Polo Incubator: a local
             startup where the "bring your own horse" model allows riders and
-            stables to join the Circuit quickly, while a shared remuda is
+            stables to join the Circuit quickly, while a shared Stringpool is
             trained for exhibitions, league play, and new riders.
           </p>
           <p>
@@ -413,10 +413,10 @@ export default function App() {
 
           <hr className="rule" />
 
-          <h2 className="sc">Horse Syndicates and the Association Remuda</h2>
+          <h2 className="sc">Horse Syndicates and the Association Stringpool</h2>
           <p>
             One of the most important uses of the system is the creation of
-            dedicated association horses and a managed remuda.
+            dedicated association horses and a managed Stringpool.
           </p>
           <p>
             Rather than leaving new players to navigate the sport through
@@ -1265,7 +1265,7 @@ export default function App() {
           <p>
             In its early life a Chapter begins as a Polo Incubator: a local
             startup where the "bring your own horse" model allows riders and
-            stables to join the Circuit quickly, while a shared remuda is
+            stables to join the Circuit quickly, while a shared Stringpool is
             trained for exhibitions, league play, and new riders.
           </p>
           <p>
@@ -1276,10 +1276,10 @@ export default function App() {
 
           <hr className="rule" />
 
-          <h2 className="sc">Horse Syndicates and the Association Remuda</h2>
+          <h2 className="sc">Horse Syndicates and the Association Stringpool</h2>
           <p>
             One of the most important uses of the system is the creation of
-            dedicated association horses and a managed remuda.
+            dedicated association horses and a managed Stringpool.
           </p>
           <p>
             Rather than leaving new players to navigate the sport through
