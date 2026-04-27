@@ -132,7 +132,7 @@ export default function App() {
     if (!account?.address) return;
     try {
       await navigator.clipboard.writeText(account.address);
-      alert("Patron Wallet address copied.");
+      alert("Patrón Wallet address copied.");
     } catch (err) {
       console.error("Clipboard error:", err);
     }
@@ -189,9 +189,9 @@ export default function App() {
         </div>
 
         <h1 className="masthead-title">
-          <span className="masthead-line">US - AR - CA - UK</span>
-          <span className="masthead-line">Polo Patrons</span>
-          <span className=masthead-line">Association</span>
+          <span className="masthead-line">US – AR – CA – UK</span>
+          <span className="masthead-line">Polo Patróns</span>
+          <span className="masthead-line">Association</span>
         </h1>
 
         <p className="est">
@@ -205,11 +205,11 @@ export default function App() {
 
         <h2 className="sc">Announcement</h2>
         <p>
-          It is with honour that we record the foundation of the United States
-          Polo Patrons Association. This fellowship of patrons and players is
-          inaugurated with <i>Patronium</i>, a patronage token of support and
-          tradition. Our purpose is simple: to safeguard the heritage of polo,
-          encourage its growth, and open a new chapter in the life of the game.
+          It is with honour that we record the foundation of the Polo Patróns
+          Association. This fellowship of patrons and players is inaugurated
+          with <i>Patronium</i>, a patronage token of support and tradition. Our
+          purpose is simple: to safeguard the heritage of polo, encourage its
+          growth, and open a new chapter in the life of the game.
         </p>
 
         <hr className="rule rule-spaced" />
@@ -230,7 +230,7 @@ export default function App() {
               <div className="wm-top">Official Polo Patronage Token</div>
               <div className="wm-main">PATRONIUM</div>
               <div className="wm-rule" />
-              <div className="wm-sub">Symbol “PATRON” · Built on Base</div>
+              <div className="wm-sub">Symbol "PATRON" · Built on Base</div>
             </div>
 
             <p className="initiative-text">
@@ -259,7 +259,7 @@ export default function App() {
             </div>
 
             <p className="initiative-text">
-              A national endeavour to broaden the sport’s reach, nurture
+              A national endeavour to broaden the sport's reach, nurture
               emerging talent, and encourage the next generation of American
               players.
             </p>
@@ -287,7 +287,7 @@ export default function App() {
             </div>
 
             <p className="initiative-text">
-              The managed herd of USPPA horses — consigned or owned by the
+              The managed herd of PPA horses — consigned or owned by the
               Association, assigned to operating patrons, trainers and local
               players, and developed for play, exhibition and training across
               our programmes.
@@ -326,12 +326,12 @@ export default function App() {
             >
               <div className="wm-top">Flagship Chapter</div>
               <div className="wm-main">CHARLESTON&nbsp;POLO</div>
-              <div className="wm-sub">USPPA Chapter Test Model</div>
+              <div className="wm-sub">PPA Chapter Test Model</div>
             </div>
 
             <p className="initiative-text">
-              The renewal of Charleston, South Carolina’s polo tradition — our
-              flagship Chapter and living test model for the USPPA incubator
+              The renewal of Charleston, South Carolina's polo tradition — our
+              flagship Chapter and living test model for the PPA incubator
               framework.
             </p>
 
@@ -347,8 +347,7 @@ export default function App() {
 
           <p className="roadmap-footnote">
             All initiatives are coordinated and supported through Polo
-            Patronium — the patronage token of the United States Polo Patrons
-            Association.
+            Patronium — the patronage token of the Polo Patróns Association.
           </p>
         </section>
 
@@ -365,11 +364,10 @@ export default function App() {
           <h2 className="sc">The Patronium Framework</h2>
 
           <p>
-            <b>PATRONIUM — THE PATRON TOKEN OF THE USPPA</b>
+            <b>PATRONIUM — THE PATRÓN TOKEN OF THE PPA</b>
           </p>
           <p>
-            Patronium is the patronage token of the United States Polo Patrons
-            Association.
+            Patronium is the patronage token of the Polo Patróns Association.
           </p>
           <p>
             It gives patrons a clear way to enter the ecosystem, participate in
@@ -392,18 +390,17 @@ export default function App() {
 
           <hr className="rule" />
 
-          <h2 className="sc">Charleston Polo — The USPPA Chapter Test Model</h2>
+          <h2 className="sc">Charleston Polo — The PPA Chapter Test Model</h2>
           <p>
-            Each USPPA Chapter is a fully integrated programme operating under
-            the Association’s standards. Charleston Polo, as the flagship
-            Chapter, serves as the organisational hub for the Cowboy Polo
-            Circuit — coordinating local Cowboy Polo clinics, sanctioned
-            chukkers at member barns and arenas, and the first pool of chapter
-            horses.
+            Each PPA Chapter is a fully integrated programme operating under the
+            Association's standards. Charleston Polo, as the flagship Chapter,
+            serves as the organisational hub for the Cowboy Polo Circuit —
+            coordinating local Cowboy Polo clinics, sanctioned chukkers at
+            member barns and arenas, and the first pool of chapter horses.
           </p>
           <p>
             In its early life a Chapter begins as a Polo Incubator: a local
-            startup where the “bring your own horse” model allows riders and
+            startup where the "bring your own horse" model allows riders and
             stables to join the Circuit quickly, while a shared remuda is
             trained for exhibitions, league play, and new riders.
           </p>
@@ -438,7 +435,7 @@ export default function App() {
           </p>
           <p>
             Each horse has its own ERC-1155 token ID, so support can be recorded
-            and tracked horse by horse over the course of that horse’s career.
+            and tracked horse by horse over the course of that horse's career.
             This makes it possible to organize horse-specific support, preserve
             the history of who helped bring a horse along, and reserve funds for
             old age, turnout, and retirement care.
@@ -451,7 +448,7 @@ export default function App() {
 
           <hr className="rule" />
 
-          <h2 className="sc">Founding, Operating, and USPPA Patrons</h2>
+          <h2 className="sc">Founding, Operating, and PPA Patróns</h2>
           <p>There are several ways to participate in the life of a Chapter.</p>
           <p>
             <b>Founding Patrons</b> are the first to support the birth of a new
@@ -462,11 +459,11 @@ export default function App() {
           <p>
             <b>Operating Patrons</b> are the active stewards responsible for
             helping sustain the daily life, health, continuity, and long-term
-            stewardship of a Chapter in service to the Association’s mission.
+            stewardship of a Chapter in service to the Association's mission.
           </p>
           <p>
-            <b>USPPA Patrons</b> are the broader body of supporters who
-            strengthen the Association and its network of Chapters over time.
+            <b>PPA Patróns</b> are the broader body of supporters who strengthen
+            the Association and its network of Chapters over time.
           </p>
           <p>
             These are roles of participation within the ecosystem, not separate
@@ -479,7 +476,7 @@ export default function App() {
           <p>
             Each Chapter follows a principle of balanced and transparent
             patronage. Resources are directed first toward the health,
-            continuity, and responsible stewardship of the Association’s horses,
+            continuity, and responsible stewardship of the Association's horses,
             land, equipment, operations, and local programmes.
           </p>
           <p>
@@ -532,7 +529,7 @@ export default function App() {
               Chapter, its horses, and its players.
             </li>
             <li>
-              Become a USPPA Patron — support the broader network and take part
+              Become a PPA Patrón — support the broader network and take part
               in the ongoing life of the Association.
             </li>
             <li>
@@ -560,7 +557,7 @@ export default function App() {
             one-off donations or scattered sponsorships.
           </p>
           <p>
-            This is how the USPPA intends to help build the next generation of
+            This is how the PPA intends to help build the next generation of
             American players, ponies, and patrons.
           </p>
 
@@ -587,7 +584,7 @@ export default function App() {
           </p>
           <p>
             Those who have carried the game through their own time know that
-            polo survives only by the strength of its patrons. The USPPA now
+            polo survives only by the strength of its patrons. The PPA now
             offers a new way to hold that legacy — a means to see your support
             endure through participation in the continued life of the
             Association.
@@ -602,16 +599,16 @@ export default function App() {
           </p>
 
           <blockquote className="motto">
-            “In honour, in sport, in fellowship.”
+            "In honour, in sport, in fellowship."
           </blockquote>
         </div>
 
         <footer className="site-footer">
-          <p className="fineprint">© {year} USPoloPatrons.org</p>
+          <p className="fineprint">© {year} PoloPatrons.org</p>
         </footer>
       </main>
 
-      {/* Local Patron Wallet modal kept for future member-area use, currently not triggered */}
+      {/* Local Patrón Wallet modal kept for future member-area use, currently not triggered */}
       {walletOpen && (
         <div
           className="wallet-backdrop"
@@ -670,7 +667,7 @@ export default function App() {
                     color: "#9f8a64",
                   }}
                 >
-                  U&nbsp;S&nbsp;P&nbsp;P&nbsp;A
+                  P&nbsp;P&nbsp;A
                 </div>
                 <div
                   style={{
@@ -681,7 +678,7 @@ export default function App() {
                     lineHeight: 1.1,
                   }}
                 >
-                  Patron Wallet
+                  Patrón Wallet
                 </div>
                 <button
                   onClick={closeWallet}
@@ -717,7 +714,7 @@ export default function App() {
                   fontFamily: '"EB Garamond", serif',
                 }}
               >
-                Sign in or create your Patron Wallet using email. This is the
+                Sign in or create your Patrón Wallet using email. This is the
                 same wallet used on Polo Patronium and Cowboy Polo.
               </p>
 
@@ -755,7 +752,7 @@ export default function App() {
                         cursor: "pointer",
                         fontSize: 14,
                       }}
-                      aria-label="Copy Patron Wallet address"
+                      aria-label="Copy Patrón Wallet address"
                     >
                       📋
                     </button>
