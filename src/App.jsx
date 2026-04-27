@@ -191,6 +191,7 @@ export default function App() {
         <h1 className="masthead-title">
           <span className="masthead-line">US - AR - CA - UK</span>
           <span className="masthead-line">Polo Patrons</span>
+          <span className=masthead-line">Association</span>
         </h1>
 
         <p className="est">
