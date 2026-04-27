@@ -273,24 +273,25 @@ export default function App() {
             <div className="divider" />
           </div>
 
-          {/* THREE SEVENS REMUDA */}
+          {/* POLO PATRÓNS POLOBRED STRINGPOOL */}
           <div className="initiative">
             <div
-              className="wm wm-three-sevens"
-              aria-label="Three Sevens Remuda wordmark"
+              className="wm wm-simple"
+              aria-label="Polo Patróns Polobred Stringpool wordmark"
             >
-              <div className="wm-top">Remuda</div>
-              <div className="three-sevens-mark">
-                <div className="three-sevens-numeral">7̶7̶7̶</div>
-                <div className="three-sevens-text">THREE SEVENS</div>
+              <div className="wm-top">Managed Herd</div>
+              <div className="wm-main" style={{ fontSize: "1.2em" }}>
+                POLO&nbsp;PATRÓNS<br />
+                POLOBRED&nbsp;STRINGPOOL
               </div>
             </div>
 
             <p className="initiative-text">
-              The managed herd of PPA horses — consigned or owned by the
-              Association, assigned to operating patrons, trainers and local
-              players, and developed for play, exhibition and training across
-              our programmes.
+              The Polo Patróns Polobred Stringpool — a managed, transparent herd
+              of Association-backed mounts. Consigned or owned by the
+              Association, these athletes are developed specifically for
+              high-standard play, exhibition, and the formation of the next
+              generation of Argentine-style polo.
             </p>
 
             <div className="divider" />
@@ -861,15 +862,3 @@ export default function App() {
                       }}
                       onClick={handleSignOut}
                     >
-                      Sign Out
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
