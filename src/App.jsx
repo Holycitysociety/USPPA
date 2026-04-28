@@ -279,10 +279,10 @@ export default function App() {
               className="wm wm-three-sevens"
               aria-label="Three Sevens Remuda wordmark"
             >
-              <div className="wm-top">Remuda</div>
+              <div className="wm-top">POLO PATRONS</div>
               <div className="three-sevens-mark">
-                <div className="three-sevens-numeral">7̶7̶7̶</div>
-                <div className="three-sevens-text">THREE SEVENS</div>
+                <div className="three-sevens-numeral">POLOBRED STRINGPOOL</div>
+                <div className="three-sevens-text"></div>
               </div>
             </div>
 
