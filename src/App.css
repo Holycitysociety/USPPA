@@ -136,19 +136,18 @@ h3 {
   position: relative;
   overflow: hidden;
   text-align: center;
-  padding: 4.5rem 1.5rem 3rem;
+  padding: 4.6rem 1.5rem 3.2rem;
   background:
     radial-gradient(
       circle at top center,
-      rgba(255, 255, 255, 0.24) 0,
-      rgba(255, 255, 255, 0.14) 18%,
+      rgba(255, 255, 255, 0.22) 0,
+      rgba(255, 255, 255, 0.12) 18%,
       rgba(255, 255, 255, 0.04) 38%,
       rgba(0, 0, 0, 0) 68%
     ),
     linear-gradient(to bottom, #080808 0%, #050505 60%, #040404 100%);
 }
 
-/* subtle header depth */
 .site-header::after {
   content: "";
   position: absolute;
@@ -156,9 +155,9 @@ h3 {
   pointer-events: none;
   background: radial-gradient(
     ellipse at center,
-    rgba(227, 191, 114, 0.045) 0%,
-    rgba(227, 191, 114, 0.02) 32%,
-    rgba(0, 0, 0, 0) 70%
+    rgba(227, 191, 114, 0.04) 0%,
+    rgba(227, 191, 114, 0.018) 34%,
+    rgba(0, 0, 0, 0) 72%
   );
 }
 
@@ -167,20 +166,20 @@ h3 {
 ------------------------------------------------- */
 
 .header-actions {
-  margin-bottom: 2.1rem;
+  margin-bottom: 2rem;
   display: flex;
   justify-content: center;
   position: relative;
   z-index: 2;
 }
 
-/* Elite lightweight display Garamond wordmark */
+/* Symmetrical monument lockup */
 .masthead-wordmark {
   margin: 0;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.34rem; /* tighter stack */
+  gap: 0.42rem; /* equal-feel spacing between line groups */
   text-transform: uppercase;
   width: 100%;
   position: relative;
@@ -190,21 +189,21 @@ h3 {
 .wordmark-kicker {
   font-family: "Cormorant Garamond", "EB Garamond", serif;
   font-weight: 400;
-  font-size: clamp(0.94rem, 2.55vw, 1.12rem);
-  letter-spacing: 0.19em;
+  font-size: clamp(0.92rem, 2.45vw, 1.1rem);
+  letter-spacing: 0.2em;
   color: #c7b08a;
-  line-height: 1.14;
+  line-height: 1.15;
   text-align: center;
   max-width: 42ch;
-  margin: 0 auto 0.05rem;
+  margin: 0;
 }
 
 .wordmark-main {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 0; /* no extra air */
-  line-height: 0.93; /* sharp title lockup */
+  gap: 0.38rem; /* symmetrical with top/bottom rhythm */
+  line-height: 1;
 }
 
 .wordmark-line {
@@ -212,18 +211,17 @@ h3 {
   font-family: "Cormorant Garamond", "EB Garamond", serif;
   white-space: nowrap;
   text-transform: uppercase;
-  text-shadow:
-    0 0 0.5px rgba(227, 191, 114, 0.2),
-    0 8px 24px rgba(0, 0, 0, 0.5);
   font-feature-settings: "liga" 1, "kern" 1;
+  text-shadow:
+    0 0 0.5px rgba(227, 191, 114, 0.18),
+    0 8px 24px rgba(0, 0, 0, 0.48);
 }
 
-/* POLO PATRONS */
+/* Center focal line */
 .wordmark-line:first-child {
   font-weight: 300;
-  font-size: clamp(1.62rem, 7.2vw, 2.48rem);
-  letter-spacing: 0.235em; /* cleaner than 0.28 */
-  margin-bottom: -0.03em; /* optical tighten */
+  font-size: clamp(1.62rem, 7.15vw, 2.42rem);
+  letter-spacing: 0.235em;
   background: linear-gradient(
     to bottom,
     #f8f0db 0%,
@@ -236,76 +234,83 @@ h3 {
   color: transparent;
 }
 
-/* ASSOCIATION */
+/* Third line balanced with first line's visual mass */
 .wordmark-line:last-child {
   font-weight: 400;
-  font-size: clamp(0.92rem, 2.45vw, 1.08rem);
-  letter-spacing: 0.31em;
-  margin-top: -0.02em;
+  font-size: clamp(0.92rem, 2.45vw, 1.1rem);
+  letter-spacing: 0.305em;
   color: #ddcfad;
 }
 
+/* Remove fine divider for cleaner monument style */
 .wordmark-rule {
-  display: block;
-  height: 1px;
-  width: min(88vw, 500px);
-  margin-top: 0.52rem;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    #3a2b16 22%,
-    #b18a44 50%,
-    #3a2b16 78%,
-    transparent 100%
-  );
+  display: none;
 }
 
-/* Mobile tuning */
-@media (max-width: 420px) {
-  .site-header {
-    padding: 3.8rem 1rem 2.6rem;
-  }
-
-  .wordmark-kicker {
-    font-size: 0.88rem;
-    letter-spacing: 0.145em;
-    max-width: 31ch;
-  }
-
-  .wordmark-main {
-    line-height: 0.95;
-  }
-
-  .wordmark-line:first-child {
-    font-size: clamp(1.5rem, 7.1vw, 2rem);
-    letter-spacing: 0.2em;
-  }
-
-  .wordmark-line:last-child {
-    font-size: 0.86rem;
-    letter-spacing: 0.24em;
-  }
-
-  .wordmark-rule {
-    width: min(90vw, 360px);
-    margin-top: 0.46rem;
-  }
-}
-
+/* Monument founding line integrated into lockup */
 .est {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
   font-family: "Cormorant Garamond", "EB Garamond", serif;
   font-weight: 400;
-  font-size: 0.95rem;
-  letter-spacing: 0.2em;
+  font-size: clamp(0.84rem, 2.15vw, 0.98rem);
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  margin-top: 1.15rem;
+  margin-top: 0.72rem;
   color: #c7b08a;
   position: relative;
   z-index: 2;
 }
 
+.est::before,
+.est::after {
+  content: "✦";
+  font-size: 0.66em;
+  color: #a98a53;
+  opacity: 0.9;
+}
+
 .dot {
-  padding: 0 0.4em;
+  padding: 0 0.35em;
+}
+
+/* Mobile tuning */
+@media (max-width: 420px) {
+  .site-header {
+    padding: 3.85rem 1rem 2.7rem;
+  }
+
+  .masthead-wordmark {
+    gap: 0.34rem;
+  }
+
+  .wordmark-kicker {
+    font-size: 0.86rem;
+    letter-spacing: 0.145em;
+    max-width: 32ch;
+  }
+
+  .wordmark-main {
+    gap: 0.28rem;
+  }
+
+  .wordmark-line:first-child {
+    font-size: clamp(1.5rem, 7vw, 1.95rem);
+    letter-spacing: 0.2em;
+  }
+
+  .wordmark-line:last-child {
+    font-size: 0.84rem;
+    letter-spacing: 0.23em;
+  }
+
+  .est {
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    gap: 0.4em;
+    margin-top: 0.62rem;
+  }
 }
 
 /* -------------------------------------------------
@@ -591,7 +596,7 @@ h3 {
   }
 
   .wordmark-line:first-child {
-    font-size: 2.48rem;
+    font-size: 2.42rem;
   }
 
   .container {
