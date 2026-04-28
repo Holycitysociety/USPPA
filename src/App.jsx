@@ -209,9 +209,7 @@ export default function App() {
           </span>
         </h1>
 
-        <p className="est">
-          FOUNDING AD MMXXVI
-        </p>
+        <p className="est">FOUNDING AD MMXXVI</p>
       </header>
 
       {/* Main content */}
@@ -356,9 +354,6 @@ export default function App() {
 
         <hr className="rule rule-spaced" />
 
-        {/* -------------------------------------------------------
-            GATED ZONE KEPT IN PLACE BUT CURRENTLY UNGATED
-           ------------------------------------------------------- */}
         <div className="gate-zone" id="patronium-polo-patronage" ref={gateRef}>
           <h2 className="sc">The Patronium Framework</h2>
 
