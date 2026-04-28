@@ -191,7 +191,7 @@ export default function App() {
 
           <span className="wordmark-main">
             <span className="wordmark-line">POLO PATRONS</span>
-            <span className="wordmark-line">ASSOCIATION</span>
+            <span className="wordmark-line">A S S O C I A T I O N</span>
           </span>
 
           <span className="wordmark-rule" />
