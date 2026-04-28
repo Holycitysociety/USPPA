@@ -205,7 +205,7 @@ export default function App() {
 
         <h2 className="sc">Announcement</h2>
         <p>
-          It is with honour that we record the foundation of the Polo Patróns
+          It is with honour that we record the foundation of the Polo Patrons
           Association. This fellowship of patrons and players is inaugurated
           with <i>Patronium</i>, a patronage token of support and tradition. Our
           purpose is simple: to safeguard the heritage of polo, encourage its
@@ -347,7 +347,7 @@ export default function App() {
 
           <p className="roadmap-footnote">
             All initiatives are coordinated and supported through Polo
-            Patronium — the patronage token of the Polo Patróns Association.
+            Patronium — the patronage token of the Polo Patrons Association.
           </p>
         </section>
 
@@ -364,10 +364,10 @@ export default function App() {
           <h2 className="sc">The Patronium Framework</h2>
 
           <p>
-            <b>PATRONIUM — THE PATRÓN TOKEN OF THE PPA</b>
+            <b>PATRONIUM — THE PATRON TOKEN OF THE PPA</b>
           </p>
           <p>
-            Patronium is the patronage token of the Polo Patróns Association.
+            Patronium is the patronage token of the Polo Patrons Association.
           </p>
           <p>
             It gives patrons a clear way to enter the ecosystem, participate in
@@ -448,7 +448,7 @@ export default function App() {
 
           <hr className="rule" />
 
-          <h2 className="sc">Founding, Operating, and PPA Patróns</h2>
+          <h2 className="sc">Founding, Operating, and PPA Patrons</h2>
           <p>There are several ways to participate in the life of a Chapter.</p>
           <p>
             <b>Founding Patrons</b> are the first to support the birth of a new
@@ -462,7 +462,7 @@ export default function App() {
             stewardship of a Chapter in service to the Association's mission.
           </p>
           <p>
-            <b>PPA Patróns</b> are the broader body of supporters who strengthen
+            <b>PPA Patrons</b> are the broader body of supporters who strengthen
             the Association and its network of Chapters over time.
           </p>
           <p>
@@ -529,7 +529,7 @@ export default function App() {
               Chapter, its horses, and its players.
             </li>
             <li>
-              Become a PPA Patrón — support the broader network and take part
+              Become a PPA Patron — support the broader network and take part
               in the ongoing life of the Association.
             </li>
             <li>
@@ -678,7 +678,7 @@ export default function App() {
                     lineHeight: 1.1,
                   }}
                 >
-                  Patrón Wallet
+                  Patron Wallet
                 </div>
                 <button
                   onClick={closeWallet}
@@ -714,7 +714,7 @@ export default function App() {
                   fontFamily: '"EB Garamond", serif',
                 }}
               >
-                Sign in or create your Patrón Wallet using email. This is the
+                Sign in or create your Patron Wallet using email. This is the
                 same wallet used on Polo Patronium and Cowboy Polo.
               </p>
 
