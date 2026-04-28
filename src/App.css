@@ -161,7 +161,7 @@ h3 {
 
 .wordmark-kicker {
   font-family: "Cinzel", serif;
-  font-size: clamp(0.78rem, 2.2vw, 1.02rem); /* increased */
+  font-size: clamp(0.78rem, 2.2vw, 1.02rem);
   letter-spacing: 0.2em;
   color: #b89f78;
   white-space: nowrap;
@@ -181,18 +181,25 @@ h3 {
   display: block;
   font-family: "Cinzel", serif;
   font-weight: 600;
-  font-size: clamp(1.35rem, 6.1vw, 2.5rem);
-  letter-spacing: 0.2em;
   white-space: nowrap;
-  color: #f5eedc;
   text-shadow:
     0 0 1px rgba(227, 191, 114, 0.22),
     0 8px 26px rgba(0, 0, 0, 0.45);
 }
 
+/* POLO PATRONS (increased spacing) */
+.wordmark-line:first-child {
+  font-size: clamp(1.35rem, 6.1vw, 2.5rem);
+  letter-spacing: 0.28em;
+  color: #f5eedc;
+}
+
+/* ASSOCIATION = same size as country line */
 .wordmark-line:last-child {
-  letter-spacing: 0.24em;
+  font-size: clamp(0.78rem, 2.2vw, 1.02rem);
+  letter-spacing: 0.22em;
   color: #e9d8b3;
+  margin-top: 0.28rem;
 }
 
 .wordmark-rule {
@@ -217,12 +224,13 @@ h3 {
     letter-spacing: 0.13em;
   }
 
-  .wordmark-line {
-    letter-spacing: 0.16em;
+  .wordmark-line:first-child {
+    letter-spacing: 0.22em;
   }
 
   .wordmark-line:last-child {
-    letter-spacing: 0.18em;
+    font-size: clamp(0.66rem, 2.8vw, 0.78rem);
+    letter-spacing: 0.15em;
   }
 
   .wordmark-rule {
@@ -518,7 +526,7 @@ h3 {
     font-size: 18px;
   }
 
-  .wordmark-line {
+  .wordmark-line:first-child {
     font-size: 2.5rem;
   }
 
