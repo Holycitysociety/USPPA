@@ -149,29 +149,84 @@ h3 {
   justify-content: center;
 }
 
-/* Responsive masthead: always 2 lines, never wraps mid-phrase */
-.masthead-title {
+/* New prestige wordmark */
+.masthead-wordmark {
   margin: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 600;
-  line-height: 1.28;
-  font-size: min(6vw, 2.3rem);
 }
 
-/* each phrase stays on a single line */
-.masthead-line {
-  display: block;
-  max-width: 100%;
-  margin: 0 auto;
+.wordmark-kicker {
+  font-family: "Cinzel", serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  color: #b89f78;
   white-space: nowrap;
+  line-height: 1.2;
 }
 
-/* extra safety for very narrow phones: shrink just a bit */
-@media (max-width: 380px) {
-  .masthead-title {
-    font-size: min(5.3vw, 1.8rem);
-    letter-spacing: 0.11em;
+.wordmark-main {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08rem;
+  line-height: 1.06;
+}
+
+.wordmark-line {
+  display: block;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: clamp(1.35rem, 6.1vw, 2.5rem);
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  color: #f5eedc;
+  text-shadow:
+    0 0 1px rgba(227, 191, 114, 0.22),
+    0 8px 26px rgba(0, 0, 0, 0.45);
+}
+
+/* subtle luxury contrast between line 1 and line 2 */
+.wordmark-line:last-child {
+  letter-spacing: 0.24em;
+  color: #e9d8b3;
+}
+
+.wordmark-rule {
+  display: block;
+  height: 1px;
+  width: min(82vw, 480px);
+  margin-top: 0.35rem;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #3a2b16 24%,
+    #9f7a3a 50%,
+    #3a2b16 76%,
+    transparent 100%
+  );
+}
+
+/* Narrow phone tuning */
+@media (max-width: 420px) {
+  .wordmark-kicker {
+    font-size: 0.53rem;
+    letter-spacing: 0.16em;
+  }
+
+  .wordmark-line {
+    letter-spacing: 0.16em;
+  }
+
+  .wordmark-line:last-child {
+    letter-spacing: 0.18em;
+  }
+
+  .wordmark-rule {
+    width: min(90vw, 360px);
   }
 }
 
@@ -328,12 +383,7 @@ h3 {
   height: 1px;
   width: 70%;
   margin: 0.55rem auto 0.4rem;
-  background: linear-gradient(
-    to right,
-    transparent,
-    #3a2b16,
-    transparent
-  );
+  background: linear-gradient(to right, transparent, #3a2b16, transparent);
 }
 
 /* Patronium wordmark slightly larger */
@@ -357,36 +407,9 @@ h3 {
   padding: 0 0.3em;
 }
 
-/* Simple wordmarks (The Polo Way, Charleston) */
+/* Simple wordmarks */
 .wm-simple .wm-main {
   font-size: 1rem;
-}
-
-/* Three Sevens 7̶7̶7̶ wordmark */
-.wm-three-sevens .wm-top {
-  margin-bottom: 0.5rem;
-}
-
-.three-sevens-mark {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.three-sevens-numeral {
-  font-family: "Cinzel", serif;
-  font-size: 1.15rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-.three-sevens-text {
-  font-family: "Cinzel", serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: #b89f78;
 }
 
 .initiative-text {
@@ -406,12 +429,7 @@ h3 {
   height: 1px;
   width: 64%;
   margin: 0 auto;
-  background: linear-gradient(
-    to right,
-    transparent,
-    #262018,
-    transparent
-  );
+  background: linear-gradient(to right, transparent, #262018, transparent);
 }
 
 .roadmap-footnote {
@@ -505,8 +523,8 @@ h3 {
     font-size: 18px;
   }
 
-  .masthead-title {
-    font-size: 2.3rem;
+  .wordmark-line {
+    font-size: 2.5rem;
   }
 
   .container {
