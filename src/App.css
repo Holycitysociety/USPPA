@@ -1,4 +1,167 @@
 /* -------------------------------------------------
+   Fonts (lightweight display Garamond + body Garamond)
+------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=EB+Garamond:wght@400;500;600&display=swap");
+
+/* -------------------------------------------------
+   Global base
+------------------------------------------------- */
+
+:root {
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "EB Garamond", serif;
+  font-size: 17px;
+  line-height: 1.7;
+  background: #050505;
+  color: #f5eedc;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  min-height: 100vh;
+  background: #050505;
+  color: #f5eedc;
+}
+
+a {
+  color: #e3bf72;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------
+   Top site tab strip (scrollable)
+------------------------------------------------- */
+
+.site-tabs {
+  display: flex;
+  gap: 4px;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 10px 4px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.site-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.site-tab {
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 6px 12px 4px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-left: 1px solid #3a2b16;
+  border-right: 1px solid #3a2b16;
+  border-top: 1px solid #3a2b16;
+  background: transparent;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.site-tab--active {
+  color: #f5eedc;
+  border-bottom: 1px solid transparent;
+}
+
+.site-tab--inactive {
+  color: #c7b08a;
+  border-bottom: 1px solid #3a2b16;
+}
+
+/* -------------------------------------------------
+   Typography
+------------------------------------------------- */
+
+h1,
+h2,
+h3 {
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-weight: 400;
+  margin: 0 0 0.6em;
+}
+
+.sc {
+  font-variant: small-caps;
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  font-size: 0.95rem;
+}
+
+.motto {
+  text-align: center;
+  font-style: italic;
+  margin: 3rem auto 2rem;
+  font-size: 1.1rem;
+  max-width: 34rem;
+  color: #e4dcc3;
+}
+
+/* -------------------------------------------------
+   Layout containers
+------------------------------------------------- */
+
+.container {
+  max-width: 760px;
+  padding: 0 22px 4rem;
+  margin: 0 auto;
+}
+
+.site-header {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 4.6rem 1.5rem 3.2rem;
+  background:
+    radial-gradient(
+      circle at top center,
+      rgba(255, 255, 255, 0.22) 0,
+      rgba(255, 255, 255, 0.12) 18%,
+      rgba(255, 255, 255, 0.04) 38%,
+      rgba(0, 0, 0, 0) 68%
+    ),
+    linear-gradient(to bottom, #080808 0%, #050505 60%, #040404 100%);
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(227, 191, 114, 0.04) 0%,
+    rgba(227, 191, 114, 0.018) 34%,
+    rgba(0, 0, 0, 0) 72%
+  );
+}
+
+/* -------------------------------------------------
    Hero wordmark + header actions
 ------------------------------------------------- */
 
@@ -10,13 +173,13 @@
   z-index: 2;
 }
 
-/* Triple-height monument lockup */
+/* Symmetrical monument lockup */
 .masthead-wordmark {
   margin: 0;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.52rem; /* was 0.84rem */
+  gap: 0.84rem; /* doubled */
   text-transform: uppercase;
   width: 100%;
   position: relative;
@@ -44,6 +207,7 @@
   min-width: 2ch;
 }
 
+/* tiny footed cross, double-height */
 .country-sep {
   display: inline-block;
   font-size: 0.62em;
@@ -57,7 +221,7 @@
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.16rem; /* was 0.72rem */
+  gap: 0.72rem; /* doubled */
   line-height: 1;
 }
 
@@ -113,7 +277,7 @@
   font-size: clamp(0.84rem, 2.15vw, 0.98rem);
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  margin-top: 3.45rem; /* was 1.15rem */
+  margin-top: 1.15rem;
   color: #c7b08a;
   position: relative;
   z-index: 2;
@@ -131,31 +295,14 @@
   padding: 0 0.35em;
 }
 
-/* Also increase overall header frame so it doesn't feel cramped */
-.site-header {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  padding: 7.6rem 1.5rem 6.6rem; /* increased significantly */
-  background:
-    radial-gradient(
-      circle at top center,
-      rgba(255, 255, 255, 0.22) 0,
-      rgba(255, 255, 255, 0.12) 18%,
-      rgba(255, 255, 255, 0.04) 38%,
-      rgba(0, 0, 0, 0) 68%
-    ),
-    linear-gradient(to bottom, #080808 0%, #050505 60%, #040404 100%);
-}
-
-/* Mobile tuning (scaled-up but sane) */
+/* Mobile tuning */
 @media (max-width: 420px) {
   .site-header {
-    padding: 5.6rem 1rem 4.8rem;
+    padding: 3.85rem 1rem 2.7rem;
   }
 
   .masthead-wordmark {
-    gap: 1.86rem; /* 3x of prior mobile-ish cadence */
+    gap: 0.62rem;
   }
 
   .wordmark-kicker {
@@ -171,7 +318,7 @@
   }
 
   .wordmark-main {
-    gap: 1.5rem;
+    gap: 0.5rem;
   }
 
   .wordmark-line:first-child {
@@ -188,6 +335,297 @@
     font-size: 0.82rem;
     letter-spacing: 0.16em;
     gap: 0.35em;
-    margin-top: 2.85rem;
+    margin-top: 0.95rem;
+  }
+}
+
+/* -------------------------------------------------
+   Rules, sections, footer
+------------------------------------------------- */
+
+.rule {
+  border: none;
+  border-top: 1px solid #2b2419;
+  margin: 2.4rem 0;
+}
+
+.rule-spaced {
+  margin: 3.1rem 0 2.7rem;
+}
+
+.site-footer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #7c705a;
+  padding: 2.5rem 1.5rem 2.1rem;
+  border-top: 1px solid #221a12;
+  margin-top: 3rem;
+}
+
+.fineprint {
+  margin: 0;
+}
+
+/* -------------------------------------------------
+   Buttons
+------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.9rem;
+  border-radius: 999px;
+  font-family: "EB Garamond", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid #e3bf72;
+  background: transparent;
+  color: #f5eedc;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease,
+    border-color 150ms ease,
+    transform 120ms ease;
+}
+
+.btn-primary {
+  background: linear-gradient(to bottom, #efcf8b 0%, #ddb668 100%);
+  color: #181210;
+  border-color: #e3bf72;
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to bottom, #f2d697 0%, #e5c173 100%);
+  border-color: #f0cb7d;
+  color: #181210;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #f5eedc;
+  border-color: #e3bf72;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.65);
+}
+
+.btn-outline:hover {
+  background: #e3bf72;
+  color: #181210;
+}
+
+/* -------------------------------------------------
+   Roadmap block
+------------------------------------------------- */
+
+.roadmap {
+  text-align: center;
+}
+
+.roadmap-head {
+  margin-bottom: 2.1rem;
+}
+
+.roadmap-kicker {
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-weight: 400;
+  font-size: 0.82rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #b89f78;
+  margin-bottom: 0.45rem;
+}
+
+.roadmap-title {
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 1.08rem;
+}
+
+.initiative {
+  margin-bottom: 2.9rem;
+}
+
+.wm {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.2rem;
+}
+
+.wm-top {
+  font-size: 0.7rem;
+  color: #b89f78;
+  margin-bottom: 0.35rem;
+}
+
+.wm-main {
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-weight: 500;
+  font-size: 1.12rem;
+  letter-spacing: 0.24em;
+}
+
+.wm-sub {
+  margin-top: 0.35rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  color: #a89a80;
+}
+
+.wm-rule {
+  height: 1px;
+  width: 70%;
+  margin: 0.55rem auto 0.4rem;
+  background: linear-gradient(to right, transparent, #3a2b16, transparent);
+}
+
+.wm-patronium .wm-main {
+  font-size: 1.2rem;
+}
+
+.wm-cowboy .wm-main {
+  font-size: 1.13rem;
+}
+
+.wm-mid {
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  margin-top: 0.25rem;
+  color: #b7aa8b;
+}
+
+.wm-dot {
+  padding: 0 0.3em;
+}
+
+.wm-simple .wm-main {
+  font-size: 1.05rem;
+}
+
+.initiative-text {
+  max-width: 32rem;
+  margin: 0 auto 1.3rem;
+  font-size: 0.96rem;
+  color: #e4dcc3;
+}
+
+.cta-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+}
+
+.divider {
+  height: 1px;
+  width: 64%;
+  margin: 0 auto;
+  background: linear-gradient(to right, transparent, #262018, transparent);
+}
+
+.roadmap-footnote {
+  margin: 1.7rem auto 0;
+  max-width: 32rem;
+  font-size: 0.88rem;
+  color: #b7aa8b;
+}
+
+/* -------------------------------------------------
+   Gate zone + blur overlay
+------------------------------------------------- */
+
+.gate-zone {
+  position: relative;
+  margin-top: 3.4rem;
+}
+
+.gate-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 1.6rem;
+  pointer-events: auto;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.02) 0%,
+    rgba(5, 5, 5, 0.13) 40%,
+    rgba(5, 5, 5, 0.28) 100%
+  );
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+@media (min-width: 768px) {
+  .gate-overlay {
+    padding-top: 2.4rem;
+  }
+}
+
+.gate-card {
+  max-width: 540px;
+  width: 90%;
+  border-radius: 22px;
+  border: 1px solid #3a2b16;
+  padding: 1.7rem 1.4rem 1.5rem;
+  background: radial-gradient(
+      circle at top center,
+      rgba(255, 255, 255, 0.06) 0,
+      transparent 55%
+    ),
+    rgba(5, 5, 5, 0.94);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.9);
+  text-align: center;
+}
+
+.gate-kicker {
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #b89f78;
+  margin-bottom: 0.45rem;
+}
+
+.gate-title {
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.gate-copy {
+  font-size: 0.95rem;
+  margin-bottom: 0.9rem;
+  color: #e5ddc4;
+}
+
+/* -------------------------------------------------
+   Responsive tweak for text widths
+------------------------------------------------- */
+
+@media (min-width: 900px) {
+  body {
+    font-size: 18px;
+  }
+
+  .wordmark-line:first-child {
+    font-size: 2.42rem;
+  }
+
+  .container {
+    padding-inline: 26px;
   }
 }
