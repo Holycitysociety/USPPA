@@ -412,10 +412,10 @@ export default function App() {
 
           <hr className="rule" />
 
-          <h2 className="sc">Horse Syndicates and the Association Remuda</h2>
+          <h2 className="sc">Horse Syndicates and the Association Stringpool</h2>
           <p>
             One of the most important uses of the system is the creation of
-            dedicated association horses and a managed remuda.
+            dedicated association horses and a managed Stringpool.
           </p>
           <p>
             Rather than leaving new players to navigate the sport through
