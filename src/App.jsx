@@ -190,15 +190,15 @@ export default function App() {
           >
             <span className="country-code">US</span>
             <span className="country-sep" aria-hidden="true">
-              ✝
+              ✠
             </span>
             <span className="country-code">AR</span>
             <span className="country-sep" aria-hidden="true">
-              ✝
+              ✠
             </span>
             <span className="country-code">CA</span>
             <span className="country-sep" aria-hidden="true">
-              ✝
+              ✠
             </span>
             <span className="country-code">UK</span>
           </span>
