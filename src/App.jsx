@@ -184,21 +184,34 @@ export default function App() {
         </div>
 
         <h1 className="masthead-wordmark" aria-label="Polo Patrons Association">
-          <span className="wordmark-kicker">
-            U S · A R · C A · U K
-        
+          <span
+            className="wordmark-kicker"
+            aria-label="United States, Argentina, Canada, United Kingdom"
+          >
+            <span className="country-code">US</span>
+            <span className="country-sep" aria-hidden="true">
+              ✝
+            </span>
+            <span className="country-code">AR</span>
+            <span className="country-sep" aria-hidden="true">
+              ✝
+            </span>
+            <span className="country-code">CA</span>
+            <span className="country-sep" aria-hidden="true">
+              ✝
+            </span>
+            <span className="country-code">UK</span>
           </span>
 
           <span className="wordmark-main">
             <span className="wordmark-line">POLO PATRONS</span>
-            <span className="wordmark-line">A S S O C I A T I O N</span>
+            <span className="wordmark-line">ASSOCIATION</span>
           </span>
-
-          <span className="wordmark-rule" />
         </h1>
 
         <p className="est">
-          FOUNDING<span className="dot">·</span>AD MMXXVI · 2026
+          FOUNDING<span className="dot">·</span>AD MMXXVI
+          <span className="dot">·</span>2026
         </p>
       </header>
 
