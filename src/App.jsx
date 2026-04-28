@@ -190,7 +190,7 @@ export default function App() {
           </span>
 
           <span className="wordmark-main">
-            <span className="wordmark-line">P O L O  P A T R O N S</span>
+            <span className="wordmark-line">POLO PATRONS</span>
             <span className="wordmark-line">ASSOCIATION</span>
           </span>
 
