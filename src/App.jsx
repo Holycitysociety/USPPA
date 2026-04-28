@@ -210,8 +210,7 @@ export default function App() {
         </h1>
 
         <p className="est">
-          FOUNDING<span className="dot">·</span>AD MMXXVI
-          <span className="dot">·</span>2026
+          FOUNDING AD MMXXVI
         </p>
       </header>
 
