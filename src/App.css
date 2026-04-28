@@ -157,16 +157,19 @@ h3 {
   align-items: center;
   gap: 0.45rem;
   text-transform: uppercase;
+  width: 100%;
 }
 
 .wordmark-kicker {
   font-family: "Cinzel", serif;
-  font-size: clamp(0.78rem, 2.2vw, 1.02rem);
-  letter-spacing: 0.2em;
+  font-size: clamp(0.82rem, 2.8vw, 1.08rem);
+  letter-spacing: 0.14em;
   color: #b89f78;
-  white-space: nowrap;
-  line-height: 1.2;
-  margin-bottom: 0.18rem;
+  line-height: 1.25;
+  text-align: center;
+  max-width: 34ch;
+  margin: 0 auto 0.2rem;
+  text-wrap: balance;
 }
 
 .wordmark-main {
@@ -187,26 +190,26 @@ h3 {
     0 8px 26px rgba(0, 0, 0, 0.45);
 }
 
-/* POLO PATRONS (increased spacing) */
+/* POLO PATRONS */
 .wordmark-line:first-child {
-  font-size: clamp(1.35rem, 6.1vw, 2.5rem);
-  letter-spacing: 0.28em;
+  font-size: clamp(1.7rem, 8.2vw, 2.7rem);
+  letter-spacing: 0.24em;
   color: #f5eedc;
 }
 
-/* ASSOCIATION = same size as country line */
+/* ASSOCIATION (same scale family as kicker) */
 .wordmark-line:last-child {
-  font-size: clamp(0.78rem, 2.2vw, 1.02rem);
-  letter-spacing: 0.22em;
+  font-size: clamp(0.82rem, 2.8vw, 1.08rem);
+  letter-spacing: 0.2em;
   color: #e9d8b3;
-  margin-top: 0.28rem;
+  margin-top: 0.24rem;
 }
 
 .wordmark-rule {
   display: block;
   height: 1px;
-  width: min(82vw, 480px);
-  margin-top: 0.35rem;
+  width: min(92vw, 520px);
+  margin-top: 0.38rem;
   background: linear-gradient(
     to right,
     transparent 0%,
@@ -217,20 +220,26 @@ h3 {
   );
 }
 
-/* Narrow phone tuning */
+/* Mobile boost */
 @media (max-width: 420px) {
+  .site-header {
+    padding: 3.8rem 1rem 2.6rem;
+  }
+
   .wordmark-kicker {
-    font-size: clamp(0.66rem, 2.8vw, 0.78rem);
-    letter-spacing: 0.13em;
+    font-size: 0.84rem;
+    letter-spacing: 0.11em;
+    max-width: 30ch;
   }
 
   .wordmark-line:first-child {
-    letter-spacing: 0.22em;
+    font-size: clamp(1.9rem, 9.4vw, 2.35rem);
+    letter-spacing: 0.2em;
   }
 
   .wordmark-line:last-child {
-    font-size: clamp(0.66rem, 2.8vw, 0.78rem);
-    letter-spacing: 0.15em;
+    font-size: 0.84rem;
+    letter-spacing: 0.16em;
   }
 
   .wordmark-rule {
@@ -527,7 +536,7 @@ h3 {
   }
 
   .wordmark-line:first-child {
-    font-size: 2.5rem;
+    font-size: 2.7rem;
   }
 
   .container {
