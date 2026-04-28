@@ -190,7 +190,7 @@ export default function App() {
 
         <h1 className="masthead-title">
           <span className="masthead-line">U S  ⋆  A R  ⋆  C A  ⋆  U K</span>
-          <span className="masthead-line">Polo Patróns</span>
+          <span className="masthead-line">Polo Patrons</span>
           <span className="masthead-line">Association</span>
         </h1>
 
