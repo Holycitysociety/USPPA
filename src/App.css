@@ -136,7 +136,8 @@ h3 {
   position: relative;
   overflow: hidden;
   text-align: center;
-  padding: 4.6rem 1.5rem 3.2rem;
+  /* Increased header frame height */
+  padding: 7.4rem 1.5rem 6.6rem;
   background:
     radial-gradient(
       circle at top center,
@@ -173,13 +174,13 @@ h3 {
   z-index: 2;
 }
 
-/* Symmetrical monument lockup */
+/* Triple-rhythm monument lockup */
 .masthead-wordmark {
   margin: 0;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.84rem; /* doubled */
+  gap: 2.52rem; /* 3x of 0.84 */
   text-transform: uppercase;
   width: 100%;
   position: relative;
@@ -207,21 +208,20 @@ h3 {
   min-width: 2ch;
 }
 
-/* tiny footed cross, double-height */
+/* Cross separator: NO skinny distortion */
 .country-sep {
   display: inline-block;
-  font-size: 0.62em;
+  font-size: 0.66em;
   line-height: 1;
   color: #b8965a;
-  transform: translateY(-0.02em) scaleY(2);
-  transform-origin: center;
+  transform: translateY(-0.03em); /* tiny optical nudge only */
 }
 
 .wordmark-main {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.72rem; /* doubled */
+  gap: 2.16rem; /* 3x of 0.72 */
   line-height: 1;
 }
 
@@ -277,18 +277,16 @@ h3 {
   font-size: clamp(0.84rem, 2.15vw, 0.98rem);
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  margin-top: 1.15rem;
+  margin-top: 3.45rem; /* 3x of 1.15 */
   color: #c7b08a;
   position: relative;
   z-index: 2;
 }
 
+/* Stars removed per request */
 .est::before,
 .est::after {
-  content: "✦";
-  font-size: 0.66em;
-  color: #a98a53;
-  opacity: 0.9;
+  content: none;
 }
 
 .dot {
@@ -298,11 +296,11 @@ h3 {
 /* Mobile tuning */
 @media (max-width: 420px) {
   .site-header {
-    padding: 3.85rem 1rem 2.7rem;
+    padding: 5.8rem 1rem 5rem;
   }
 
   .masthead-wordmark {
-    gap: 0.62rem;
+    gap: 1.86rem;
   }
 
   .wordmark-kicker {
@@ -313,12 +311,12 @@ h3 {
   }
 
   .country-sep {
-    font-size: 0.58em;
-    transform: translateY(-0.015em) scaleY(1.8);
+    font-size: 0.62em;
+    transform: translateY(-0.02em);
   }
 
   .wordmark-main {
-    gap: 0.5rem;
+    gap: 1.5rem;
   }
 
   .wordmark-line:first-child {
@@ -335,7 +333,7 @@ h3 {
     font-size: 0.82rem;
     letter-spacing: 0.16em;
     gap: 0.35em;
-    margin-top: 0.95rem;
+    margin-top: 2.85rem;
   }
 }
 
