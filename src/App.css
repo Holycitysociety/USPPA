@@ -136,8 +136,8 @@ h3 {
   position: relative;
   overflow: hidden;
   text-align: center;
-  /* Increased header frame height */
-  padding: 7.4rem 1.5rem 6.6rem;
+  /* refined monument spacing (pulled back from triple) */
+  padding: 5.8rem 1.5rem 4.9rem;
   background:
     radial-gradient(
       circle at top center,
@@ -174,13 +174,13 @@ h3 {
   z-index: 2;
 }
 
-/* Triple-rhythm monument lockup */
+/* Refined monument lockup */
 .masthead-wordmark {
   margin: 0;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.52rem; /* 3x of 0.84 */
+  gap: 1.22rem; /* was 2.52 */
   text-transform: uppercase;
   width: 100%;
   position: relative;
@@ -190,8 +190,8 @@ h3 {
 .wordmark-kicker {
   font-family: "Cormorant Garamond", "EB Garamond", serif;
   font-weight: 400;
-  font-size: clamp(0.92rem, 2.45vw, 1.1rem);
-  letter-spacing: 0.16em;
+  font-size: clamp(1rem, 2.65vw, 1.2rem); /* slightly larger */
+  letter-spacing: 0.17em;
   color: #c7b08a;
   line-height: 1.15;
   text-align: center;
@@ -214,14 +214,14 @@ h3 {
   font-size: 0.66em;
   line-height: 1;
   color: #b8965a;
-  transform: translateY(-0.03em); /* tiny optical nudge only */
+  transform: translateY(-0.03em);
 }
 
 .wordmark-main {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.16rem; /* 3x of 0.72 */
+  gap: 1.04rem; /* was 2.16 */
   line-height: 1;
 }
 
@@ -253,11 +253,11 @@ h3 {
   color: transparent;
 }
 
-/* Third line balanced */
+/* supporting line 2: association */
 .wordmark-line:last-child {
   font-weight: 400;
-  font-size: clamp(0.92rem, 2.45vw, 1.1rem);
-  letter-spacing: 0.305em;
+  font-size: clamp(1rem, 2.65vw, 1.2rem); /* slightly larger */
+  letter-spacing: 0.285em;
   color: #ddcfad;
 }
 
@@ -277,7 +277,7 @@ h3 {
   font-size: clamp(0.84rem, 2.15vw, 0.98rem);
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  margin-top: 3.45rem; /* 3x of 1.15 */
+  margin-top: 1.7rem; /* was 3.45 */
   color: #c7b08a;
   position: relative;
   z-index: 2;
@@ -296,16 +296,16 @@ h3 {
 /* Mobile tuning */
 @media (max-width: 420px) {
   .site-header {
-    padding: 5.8rem 1rem 5rem;
+    padding: 4.6rem 1rem 3.9rem;
   }
 
   .masthead-wordmark {
-    gap: 1.86rem;
+    gap: 0.9rem;
   }
 
   .wordmark-kicker {
-    font-size: 0.86rem;
-    letter-spacing: 0.12em;
+    font-size: 0.92rem;
+    letter-spacing: 0.13em;
     gap: 0.45em;
     flex-wrap: nowrap;
   }
@@ -316,7 +316,7 @@ h3 {
   }
 
   .wordmark-main {
-    gap: 1.5rem;
+    gap: 0.74rem;
   }
 
   .wordmark-line:first-child {
@@ -325,15 +325,15 @@ h3 {
   }
 
   .wordmark-line:last-child {
-    font-size: 0.84rem;
-    letter-spacing: 0.23em;
+    font-size: 0.92rem;
+    letter-spacing: 0.22em;
   }
 
   .est {
     font-size: 0.82rem;
     letter-spacing: 0.16em;
     gap: 0.35em;
-    margin-top: 2.85rem;
+    margin-top: 1.2rem;
   }
 }
 
