@@ -1,4 +1,9 @@
 /* -------------------------------------------------
+   Fonts (lightweight display Garamond + body Garamond)
+------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=EB+Garamond:wght@400;500;600&display=swap");
+
+/* -------------------------------------------------
    Global base
 ------------------------------------------------- */
 
@@ -55,11 +60,11 @@ a:hover {
   overflow-x: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
 .site-tabs::-webkit-scrollbar {
-  display: none; /* WebKit */
+  display: none;
 }
 
 .site-tab {
@@ -75,7 +80,7 @@ a:hover {
   border-top: 1px solid #3a2b16;
   background: transparent;
   white-space: nowrap;
-  flex: 0 0 auto; /* prevent wrapping / shrinking */
+  flex: 0 0 auto;
 }
 
 .site-tab--active {
@@ -95,14 +100,15 @@ a:hover {
 h1,
 h2,
 h3 {
-  font-family: "EB Garamond", serif;
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-weight: 400;
   margin: 0 0 0.6em;
 }
 
 .sc {
   font-variant: small-caps;
   letter-spacing: 0.18em;
-  text-transform: lowercase; /* shows as small caps */
+  text-transform: lowercase;
   font-size: 0.95rem;
 }
 
@@ -149,7 +155,7 @@ h3 {
   justify-content: center;
 }
 
-/* New Prestige Garamond Wordmark */
+/* Very lightweight display Garamond wordmark */
 .masthead-wordmark {
   margin: 0;
   display: inline-flex;
@@ -161,48 +167,50 @@ h3 {
 }
 
 .wordmark-kicker {
-  font-family: "EB Garamond", serif;
-  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
-  letter-spacing: 0.3em;
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 2.7vw, 1.18rem);
+  letter-spacing: 0.22em;
   color: #c7b08a;
-  line-height: 1.25;
+  line-height: 1.2;
   text-align: center;
   max-width: 40ch;
-  margin: 0 auto 0.2rem;
+  margin: 0 auto 0.18rem;
 }
 
 .wordmark-main {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.08rem;
-  line-height: 1.06;
+  gap: 0.06rem;
+  line-height: 1.04;
 }
 
 .wordmark-line {
   display: block;
-  font-family: "EB Garamond", serif;
-  font-weight: 600;
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
   white-space: nowrap;
-  font-feature-settings: "smcp";
-}
-
-/* POLO PATRÓNS */
-.wordmark-line:first-child {
-  font-size: clamp(1.8rem, 8.5vw, 2.9rem);
-  letter-spacing: 0.25em;
-  color: #f5eedc;
   text-shadow:
-    0 0 1px rgba(227, 191, 114, 0.18),
-    0 8px 26px rgba(0, 0, 0, 0.45);
+    0 0 1px rgba(227, 191, 114, 0.14),
+    0 10px 30px rgba(0, 0, 0, 0.42);
+  text-transform: uppercase;
 }
 
-/* ASSOCIATION */
+/* POLO PATRONS (lightweight display) */
+.wordmark-line:first-child {
+  font-weight: 300;
+  font-size: clamp(1.65rem, 7.6vw, 2.6rem);
+  letter-spacing: 0.28em;
+  color: #f5eedc;
+}
+
+/* ASSOCIATION (same family/scale tone as kicker) */
 .wordmark-line:last-child {
-  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
-  letter-spacing: 0.35em;
-  color: #dcd0b0;
-  margin-top: 0.3rem;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 2.7vw, 1.18rem);
+  letter-spacing: 0.26em;
+  color: #ddcfad;
+  margin-top: 0.2rem;
 }
 
 .wordmark-rule {
@@ -220,26 +228,26 @@ h3 {
   );
 }
 
-/* Mobile boost */
+/* Mobile tuning */
 @media (max-width: 420px) {
   .site-header {
     padding: 3.8rem 1rem 2.6rem;
   }
 
   .wordmark-kicker {
-    font-size: 0.88rem;
-    letter-spacing: 0.22em;
-    max-width: 32ch;
+    font-size: 0.9rem;
+    letter-spacing: 0.16em;
+    max-width: 30ch;
   }
 
   .wordmark-line:first-child {
-    font-size: clamp(1.9rem, 9vw, 2.4rem);
-    letter-spacing: 0.2em;
+    font-size: clamp(1.52rem, 7.4vw, 2.1rem);
+    letter-spacing: 0.22em;
   }
 
   .wordmark-line:last-child {
-    font-size: 0.88rem;
-    letter-spacing: 0.28em;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
   }
 
   .wordmark-rule {
@@ -248,9 +256,10 @@ h3 {
 }
 
 .est {
-  font-family: "EB Garamond", serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.22em;
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-top: 1.2rem;
   color: #c7b08a;
@@ -352,8 +361,9 @@ h3 {
 }
 
 .roadmap-kicker {
-  font-family: "EB Garamond", serif;
-  font-size: 0.75rem;
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-weight: 400;
+  font-size: 0.82rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: #b89f78;
@@ -361,10 +371,11 @@ h3 {
 }
 
 .roadmap-title {
-  font-family: "EB Garamond", serif;
-  letter-spacing: 0.22em;
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 1.08rem;
 }
 
 .initiative {
@@ -378,20 +389,21 @@ h3 {
 }
 
 .wm-top {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   color: #b89f78;
   margin-bottom: 0.35rem;
 }
 
 .wm-main {
-  font-family: "EB Garamond", serif;
-  font-size: 1.05rem;
-  letter-spacing: 0.26em;
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-weight: 500;
+  font-size: 1.12rem;
+  letter-spacing: 0.24em;
 }
 
 .wm-sub {
   margin-top: 0.35rem;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   letter-spacing: 0.18em;
   color: #a89a80;
 }
@@ -404,11 +416,11 @@ h3 {
 }
 
 .wm-patronium .wm-main {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
 }
 
 .wm-cowboy .wm-main {
-  font-size: 1.09rem;
+  font-size: 1.13rem;
 }
 
 .wm-mid {
@@ -423,7 +435,7 @@ h3 {
 }
 
 .wm-simple .wm-main {
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
 .initiative-text {
@@ -504,8 +516,8 @@ h3 {
 }
 
 .gate-kicker {
-  font-family: "EB Garamond", serif;
-  font-size: 0.7rem;
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-size: 0.74rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #b89f78;
@@ -513,9 +525,9 @@ h3 {
 }
 
 .gate-title {
-  font-family: "EB Garamond", serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.22em;
+  font-family: "Cormorant Garamond", "EB Garamond", serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 0.8rem;
 }
@@ -536,7 +548,7 @@ h3 {
   }
 
   .wordmark-line:first-child {
-    font-size: 2.9rem;
+    font-size: 2.6rem;
   }
 
   .container {
