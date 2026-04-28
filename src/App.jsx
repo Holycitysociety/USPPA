@@ -185,7 +185,8 @@ export default function App() {
 
         <h1 className="masthead-wordmark" aria-label="Polo Patrons Association">
           <span className="wordmark-kicker">
-            UNITED STATES · ARGENTINA · CANADA · UNITED KINGDOM
+            U S · A R · C A · U K
+        
           </span>
 
           <span className="wordmark-main">
