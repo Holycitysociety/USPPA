@@ -82,7 +82,6 @@ export default function App() {
   const account = useActiveAccount();
   const activeWallet = useActiveWallet();
   const { disconnect } = useDisconnect();
-  const isConnected = !!account;
 
   const walletScrollRef = useRef(null);
 
@@ -112,7 +111,6 @@ export default function App() {
     tokenAddress: "0xD766a771887fFB6c528434d5710B406313CAe03A",
   });
 
-  const openWallet = () => setWalletOpen(true);
   const closeWallet = () => setWalletOpen(false);
 
   const handleSignOut = () => {
@@ -132,7 +130,7 @@ export default function App() {
     if (!account?.address) return;
     try {
       await navigator.clipboard.writeText(account.address);
-      alert("Patrón Wallet address copied.");
+      alert("Patron Wallet address copied.");
     } catch (err) {
       console.error("Clipboard error:", err);
     }
@@ -180,18 +178,22 @@ export default function App() {
       {/* Header / hero */}
       <header id="top" className="site-header">
         <div className="header-actions">
-          <a
-            className="btn btn-primary"
-            href="https://cowboypolo.com/#/wallet"
-          >
+          <a className="btn btn-primary" href="https://cowboypolo.com/#/wallet">
             Sign In / Sign Up
           </a>
         </div>
 
-        <h1 className="masthead-title">
-          <span className="masthead-line">U S  ⋆  A R  ⋆  C A  ⋆  U K</span>
-          <span className="masthead-line">Polo Patrons</span>
-          <span className="masthead-line">Association</span>
+        <h1 className="masthead-wordmark" aria-label="Polo Patrons Association">
+          <span className="wordmark-kicker">
+            UNITED STATES · ARGENTINA · CANADA · UNITED KINGDOM
+          </span>
+
+          <span className="wordmark-main">
+            <span className="wordmark-line">POLO PATRONS</span>
+            <span className="wordmark-line">ASSOCIATION</span>
+          </span>
+
+          <span className="wordmark-rule" />
         </h1>
 
         <p className="est">
@@ -223,10 +225,7 @@ export default function App() {
 
           {/* PATRONIUM */}
           <div className="initiative">
-            <div
-              className="wm wm-patronium"
-              aria-label="Polo Patronium wordmark"
-            >
+            <div className="wm wm-patronium" aria-label="Polo Patronium wordmark">
               <div className="wm-top">Official Polo Patronage Token</div>
               <div className="wm-main">PATRONIUM</div>
               <div className="wm-rule" />
@@ -249,17 +248,13 @@ export default function App() {
 
           {/* COWBOY POLO CIRCUIT */}
           <div className="initiative">
-            <div
-              className="wm wm-cowboy"
-              aria-label="Cowboy Polo Circuit wordmark"
-            >
+            <div className="wm wm-cowboy" aria-label="Cowboy Polo Circuit wordmark">
               <div className="wm-main">COWBOY&nbsp;POLO CIRCUIT</div>
-
               <div className="wm-sub">American Development Pipeline</div>
             </div>
 
             <p className="initiative-text">
-              A national endeavour to broaden the sport's reach, nurture
+              A national endeavour to broaden the sport&apos;s reach, nurture
               emerging talent, and encourage the next generation of American
               players.
             </p>
@@ -273,16 +268,17 @@ export default function App() {
             <div className="divider" />
           </div>
 
-          {/* THREE SEVENS REMUDA */}
+          {/* POLO PATRONS POLOBRED STRINGPOOL */}
           <div className="initiative">
             <div
-              className="wm wm-three-sevens"
-              aria-label="Three Sevens Remuda wordmark"
+              className="wm wm-simple"
+              aria-label="Polo Patrons Polobred Stringpool wordmark"
             >
-              <div className="wm-top">POLO PATRONS</div>
-              <div className="three-sevens-mark">
-                <div className="three-sevens-numeral">POLOBRED STRINGPOOL</div>
-                <div className="three-sevens-text"></div>
+              <div className="wm-top">Managed Herd</div>
+              <div className="wm-main">
+                POLO&nbsp;PATRONS
+                <br />
+                POLOBRED&nbsp;STRINGPOOL
               </div>
             </div>
 
@@ -320,26 +316,20 @@ export default function App() {
 
           {/* CHARLESTON POLO */}
           <div className="initiative">
-            <div
-              className="wm wm-simple"
-              aria-label="Charleston Polo wordmark"
-            >
+            <div className="wm wm-simple" aria-label="Charleston Polo wordmark">
               <div className="wm-top">Flagship Chapter</div>
               <div className="wm-main">CHARLESTON&nbsp;POLO</div>
               <div className="wm-sub">PPA Chapter Test Model</div>
             </div>
 
             <p className="initiative-text">
-              The renewal of Charleston, South Carolina's polo tradition — our
+              The renewal of Charleston, South Carolina&apos;s polo tradition — our
               flagship Chapter and living test model for the PPA incubator
               framework.
             </p>
 
             <div className="cta-row">
-              <a
-                className="btn btn-outline"
-                href="https://charlestonpoloclub.com"
-              >
+              <a className="btn btn-outline" href="https://charlestonpoloclub.com">
                 Charlestonpolo.com
               </a>
             </div>
@@ -356,11 +346,7 @@ export default function App() {
         {/* -------------------------------------------------------
             GATED ZONE KEPT IN PLACE BUT CURRENTLY UNGATED
            ------------------------------------------------------- */}
-        <div
-          className="gate-zone"
-          id="patronium-polo-patronage"
-          ref={gateRef}
-        >
+        <div className="gate-zone" id="patronium-polo-patronage" ref={gateRef}>
           <h2 className="sc">The Patronium Framework</h2>
 
           <p>
@@ -372,8 +358,7 @@ export default function App() {
           <p>
             It gives patrons a clear way to enter the ecosystem, participate in
             real initiatives, and direct support where it is needed most —
-            especially horses, teams, events, and long-term polo
-            infrastructure.
+            especially horses, teams, events, and long-term polo infrastructure.
           </p>
           <p>
             Patronium is the utility layer of the Association. Patrons acquire
@@ -393,14 +378,14 @@ export default function App() {
           <h2 className="sc">Charleston Polo — The PPA Chapter Test Model</h2>
           <p>
             Each PPA Chapter is a fully integrated programme operating under the
-            Association's standards. Charleston Polo, as the flagship Chapter,
+            Association&apos;s standards. Charleston Polo, as the flagship Chapter,
             serves as the organisational hub for the Cowboy Polo Circuit —
             coordinating local Cowboy Polo clinics, sanctioned chukkers at
             member barns and arenas, and the first pool of chapter horses.
           </p>
           <p>
             In its early life a Chapter begins as a Polo Incubator: a local
-            startup where the "bring your own horse" model allows riders and
+            startup where the &quot;bring your own horse&quot; model allows riders and
             stables to join the Circuit quickly, while a shared remuda is
             trained for exhibitions, league play, and new riders.
           </p>
@@ -435,7 +420,7 @@ export default function App() {
           </p>
           <p>
             Each horse has its own ERC-1155 token ID, so support can be recorded
-            and tracked horse by horse over the course of that horse's career.
+            and tracked horse by horse over the course of that horse&apos;s career.
             This makes it possible to organize horse-specific support, preserve
             the history of who helped bring a horse along, and reserve funds for
             old age, turnout, and retirement care.
@@ -459,7 +444,7 @@ export default function App() {
           <p>
             <b>Operating Patrons</b> are the active stewards responsible for
             helping sustain the daily life, health, continuity, and long-term
-            stewardship of a Chapter in service to the Association's mission.
+            stewardship of a Chapter in service to the Association&apos;s mission.
           </p>
           <p>
             <b>PPA Patrons</b> are the broader body of supporters who strengthen
@@ -476,7 +461,7 @@ export default function App() {
           <p>
             Each Chapter follows a principle of balanced and transparent
             patronage. Resources are directed first toward the health,
-            continuity, and responsible stewardship of the Association's horses,
+            continuity, and responsible stewardship of the Association&apos;s horses,
             land, equipment, operations, and local programmes.
           </p>
           <p>
@@ -529,8 +514,8 @@ export default function App() {
               Chapter, its horses, and its players.
             </li>
             <li>
-              Become a PPA Patron — support the broader network and take part
-              in the ongoing life of the Association.
+              Become a PPA Patron — support the broader network and take part in
+              the ongoing life of the Association.
             </li>
             <li>
               Provide Horses or Land — supply the physical foundation of the
@@ -565,10 +550,9 @@ export default function App() {
 
           <h2 className="sc">An Invitation to Patrons and Partners</h2>
           <p>
-            The Association welcomes discerning patrons, landholders,
-            horsemen, and professionals who wish to take part in the
-            restoration of polo as a more stable and sustainable American
-            enterprise.
+            The Association welcomes discerning patrons, landholders, horsemen,
+            and professionals who wish to take part in the restoration of polo
+            as a more stable and sustainable American enterprise.
           </p>
           <p>
             Each Chapter is a long-term patronage model for horses, land, and
@@ -599,7 +583,7 @@ export default function App() {
           </p>
 
           <blockquote className="motto">
-            "In honour, in sport, in fellowship."
+            &quot;In honour, in sport, in fellowship.&quot;
           </blockquote>
         </div>
 
@@ -608,7 +592,7 @@ export default function App() {
         </footer>
       </main>
 
-      {/* Local Patrón Wallet modal kept for future member-area use, currently not triggered */}
+      {/* Local Patron Wallet modal kept for future member-area use, currently not triggered */}
       {walletOpen && (
         <div
           className="wallet-backdrop"
@@ -752,7 +736,7 @@ export default function App() {
                         cursor: "pointer",
                         fontSize: 14,
                       }}
-                      aria-label="Copy Patrón Wallet address"
+                      aria-label="Copy Patron Wallet address"
                     >
                       📋
                     </button>
