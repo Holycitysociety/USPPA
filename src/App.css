@@ -161,11 +161,12 @@ h3 {
 
 .wordmark-kicker {
   font-family: "Cinzel", serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.24em;
+  font-size: clamp(0.78rem, 2.2vw, 1.02rem); /* increased */
+  letter-spacing: 0.2em;
   color: #b89f78;
   white-space: nowrap;
   line-height: 1.2;
+  margin-bottom: 0.18rem;
 }
 
 .wordmark-main {
@@ -189,7 +190,6 @@ h3 {
     0 8px 26px rgba(0, 0, 0, 0.45);
 }
 
-/* subtle luxury contrast between line 1 and line 2 */
 .wordmark-line:last-child {
   letter-spacing: 0.24em;
   color: #e9d8b3;
@@ -213,8 +213,8 @@ h3 {
 /* Narrow phone tuning */
 @media (max-width: 420px) {
   .wordmark-kicker {
-    font-size: 0.53rem;
-    letter-spacing: 0.16em;
+    font-size: clamp(0.66rem, 2.8vw, 0.78rem);
+    letter-spacing: 0.13em;
   }
 
   .wordmark-line {
@@ -278,7 +278,7 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.55rem 1.9rem; /* slimmer vertical padding */
+  padding: 0.55rem 1.9rem;
   border-radius: 999px;
   font-family: "Cinzel", serif;
   font-size: 0.8rem;
@@ -386,12 +386,10 @@ h3 {
   background: linear-gradient(to right, transparent, #3a2b16, transparent);
 }
 
-/* Patronium wordmark slightly larger */
 .wm-patronium .wm-main {
   font-size: 1.15rem;
 }
 
-/* Cowboy Polo */
 .wm-cowboy .wm-main {
   font-size: 1.09rem;
 }
@@ -407,7 +405,6 @@ h3 {
   padding: 0 0.3em;
 }
 
-/* Simple wordmarks */
 .wm-simple .wm-main {
   font-size: 1rem;
 }
@@ -448,7 +445,6 @@ h3 {
   margin-top: 3.4rem;
 }
 
-/* Overlay pins its card near the top of the blurred section. */
 .gate-overlay {
   position: absolute;
   inset: 0;
@@ -468,7 +464,6 @@ h3 {
   -webkit-backdrop-filter: blur(3px);
 }
 
-/* a bit more breathing room on larger screens */
 @media (min-width: 768px) {
   .gate-overlay {
     padding-top: 2.4rem;
