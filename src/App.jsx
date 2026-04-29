@@ -285,9 +285,9 @@ export default function App() {
               className="wm wm-simple"
               aria-label="Polo Patrons Polobred Stringpool wordmark"
             >
-              <div className="wm-top">Managed Herd</div>
+              <div className="wm-top">Polo Patrons</div>
               <div className="wm-main">
-                POLO&nbsp;PATRONS
+              
                 <br />
                 POLOBRED&nbsp;STRINGPOOL
               </div>
