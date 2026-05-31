@@ -294,7 +294,7 @@ export default function App() {
             </div>
 
             <p className="initiative-text">
-              The managed herd of PPA horses — consigned or owned by the
+              The managed herd of PPA Stringpool horses — consigned or owned by the
               Association, assigned to operating patrons, trainers and local
               players, and developed for play, exhibition and training across
               our programmes.
