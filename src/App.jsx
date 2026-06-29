@@ -260,7 +260,7 @@ export default function App() {
           {/* COWBOY POLO CIRCUIT */}
           <div className="initiative">
             <div className="wm wm-cowboy" aria-label="Cowboy Polo Circuit wordmark">
-              <div className="wm-main">POLO PATRONS CIRCUIT</div>
+              <div className="wm-main">COWBOY POLO CIRCUIT</div>
               <div className="wm-sub">American Development Pipeline</div>
             </div>
 
