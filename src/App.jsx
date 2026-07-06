@@ -220,7 +220,7 @@ export default function App() {
         <p>
           It is with honour that we record the foundation of the Polo Patrons
           Association. This fellowship of patrons and players is inaugurated
-          with <i>Patronium</i>, a patronage token of support and tradition. Our
+          with <i>Patronium</i>, the Patrons Society token of support and tradition. Our
           purpose is simple: to safeguard the heritage of polo, encourage its
           growth, and open a new chapter in the life of the game.
         </p>
