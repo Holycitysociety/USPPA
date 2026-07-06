@@ -245,7 +245,7 @@ export default function App() {
 
             <p className="initiative-text">
               A token and membership initiative uniting patrons, players, and
-              clubs in a shared patronage system for the sport.
+              clubs in a shared patronage ecosystem.
             </p>
 
             <div className="cta-row">
